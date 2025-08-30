@@ -1,0 +1,131 @@
+@model QueryResult
+@{
+    ViewData["Title"] = "Query Execution Results";
+}
+
+<h1 class="display-4 text-center mb-4">
+    <i class="fas fa-play-circle me-3"></i>Query Execution Results
+</h1>
+
+<div class="card shadow mb-4">
+    <div class="card-header bg-success text-white">
+        <h5 class="mb-0"><i class="fas fa-check-circle me-2"></i>Query Executed Successfully</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+                <p class="mb-1"><strong>Execution Time:</strong></p>
+                <p class="text-success fs-4">@Model.ExecutionTime ms</p>
+            </div>
+            <div class="col-md-4">
+                <p class="mb-1"><strong>Rows Returned:</strong></p>
+                <p class="text-info fs-4">@Model.RowCount</p>
+            </div>
+            <div class="col-md-4">
+                <p class="mb-1"><strong>Query Status:</strong></p>
+                <p class="text-success fs-4">@Model.Status</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="fas fa-table me-2"></i>Result Set</h5>
+        <div>
+            <button class="btn btn-sm btn-light" onclick="exportQueryResults('csv')">
+                <i class="fas fa-file-csv me-1"></i>Export CSV
+            </button>
+            <button class="btn btn-sm btn-light" onclick="exportQueryResults('json')">
+                <i class="fas fa-file-code me-1"></i>Export JSON
+            </button>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        <div class="query-results">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        @foreach (var header in Model.ColumnHeaders)
+                        {
+                            <th>@header</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var row in Model.Rows)
+                    {
+                        <tr>
+                            @foreach (var value in row.Values)
+                            {
+                                <td>@value</td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card shadow">
+            <div class="card-header bg-dark text-white">
+                <h5 class="mb-0"><i class="fas fa-code me-2"></i>Executed Query</h5>
+            </div>
+            <div class="card-body">
+                <pre><code class="language-sql">@Model.SqlQuery</code></pre>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card shadow h-100">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Query Statistics</h5>
+            </div>
+            <div class="card-body">
+                <h6>Performance Metrics</h6>
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-clock me-2"></i>Parse Time: 2ms</li>
+                    <li><i class="fas fa-search me-2"></i>Index Seeks: 3</li>
+                    <li><i class="fas fa-database me-2"></i>Table Scans: 0</li>
+                    <li><i class="fas fa-memory me-2"></i>Memory Used: 128KB</li>
+                </ul>
+                
+                <h6 class="mt-3">Execution Plan</h6>
+                <div class="small">
+                    <div class="mb-2">
+                        <i class="fas fa-arrow-right text-success me-1"></i>
+                        Index Seek on Company.company_name
+                    </div>
+                    <div class="mb-2">
+                        <i class="fas fa-arrow-right text-success me-1"></i>
+                        Nested Loop Join with Employment
+                    </div>
+                    <div class="mb-2">
+                        <i class="fas fa-arrow-right text-success me-1"></i>
+                        Filter on salary > 100000
+                    </div>
+                    <div class="mb-2">
+                        <i class="fas fa-arrow-right text-success me-1"></i>
+                        Hash Join with Employee
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="alert alert-success mt-4" role="alert">
+    <h5 class="alert-heading"><i class="fas fa-lightbulb me-2"></i>Query Insights</h5>
+    <p>The query successfully identified all employees of First Bank Corporation earning more than $100,000. The use of appropriate indexes resulted in optimal performance with no table scans.</p>
+    <hr>
+    <p class="mb-0">The execution plan shows efficient use of index seeks and hash joins, demonstrating good query optimization.</p>
+</div>
+
+<div class="text-center mt-5">
+    <a asp-action="Explanation" class="btn btn-primary btn-lg">
+        <i class="fas fa-book me-2"></i>View Detailed Explanation
+    </a>
+</div>

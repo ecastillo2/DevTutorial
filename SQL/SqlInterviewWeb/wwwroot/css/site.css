@@ -1,0 +1,270 @@
+/* SQL Interview Web Application Styles */
+
+:root {
+    --sql-primary: #2c3e50;
+    --sql-secondary: #34495e;
+    --sql-success: #27ae60;
+    --sql-info: #3498db;
+    --sql-warning: #f39c12;
+    --sql-danger: #e74c3c;
+    --sql-light: #ecf0f1;
+    --sql-dark: #1a252f;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Navigation */
+.bg-sql {
+    background-color: var(--sql-primary) !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, var(--sql-primary) 0%, var(--sql-secondary) 100%);
+    color: white;
+    padding: 3rem 0;
+    border-radius: 10px;
+    margin-top: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.hero-section h1 {
+    font-weight: 300;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Cards */
+.card {
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 8px;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1) !important;
+}
+
+.card-header {
+    border: none;
+    font-weight: 600;
+    border-radius: 8px 8px 0 0 !important;
+}
+
+/* ER Diagram */
+.er-diagram svg {
+    background: white;
+    border-radius: 8px;
+    max-height: 700px;
+}
+
+.er-diagram text {
+    font-family: 'Consolas', 'Monaco', monospace;
+}
+
+/* Code Blocks */
+pre {
+    background-color: #282c34;
+    border-radius: 8px;
+    padding: 1.5rem;
+    overflow-x: auto;
+    margin: 0;
+}
+
+pre code {
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+code {
+    background-color: #f4f4f4;
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: var(--sql-danger);
+    font-family: 'Consolas', 'Monaco', monospace;
+}
+
+/* Query Result Table */
+.query-results {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.query-results table {
+    margin-bottom: 0;
+}
+
+.query-results thead {
+    background-color: var(--sql-primary);
+    color: white;
+}
+
+.query-results th {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.query-results tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--sql-primary);
+    border-color: var(--sql-primary);
+    font-weight: 500;
+    padding: 0.5rem 1.5rem;
+}
+
+.btn-primary:hover {
+    background-color: var(--sql-secondary);
+    border-color: var(--sql-secondary);
+}
+
+.btn-success {
+    background-color: var(--sql-success);
+    border-color: var(--sql-success);
+}
+
+.btn-success:hover {
+    background-color: #229954;
+    border-color: #229954;
+}
+
+/* Accordion */
+.accordion-button {
+    background-color: #f8f9fa;
+    color: var(--sql-primary);
+    font-weight: 500;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--sql-primary);
+    color: white;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+    border-color: var(--sql-primary);
+}
+
+/* Performance Tips */
+.performance-tips {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 2rem;
+}
+
+/* Key Concepts */
+.key-concepts .card {
+    transition: all 0.3s ease;
+}
+
+.key-concepts .card:hover {
+    transform: translateY(-5px);
+    border-color: var(--sql-primary) !important;
+}
+
+.key-concepts .card i {
+    transition: all 0.3s ease;
+}
+
+.key-concepts .card:hover i {
+    transform: scale(1.1);
+}
+
+/* Footer */
+.footer {
+    margin-top: 5rem;
+    background-color: var(--sql-light);
+    border-top: 1px solid #dee2e6;
+}
+
+/* Syntax Highlighting Override */
+pre[class*="language-"] {
+    background: #282c34;
+    margin: 0;
+    padding: 1.5rem;
+}
+
+code[class*="language-"] {
+    background: none;
+    padding: 0;
+    color: #abb2bf;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    
+    .er-diagram svg {
+        max-height: 400px;
+    }
+    
+    pre {
+        padding: 1rem;
+        font-size: 12px;
+    }
+}
+
+/* Loading Animation */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(44, 62, 80, .3);
+    border-radius: 50%;
+    border-top-color: var(--sql-primary);
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Alert Customization */
+.alert-info {
+    background-color: #d6eaf8;
+    border-color: var(--sql-info);
+    color: #21618c;
+}
+
+/* Badge Styles */
+.badge {
+    padding: 0.4rem 0.8rem;
+    font-weight: 500;
+}
+
+/* Table Hover Effects */
+.table-hover tbody tr {
+    transition: all 0.2s ease;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(52, 152, 219, 0.1);
+    transform: scale(1.01);
+}

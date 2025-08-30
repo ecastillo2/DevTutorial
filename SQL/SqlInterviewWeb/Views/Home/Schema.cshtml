@@ -1,0 +1,145 @@
+@model DatabaseSchema
+@{
+    ViewData["Title"] = "Database Schema";
+}
+
+<h1 class="display-4 text-center mb-4">
+    <i class="fas fa-project-diagram me-3"></i>Database Schema
+</h1>
+
+<div class="alert alert-info mb-4">
+    <i class="fas fa-info-circle me-2"></i>
+    This normalized database design demonstrates proper relational structure with primary and foreign key relationships.
+</div>
+
+<div class="row">
+    @foreach (var table in Model.Tables)
+    {
+        <div class="col-lg-4 mb-4">
+            <div class="card shadow h-100">
+                <div class="card-header bg-gradient @(table.Name == "Employee" ? "bg-primary" : table.Name == "Employment" ? "bg-warning" : "bg-success") text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-table me-2"></i>@table.Name
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted mb-3">@table.Description</p>
+                    
+                    <h6 class="border-bottom pb-2">Columns</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Column</th>
+                                    <th>Type</th>
+                                    <th>Constraints</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var column in table.Columns)
+                                {
+                                    <tr>
+                                        <td>
+                                            @if (column.IsPrimaryKey)
+                                            {
+                                                <i class="fas fa-key text-warning me-1" title="Primary Key"></i>
+                                            }
+                                            @if (column.IsForeignKey)
+                                            {
+                                                <i class="fas fa-link text-info me-1" title="Foreign Key"></i>
+                                            }
+                                            <code>@column.Name</code>
+                                        </td>
+                                        <td><small>@column.DataType</small></td>
+                                        <td>
+                                            @if (!column.IsRequired && !column.IsPrimaryKey)
+                                            {
+                                                <span class="badge bg-secondary">NULL</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-primary">NOT NULL</span>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="card shadow mt-5">
+    <div class="card-header bg-dark text-white">
+        <h5 class="mb-0"><i class="fas fa-code me-2"></i>Create Table Scripts</h5>
+    </div>
+    <div class="card-body">
+        <div class="accordion" id="createScripts">
+            @for (int i = 0; i < Model.Tables.Count; i++)
+            {
+                var table = Model.Tables[i];
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button @(i > 0 ? "collapsed" : "")" type="button" data-bs-toggle="collapse" data-bs-target="#script@(i)">
+                            CREATE TABLE @table.Name
+                        </button>
+                    </h2>
+                    <div id="script@(i)" class="accordion-collapse collapse @(i == 0 ? "show" : "")" data-bs-parent="#createScripts">
+                        <div class="accordion-body">
+                            <pre><code class="language-sql">CREATE TABLE @table.Name (
+@foreach (var col in table.Columns)
+{
+    var line = $"    {col.Name} {col.DataType}";
+    if (col.IsPrimaryKey) line += " PRIMARY KEY";
+    if (col.IsRequired || col.IsPrimaryKey) line += " NOT NULL";
+    if (col != table.Columns.Last()) line += ",";
+    @line
+    @Html.Raw("\n")
+}
+);</code></pre>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-6">
+        <div class="card shadow h-100">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="fas fa-shield-alt me-2"></i>Data Integrity Rules</h5>
+            </div>
+            <div class="card-body">
+                <ul>
+                    <li>Employee IDs must be unique across the system</li>
+                    <li>Company names should be validated for uniqueness</li>
+                    <li>Salary values must be positive decimal numbers</li>
+                    <li>is_active flag ensures proper employment status tracking</li>
+                    <li>Foreign key constraints maintain referential integrity</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card shadow h-100">
+            <div class="card-header bg-secondary text-white">
+                <h5 class="mb-0"><i class="fas fa-lightbulb me-2"></i>Design Decisions</h5>
+            </div>
+            <div class="card-body">
+                <ul>
+                    <li>Employment as junction table allows job history tracking</li>
+                    <li>Separate address fields enable flexible querying</li>
+                    <li>Active flag supports temporal queries</li>
+                    <li>Normalized design prevents data redundancy</li>
+                    <li>Indexes on foreign keys optimize JOIN performance</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

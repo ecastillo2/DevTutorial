@@ -1,0 +1,219 @@
+@model SqlExplanation
+@{
+    ViewData["Title"] = "Detailed SQL Explanation";
+}
+
+<h1 class="display-4 text-center mb-4">
+    <i class="fas fa-graduation-cap me-3"></i>Detailed SQL Explanation
+</h1>
+
+<div class="card shadow mb-4">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0"><i class="fas fa-book-open me-2"></i>Understanding the SQL Query</h4>
+    </div>
+    <div class="card-body">
+        <p class="lead">This query demonstrates fundamental SQL concepts including JOIN operations, filtering with WHERE clauses, and data retrieval from normalized relational databases.</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <h2 class="mb-4">Step-by-Step Breakdown</h2>
+        
+        @foreach (var step in Model.Steps)
+        {
+            <div class="card shadow mb-4">
+                <div class="card-header bg-gradient @(step.StepNumber == 1 ? "bg-success" : step.StepNumber == 2 ? "bg-info" : step.StepNumber == 3 ? "bg-warning" : "bg-secondary") text-white">
+                    <h5 class="mb-0">Step @step.StepNumber: @step.Title</h5>
+                </div>
+                <div class="card-body">
+                    <p>@step.Explanation</p>
+                    
+                    @if (!string.IsNullOrEmpty(step.SqlSnippet))
+                    {
+                        <pre><code class="language-sql">@step.SqlSnippet</code></pre>
+                    }
+                    
+                    @if (step.KeyPoints.Any())
+                    {
+                        <h6 class="mt-3">Key Points:</h6>
+                        <ul>
+                            @foreach (var point in step.KeyPoints)
+                            {
+                                <li>@point</li>
+                            }
+                        </ul>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="card shadow mb-4 sticky-top" style="top: 20px;">
+            <div class="card-header bg-dark text-white">
+                <h5 class="mb-0"><i class="fas fa-key me-2"></i>Key Concepts</h5>
+            </div>
+            <div class="card-body">
+                @foreach (var concept in Model.KeyConcepts)
+                {
+                    <div class="mb-3">
+                        <h6 class="text-primary">@concept.Name</h6>
+                        <p class="small mb-0">@concept.Description</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-header bg-info text-white">
+        <h4 class="mb-0"><i class="fas fa-puzzle-piece me-2"></i>JOIN Operations Explained</h4>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <h5>INNER JOIN Behavior</h5>
+                <p>An INNER JOIN returns only the rows where there is a match in both tables. In our query:</p>
+                <ul>
+                    <li>Employee ⟷ Employment: Only employees with employment records</li>
+                    <li>Employment ⟷ Company: Only employment records with valid companies</li>
+                </ul>
+                
+                <div class="alert alert-light">
+                    <strong>Visual Representation:</strong>
+                    <pre class="mb-0">
+Table A: [1, 2, 3, 4]
+Table B: [2, 3, 5, 6]
+A INNER JOIN B = [2, 3]
+                    </pre>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h5>Alternative JOIN Types</h5>
+                <p>Other JOIN types that could be used:</p>
+                <ul>
+                    <li><strong>LEFT JOIN:</strong> All employees, even without employment</li>
+                    <li><strong>RIGHT JOIN:</strong> All companies, even without employees</li>
+                    <li><strong>FULL OUTER JOIN:</strong> All records from both tables</li>
+                </ul>
+                
+                <div class="alert alert-warning">
+                    <i class="fas fa-lightbulb me-2"></i>
+                    <strong>Why INNER JOIN?</strong> We only want employees who currently work for a company, making INNER JOIN the appropriate choice.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-header bg-warning text-dark">
+        <h4 class="mb-0"><i class="fas fa-filter me-2"></i>WHERE Clause Analysis</h4>
+    </div>
+    <div class="card-body">
+        <h5>Filter Conditions</h5>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Condition</th>
+                        <th>Purpose</th>
+                        <th>Impact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>c.company_name = 'First Bank Corporation'</code></td>
+                        <td>Exact company match</td>
+                        <td>Filters to specific employer</td>
+                    </tr>
+                    <tr>
+                        <td><code>emp.salary > 100000</code></td>
+                        <td>Salary threshold</td>
+                        <td>Excludes lower earners</td>
+                    </tr>
+                    <tr>
+                        <td><code>emp.is_active = 1</code></td>
+                        <td>Current employees only</td>
+                        <td>Excludes past employees</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="alert alert-info mt-3">
+            <h6>Order of Evaluation</h6>
+            <p>SQL optimizers typically evaluate WHERE conditions in the most efficient order, often starting with the most selective condition (company name in this case).</p>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-header bg-success text-white">
+        <h4 class="mb-0"><i class="fas fa-chart-line me-2"></i>Performance Considerations</h4>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <h5>Optimization Techniques</h5>
+                <ul>
+                    <li><strong>Indexing:</strong> Create indexes on join columns and WHERE clause fields</li>
+                    <li><strong>Statistics:</strong> Keep table statistics updated for better query plans</li>
+                    <li><strong>Covering Indexes:</strong> Include all SELECT columns in indexes</li>
+                    <li><strong>Partitioning:</strong> Consider partitioning large tables by date or region</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h5>Common Pitfalls</h5>
+                <ul>
+                    <li><strong>Missing Indexes:</strong> Causes full table scans</li>
+                    <li><strong>Implicit Conversions:</strong> Data type mismatches slow queries</li>
+                    <li><strong>SELECT *:</strong> Retrieving unnecessary columns</li>
+                    <li><strong>OR Conditions:</strong> Can prevent index usage</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2 class="mb-4">Real-World Applications</h2>
+
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card h-100 shadow">
+            <div class="card-body">
+                <h5 class="card-title text-primary"><i class="fas fa-chart-bar me-2"></i>HR Analytics</h5>
+                <p>Identify high-earning employees for compensation reviews, retention strategies, or compliance reporting.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 shadow">
+            <div class="card-body">
+                <h5 class="card-title text-success"><i class="fas fa-file-invoice-dollar me-2"></i>Payroll Processing</h5>
+                <p>Generate salary reports for specific companies, useful for payroll processing or financial audits.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 shadow">
+            <div class="card-body">
+                <h5 class="card-title text-warning"><i class="fas fa-user-tie me-2"></i>Talent Management</h5>
+                <p>Find top performers in specific organizations for succession planning or benchmarking.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="alert alert-success">
+    <h5 class="alert-heading"><i class="fas fa-check-circle me-2"></i>Interview Success Tips</h5>
+    <ul class="mb-0">
+        <li>Always clarify requirements before writing the query</li>
+        <li>Consider edge cases (NULL values, inactive employees)</li>
+        <li>Discuss performance implications and indexing strategies</li>
+        <li>Be prepared to write alternative solutions</li>
+        <li>Explain your thought process while writing the query</li>
+    </ul>
+</div>

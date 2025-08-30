@@ -1,0 +1,189 @@
+@model SqlInterviewViewModel
+@{
+    ViewData["Title"] = "SQL Interview Question Overview";
+}
+
+<div class="hero-section mb-5">
+    <h1 class="display-4 text-center mb-4">
+        <i class="fas fa-code-branch me-3"></i>SQL Interview Question
+    </h1>
+    <p class="lead text-center">Employee Query with JOIN Operations</p>
+</div>
+
+<div class="card shadow-lg mb-5">
+    <div class="card-header bg-primary text-white">
+        <h3 class="mb-0"><i class="fas fa-question-circle me-2"></i>The Question</h3>
+    </div>
+    <div class="card-body">
+        <p class="fs-5 mb-0">@Model.Question</p>
+    </div>
+</div>
+
+<h2 class="text-center mb-4">Entity Relationship Diagram</h2>
+
+<div class="er-diagram mb-5">
+    <svg viewBox="0 0 1200 600" class="w-100 border rounded shadow">
+        <!-- Background -->
+        <rect width="1200" height="600" fill="#f8f9fa"/>
+        
+        <!-- Title -->
+        <text x="600" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#212529">
+            Database Schema - Entity Relationship Diagram
+        </text>
+        
+        <!-- Employee Table -->
+        <g id="employee-table">
+            <rect x="50" y="80" width="300" height="320" fill="#e3f2fd" stroke="#1976d2" stroke-width="2" rx="5"/>
+            <rect x="50" y="80" width="300" height="40" fill="#1976d2"/>
+            <text x="200" y="105" text-anchor="middle" font-size="16" font-weight="bold" fill="white">Employee</text>
+            
+            <text x="60" y="145" font-size="14" font-weight="bold">PK employee_id: INT</text>
+            <text x="60" y="170" font-size="14">first_name: VARCHAR(50)</text>
+            <text x="60" y="195" font-size="14">last_name: VARCHAR(50)</text>
+            <text x="60" y="220" font-size="14">street_address: VARCHAR(100)</text>
+            <text x="60" y="245" font-size="14">city: VARCHAR(50)</text>
+            <text x="60" y="270" font-size="14">state: VARCHAR(2)</text>
+            <text x="60" y="295" font-size="14">zip_code: VARCHAR(10)</text>
+            <text x="60" y="320" font-size="14">hire_date: DATE</text>
+            <text x="60" y="345" font-size="14">FK department_id: INT</text>
+            
+            <circle cx="345" cy="145" r="3" fill="#1976d2"/>
+        </g>
+        
+        <!-- Employment Table -->
+        <g id="employment-table">
+            <rect x="450" y="150" width="300" height="250" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="5"/>
+            <rect x="450" y="150" width="300" height="40" fill="#f57c00"/>
+            <text x="600" y="175" text-anchor="middle" font-size="16" font-weight="bold" fill="white">Employment</text>
+            
+            <text x="460" y="215" font-size="14" font-weight="bold">PK employment_id: INT</text>
+            <text x="460" y="240" font-size="14">FK employee_id: INT</text>
+            <text x="460" y="265" font-size="14">FK company_id: INT</text>
+            <text x="460" y="290" font-size="14">position: VARCHAR(100)</text>
+            <text x="460" y="315" font-size="14">salary: DECIMAL(10,2)</text>
+            <text x="460" y="340" font-size="14">start_date: DATE</text>
+            <text x="460" y="365" font-size="14">end_date: DATE</text>
+            <text x="460" y="390" font-size="14">is_active: BOOLEAN</text>
+            
+            <circle cx="455" cy="240" r="3" fill="#f57c00"/>
+            <circle cx="455" cy="265" r="3" fill="#f57c00"/>
+        </g>
+        
+        <!-- Company Table -->
+        <g id="company-table">
+            <rect x="850" y="200" width="300" height="200" fill="#e8f5e9" stroke="#388e3c" stroke-width="2" rx="5"/>
+            <rect x="850" y="200" width="300" height="40" fill="#388e3c"/>
+            <text x="1000" y="225" text-anchor="middle" font-size="16" font-weight="bold" fill="white">Company</text>
+            
+            <text x="860" y="265" font-size="14" font-weight="bold">PK company_id: INT</text>
+            <text x="860" y="290" font-size="14">company_name: VARCHAR(100)</text>
+            <text x="860" y="315" font-size="14">industry: VARCHAR(50)</text>
+            <text x="860" y="340" font-size="14">headquarters_city: VARCHAR(50)</text>
+            <text x="860" y="365" font-size="14">founded_year: INT</text>
+            
+            <circle cx="855" cy="265" r="3" fill="#388e3c"/>
+        </g>
+        
+        <!-- Relationships -->
+        <g id="relationships">
+            <!-- Employee to Employment -->
+            <line x1="350" y1="145" x2="450" y2="240" stroke="#333" stroke-width="2"/>
+            <text x="400" y="180" text-anchor="middle" font-size="12" fill="#666">1:N</text>
+            <polygon points="445,235 450,240 445,245" fill="#333"/>
+            
+            <!-- Company to Employment -->
+            <line x1="850" y1="265" x2="750" y2="265" stroke="#333" stroke-width="2"/>
+            <text x="800" y="255" text-anchor="middle" font-size="12" fill="#666">1:N</text>
+            <polygon points="755,260 750,265 755,270" fill="#333"/>
+        </g>
+        
+        <!-- Legend -->
+        <g id="legend">
+            <rect x="50" y="450" width="1100" height="120" fill="#ffffff" stroke="#dee2e6" stroke-width="1" rx="5"/>
+            <text x="600" y="480" text-anchor="middle" font-weight="bold" font-size="16">Relationship Key</text>
+            
+            <circle cx="100" cy="510" r="3" fill="#333"/>
+            <text x="120" y="515" font-size="14">Primary Key (PK)</text>
+            
+            <circle cx="300" cy="510" r="3" fill="#666"/>
+            <text x="320" y="515" font-size="14">Foreign Key (FK)</text>
+            
+            <line x1="500" y1="510" x2="550" y2="510" stroke="#333" stroke-width="2"/>
+            <polygon points="545,505 550,510 545,515" fill="#333"/>
+            <text x="560" y="515" font-size="14">One-to-Many Relationship</text>
+            
+            <text x="100" y="545" font-size="12" fill="#666">• Each Employee can have multiple Employment records (job history)</text>
+            <text x="100" y="560" font-size="12" fill="#666">• Each Company can have multiple Employment records (many employees)</text>
+        </g>
+    </svg>
+</div>
+
+<h2 class="text-center mb-4">Query Execution Plan</h2>
+
+<div class="row">
+    @foreach (var step in Model.ExecutionSteps)
+    {
+        <div class="col-md-6 mb-3">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header bg-secondary text-white">
+                    <h6 class="mb-0">Step @step.StepNumber: @step.Operation</h6>
+                </div>
+                <div class="card-body">
+                    <p class="mb-2">@step.Description</p>
+                    <code class="d-block p-2 bg-light rounded">@step.SqlFragment</code>
+                    <p class="mt-2 mb-0 text-muted">
+                        <i class="fas fa-table me-1"></i>Estimated Rows: @step.EstimatedRows
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="key-concepts mt-5">
+    <h2 class="text-center mb-4">Key Concepts Demonstrated</h2>
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <div class="card h-100 shadow-sm border-primary">
+                <div class="card-body text-center">
+                    <i class="fas fa-link fa-3x text-primary mb-3"></i>
+                    <h5>INNER JOIN</h5>
+                    <p>Connecting multiple tables based on relationships</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card h-100 shadow-sm border-success">
+                <div class="card-body text-center">
+                    <i class="fas fa-filter fa-3x text-success mb-3"></i>
+                    <h5>WHERE Clause</h5>
+                    <p>Filtering data based on multiple conditions</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card h-100 shadow-sm border-info">
+                <div class="card-body text-center">
+                    <i class="fas fa-project-diagram fa-3x text-info mb-3"></i>
+                    <h5>Table Design</h5>
+                    <p>Normalized database structure</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card h-100 shadow-sm border-warning">
+                <div class="card-body text-center">
+                    <i class="fas fa-tachometer-alt fa-3x text-warning mb-3"></i>
+                    <h5>Performance</h5>
+                    <p>Index usage and query optimization</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="text-center mt-5">
+    <a asp-action="Query" class="btn btn-primary btn-lg">
+        <i class="fas fa-code me-2"></i>View SQL Query
+    </a>
+</div>
