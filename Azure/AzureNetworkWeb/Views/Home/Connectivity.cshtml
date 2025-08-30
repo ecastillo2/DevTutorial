@@ -1,0 +1,199 @@
+@model ConnectivityOptions
+@{
+    ViewData["Title"] = "Connectivity Options";
+}
+
+<h1 class="display-4 text-center mb-4">
+    <i class="fas fa-plug me-3"></i>Hybrid Connectivity Options
+</h1>
+
+<div class="row mb-5">
+    <div class="col-lg-6 mb-4">
+        <div class="card h-100 shadow-lg border-primary">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">
+                    <i class="fas fa-rocket me-2"></i>ExpressRoute - @Model.ExpressRoute.Type
+                </h4>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <p class="mb-2"><strong>Bandwidth:</strong><br/>
+                        <span class="text-primary h5">@Model.ExpressRoute.Bandwidth</span></p>
+                    </div>
+                    <div class="col-6">
+                        <p class="mb-2"><strong>Latency:</strong><br/>
+                        <span class="text-success h5">@Model.ExpressRoute.Latency</span></p>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <p class="mb-2"><strong>SLA:</strong> 
+                    <span class="badge bg-success">@Model.ExpressRoute.SLA</span></p>
+                </div>
+                <h6 class="text-primary">Key Features:</h6>
+                <ul class="list-unstyled">
+                    @foreach (var feature in Model.ExpressRoute.Features)
+                    {
+                        <li class="mb-2">
+                            <i class="fas fa-check-circle text-success me-2"></i>@feature
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-6 mb-4">
+        <div class="card h-100 shadow-lg border-secondary">
+            <div class="card-header bg-secondary text-white">
+                <h4 class="mb-0">
+                    <i class="fas fa-shield-alt me-2"></i>Site-to-Site VPN - @Model.VPN.Type
+                </h4>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <p class="mb-2"><strong>Bandwidth:</strong><br/>
+                        <span class="text-secondary h5">@Model.VPN.Bandwidth</span></p>
+                    </div>
+                    <div class="col-6">
+                        <p class="mb-2"><strong>Encryption:</strong><br/>
+                        <span class="text-info h6">@Model.VPN.Encryption</span></p>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <p class="mb-2"><strong>Configuration:</strong> 
+                    <span class="badge bg-info">@Model.VPN.Configuration</span></p>
+                </div>
+                <h6 class="text-secondary">Key Features:</h6>
+                <ul class="list-unstyled">
+                    @foreach (var feature in Model.VPN.Features)
+                    {
+                        <li class="mb-2">
+                            <i class="fas fa-check-circle text-info me-2"></i>@feature
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2 class="text-center mb-4">Multi-Region Connectivity</h2>
+
+<div class="card shadow-lg mb-5">
+    <div class="card-header bg-info text-white">
+        <h4 class="mb-0">
+            <i class="fas fa-globe me-2"></i>@Model.Global.Method
+        </h4>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <i class="fas fa-tachometer-alt fa-3x text-primary mb-3"></i>
+                <h5>Bandwidth</h5>
+                <p class="h4 text-primary">@Model.Global.Bandwidth</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <i class="fas fa-clock fa-3x text-success mb-3"></i>
+                <h5>Latency</h5>
+                <p class="h4 text-success">@Model.Global.Latency</p>
+            </div>
+            <div class="col-md-4">
+                <h5>Benefits:</h5>
+                <ul class="list-unstyled">
+                    @foreach (var benefit in Model.Global.Benefits)
+                    {
+                        <li><i class="fas fa-star text-warning me-2"></i>@benefit</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2 class="text-center mb-4">Connectivity Architecture Diagram</h2>
+
+<div class="connectivity-diagram">
+    <svg viewBox="0 0 1200 600" class="w-100 border rounded shadow">
+        <!-- Background -->
+        <rect width="1200" height="600" fill="#f8fafc"/>
+        
+        <!-- On-Premises -->
+        <g id="on-prem-detailed">
+            <rect x="50" y="200" width="200" height="200" fill="#e5e7eb" stroke="#6b7280" stroke-width="2" rx="10"/>
+            <text x="150" y="230" text-anchor="middle" font-weight="bold" font-size="16">ON-PREMISES</text>
+            
+            <rect x="70" y="250" width="160" height="30" fill="#d1d5db" stroke="#6b7280" rx="5"/>
+            <text x="150" y="270" text-anchor="middle" font-size="12">Edge Router</text>
+            
+            <rect x="70" y="290" width="160" height="30" fill="#d1d5db" stroke="#6b7280" rx="5"/>
+            <text x="150" y="310" text-anchor="middle" font-size="12">VPN Device</text>
+            
+            <rect x="70" y="330" width="160" height="30" fill="#d1d5db" stroke="#6b7280" rx="5"/>
+            <text x="150" y="350" text-anchor="middle" font-size="12">MPLS Circuit</text>
+        </g>
+        
+        <!-- ExpressRoute Path -->
+        <g id="expressroute-path">
+            <line x1="250" y1="265" x2="400" y2="265" stroke="#f97316" stroke-width="4"/>
+            <rect x="400" y="230" width="150" height="70" fill="#fed7aa" stroke="#ea580c" stroke-width="2" rx="10"/>
+            <text x="475" y="255" text-anchor="middle" font-weight="bold" font-size="14">Microsoft</text>
+            <text x="475" y="275" text-anchor="middle" font-size="14">Exchange Point</text>
+            <line x1="550" y1="265" x2="700" y2="265" stroke="#f97316" stroke-width="4"/>
+        </g>
+        
+        <!-- VPN Path -->
+        <g id="vpn-path">
+            <line x1="250" y1="305" x2="350" y2="305" stroke="#6b7280" stroke-width="3" stroke-dasharray="10,5"/>
+            <text x="300" y="295" text-anchor="middle" font-size="12" fill="#4b5563">IPSec Tunnel</text>
+            <line x1="350" y1="305" x2="700" y2="335" stroke="#6b7280" stroke-width="3" stroke-dasharray="10,5"/>
+        </g>
+        
+        <!-- Azure Gateway -->
+        <g id="azure-gateway">
+            <rect x="700" y="200" width="200" height="200" fill="#dbeafe" stroke="#3b82f6" stroke-width="3" rx="15"/>
+            <text x="800" y="230" text-anchor="middle" font-weight="bold" font-size="16">AZURE GATEWAY</text>
+            
+            <rect x="720" y="250" width="160" height="40" fill="#93c5fd" stroke="#2563eb" stroke-width="2" rx="5"/>
+            <text x="800" y="275" text-anchor="middle" font-size="12">ExpressRoute GW</text>
+            
+            <rect x="720" y="310" width="160" height="40" fill="#93c5fd" stroke="#2563eb" stroke-width="2" rx="5"/>
+            <text x="800" y="335" text-anchor="middle" font-size="12">VPN Gateway</text>
+        </g>
+        
+        <!-- Global Reach -->
+        <g id="global-reach">
+            <rect x="950" y="100" width="200" height="100" fill="#f3e8ff" stroke="#9333ea" stroke-width="2" rx="10"/>
+            <text x="1050" y="130" text-anchor="middle" font-weight="bold" font-size="14">ExpressRoute</text>
+            <text x="1050" y="150" text-anchor="middle" font-size="14">Global Reach</text>
+            <text x="1050" y="175" text-anchor="middle" font-size="12" fill="#7c3aed">Site-to-Site</text>
+            
+            <line x1="900" y1="265" x2="950" y2="150" stroke="#9333ea" stroke-width="3" stroke-dasharray="5,5"/>
+        </g>
+        
+        <!-- Bandwidth & Latency Info -->
+        <g id="performance-info">
+            <rect x="100" y="450" width="1000" height="120" fill="#ffffff" stroke="#e5e7eb" stroke-width="1" rx="10"/>
+            <text x="600" y="480" text-anchor="middle" font-weight="bold" font-size="16">Performance Characteristics</text>
+            
+            <text x="200" y="510" font-size="14" font-weight="bold">ExpressRoute:</text>
+            <text x="200" y="530" font-size="12">• Bandwidth: 50 Mbps - 100 Gbps</text>
+            <text x="200" y="550" font-size="12">• Latency: &lt; 5ms</text>
+            
+            <text x="500" y="510" font-size="14" font-weight="bold">VPN:</text>
+            <text x="500" y="530" font-size="12">• Bandwidth: Up to 1.25 Gbps</text>
+            <text x="500" y="550" font-size="12">• Latency: 20-30ms</text>
+            
+            <text x="800" y="510" font-size="14" font-weight="bold">Global VNet Peering:</text>
+            <text x="800" y="530" font-size="12">• Bandwidth: 25-100 Gbps</text>
+            <text x="800" y="550" font-size="12">• Latency: &lt; 80ms cross-region</text>
+        </g>
+    </svg>
+</div>
+
+<div class="text-center mt-5">
+    <a asp-action="Security" class="btn btn-primary btn-lg">
+        <i class="fas fa-shield-alt me-2"></i>View Security Architecture
+    </a>
+</div>

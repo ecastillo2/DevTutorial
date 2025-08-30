@@ -1,0 +1,214 @@
+@model NetworkArchitectureViewModel
+@{
+    ViewData["Title"] = "Azure Network Migration Overview";
+}
+
+<div class="hero-section mb-5">
+    <h1 class="display-4 text-center mb-4">
+        <i class="fas fa-network-wired me-3"></i>Azure Virtual Network Architecture
+    </h1>
+    <p class="lead text-center">Enterprise-Grade Network Design for On-Premises to Azure Migration</p>
+</div>
+
+<div class="row mb-5">
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="fas fa-bullseye me-2"></i>Scenario Overview</h5>
+            </div>
+            <div class="card-body">
+                <p class="mb-3">@Model.Scenario.Description</p>
+                <h6 class="text-primary">Key Requirements:</h6>
+                <ul class="requirement-list">
+                    @foreach (var req in Model.Scenario.Requirements)
+                    {
+                        <li><i class="fas fa-check-circle text-success me-2"></i>@req</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0"><i class="fas fa-rocket me-2"></i>Key Objectives</h5>
+            </div>
+            <div class="card-body">
+                <ul class="objective-list">
+                    @foreach (var obj in Model.Scenario.KeyObjectives)
+                    {
+                        <li class="mb-2">
+                            <i class="fas fa-arrow-right text-primary me-2"></i>
+                            @obj
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2 class="mb-4 text-center">Network Architecture Components</h2>
+
+<div class="network-diagram mb-5">
+    <svg viewBox="0 0 1200 800" class="w-100 border rounded shadow">
+        <!-- Background -->
+        <rect width="1200" height="800" fill="#f8f9fa"/>
+        
+        <!-- On-Premises Section -->
+        <g id="on-premises">
+            <rect x="20" y="300" width="200" height="200" fill="#e3f2fd" stroke="#1976d2" stroke-width="2" rx="10"/>
+            <text x="120" y="330" text-anchor="middle" font-weight="bold" font-size="16">ON-PREMISES DC</text>
+            <rect x="40" y="360" width="160" height="40" fill="#bbdefb" stroke="#1976d2" rx="5"/>
+            <text x="120" y="385" text-anchor="middle" font-size="14">Corp Network</text>
+            <text x="120" y="420" text-anchor="middle" font-size="12">10.0.0.0/16</text>
+        </g>
+        
+        <!-- ExpressRoute Connection -->
+        <g id="expressroute">
+            <line x1="220" y1="400" x2="380" y2="300" stroke="#ff6f00" stroke-width="4" stroke-dasharray="10,5"/>
+            <text x="300" y="340" text-anchor="middle" font-size="14" fill="#ff6f00">ExpressRoute</text>
+            <line x1="220" y1="400" x2="380" y2="500" stroke="#757575" stroke-width="2" stroke-dasharray="5,5"/>
+            <text x="300" y="460" text-anchor="middle" font-size="12" fill="#757575">VPN Backup</text>
+        </g>
+        
+        <!-- Azure Region 1 -->
+        <g id="azure-region-1">
+            <rect x="380" y="50" width="350" height="700" fill="#e8f5e9" stroke="#2e7d32" stroke-width="3" rx="15"/>
+            <text x="555" y="80" text-anchor="middle" font-weight="bold" font-size="18" fill="#1b5e20">AZURE REGION 1 (Primary)</text>
+            
+            <!-- Hub VNet -->
+            <rect x="400" y="120" width="310" height="200" fill="#c8e6c9" stroke="#388e3c" stroke-width="2" rx="10"/>
+            <text x="555" y="150" text-anchor="middle" font-weight="bold" font-size="16">Hub VNet</text>
+            <text x="555" y="170" text-anchor="middle" font-size="14">10.100.0.0/16</text>
+            
+            <!-- Hub Components -->
+            <rect x="420" y="190" width="120" height="30" fill="#81c784" stroke="#388e3c" rx="5"/>
+            <text x="480" y="210" text-anchor="middle" font-size="12">Gateway Subnet</text>
+            
+            <rect x="570" y="190" width="120" height="30" fill="#81c784" stroke="#388e3c" rx="5"/>
+            <text x="630" y="210" text-anchor="middle" font-size="12">Firewall Subnet</text>
+            
+            <rect x="420" y="240" width="270" height="30" fill="#81c784" stroke="#388e3c" rx="5"/>
+            <text x="555" y="260" text-anchor="middle" font-size="12">Shared Services</text>
+            
+            <!-- Spoke VNets -->
+            <g id="spokes-region-1">
+                <!-- Production Spoke -->
+                <rect x="400" y="360" width="150" height="120" fill="#a5d6a7" stroke="#388e3c" stroke-width="2" rx="10"/>
+                <text x="475" y="385" text-anchor="middle" font-weight="bold" font-size="14">Production</text>
+                <text x="475" y="405" text-anchor="middle" font-size="12">10.101.0.0/16</text>
+                <text x="475" y="425" text-anchor="middle" font-size="11">Web/App/Data</text>
+                
+                <!-- Dev/Test Spoke -->
+                <rect x="560" y="360" width="150" height="120" fill="#a5d6a7" stroke="#388e3c" stroke-width="2" rx="10"/>
+                <text x="635" y="385" text-anchor="middle" font-weight="bold" font-size="14">Dev/Test</text>
+                <text x="635" y="405" text-anchor="middle" font-size="12">10.102.0.0/16</text>
+                <text x="635" y="425" text-anchor="middle" font-size="11">Dev/Test/QA</text>
+                
+                <!-- Services Spoke -->
+                <rect x="480" y="510" width="150" height="120" fill="#a5d6a7" stroke="#388e3c" stroke-width="2" rx="10"/>
+                <text x="555" y="535" text-anchor="middle" font-weight="bold" font-size="14">Services</text>
+                <text x="555" y="555" text-anchor="middle" font-size="12">10.103.0.0/16</text>
+                <text x="555" y="575" text-anchor="middle" font-size="11">APIs/Microservices</text>
+            </g>
+            
+            <!-- Peering lines -->
+            <line x1="555" y1="320" x2="475" y2="360" stroke="#388e3c" stroke-width="2"/>
+            <line x1="555" y1="320" x2="635" y2="360" stroke="#388e3c" stroke-width="2"/>
+            <line x1="555" y1="320" x2="555" y2="510" stroke="#388e3c" stroke-width="2"/>
+        </g>
+        
+        <!-- Global VNet Peering -->
+        <g id="global-peering">
+            <line x1="730" y1="220" x2="830" y2="220" stroke="#3f51b5" stroke-width="4"/>
+            <text x="780" y="210" text-anchor="middle" font-size="14" fill="#3f51b5">Global VNet</text>
+            <text x="780" y="240" text-anchor="middle" font-size="14" fill="#3f51b5">Peering</text>
+        </g>
+        
+        <!-- Azure Region 2 -->
+        <g id="azure-region-2">
+            <rect x="830" y="50" width="350" height="400" fill="#fff3e0" stroke="#e65100" stroke-width="3" rx="15"/>
+            <text x="1005" y="80" text-anchor="middle" font-weight="bold" font-size="18" fill="#bf360c">AZURE REGION 2 (DR)</text>
+            
+            <!-- Hub VNet -->
+            <rect x="850" y="120" width="310" height="200" fill="#ffe0b2" stroke="#f57c00" stroke-width="2" rx="10"/>
+            <text x="1005" y="150" text-anchor="middle" font-weight="bold" font-size="16">Hub VNet</text>
+            <text x="1005" y="170" text-anchor="middle" font-size="14">10.200.0.0/16</text>
+            
+            <!-- DR Spokes -->
+            <rect x="925" y="360" width="150" height="80" fill="#ffcc80" stroke="#f57c00" stroke-width="2" rx="10"/>
+            <text x="1000" y="385" text-anchor="middle" font-weight="bold" font-size="14">DR Systems</text>
+            <text x="1000" y="405" text-anchor="middle" font-size="12">10.201.0.0/16</text>
+        </g>
+        
+        <!-- Legend -->
+        <g id="legend">
+            <rect x="50" y="650" width="1100" height="120" fill="#ffffff" stroke="#000000" stroke-width="1" rx="10"/>
+            <text x="600" y="680" text-anchor="middle" font-weight="bold" font-size="16">Network Architecture Overview</text>
+            
+            <rect x="100" y="700" width="20" height="20" fill="#e3f2fd"/>
+            <text x="130" y="715" font-size="14">On-Premises</text>
+            
+            <rect x="300" y="700" width="20" height="20" fill="#c8e6c9"/>
+            <text x="330" y="715" font-size="14">Hub VNet</text>
+            
+            <rect x="500" y="700" width="20" height="20" fill="#a5d6a7"/>
+            <text x="530" y="715" font-size="14">Spoke VNet</text>
+            
+            <line x1="700" y1="710" x2="750" y2="710" stroke="#ff6f00" stroke-width="4" stroke-dasharray="10,5"/>
+            <text x="760" y="715" font-size="14">ExpressRoute</text>
+            
+            <line x1="900" y1="710" x2="950" y2="710" stroke="#3f51b5" stroke-width="4"/>
+            <text x="960" y="715" font-size="14">VNet Peering</text>
+        </g>
+    </svg>
+</div>
+
+<div class="row">
+    @foreach (var component in Model.Components)
+    {
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-cube me-2"></i>@component.Name
+                        <span class="badge bg-light text-dark float-end">@component.Type</span>
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="mb-2"><strong>IP Range:</strong> <code>@component.IpRange</code></p>
+                    <p class="mb-3"><strong>Purpose:</strong> @component.Purpose</p>
+                    <h6 class="text-primary">Subnets:</h6>
+                    <ul class="subnet-list">
+                        @foreach (var subnet in component.Subnets)
+                        {
+                            <li><code>@subnet</code></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="text-center mt-5">
+    <a asp-action="Architecture" class="btn btn-primary btn-lg">
+        <i class="fas fa-diagram-project me-2"></i>View Detailed Architecture
+    </a>
+</div>
+
+@section Scripts {
+    <script>
+        // Add hover effects to SVG elements
+        document.querySelectorAll('svg rect').forEach(rect => {
+            rect.addEventListener('mouseenter', function() {
+                this.style.opacity = '0.8';
+                this.style.cursor = 'pointer';
+            });
+            rect.addEventListener('mouseleave', function() {
+                this.style.opacity = '1';
+            });
+        });
+    </script>
+}

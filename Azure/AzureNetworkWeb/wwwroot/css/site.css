@@ -1,0 +1,190 @@
+/* Azure-themed color palette */
+:root {
+    --azure-blue: #0078d4;
+    --azure-dark: #005a9e;
+    --azure-light: #40c8f4;
+    --azure-green: #107c10;
+    --azure-red: #d13438;
+    --azure-orange: #ff8c00;
+    --azure-purple: #5c2d91;
+    --azure-gray: #737373;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Navigation */
+.bg-azure {
+    background-color: var(--azure-blue) !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, var(--azure-blue) 0%, var(--azure-dark) 100%);
+    color: white;
+    padding: 3rem 0;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
+.hero-section h1 {
+    font-weight: 300;
+}
+
+.hero-section .lead {
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+/* Cards */
+.card {
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+}
+
+.card-header {
+    border: none;
+    font-weight: 600;
+}
+
+/* Lists */
+.requirement-list,
+.objective-list,
+.subnet-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.requirement-list li,
+.objective-list li {
+    margin-bottom: 0.5rem;
+}
+
+/* Network Diagram */
+.network-diagram svg {
+    background: white;
+    max-height: 600px;
+}
+
+.architecture-diagram svg {
+    background: white;
+    max-height: 700px;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--azure-blue);
+    border-color: var(--azure-blue);
+}
+
+.btn-primary:hover {
+    background-color: var(--azure-dark);
+    border-color: var(--azure-dark);
+}
+
+.btn-success {
+    background-color: var(--azure-green);
+    border-color: var(--azure-green);
+}
+
+/* Code blocks */
+code {
+    background-color: #f4f4f4;
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: var(--azure-red);
+}
+
+/* Badges */
+.badge {
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+}
+
+/* Footer */
+.footer {
+    margin-top: 5rem;
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    
+    .network-diagram svg,
+    .architecture-diagram svg {
+        max-height: 400px;
+    }
+}
+
+/* Animation for SVG elements */
+svg rect,
+svg circle,
+svg path {
+    transition: all 0.3s ease;
+}
+
+svg rect:hover,
+svg circle:hover {
+    filter: brightness(1.1);
+}
+
+/* Table styles for connectivity options */
+.table-azure {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.table-azure thead {
+    background-color: var(--azure-blue);
+    color: white;
+}
+
+/* Alert customization */
+.alert-info {
+    background-color: #e3f2fd;
+    border-color: #2196f3;
+    color: #0d47a1;
+}
+
+/* Icon colors */
+.text-azure {
+    color: var(--azure-blue);
+}
+
+/* Loading animation */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(0, 120, 212, .3);
+    border-radius: 50%;
+    border-top-color: var(--azure-blue);
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
