@@ -1,0 +1,300 @@
+@model DevTutorialWebApp.Models.Challenge
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<div class="container-fluid">
+    <!-- Challenge Header -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Home</a></li>
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Challenges")">Challenges</a></li>
+                    <li class="breadcrumb-item active">@Model.Title</li>
+                </ol>
+            </nav>
+            
+            <div class="d-flex justify-content-between align-items-start">
+                <div>
+                    <h1 class="gradient-text mb-2">@Model.Title</h1>
+                    <div class="challenge-meta">
+                        <span class="badge badge-primary me-2">@Model.Category</span>
+                        <span class="badge 
+                            @(Model.Difficulty == "Expert" ? "badge-danger" : 
+                              Model.Difficulty == "Advanced" ? "badge-warning" : 
+                              Model.Difficulty == "Intermediate" ? "badge-info" : "badge-success") me-2">
+                            @Model.Difficulty
+                        </span>
+                        <span class="text-muted">
+                            <i class="bi bi-clock"></i> @Model.Duration
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="text-end">
+                    <a href="@Url.Action("Index", "Challenges")" class="btn btn-outline-primary">
+                        <i class="bi bi-arrow-left"></i> Back to Challenges
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Challenge Content -->
+        <div class="col-lg-8">
+            <!-- Scenario -->
+            <div class="card roadmap-card mb-4">
+                <div class="card-header">
+                    <h3 class="mb-0">
+                        <i class="bi bi-file-text text-primary"></i>
+                        Scenario
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <p class="lead">@Model.Scenario</p>
+                </div>
+            </div>
+
+            <!-- Requirements -->
+            <div class="card roadmap-card mb-4">
+                <div class="card-header">
+                    <h3 class="mb-0">
+                        <i class="bi bi-list-check text-success"></i>
+                        Requirements
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        @for (int i = 0; i < Model.Requirements.Count; i++)
+                        {
+                            <div class="col-md-6 mb-2">
+                                <div class="d-flex align-items-start">
+                                    <i class="bi bi-check2-circle text-success me-2 mt-1"></i>
+                                    <span>@Model.Requirements[i]</span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!-- Constraints -->
+            <div class="card roadmap-card mb-4">
+                <div class="card-header">
+                    <h3 class="mb-0">
+                        <i class="bi bi-exclamation-triangle text-warning"></i>
+                        Constraints
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        @for (int i = 0; i < Model.Constraints.Count; i++)
+                        {
+                            <div class="col-md-6 mb-2">
+                                <div class="d-flex align-items-start">
+                                    <i class="bi bi-dash-circle text-warning me-2 mt-1"></i>
+                                    <span>@Model.Constraints[i]</span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!-- Solution (Collapsible) -->
+            <div class="card roadmap-card mb-4">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h3 class="mb-0">
+                            <i class="bi bi-lightbulb text-info"></i>
+                            Solution
+                        </h3>
+                        <button class="btn btn-outline-info" type="button" data-bs-toggle="collapse" data-bs-target="#solutionCollapse">
+                            <i class="bi bi-eye"></i> Show Solution
+                        </button>
+                    </div>
+                </div>
+                <div class="collapse" id="solutionCollapse">
+                    <div class="card-body">
+                        <!-- Solution Overview -->
+                        <div class="mb-4">
+                            <h4 class="text-info">Overview</h4>
+                            <p>@Model.Solution.Overview</p>
+                        </div>
+
+                        <!-- Architecture Diagram -->
+                        <div class="mb-4">
+                            <h4 class="text-info">Architecture Flow</h4>
+                            <div class="alert alert-info">
+                                <i class="bi bi-diagram-3"></i>
+                                <code>@Model.Solution.Architecture</code>
+                            </div>
+                        </div>
+
+                        <!-- Components -->
+                        <div class="mb-4">
+                            <h4 class="text-info">Architecture Components</h4>
+                            <div class="row">
+                                @foreach (var component in Model.Solution.Components)
+                                {
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h6 class="card-title text-primary">@component.Name</h6>
+                                                <p class="card-text small text-muted mb-2">@component.Purpose</p>
+                                                <div class="mb-2">
+                                                    <span class="badge badge-outline">@component.Technology</span>
+                                                </div>
+                                                <p class="card-text small">@component.Justification</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                        <!-- Implementation Steps -->
+                        <div class="mb-4">
+                            <h4 class="text-info">Implementation Steps</h4>
+                            <ol class="list-group list-group-numbered">
+                                @foreach (var step in Model.Solution.ImplementationSteps)
+                                {
+                                    <li class="list-group-item">@step</li>
+                                }
+                            </ol>
+                        </div>
+
+                        <!-- Best Practices -->
+                        <div class="mb-4">
+                            <h4 class="text-info">Best Practices</h4>
+                            <ul class="list-group">
+                                @foreach (var practice in Model.Solution.BestPractices)
+                                {
+                                    <li class="list-group-item">
+                                        <i class="bi bi-check-circle text-success me-2"></i>
+                                        @practice
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+
+                        <!-- Code Example -->
+                        @if (!string.IsNullOrEmpty(Model.Solution.CodeExample))
+                        {
+                            <div class="mb-4">
+                                <h4 class="text-info">Code Example</h4>
+                                <pre class="bg-dark text-light p-3 rounded"><code>@Model.Solution.CodeExample</code></pre>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <!-- Challenge Tips -->
+            <div class="card roadmap-card mb-4">
+                <div class="card-header">
+                    <h4 class="mb-0">
+                        <i class="bi bi-lightbulb"></i>
+                        Challenge Tips
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <i class="bi bi-check2 text-success"></i>
+                            Start by understanding the problem domain
+                        </li>
+                        <li class="mb-2">
+                            <i class="bi bi-check2 text-success"></i>
+                            Identify key components and their interactions
+                        </li>
+                        <li class="mb-2">
+                            <i class="bi bi-check2 text-success"></i>
+                            Consider scalability and performance requirements
+                        </li>
+                        <li class="mb-2">
+                            <i class="bi bi-check2 text-success"></i>
+                            Think about failure scenarios and recovery
+                        </li>
+                        <li class="mb-2">
+                            <i class="bi bi-check2 text-success"></i>
+                            Don't forget about security and compliance
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Related Challenges -->
+            <div class="card roadmap-card">
+                <div class="card-header">
+                    <h4 class="mb-0">
+                        <i class="bi bi-puzzle"></i>
+                        More Challenges
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="@Url.Action("Index", "Challenges")" class="btn btn-outline-primary">
+                            <i class="bi bi-arrow-left"></i> All Challenges
+                        </a>
+                        <a href="@Url.Action("Category", "Challenges", new { category = Model.Category })" class="btn btn-outline-primary">
+                            <i class="bi bi-folder"></i> @Model.Category Challenges
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.challenge-meta {
+    margin-bottom: 1rem;
+}
+
+.challenge-meta .badge {
+    font-size: 0.875em;
+}
+
+pre code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.875em;
+    line-height: 1.4;
+}
+
+.list-group-numbered {
+    counter-reset: section;
+    list-style: none;
+    padding-left: 0;
+}
+
+.list-group-numbered .list-group-item {
+    counter-increment: section;
+    position: relative;
+    padding-left: 2.5rem;
+}
+
+.list-group-numbered .list-group-item:before {
+    content: counter(section);
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+</style>

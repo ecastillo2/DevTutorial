@@ -1,0 +1,159 @@
+@model List<DevTutorialWebApp.Models.Challenge>
+
+@{
+    ViewData["Title"] = "Architecture Challenges";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1 class="gradient-text">
+                    <i class="bi bi-puzzle"></i>
+                    Architecture Challenges
+                </h1>
+                <p class="lead">Scenario-based system design challenges to test and improve your architectural skills</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        @foreach (var challenge in Model)
+        {
+            <div class="col-lg-6 col-md-6 mb-4">
+                <div class="card roadmap-card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge badge-primary">@challenge.Category</span>
+                            <span class="badge 
+                                @(challenge.Difficulty == "Expert" ? "badge-danger" : 
+                                  challenge.Difficulty == "Advanced" ? "badge-warning" : 
+                                  challenge.Difficulty == "Intermediate" ? "badge-info" : "badge-success")">
+                                @challenge.Difficulty
+                            </span>
+                        </div>
+                        
+                        <h4 class="card-title mb-3">@challenge.Title</h4>
+                        
+                        <div class="challenge-info mb-3">
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="bi bi-clock text-primary me-2"></i>
+                                <span class="text-muted">@challenge.Duration</span>
+                            </div>
+                        </div>
+                        
+                        <div class="scenario-preview">
+                            <h6 class="text-primary mb-2">
+                                <i class="bi bi-file-text"></i> Scenario
+                            </h6>
+                            <p class="text-muted small">
+                                @(challenge.Scenario.Length > 150 ? challenge.Scenario.Substring(0, 150) + "..." : challenge.Scenario)
+                            </p>
+                        </div>
+                        
+                        <div class="requirements-preview mt-3">
+                            <h6 class="text-primary mb-2">
+                                <i class="bi bi-list-check"></i> Key Requirements
+                            </h6>
+                            <ul class="list-unstyled">
+                                @for (int i = 0; i < Math.Min(3, challenge.Requirements.Count); i++)
+                                {
+                                    <li class="text-muted small">
+                                        <i class="bi bi-check2 text-success"></i> @challenge.Requirements[i]
+                                    </li>
+                                }
+                                @if (challenge.Requirements.Count > 3)
+                                {
+                                    <li class="text-muted small">
+                                        <i class="bi bi-three-dots"></i> +@(challenge.Requirements.Count - 3) more requirements
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="card-footer bg-transparent">
+                        <div class="d-flex justify-content-between">
+                            <a href="@Url.Action("Details", new { id = challenge.Id })" class="btn btn-primary">
+                                <i class="bi bi-arrow-right"></i> Take Challenge
+                            </a>
+                            <button class="btn btn-outline-primary" data-bs-toggle="collapse" data-bs-target="#preview-@challenge.Id">
+                                <i class="bi bi-eye"></i> Preview
+                            </button>
+                        </div>
+                        
+                        <div class="collapse mt-3" id="preview-@challenge.Id">
+                            <div class="card card-body">
+                                <h6 class="text-primary">Solution Overview</h6>
+                                <p class="text-muted small">@challenge.Solution.Overview</p>
+                                <hr>
+                                <h6 class="text-primary">Architecture</h6>
+                                <p class="text-muted small font-monospace">@challenge.Solution.Architecture</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    
+    <!-- Challenge Categories -->
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h3 class="mb-4">Challenge Categories</h3>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <i class="bi bi-cloud display-4 text-primary mb-3"></i>
+                            <h5 class="card-title">Cloud Design</h5>
+                            <p class="card-text text-muted">Design scalable cloud-native architectures</p>
+                            <span class="badge badge-primary">@Model.Count(c => c.Category == "Cloud Design") challenges</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <i class="bi bi-diagram-3 display-4 text-info mb-3"></i>
+                            <h5 class="card-title">System Architecture</h5>
+                            <p class="card-text text-muted">Design distributed systems and APIs</p>
+                            <span class="badge badge-info">@Model.Count(c => c.Category == "Architecture") challenges</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <i class="bi bi-shield-lock display-4 text-warning mb-3"></i>
+                            <h5 class="card-title">Security Design</h5>
+                            <p class="card-text text-muted">Design secure, compliant systems</p>
+                            <span class="badge badge-warning">@Model.Count(c => c.Category == "Security") challenges</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.challenge-info .bi {
+    font-size: 1.1em;
+}
+
+.scenario-preview p {
+    line-height: 1.4;
+}
+
+.requirements-preview ul li {
+    margin-bottom: 0.25rem;
+}
+
+.font-monospace {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85em;
+}
+</style>

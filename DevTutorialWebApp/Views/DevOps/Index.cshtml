@@ -1,0 +1,20 @@
+@model List<DevTutorialWebApp.Models.Roadmap>
+@{
+    ViewData["Title"] = "DevOps & Cloud";
+}
+
+<div class="container mt-4">
+    <div class="row mb-5">
+        <div class="col-lg-8">
+            <h1 class="display-4">DevOps & Cloud</h1>
+            <p class="lead">Bridge development and operations with modern cloud infrastructure and automation practices.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        @foreach (var roadmap in Model)
+        {
+            <partial name="_RoadmapCard" model="roadmap" />
+        }
+    </div>
+</div>

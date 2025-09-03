@@ -1,0 +1,200 @@
+@model List<DevTutorialWebApp.Models.InterviewQuestion>
+@{
+    ViewData["Title"] = ViewBag.TopicTitle + " Interview Questions";
+}
+
+<div class="main-container">
+    <div class="hero-section">
+        <h1 class="hero-title">@ViewBag.TopicTitle</h1>
+        <p class="hero-subtitle">Difficulty: @ViewBag.TopicDifficulty</p>
+    </div>
+
+    <div class="container">
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index" class="text-primary">Home</a></li>
+                <li class="breadcrumb-item"><a asp-controller="Interview" asp-action="Index" class="text-primary">Interview Prep</a></li>
+                <li class="breadcrumb-item"><a asp-controller="Interview" asp-action="Category" asp-route-id="@ViewBag.CategoryId" class="text-primary">@ViewBag.CategoryName</a></li>
+                <li class="breadcrumb-item active text-secondary" aria-current="page">@ViewBag.TopicTitle</li>
+            </ol>
+        </nav>
+
+        <div class="row">
+            <div class="col-12">
+                @foreach (var question in Model)
+                {
+                    <div class="interview-question-card mb-4" data-question-id="@question.Id">
+                        <div class="question-header" onclick="toggleAnswer(@question.Id)">
+                            <div class="d-flex align-items-start">
+                                <i class="bi bi-question-circle-fill text-primary me-3 mt-1"></i>
+                                <div class="flex-fill">
+                                    <h4 class="question-title">@question.Question</h4>
+                                    <span class="badge @GetDifficultyBadgeClass(question.Difficulty)">@question.Difficulty</span>
+                                </div>
+                                <i class="bi bi-chevron-down toggle-icon"></i>
+                            </div>
+                        </div>
+                        
+                        <div id="answer-@question.Id" class="answer-content">
+                            <div class="answer-section">
+                                <h5 class="text-primary mb-3">Answer:</h5>
+                                <p class="text-light">@question.Answer</p>
+                                
+                                @if (question.KeyPoints.Any())
+                                {
+                                    <h5 class="text-primary mt-4 mb-3">Key Points:</h5>
+                                    <ul class="key-points-list">
+                                        @foreach (var point in question.KeyPoints)
+                                        {
+                                            <li>@point</li>
+                                        }
+                                    </ul>
+                                }
+                                
+                                @if (!string.IsNullOrEmpty(question.CodeExample))
+                                {
+                                    <h5 class="text-primary mt-4 mb-3">Code Example:</h5>
+                                    <pre class="code-block"><code>@question.CodeExample</code></pre>
+                                }
+                                
+                                @if (question.FollowUpQuestions.Any())
+                                {
+                                    <h5 class="text-primary mt-4 mb-3">Follow-up Questions:</h5>
+                                    <ul class="follow-up-list">
+                                        @foreach (var followUp in question.FollowUpQuestions)
+                                        {
+                                            <li class="text-secondary">@followUp</li>
+                                        }
+                                    </ul>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@functions {
+    private string GetDifficultyBadgeClass(string difficulty)
+    {
+        return difficulty switch
+        {
+            "Easy" => "bg-success",
+            "Medium" => "bg-warning text-dark",
+            "Hard" => "bg-danger",
+            _ => "bg-secondary"
+        };
+    }
+}
+
+@section Scripts {
+    <script>
+        function toggleAnswer(questionId) {
+            const answerDiv = document.getElementById('answer-' + questionId);
+            const questionCard = document.querySelector(`[data-question-id="${questionId}"]`);
+            const toggleIcon = questionCard.querySelector('.toggle-icon');
+            
+            if (answerDiv.classList.contains('show')) {
+                answerDiv.classList.remove('show');
+                toggleIcon.classList.remove('bi-chevron-up');
+                toggleIcon.classList.add('bi-chevron-down');
+            } else {
+                answerDiv.classList.add('show');
+                toggleIcon.classList.remove('bi-chevron-down');
+                toggleIcon.classList.add('bi-chevron-up');
+            }
+        }
+    </script>
+}
+
+<style>
+    .interview-question-card {
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        overflow: hidden;
+    }
+    
+    .question-header {
+        padding: 1.5rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    .question-header:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+    
+    .question-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+    
+    .toggle-icon {
+        transition: transform 0.3s ease;
+        font-size: 1.2rem;
+    }
+    
+    .answer-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+    
+    .answer-content.show {
+        max-height: 2000px;
+    }
+    
+    .answer-section {
+        padding: 0 1.5rem 1.5rem;
+    }
+    
+    .key-points-list {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .key-points-list li {
+        padding: 0.5rem 0;
+        padding-left: 1.5rem;
+        position: relative;
+        color: var(--text-secondary);
+    }
+    
+    .key-points-list li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--secondary-color);
+    }
+    
+    .code-block {
+        background-color: rgba(0, 0, 0, 0.3);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 1rem;
+        overflow-x: auto;
+        color: #e9ecef;
+    }
+    
+    .follow-up-list {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .follow-up-list li {
+        padding: 0.25rem 0;
+        padding-left: 1.5rem;
+        position: relative;
+    }
+    
+    .follow-up-list li::before {
+        content: "▸";
+        position: absolute;
+        left: 0;
+        color: var(--primary-color);
+    }
+</style>

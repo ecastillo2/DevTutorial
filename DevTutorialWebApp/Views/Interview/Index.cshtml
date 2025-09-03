@@ -1,0 +1,62 @@
+@model List<DevTutorialWebApp.Models.InterviewCategory>
+@{
+    ViewData["Title"] = "Interview Preparation";
+}
+
+<div class="main-container">
+    <div class="hero-section">
+        <h1 class="hero-title">Interview Preparation</h1>
+        <p class="hero-subtitle">Master technical interviews with comprehensive Q&A for all major topics</p>
+    </div>
+
+    <div class="container">
+        <div class="row g-4">
+            @foreach (var category in Model)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <div class="category-card fade-in">
+                        <div class="category-icon">
+                            <span class="text-gradient">@category.Icon</span>
+                        </div>
+                        <h3 class="category-title">@category.Name</h3>
+                        <p class="category-description">@category.Description</p>
+                        <div class="roadmap-meta mb-3">
+                            <span><i class="bi bi-list-check"></i> @category.Topics.Count topics</span>
+                            <span><i class="bi bi-question-circle"></i> @category.Topics.Sum(t => t.Questions.Count) questions</span>
+                        </div>
+                        <a asp-action="Category" asp-route-id="@category.Id" class="btn btn-primary">
+                            Practice <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="container mt-5 pt-5">
+        <h2 class="text-gradient text-center mb-5">Interview Preparation Tips</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="text-center fade-in">
+                    <i class="bi bi-book display-4 text-gradient mb-3"></i>
+                    <h5 class="text-primary">Study Systematically</h5>
+                    <p class="text-secondary">Cover all topics thoroughly and practice explaining concepts clearly</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center fade-in">
+                    <i class="bi bi-code-square display-4 text-gradient mb-3"></i>
+                    <h5 class="text-primary">Code Examples</h5>
+                    <p class="text-secondary">Practice writing code on paper or whiteboard to prepare for interviews</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center fade-in">
+                    <i class="bi bi-chat-dots display-4 text-gradient mb-3"></i>
+                    <h5 class="text-primary">Mock Interviews</h5>
+                    <p class="text-secondary">Practice with peers to improve communication and confidence</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

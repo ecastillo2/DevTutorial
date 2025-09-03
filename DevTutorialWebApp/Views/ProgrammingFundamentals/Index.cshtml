@@ -1,0 +1,22 @@
+@model List<DevTutorialWebApp.Models.Roadmap>
+@{
+    ViewData["Title"] = "Programming Fundamentals";
+}
+
+<div class="main-container">
+    <div class="hero-section">
+        <h1 class="hero-title">Programming Fundamentals</h1>
+        <p class="hero-subtitle">Master the core concepts every programmer needs to know</p>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                @foreach (var roadmap in Model)
+                {
+                    <partial name="_RoadmapCard" model="roadmap" />
+                }
+            </div>
+        </div>
+    </div>
+</div>

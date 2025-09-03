@@ -1,0 +1,152 @@
+@model DevTutorialWebApp.Models.Roadmap
+
+<div class="container mt-4">
+    <div class="hero-section">
+        <div class="d-flex align-items-center justify-content-center mb-4">
+            <span class="display-2">@Model.Icon</span>
+        </div>
+        <h1 class="hero-title">@Model.Title</h1>
+        <p class="hero-subtitle">@Model.Description</p>
+        
+        <div class="roadmap-meta justify-content-center mb-4">
+            <span><i class="bi bi-clock"></i> @Model.Duration</span>
+            <span><i class="bi bi-bar-chart"></i> @Model.Difficulty</span>
+            <span><i class="bi bi-list-check"></i> @Model.Steps.Count steps</span>
+        </div>
+        
+        <div class="roadmap-card mx-auto" style="max-width: 500px;">
+            <h5 class="roadmap-title mb-3">Your Progress</h5>
+            <div class="roadmap-progress">
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                </div>
+                <small class="text-secondary mt-1 d-block">0 of @Model.Steps.Count steps completed</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <h2 class="text-gradient text-center mb-5">Learning Path</h2>
+            <div class="roadmap-steps">
+                @foreach (var step in Model.Steps)
+                {
+                    <div class="step-card" data-step-id="@step.Id">
+                        <div class="step-header" onclick="toggleStep(@step.Id)">
+                            <div class="step-title">
+                                <i class="bi bi-chevron-right me-2"></i>
+                                @step.Title
+                            </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="step-duration">
+                                    <i class="bi bi-clock"></i> @step.Duration
+                                </span>
+                                <input class="step-checkbox" 
+                                       type="checkbox" 
+                                       value="@step.Id" 
+                                       id="check-@step.Id"
+                                       onclick="event.stopPropagation()"
+                                       @(step.IsCompleted ? "checked" : "")>
+                            </div>
+                        </div>
+                        <div id="step-@step.Id" class="step-content">
+                            @if (step.Objectives.Any())
+                            {
+                                <h4 class="mb-3" style="font-size: 1rem; font-weight: 600;">Learning Objectives</h4>
+                                <ul class="objectives-list">
+                                    @foreach (var objective in step.Objectives)
+                                    {
+                                        <li class="objective-item">@objective.Description</li>
+                                    }
+                                </ul>
+                            }
+                            
+                            @if (step.Resources.Any())
+                            {
+                                <h4 class="mb-3" style="font-size: 1rem; font-weight: 600;">Resources</h4>
+                                <div class="resources-grid">
+                                    @foreach (var resource in step.Resources)
+                                    {
+                                        <a href="@resource.Url" class="resource-link" target="_blank">
+                                            <i class="bi @GetResourceIcon(resource.Type) resource-icon"></i>
+                                            <div class="resource-info">
+                                                <div class="resource-title">@resource.Title</div>
+                                                <div class="resource-type">@resource.Type</div>
+                                            </div>
+                                            <i class="bi bi-box-arrow-up-right"></i>
+                                        </a>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@functions {
+    private string GetResourceIcon(string type)
+    {
+        return type?.ToLower() switch
+        {
+            "video" => "bi-play-circle",
+            "article" => "bi-file-text",
+            "course" => "bi-mortarboard",
+            "website" => "bi-globe",
+            _ => "bi-link-45deg"
+        };
+    }
+}
+
+@section Scripts {
+    <script>
+        function toggleStep(stepId) {
+            const stepContent = document.getElementById('step-' + stepId);
+            const stepHeader = stepContent.previousElementSibling;
+            const chevron = stepHeader.querySelector('.bi-chevron-right, .bi-chevron-down');
+            
+            if (stepContent.classList.contains('active')) {
+                stepContent.classList.remove('active');
+                chevron.classList.remove('bi-chevron-down');
+                chevron.classList.add('bi-chevron-right');
+            } else {
+                stepContent.classList.add('active');
+                chevron.classList.remove('bi-chevron-right');
+                chevron.classList.add('bi-chevron-down');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle step completion
+            document.querySelectorAll('.step-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    updateProgress();
+                });
+            });
+            
+            function updateProgress() {
+                const totalSteps = document.querySelectorAll('.step-checkbox').length;
+                const completedSteps = document.querySelectorAll('.step-checkbox:checked').length;
+                const percentage = totalSteps > 0 ? Math.round((completedSteps / totalSteps) * 100) : 0;
+                
+                const progressBars = document.querySelectorAll('.progress-bar');
+                progressBars.forEach(bar => {
+                    bar.style.width = percentage + '%';
+                });
+                
+                // Update progress text
+                const progressTexts = document.querySelectorAll('.text-secondary');
+                progressTexts.forEach(text => {
+                    if (text.textContent.includes('steps completed')) {
+                        text.textContent = `${completedSteps} of ${totalSteps} steps completed`;
+                    }
+                });
+            }
+            
+            // Initial progress update
+            updateProgress();
+        });
+    </script>
+}

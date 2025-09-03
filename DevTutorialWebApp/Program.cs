@@ -1,7 +1,21 @@
+using DevTutorialWebApp.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Register RoadmapService
+builder.Services.AddSingleton<IRoadmapService, RoadmapService>();
+
+// Register InterviewService
+builder.Services.AddSingleton<IInterviewService, InterviewService>();
+
+// Register ChallengeService
+builder.Services.AddSingleton<IChallengeService, ChallengeService>();
+
+// Register ResourceService
+builder.Services.AddSingleton<IResourceService, ResourceService>();
 
 var app = builder.Build();
 

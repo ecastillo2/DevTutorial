@@ -1,0 +1,64 @@
+@model DevTutorialWebApp.Models.InterviewCategory
+@{
+    ViewData["Title"] = $"{Model.Name} Interview Questions";
+}
+
+<div class="main-container">
+    <div class="hero-section">
+        <div class="d-flex align-items-center justify-content-center mb-4">
+            <span class="display-2">@Model.Icon</span>
+        </div>
+        <h1 class="hero-title">@Model.Name Interview Questions</h1>
+        <p class="hero-subtitle">@Model.Description</p>
+    </div>
+
+    <div class="container">
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index" class="text-primary">Home</a></li>
+                <li class="breadcrumb-item"><a asp-controller="Interview" asp-action="Index" class="text-primary">Interview Prep</a></li>
+                <li class="breadcrumb-item active text-secondary" aria-current="page">@Model.Name</li>
+            </ol>
+        </nav>
+
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-gradient mb-4">Topics</h2>
+                @foreach (var topic in Model.Topics)
+                {
+                    <div class="roadmap-card fade-in mb-3">
+                        <div class="roadmap-header">
+                            <div>
+                                <h3 class="roadmap-title">@topic.Title</h3>
+                            </div>
+                        </div>
+                        <div class="roadmap-meta">
+                            <span><i class="bi bi-speedometer2"></i> @topic.Difficulty</span>
+                            <span><i class="bi bi-question-circle"></i> @topic.Questions.Count questions</span>
+                        </div>
+                        <div class="mt-3">
+                            <p class="text-secondary">Topics covered:</p>
+                            <ul class="list-unstyled">
+                                @foreach (var question in topic.Questions.Take(3))
+                                {
+                                    <li class="text-secondary mb-1">
+                                        <i class="bi bi-chevron-right text-primary"></i> @question.Question
+                                    </li>
+                                }
+                                @if (topic.Questions.Count > 3)
+                                {
+                                    <li class="text-secondary">
+                                        <i class="bi bi-chevron-right text-primary"></i> And @(topic.Questions.Count - 3) more questions...
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <a asp-action="Topic" asp-route-id="@topic.Id" class="btn btn-primary mt-3">
+                            View Questions <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

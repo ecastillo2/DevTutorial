@@ -1,0 +1,371 @@
+@model List<DevTutorialWebApp.Models.LearningResource>
+
+@{
+    ViewData["Title"] = "Learning Resources";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1 class="gradient-text">
+                    <i class="bi bi-book"></i>
+                    Learning Resources
+                </h1>
+                <p class="lead">Curated collection of books, courses, videos, and websites to accelerate your learning journey</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <ul class="nav nav-pills justify-content-center" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" href="#all" data-bs-toggle="pill" role="tab">
+                        <i class="bi bi-grid"></i> All Resources
+                    </a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="#books" data-bs-toggle="pill" role="tab">
+                        <i class="bi bi-book"></i> Books
+                    </a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="#courses" data-bs-toggle="pill" role="tab">
+                        <i class="bi bi-play-circle"></i> Courses
+                    </a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="#videos" data-bs-toggle="pill" role="tab">
+                        <i class="bi bi-camera-video"></i> Videos
+                    </a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="#websites" data-bs-toggle="pill" role="tab">
+                        <i class="bi bi-globe"></i> Websites
+                    </a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="#free" data-bs-toggle="pill" role="tab">
+                        <i class="bi bi-gift"></i> Free Resources
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="tab-content">
+        <!-- All Resources -->
+        <div class="tab-pane fade show active" id="all" role="tabpanel">
+            <div class="row">
+                @foreach (var resource in Model)
+                {
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card roadmap-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <span class="badge badge-primary">@resource.Type</span>
+                                    @if (resource.IsFree)
+                                    {
+                                        <span class="badge badge-success">FREE</span>
+                                    }
+                                    else if (resource.Price.HasValue)
+                                    {
+                                        <span class="badge badge-warning">$@resource.Price.Value</span>
+                                    }
+                                </div>
+                                
+                                <h5 class="card-title">@resource.Title</h5>
+                                <p class="card-text text-muted small">@resource.Description</p>
+                                
+                                <div class="resource-meta">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <small class="text-muted">
+                                            <i class="bi bi-person"></i> @resource.Author
+                                        </small>
+                                        @if (resource.Rating.HasValue)
+                                        {
+                                            <small class="text-warning">
+                                                <i class="bi bi-star-fill"></i> @resource.Rating.Value.ToString("F1")
+                                            </small>
+                                        }
+                                    </div>
+                                    
+                                    @if (!string.IsNullOrEmpty(resource.Duration))
+                                    {
+                                        <small class="text-muted">
+                                            <i class="bi bi-clock"></i> @resource.Duration
+                                        </small>
+                                    }
+                                    
+                                    <div class="mt-2">
+                                        <span class="badge badge-outline">@resource.Category</span>
+                                        <span class="badge badge-outline">@resource.Difficulty</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="card-footer bg-transparent">
+                                <div class="d-flex justify-content-between">
+                                    <a href="@resource.Url" target="_blank" class="btn btn-primary btn-sm">
+                                        <i class="bi bi-box-arrow-up-right"></i> View Resource
+                                    </a>
+                                    <a href="@Url.Action("Details", new { id = resource.Id })" class="btn btn-outline-primary btn-sm">
+                                        Details
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Books Tab -->
+        <div class="tab-pane fade" id="books" role="tabpanel">
+            <div class="row">
+                @foreach (var resource in Model.Where(r => r.Type == "Book"))
+                {
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card roadmap-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <span class="badge badge-primary">
+                                        <i class="bi bi-book"></i> Book
+                                    </span>
+                                    @if (resource.IsFree)
+                                    {
+                                        <span class="badge badge-success">FREE</span>
+                                    }
+                                    else if (resource.Price.HasValue)
+                                    {
+                                        <span class="badge badge-warning">$@resource.Price.Value</span>
+                                    }
+                                </div>
+                                
+                                <h5 class="card-title">@resource.Title</h5>
+                                <p class="card-text text-muted small">@resource.Description</p>
+                                
+                                <div class="resource-meta">
+                                    <small class="text-muted">
+                                        <i class="bi bi-person"></i> @resource.Author
+                                    </small>
+                                    @if (resource.Rating.HasValue)
+                                    {
+                                        <span class="text-warning float-end">
+                                            <i class="bi bi-star-fill"></i> @resource.Rating.Value.ToString("F1")
+                                        </span>
+                                    }
+                                </div>
+                            </div>
+                            
+                            <div class="card-footer bg-transparent">
+                                <a href="@resource.Url" target="_blank" class="btn btn-primary btn-sm w-100">
+                                    <i class="bi bi-box-arrow-up-right"></i> View Book
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Courses Tab -->
+        <div class="tab-pane fade" id="courses" role="tabpanel">
+            <div class="row">
+                @foreach (var resource in Model.Where(r => r.Type == "Course"))
+                {
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card roadmap-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <span class="badge badge-primary">
+                                        <i class="bi bi-play-circle"></i> Course
+                                    </span>
+                                    @if (resource.IsFree)
+                                    {
+                                        <span class="badge badge-success">FREE</span>
+                                    }
+                                    else if (resource.Price.HasValue)
+                                    {
+                                        <span class="badge badge-warning">$@resource.Price.Value</span>
+                                    }
+                                </div>
+                                
+                                <h5 class="card-title">@resource.Title</h5>
+                                <p class="card-text text-muted small">@resource.Description</p>
+                                
+                                <div class="resource-meta">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">
+                                            <i class="bi bi-person"></i> @resource.Author
+                                        </small>
+                                        @if (resource.Rating.HasValue)
+                                        {
+                                            <small class="text-warning">
+                                                <i class="bi bi-star-fill"></i> @resource.Rating.Value.ToString("F1")
+                                            </small>
+                                        }
+                                    </div>
+                                    
+                                    @if (!string.IsNullOrEmpty(resource.Duration))
+                                    {
+                                        <small class="text-muted">
+                                            <i class="bi bi-clock"></i> @resource.Duration
+                                        </small>
+                                    }
+                                </div>
+                            </div>
+                            
+                            <div class="card-footer bg-transparent">
+                                <a href="@resource.Url" target="_blank" class="btn btn-primary btn-sm w-100">
+                                    <i class="bi bi-box-arrow-up-right"></i> Take Course
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Videos Tab -->
+        <div class="tab-pane fade" id="videos" role="tabpanel">
+            <div class="row">
+                @foreach (var resource in Model.Where(r => r.Type == "Video"))
+                {
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card roadmap-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <span class="badge badge-primary">
+                                        <i class="bi bi-camera-video"></i> Video
+                                    </span>
+                                    <span class="badge badge-success">FREE</span>
+                                </div>
+                                
+                                <h5 class="card-title">@resource.Title</h5>
+                                <p class="card-text text-muted small">@resource.Description</p>
+                                
+                                <div class="resource-meta">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">
+                                            <i class="bi bi-person"></i> @resource.Author
+                                        </small>
+                                        @if (resource.Rating.HasValue)
+                                        {
+                                            <small class="text-warning">
+                                                <i class="bi bi-star-fill"></i> @resource.Rating.Value.ToString("F1")
+                                            </small>
+                                        }
+                                    </div>
+                                    
+                                    @if (!string.IsNullOrEmpty(resource.Duration))
+                                    {
+                                        <small class="text-muted">
+                                            <i class="bi bi-clock"></i> @resource.Duration
+                                        </small>
+                                    }
+                                </div>
+                            </div>
+                            
+                            <div class="card-footer bg-transparent">
+                                <a href="@resource.Url" target="_blank" class="btn btn-primary btn-sm w-100">
+                                    <i class="bi bi-play-fill"></i> Watch Video
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Websites Tab -->
+        <div class="tab-pane fade" id="websites" role="tabpanel">
+            <div class="row">
+                @foreach (var resource in Model.Where(r => r.Type == "Website" || r.Type == "Tutorial" || r.Type == "Documentation"))
+                {
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card roadmap-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <span class="badge badge-primary">
+                                        <i class="bi bi-globe"></i> @resource.Type
+                                    </span>
+                                    @if (resource.IsFree)
+                                    {
+                                        <span class="badge badge-success">FREE</span>
+                                    }
+                                </div>
+                                
+                                <h5 class="card-title">@resource.Title</h5>
+                                <p class="card-text text-muted small">@resource.Description</p>
+                                
+                                <div class="resource-meta">
+                                    @if (!string.IsNullOrEmpty(resource.Author))
+                                    {
+                                        <small class="text-muted">
+                                            <i class="bi bi-person"></i> @resource.Author
+                                        </small>
+                                    }
+                                    @if (resource.Rating.HasValue)
+                                    {
+                                        <span class="text-warning float-end">
+                                            <i class="bi bi-star-fill"></i> @resource.Rating.Value.ToString("F1")
+                                        </span>
+                                    }
+                                </div>
+                            </div>
+                            
+                            <div class="card-footer bg-transparent">
+                                <a href="@resource.Url" target="_blank" class="btn btn-primary btn-sm w-100">
+                                    <i class="bi bi-box-arrow-up-right"></i> Visit Website
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Free Resources Tab -->
+        <div class="tab-pane fade" id="free" role="tabpanel">
+            <div class="row">
+                @foreach (var resource in Model.Where(r => r.IsFree))
+                {
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card roadmap-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <span class="badge badge-primary">@resource.Type</span>
+                                    <span class="badge badge-success">FREE</span>
+                                </div>
+                                
+                                <h5 class="card-title">@resource.Title</h5>
+                                <p class="card-text text-muted small">@resource.Description</p>
+                                
+                                <div class="resource-meta">
+                                    <small class="text-muted">
+                                        <i class="bi bi-person"></i> @resource.Author
+                                    </small>
+                                    @if (resource.Rating.HasValue)
+                                    {
+                                        <span class="text-warning float-end">
+                                            <i class="bi bi-star-fill"></i> @resource.Rating.Value.ToString("F1")
+                                        </span>
+                                    }
+                                </div>
+                            </div>
+                            
+                            <div class="card-footer bg-transparent">
+                                <a href="@resource.Url" target="_blank" class="btn btn-primary btn-sm w-100">
+                                    <i class="bi bi-box-arrow-up-right"></i> Access Free
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
