@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prism.js C# Syntax Highlighting Test</title>
+    <!-- Prism.js CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/toolbar/prism-toolbar.min.css" rel="stylesheet" />
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1, h2 {
+            color: #333;
+        }
+        
+        .success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        
+        .code-section {
+            margin: 20px 0;
+        }
+        
+        pre[class*="language-"] {
+            border-radius: 8px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Prism.js C# Syntax Highlighting Implementation</h1>
+    
+    <div class="success">
+        ✅ Successfully integrated Prism.js for professional C# syntax highlighting!
+    </div>
+    
+    <p>Prism.js is a lightweight, robust syntax highlighting library that properly handles all C# language features.</p>
+    
+    <h2>Features Included:</h2>
+    <ul>
+        <li>Full C# language support</li>
+        <li>Line numbers</li>
+        <li>Copy to clipboard functionality</li>
+        <li>Professional dark theme (Tomorrow Night)</li>
+        <li>Automatic whitespace normalization</li>
+    </ul>
+    
+    <h2>Example: Complex C# Code</h2>
+    <div class="code-section">
+        <pre class="line-numbers"><code class="language-csharp">using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace DevTutorial.Examples
+{
+    /// <summary>
+    /// Example class demonstrating C# syntax highlighting
+    /// </summary>
+    [Serializable]
+    public class Person : IComparable<Person>
+    {
+        // Properties
+        public string Name { get; set; }
+        public int Age { get; private set; }
+        public DateTime BirthDate { get; init; }
+        
+        // Fields
+        private readonly List<string> _hobbies = new();
+        private static int _instanceCount = 0;
+        
+        // Constructor
+        public Person(string name, int age)
+        {
+            Name = name ?? throw new ArgumentNullException(nameof(name));
+            Age = age >= 0 ? age : throw new ArgumentException("Age must be non-negative");
+            _instanceCount++;
+        }
+        
+        // Async method
+        public async Task<bool> IsAdultAsync()
+        {
+            await Task.Delay(100);
+            return Age >= 18;
+        }
+        
+        // String interpolation and pattern matching
+        public override string ToString()
+        {
+            var status = Age switch
+            {
+                < 13 => "Child",
+                < 20 => "Teenager",
+                < 65 => "Adult",
+                _ => "Senior"
+            };
+            
+            return $"Name: {Name ?? "Unknown"}, Age: {Age} ({status})";
+        }
+        
+        // LINQ example
+        public static List<Person> GetAdults(IEnumerable<Person> people)
+        {
+            return people?.Where(p => p.Age >= 18)
+                         .OrderBy(p => p.Name)
+                         .ThenBy(p => p.Age)
+                         .ToList() ?? new List<Person>();
+        }
+        
+        // Interface implementation
+        public int CompareTo(Person? other)
+        {
+            if (other is null) return 1;
+            return string.Compare(Name, other.Name, StringComparison.OrdinalIgnoreCase);
+        }
+        
+        // Expression-bodied members
+        public bool CanVote => Age >= 18;
+        public string FirstName => Name?.Split(' ').FirstOrDefault() ?? string.Empty;
+    }
+    
+    // Record type (C# 9+)
+    public record PersonRecord(string Name, int Age)
+    {
+        public bool IsAdult => Age >= 18;
+    }
+    
+    // Pattern matching and switch expressions
+    public static class PersonValidator
+    {
+        public static string ValidateAge(int age) => age switch
+        {
+            < 0 => "Age cannot be negative",
+            > 150 => "Age seems unrealistic",
+            _ => "Valid age"
+        };
+        
+        // Tuple patterns
+        public static string ClassifyPerson(string name, int age) => (name, age) switch
+        {
+            (null or "", _) => "Invalid: Name is required",
+            (_, < 0) => "Invalid: Age cannot be negative",
+            (_, >= 18) => "Adult",
+            _ => "Minor"
+        };
+    }
+}</code></pre>
+    </div>
+    
+    <h2>Additional Examples</h2>
+    
+    <h3>Exception Handling</h3>
+    <pre class="line-numbers"><code class="language-csharp">try
+{
+    var result = await ProcessDataAsync();
+    Console.WriteLine($"Processed {result.Count} items");
+}
+catch (ArgumentNullException ex)
+{
+    _logger.LogError(ex, "Null argument provided");
+    throw;
+}
+catch (Exception ex) when (ex.Message.Contains("timeout"))
+{
+    _logger.LogWarning("Operation timed out, retrying...");
+    await RetryOperationAsync();
+}
+finally
+{
+    await CleanupResourcesAsync();
+}</code></pre>
+    
+    <h3>Modern C# Features</h3>
+    <pre class="line-numbers"><code class="language-csharp">// Top-level statements
+Console.WriteLine("Hello, World!");
+
+// Global using directives
+global using System.Text.Json;
+
+// File-scoped namespaces
+namespace MyApp;
+
+// Init-only properties and records
+public record Product(string Name, decimal Price)
+{
+    public string Category { get; init; } = "General";
+}
+
+// Pattern matching enhancements
+static string GetTaxRate(Product product) => product switch
+{
+    { Price: > 1000 } => "High tax",
+    { Category: "Food" } => "No tax",
+    { Category: "Electronics", Price: > 100 } => "Standard tax",
+    _ => "Low tax"
+};
+
+// Nullable reference types
+string? nullable = null;
+string nonNullable = nullable ?? "default";
+
+// Range and indices
+var array = new[] { 1, 2, 3, 4, 5 };
+var lastTwo = array[^2..]; // [4, 5]
+var middle = array[1..^1]; // [2, 3, 4]</code></pre>
+    
+    <!-- Prism.js Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-csharp.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
+</body>
+</html>

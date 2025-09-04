@@ -4,13 +4,10 @@ using DevTutorialWebApp.Models;
 
 namespace DevTutorialWebApp.Controllers
 {
-    public class TestingController : Controller
+    public class TestingController : BaseRoadmapController
     {
-        private readonly IRoadmapService _roadmapService;
-
-        public TestingController(IRoadmapService roadmapService)
+        public TestingController(IRoadmapService roadmapService) : base(roadmapService)
         {
-            _roadmapService = roadmapService;
         }
 
         public IActionResult Index()
@@ -31,6 +28,15 @@ namespace DevTutorialWebApp.Controllers
         public IActionResult IntegrationAPITesting()
         {
             var roadmap = _roadmapService.GetRoadmapById(21);
+            if (roadmap == null)
+                return NotFound();
+            
+            return View("RoadmapDetail", roadmap);
+        }
+
+        public IActionResult XUnitTesting()
+        {
+            var roadmap = _roadmapService.GetRoadmapById(23); // xUnit Unit Testing
             if (roadmap == null)
                 return NotFound();
             

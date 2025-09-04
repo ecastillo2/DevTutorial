@@ -1,0 +1,306 @@
+@model SearchResultsViewModel
+@{
+    ViewData["Title"] = $"Search Results for '{Model.Query}'";
+}
+
+<div class="container mt-4">
+    <!-- Search Header -->
+    <div class="search-header">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <!-- Search Bar -->
+                <form asp-controller="Search" asp-action="Index" method="get" class="search-form mb-4">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text">
+                            <i class="bi bi-search"></i>
+                        </span>
+                        <input type="text" name="q" value="@Model.Query" class="form-control" 
+                               placeholder="Search topics, tutorials, code examples..." autocomplete="off">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </div>
+                </form>
+
+                <!-- Results Summary -->
+                <div class="search-summary">
+                    @if (!string.IsNullOrWhiteSpace(Model.Query))
+                    {
+                        <h2 class="search-title">
+                            Search Results for "<span class="text-primary">@Model.Query</span>"
+                        </h2>
+                        <p class="text-muted">
+                            @if (Model.ResultCount > 0)
+                            {
+                                <span>Found @Model.ResultCount result@(Model.ResultCount != 1 ? "s" : "")</span>
+                            }
+                            else
+                            {
+                                <span>No results found</span>
+                            }
+                        </p>
+                    }
+                    else
+                    {
+                        <h2 class="search-title">Search the Site</h2>
+                        <p class="text-muted">Enter a search term to find topics, tutorials, and resources.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (Model.Results.Any())
+    {
+        <!-- Search Results -->
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="search-results">
+                    @foreach (var result in Model.Results)
+                    {
+                        <div class="search-result-item">
+                            <div class="result-content">
+                                <div class="result-header">
+                                    <div class="result-type">
+                                        <span class="result-icon">@result.Icon</span>
+                                        <span class="badge bg-secondary">@result.Type</span>
+                                    </div>
+                                </div>
+                                
+                                <h3 class="result-title">
+                                    <a href="@result.Url">@result.Title</a>
+                                </h3>
+                                
+                                <p class="result-description">@result.Description</p>
+                                
+                                <div class="result-footer">
+                                    <a href="@result.Url" class="result-link">
+                                        View <i class="bi bi-arrow-right ms-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Search Sidebar -->
+            <div class="col-lg-4">
+                <div class="search-sidebar">
+                    <!-- Search Tips -->
+                    <div class="sidebar-widget">
+                        <h5 class="widget-title">Search Tips</h5>
+                        <ul class="search-tips">
+                            <li><strong>Specific terms:</strong> "Entity Framework"</li>
+                            <li><strong>Multiple words:</strong> C# async await</li>
+                            <li><strong>Broad topics:</strong> Azure deployment</li>
+                        </ul>
+                    </div>
+
+                    <!-- Popular Searches -->
+                    <div class="sidebar-widget">
+                        <h5 class="widget-title">Popular Searches</h5>
+                        <div class="popular-searches-list">
+                            <a href="@Url.Action("Index", "Search", new { q = "C# fundamentals" })" class="popular-search-tag">C# Fundamentals</a>
+                            <a href="@Url.Action("Index", "Search", new { q = "ASP.NET Core" })" class="popular-search-tag">ASP.NET Core</a>
+                            <a href="@Url.Action("Index", "Search", new { q = "Azure services" })" class="popular-search-tag">Azure Services</a>
+                            <a href="@Url.Action("Index", "Search", new { q = "Entity Framework" })" class="popular-search-tag">Entity Framework</a>
+                            <a href="@Url.Action("Index", "Search", new { q = "LINQ" })" class="popular-search-tag">LINQ</a>
+                            <a href="@Url.Action("Index", "Search", new { q = "microservices" })" class="popular-search-tag">Microservices</a>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="sidebar-widget">
+                        <h5 class="widget-title">Browse by Category</h5>
+                        <ul class="category-links">
+                            <li><a href="@Url.Action("Index", "WebDevelopment")"><i class="bi bi-code me-2"></i>.NET Development</a></li>
+                            <li><a href="@Url.Action("Index", "Interview")"><i class="bi bi-person-check me-2"></i>Interview Questions</a></li>
+                            <li><a href="@Url.Action("Index", "Challenges")"><i class="bi bi-trophy me-2"></i>Code Challenges</a></li>
+                            <li><a href="@Url.Action("Index", "Resources")"><i class="bi bi-book me-2"></i>Learning Resources</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (!string.IsNullOrWhiteSpace(Model.Query))
+    {
+        <!-- No Results -->
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="no-results">
+                    <div class="text-center py-5">
+                        <i class="bi bi-search display-1 text-muted mb-4"></i>
+                        <h3>No results found</h3>
+                        <p class="text-muted mb-4">
+                            We couldn't find any results for "<strong>@Model.Query</strong>". 
+                            Try adjusting your search terms or browse our categories below.
+                        </p>
+                        
+                        <div class="suggested-actions">
+                            <h5 class="mb-3">Try searching for:</h5>
+                            <div class="suggestion-tags">
+                                <a href="@Url.Action("Index", "Search", new { q = "C#" })" class="btn btn-outline-primary btn-sm me-2 mb-2">C#</a>
+                                <a href="@Url.Action("Index", "Search", new { q = "ASP.NET" })" class="btn btn-outline-primary btn-sm me-2 mb-2">ASP.NET</a>
+                                <a href="@Url.Action("Index", "Search", new { q = "Azure" })" class="btn btn-outline-primary btn-sm me-2 mb-2">Azure</a>
+                                <a href="@Url.Action("Index", "Search", new { q = "Entity Framework" })" class="btn btn-outline-primary btn-sm me-2 mb-2">Entity Framework</a>
+                                <a href="@Url.Action("Index", "Search", new { q = "JavaScript" })" class="btn btn-outline-primary btn-sm me-2 mb-2">JavaScript</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .search-header {
+        background: linear-gradient(135deg, rgba(79, 209, 197, 0.1), rgba(79, 172, 254, 0.1));
+        border-radius: 20px;
+        padding: 2rem 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .search-title {
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+    }
+
+    .search-result-item {
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        transition: all 0.2s ease;
+    }
+
+    .search-result-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .result-header {
+        margin-bottom: 0.75rem;
+    }
+
+    .result-type {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .result-icon {
+        font-size: 1.25rem;
+    }
+
+    .result-title {
+        margin-bottom: 0.75rem;
+        font-size: 1.25rem;
+    }
+
+    .result-title a {
+        color: var(--text-primary);
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .result-title a:hover {
+        color: var(--primary-color);
+    }
+
+    .result-description {
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+        line-height: 1.6;
+    }
+
+    .result-link {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.9rem;
+    }
+
+    .result-link:hover {
+        color: #45a893;
+    }
+
+    .search-sidebar .sidebar-widget {
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .widget-title {
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
+
+    .search-tips {
+        list-style: none;
+        padding: 0;
+    }
+
+    .search-tips li {
+        margin-bottom: 0.5rem;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+    }
+
+    .popular-search-tag {
+        display: inline-block;
+        background: rgba(79, 209, 197, 0.1);
+        color: var(--primary-color);
+        padding: 0.25rem 0.75rem;
+        border-radius: 15px;
+        font-size: 0.875rem;
+        margin: 0.25rem 0.25rem 0.25rem 0;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+
+    .popular-search-tag:hover {
+        background: var(--primary-color);
+        color: white;
+        transform: translateY(-1px);
+    }
+
+    .category-links {
+        list-style: none;
+        padding: 0;
+    }
+
+    .category-links li {
+        margin-bottom: 0.75rem;
+    }
+
+    .category-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        transition: color 0.2s ease;
+    }
+
+    .category-links a:hover {
+        color: var(--primary-color);
+    }
+
+    .no-results {
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+    }
+
+    .suggestion-tags .btn {
+        transition: all 0.2s ease;
+    }
+
+    .suggestion-tags .btn:hover {
+        transform: translateY(-1px);
+    }
+</style>

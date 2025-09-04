@@ -1,0 +1,153 @@
+@{
+    ViewData["Title"] = "About";
+}
+
+<div class="container mt-4">
+    <div class="hero-section text-center">
+        <h1 class="hero-title">About .NET Azure Developer Hub</h1>
+        <p class="hero-subtitle">Empowering developers to master the Microsoft technology stack</p>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-lg-8 mx-auto">
+            <div class="roadmap-card">
+                <h2 class="text-gradient mb-4">Our Mission</h2>
+                <p class="lead">
+                    We are dedicated to providing comprehensive, practical learning resources for developers who want to excel in the Microsoft ecosystem. Our platform focuses on real-world skills that matter in today's enterprise development environment.
+                </p>
+                
+                <h3 class="text-gradient mt-5 mb-3">What We Offer</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="feature-item mb-4">
+                            <div class="d-flex align-items-start">
+                                <i class="bi bi-code-square text-primary me-3 fs-4"></i>
+                                <div>
+                                    <h5>Structured Learning Paths</h5>
+                                    <p>From C# fundamentals to advanced Azure architecture, our carefully crafted roadmaps guide you step-by-step.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="feature-item mb-4">
+                            <div class="d-flex align-items-start">
+                                <i class="bi bi-person-check text-primary me-3 fs-4"></i>
+                                <div>
+                                    <h5>Interview Preparation</h5>
+                                    <p>Comprehensive questions and coding challenges specifically tailored for .NET developer interviews.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="feature-item mb-4">
+                            <div class="d-flex align-items-start">
+                                <i class="bi bi-cloud text-primary me-3 fs-4"></i>
+                                <div>
+                                    <h5>Azure Integration</h5>
+                                    <p>Learn to leverage Microsoft Azure services to build scalable, cloud-native applications.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="feature-item mb-4">
+                            <div class="d-flex align-items-start">
+                                <i class="bi bi-trophy text-primary me-3 fs-4"></i>
+                                <div>
+                                    <h5>Practical Focus</h5>
+                                    <p>Every lesson includes hands-on examples, code samples, and real-world project scenarios.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-gradient mt-5 mb-3">Why .NET?</h3>
+                <p>
+                    .NET has evolved into a mature, cross-platform framework that powers millions of applications worldwide. 
+                    With Microsoft's continued investment in the ecosystem, .NET developers are in high demand across industries. 
+                    Our platform helps you navigate this vast ecosystem efficiently and effectively.
+                </p>
+
+                <div class="stats-section mt-5">
+                    <div class="row text-center">
+                        <div class="col-md-3">
+                            <div class="stat-item">
+                                <h3 class="text-primary">20+</h3>
+                                <p>Learning Paths</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-item">
+                                <h3 class="text-primary">100+</h3>
+                                <p>Topics Covered</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-item">
+                                <h3 class="text-primary">500+</h3>
+                                <p>Code Examples</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-item">
+                                <h3 class="text-primary">150+</h3>
+                                <p>Interview Questions</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12 text-center">
+            <div class="cta-section">
+                <h3 class="text-gradient mb-3">Ready to Start Your Journey?</h3>
+                <p class="mb-4">Join thousands of developers who have advanced their careers with our comprehensive learning platform.</p>
+                <a asp-controller="Home" asp-action="Index" class="btn btn-primary btn-lg">
+                    <i class="bi bi-rocket me-2"></i>Start Learning Today
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .feature-item {
+        background-color: rgba(79, 209, 197, 0.05);
+        border-radius: 10px;
+        padding: 1.5rem;
+        border-left: 3px solid var(--primary-color);
+    }
+
+    .stat-item {
+        padding: 1rem;
+    }
+
+    .stat-item h3 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+    }
+
+    .stats-section {
+        background: linear-gradient(135deg, rgba(79, 209, 197, 0.1), rgba(79, 172, 254, 0.1));
+        border-radius: 15px;
+        padding: 2rem;
+    }
+
+    .cta-section {
+        background: linear-gradient(45deg, var(--primary-color), #4facfe);
+        color: white;
+        border-radius: 20px;
+        padding: 3rem 2rem;
+    }
+
+    .cta-section .text-gradient {
+        color: white !important;
+    }
+</style>

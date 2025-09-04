@@ -1,0 +1,299 @@
+@model DevTutorialWebApp.Models.RoadmapStep
+@{
+    ViewData["Title"] = $"{Model.Title} - {ViewBag.RoadmapTitle}";
+}
+
+<div class="container mt-4">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item"><a asp-controller="@ViewBag.ControllerName" asp-action="@ViewBag.ActionName">@ViewBag.RoadmapTitle</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@Model.Title</li>
+        </ol>
+    </nav>
+
+    <div class="hero-section">
+        <h1 class="hero-title">@Model.Title</h1>
+        <div class="roadmap-meta justify-content-center mb-4">
+            <span><i class="bi bi-clock"></i> @Model.Duration</span>
+            <span><i class="bi bi-list-check"></i> @Model.SubTopics.Count subtopics</span>
+        </div>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.Content))
+    {
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="roadmap-card">
+                    <h3 class="text-gradient mb-3">Overview</h3>
+                    <p class="lead">@Model.Content</p>
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (Model.KeyConcepts != null && Model.KeyConcepts.Any())
+    {
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="roadmap-card">
+                    <h3 class="text-gradient mb-4"><i class="bi bi-lightning-fill"></i> Key Concepts to Master</h3>
+                    <div class="row">
+                        @foreach (var concept in Model.KeyConcepts)
+                        {
+                            <div class="col-md-6 mb-3">
+                                <div class="concept-item p-3 rounded" style="background-color: rgba(79, 209, 197, 0.1); border-left: 3px solid var(--primary-color);">
+                                    <i class="bi bi-check-circle text-primary me-2"></i>@concept
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <h2 class="text-gradient text-center mb-5">Subtopics</h2>
+            
+            @if (!Model.SubTopics.Any())
+            {
+                <div class="alert alert-info">
+                    <i class="bi bi-info-circle me-2"></i>Subtopics are being prepared for this section. Check back soon!
+                </div>
+            }
+            else
+            {
+                <div class="subtopics-grid">
+                    @foreach (var subtopic in Model.SubTopics)
+                    {
+                        <div class="subtopic-card">
+                            <h4 class="subtopic-title">
+                                <i class="bi bi-journal-code me-2"></i>@subtopic.Title
+                            </h4>
+                            <p class="subtopic-description">@subtopic.Description</p>
+                            
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-outline-primary btn-sm flex-grow-1" onclick="toggleSubtopic(@subtopic.Id)">
+                                    View Details <i class="bi bi-chevron-down ms-1"></i>
+                                </button>
+                                <a asp-controller="@ViewBag.ControllerName" 
+                                   asp-action="SubTopicDetail" 
+                                   asp-route-roadmapId="@ViewBag.RoadmapId" 
+                                   asp-route-stepId="@Model.Id" 
+                                   asp-route-subtopicId="@subtopic.Id" 
+                                   class="btn btn-primary btn-sm">
+                                    <i class="bi bi-box-arrow-up-right"></i>
+                                </a>
+                            </div>
+                            
+                            <div id="subtopic-@subtopic.Id" class="subtopic-content mt-3" style="display: none;">
+                                @if (!string.IsNullOrEmpty(subtopic.Content))
+                                {
+                                    <div class="mb-3">
+                                        <p>@subtopic.Content</p>
+                                    </div>
+                                }
+                                
+                                @if (subtopic.KeyPoints != null && subtopic.KeyPoints.Any())
+                                {
+                                    <h5 class="h6 mb-2">Key Points:</h5>
+                                    <ul class="mb-3">
+                                        @foreach (var point in subtopic.KeyPoints)
+                                        {
+                                            <li>@point</li>
+                                        }
+                                    </ul>
+                                }
+                                
+                                @if (!string.IsNullOrEmpty(subtopic.CodeExample))
+                                {
+                                    <h5 class="h6 mb-2">Code Example:</h5>
+                                    <pre class="code-example"><code>@subtopic.CodeExample</code></pre>
+                                }
+                                
+                                @if (subtopic.Resources != null && subtopic.Resources.Any())
+                                {
+                                    <h5 class="h6 mb-2 mt-3">Resources:</h5>
+                                    <div class="resources-list">
+                                        @foreach (var resource in subtopic.Resources)
+                                        {
+                                            <a href="@resource.Url" class="resource-link d-block mb-2" target="_blank">
+                                                <i class="bi bi-link-45deg me-1"></i>@resource.Title
+                                            </a>
+                                        }
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+
+    @if (Model.PracticalExercises != null && Model.PracticalExercises.Any())
+    {
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="roadmap-card">
+                    <h3 class="text-gradient mb-4"><i class="bi bi-code-square"></i> Practical Exercises</h3>
+                    <ol class="exercise-list">
+                        @foreach (var exercise in Model.PracticalExercises)
+                        {
+                            <li class="mb-3">
+                                <div class="exercise-item">
+                                    @exercise
+                                </div>
+                            </li>
+                        }
+                    </ol>
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (Model.Resources != null && Model.Resources.Any())
+    {
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="roadmap-card">
+                    <h3 class="text-gradient mb-4"><i class="bi bi-book"></i> Additional Resources</h3>
+                    <div class="resources-grid">
+                        @foreach (var resource in Model.Resources)
+                        {
+                            <a href="@resource.Url" class="resource-link" target="_blank">
+                                <i class="bi @GetResourceIcon(resource.Type) resource-icon"></i>
+                                <div class="resource-info">
+                                    <div class="resource-title">@resource.Title</div>
+                                    <div class="resource-type">@resource.Type</div>
+                                </div>
+                                <i class="bi bi-box-arrow-up-right"></i>
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <!-- Navigation -->
+    <div class="row mt-5 mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between">
+                <a asp-controller="@ViewBag.ControllerName" asp-action="@ViewBag.ActionName" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left me-2"></i>Back to Roadmap
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@functions {
+    private string GetResourceIcon(string type)
+    {
+        return type?.ToLower() switch
+        {
+            "video" => "bi-play-circle",
+            "article" => "bi-file-text",
+            "course" => "bi-mortarboard",
+            "website" => "bi-globe",
+            "book" => "bi-book",
+            "interactive" => "bi-controller",
+            _ => "bi-link-45deg"
+        };
+    }
+}
+
+@section Scripts {
+    <script>
+        function toggleSubtopic(subtopicId) {
+            const subtopicContent = document.getElementById('subtopic-' + subtopicId);
+            const button = subtopicContent.previousElementSibling;
+            const chevron = button.querySelector('.bi-chevron-down, .bi-chevron-up');
+            
+            if (subtopicContent.style.display === 'none') {
+                subtopicContent.style.display = 'block';
+                chevron.classList.remove('bi-chevron-down');
+                chevron.classList.add('bi-chevron-up');
+                button.classList.remove('btn-outline-primary');
+                button.classList.add('btn-primary');
+            } else {
+                subtopicContent.style.display = 'none';
+                chevron.classList.remove('bi-chevron-up');
+                chevron.classList.add('bi-chevron-down');
+                button.classList.remove('btn-primary');
+                button.classList.add('btn-outline-primary');
+            }
+        }
+    </script>
+}
+
+<style>
+    .subtopics-grid {
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    }
+
+    .subtopic-card {
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 1.5rem;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .subtopic-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .subtopic-title {
+        color: var(--primary-color);
+        font-size: 1.25rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .subtopic-description {
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+    }
+
+    .subtopic-content {
+        border-top: 1px solid var(--border-color);
+        padding-top: 1rem;
+    }
+
+    .code-example {
+        background-color: var(--code-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 1rem;
+        overflow-x: auto;
+        font-family: 'Consolas', 'Monaco', monospace;
+        font-size: 0.9rem;
+    }
+
+    .exercise-item {
+        background-color: rgba(79, 209, 197, 0.05);
+        padding: 1rem;
+        border-radius: 8px;
+        border-left: 3px solid var(--primary-color);
+    }
+
+    .concept-item {
+        font-size: 0.95rem;
+    }
+
+    .resource-link {
+        text-decoration: none;
+        color: var(--text-primary);
+    }
+
+    .resource-link:hover {
+        color: var(--primary-color);
+    }
+</style>

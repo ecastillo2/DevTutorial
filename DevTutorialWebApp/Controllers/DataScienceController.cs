@@ -4,13 +4,10 @@ using DevTutorialWebApp.Models;
 
 namespace DevTutorialWebApp.Controllers
 {
-    public class DataScienceController : Controller
+    public class DataScienceController : BaseRoadmapController
     {
-        private readonly IRoadmapService _roadmapService;
-
-        public DataScienceController(IRoadmapService roadmapService)
+        public DataScienceController(IRoadmapService roadmapService) : base(roadmapService)
         {
-            _roadmapService = roadmapService;
         }
 
         public IActionResult Index()

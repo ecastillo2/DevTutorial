@@ -4,13 +4,10 @@ using DevTutorialWebApp.Models;
 
 namespace DevTutorialWebApp.Controllers
 {
-    public class ProgrammingFundamentalsController : Controller
+    public class ProgrammingFundamentalsController : BaseRoadmapController
     {
-        private readonly IRoadmapService _roadmapService;
-
-        public ProgrammingFundamentalsController(IRoadmapService roadmapService)
+        public ProgrammingFundamentalsController(IRoadmapService roadmapService) : base(roadmapService)
         {
-            _roadmapService = roadmapService;
         }
 
         public IActionResult Index()

@@ -1,0 +1,301 @@
+# Roadmap Context Updates
+
+## Mobile App Developer (ID: 3)
+Context: "Mobile app development combines creativity with technical skills to build applications for smartphones and tablets. As a mobile developer, you'll create apps that millions of users interact with daily. This roadmap covers native development with React Native and Flutter, preparing you to build cross-platform mobile applications efficiently."
+Prerequisites:
+- "JavaScript or Dart programming basics"
+- "Understanding of UI/UX principles"
+- "Basic knowledge of REST APIs"
+CareerPaths:
+- "Mobile Developer ($70K-$140K)"
+- "React Native Developer ($75K-$135K)"
+- "Flutter Developer ($80K-$140K)"
+- "Mobile Architect ($120K-$180K)"
+- "Mobile Team Lead ($130K-$190K)"
+
+## Data Scientist (ID: 4)
+Context: "Data Science combines statistics, programming, and domain expertise to extract insights from data. As a data scientist, you'll analyze complex datasets, build predictive models, and communicate findings to stakeholders. This roadmap covers Python programming, statistical analysis, machine learning, and data visualization."
+Prerequisites:
+- "Basic statistics and mathematics"
+- "Programming fundamentals"
+- "Analytical thinking and problem-solving skills"
+CareerPaths:
+- "Data Analyst ($50K-$90K)"
+- "Data Scientist ($80K-$150K)"
+- "Machine Learning Engineer ($100K-$170K)"
+- "Data Science Manager ($120K-$180K)"
+- "Chief Data Officer ($150K-$250K)"
+
+## AI/ML Engineer (ID: 5)
+Context: "AI/ML Engineering focuses on building intelligent systems that can learn and make decisions. As an AI/ML engineer, you'll implement algorithms that power recommendation systems, computer vision applications, and natural language processing. This roadmap covers deep learning, neural networks, and production ML systems."
+Prerequisites:
+- "Strong mathematics (linear algebra, calculus, statistics)"
+- "Python programming proficiency"
+- "Understanding of data structures and algorithms"
+CareerPaths:
+- "ML Engineer ($90K-$160K)"
+- "AI Research Engineer ($100K-$180K)"
+- "Computer Vision Engineer ($95K-$165K)"
+- "NLP Engineer ($95K-$170K)"
+- "AI Architect ($130K-$200K)"
+
+## DevOps Engineer (ID: 6)
+Context: "DevOps bridges the gap between development and operations, focusing on automation, collaboration, and continuous delivery. As a DevOps engineer, you'll build CI/CD pipelines, manage infrastructure as code, and ensure applications run smoothly in production. This roadmap covers containerization, cloud platforms, and monitoring."
+Prerequisites:
+- "Linux/Unix command line proficiency"
+- "Basic scripting (Bash, Python)"
+- "Understanding of networking and system administration"
+CareerPaths:
+- "Junior DevOps Engineer ($60K-$90K)"
+- "DevOps Engineer ($80K-$140K)"
+- "Site Reliability Engineer ($100K-$170K)"
+- "DevOps Architect ($120K-$180K)"
+- "Infrastructure Lead ($130K-$190K)"
+
+## Cloud Solutions Architect (ID: 7)
+Context: "Cloud architecture involves designing scalable, reliable, and cost-effective solutions on cloud platforms. As a cloud architect, you'll design systems that leverage cloud services for compute, storage, networking, and more. This roadmap focuses on Azure cloud services and architectural best practices."
+Prerequisites:
+- "Understanding of networking and distributed systems"
+- "Experience with application development"
+- "Knowledge of security principles"
+CareerPaths:
+- "Cloud Engineer ($75K-$120K)"
+- "Solutions Architect ($110K-$170K)"
+- "Cloud Architect ($120K-$190K)"
+- "Principal Architect ($140K-$220K)"
+- "Chief Architect ($160K-$250K)"
+
+## Cybersecurity Specialist (ID: 8)
+Context: "Cybersecurity protects organizations from digital threats and ensures data privacy. As a cybersecurity specialist, you'll identify vulnerabilities, implement security measures, and respond to incidents. This roadmap covers network security, ethical hacking, compliance, and security operations."
+Prerequisites:
+- "Networking fundamentals (TCP/IP, OSI model)"
+- "Basic programming and scripting"
+- "Understanding of operating systems"
+CareerPaths:
+- "Security Analyst ($55K-$95K)"
+- "Cybersecurity Specialist ($70K-$130K)"
+- "Penetration Tester ($80K-$140K)"
+- "Security Architect ($110K-$170K)"
+- "CISO ($150K-$300K)"
+
+## UX/UI Designer (ID: 9)
+Context: "UX/UI Design focuses on creating intuitive and delightful user experiences. As a designer, you'll research user needs, create wireframes and prototypes, and design beautiful interfaces. This roadmap covers design principles, tools like Figma, user research, and design systems."
+Prerequisites:
+- "Visual design sense and creativity"
+- "Basic understanding of human psychology"
+- "Empathy for users and their needs"
+CareerPaths:
+- "UI Designer ($50K-$90K)"
+- "UX Designer ($60K-$110K)"
+- "Product Designer ($70K-$130K)"
+- "Design Lead ($100K-$160K)"
+- "Head of Design ($130K-$200K)"
+
+## Product Manager (ID: 10)
+Context: "Product Management involves guiding products from conception to launch and beyond. As a product manager, you'll work with cross-functional teams, prioritize features, and ensure products meet user needs and business goals. This roadmap covers product strategy, analytics, and leadership skills."
+Prerequisites:
+- "Strong communication and analytical skills"
+- "Basic understanding of technology and business"
+- "Customer-focused mindset"
+CareerPaths:
+- "Associate Product Manager ($70K-$110K)"
+- "Product Manager ($90K-$150K)"
+- "Senior Product Manager ($110K-$180K)"
+- "Director of Product ($140K-$220K)"
+- "VP of Product ($180K-$300K)"
+
+## C# Developer (ID: 11)
+Context: "C# is a versatile, modern programming language used for desktop, web, mobile, and game development. As a C# developer, you'll build applications using the .NET ecosystem. This roadmap covers language fundamentals, .NET framework, and application development patterns."
+Prerequisites:
+- "Basic programming concepts"
+- "Understanding of object-oriented programming"
+- "Familiarity with development tools"
+CareerPaths:
+- "Junior C# Developer ($50K-$80K)"
+- "C# Developer ($65K-$120K)"
+- ".NET Developer ($70K-$130K)"
+- "Senior Developer ($90K-$150K)"
+- "Lead Developer ($110K-$170K)"
+
+## OOP Principles (ID: 12)
+Context: "Object-Oriented Programming is a fundamental paradigm for organizing and structuring code. Understanding OOP principles helps you write maintainable, scalable software. This roadmap covers encapsulation, inheritance, polymorphism, and abstraction with practical examples."
+Prerequisites:
+- "Basic programming knowledge in any language"
+- "Understanding of variables and functions"
+- "Logical thinking skills"
+CareerPaths:
+- "Software Developer ($60K-$120K)"
+- "Application Developer ($65K-$125K)"
+- "Software Engineer ($75K-$140K)"
+- "Software Architect ($110K-$180K)"
+
+## SOLID Principles (ID: 13)
+Context: "SOLID principles guide the design of flexible, maintainable object-oriented software. Mastering these principles helps you write code that's easier to understand, test, and modify. This roadmap covers each principle with real-world examples and refactoring exercises."
+Prerequisites:
+- "Proficiency in object-oriented programming"
+- "Experience with class design"
+- "Understanding of software maintenance challenges"
+CareerPaths:
+- "Software Engineer ($75K-$140K)"
+- "Senior Developer ($90K-$150K)"
+- "Technical Lead ($100K-$170K)"
+- "Software Architect ($110K-$180K)"
+
+## Design Patterns (ID: 14)
+Context: "Design patterns are proven solutions to common software design problems. Learning these patterns helps you write more elegant, reusable code and communicate effectively with other developers. This roadmap covers creational, structural, and behavioral patterns."
+Prerequisites:
+- "Strong OOP knowledge"
+- "Experience with software development"
+- "Understanding of UML diagrams"
+CareerPaths:
+- "Senior Developer ($90K-$150K)"
+- "Software Architect ($110K-$180K)"
+- "Principal Engineer ($130K-$200K)"
+- "Technical Architect ($140K-$210K)"
+
+## SQL & Database (ID: 15)
+Context: "SQL and database management are essential skills for working with data. As a database professional, you'll design schemas, optimize queries, and ensure data integrity. This roadmap covers relational databases, SQL programming, and performance optimization."
+Prerequisites:
+- "Basic understanding of data and tables"
+- "Logical thinking for query construction"
+- "Attention to detail for data accuracy"
+CareerPaths:
+- "Database Developer ($60K-$110K)"
+- "SQL Developer ($65K-$115K)"
+- "Database Administrator ($70K-$130K)"
+- "Data Architect ($100K-$160K)"
+- "Database Architect ($110K-$170K)"
+
+## .NET Core (ID: 16)
+Context: ".NET Core (now .NET 5+) is a cross-platform framework for building modern applications. As a .NET developer, you'll create web APIs, microservices, and cloud-native applications. This roadmap covers framework fundamentals, ASP.NET Core, and deployment strategies."
+Prerequisites:
+- "C# programming knowledge"
+- "Understanding of web concepts"
+- "Basic command line usage"
+CareerPaths:
+- ".NET Developer ($65K-$125K)"
+- "Full Stack .NET Developer ($80K-$140K)"
+- ".NET Architect ($110K-$180K)"
+- "Principal .NET Engineer ($130K-$200K)"
+
+## Azure Cloud (ID: 17)
+Context: "Azure is Microsoft's cloud platform offering compute, storage, networking, and AI services. As an Azure professional, you'll design and implement cloud solutions. This roadmap covers core services, security, DevOps, and architectural best practices."
+Prerequisites:
+- "Basic networking knowledge"
+- "Understanding of application architecture"
+- "Familiarity with command line tools"
+CareerPaths:
+- "Azure Administrator ($65K-$110K)"
+- "Azure Developer ($75K-$130K)"
+- "Azure Solutions Architect ($110K-$170K)"
+- "Azure DevOps Engineer ($85K-$150K)"
+- "Cloud Architect ($120K-$190K)"
+
+## Algorithms & Data Structures (ID: 18)
+Context: "Algorithms and data structures form the foundation of efficient software. Understanding these concepts helps you solve complex problems and pass technical interviews. This roadmap covers arrays, trees, graphs, sorting, searching, and dynamic programming."
+Prerequisites:
+- "Programming proficiency in any language"
+- "Basic mathematics and logic"
+- "Problem-solving mindset"
+CareerPaths:
+- "Software Engineer at FAANG ($120K-$250K)"
+- "Algorithm Engineer ($90K-$160K)"
+- "Backend Engineer ($80K-$150K)"
+- "Senior Software Engineer ($100K-$180K)"
+
+## Problem Solving & Coding Interviews (ID: 19)
+Context: "Technical interviews test your problem-solving skills and coding ability. This roadmap prepares you for interviews at top tech companies, covering common patterns, optimization techniques, and communication strategies."
+Prerequisites:
+- "Data structures and algorithms knowledge"
+- "Programming proficiency"
+- "Practice with timed problem-solving"
+CareerPaths:
+- "Software Engineer ($80K-$200K)"
+- "Senior Engineer ($100K-$250K)"
+- "Staff Engineer ($150K-$300K)"
+- "Principal Engineer ($180K-$350K)"
+
+## Unit Testing & TDD (ID: 20)
+Context: "Unit testing and Test-Driven Development ensure code quality and maintainability. As a quality-focused developer, you'll write tests first, implement features, and refactor with confidence. This roadmap covers testing frameworks, mocking, and best practices."
+Prerequisites:
+- "Programming proficiency"
+- "Understanding of software design"
+- "Commitment to code quality"
+CareerPaths:
+- "Software Developer with TDD ($70K-$130K)"
+- "Quality Engineer ($65K-$120K)"
+- "Senior Developer ($90K-$150K)"
+- "Lead Developer ($100K-$170K)"
+
+## Integration & API Testing (ID: 21)
+Context: "Integration testing ensures different parts of your application work together correctly. This roadmap covers API testing, contract testing, integration test strategies, and tools for automated testing."
+Prerequisites:
+- "Understanding of APIs and web services"
+- "Basic programming skills"
+- "Knowledge of HTTP and REST"
+CareerPaths:
+- "QA Engineer ($55K-$100K)"
+- "Test Automation Engineer ($70K-$130K)"
+- "SDET ($80K-$140K)"
+- "QA Lead ($90K-$150K)"
+
+## Software Architecture Patterns (ID: 22)
+Context: "Software architecture defines the high-level structure of applications. As an architect, you'll design systems that are scalable, maintainable, and aligned with business needs. This roadmap covers architectural patterns, quality attributes, and decision-making."
+Prerequisites:
+- "Several years of development experience"
+- "Understanding of design patterns"
+- "Knowledge of distributed systems"
+CareerPaths:
+- "Software Architect ($110K-$180K)"
+- "Solutions Architect ($115K-$185K)"
+- "Enterprise Architect ($130K-$200K)"
+- "Chief Architect ($150K-$250K)"
+
+## Microservices Architecture (ID: 23)
+Context: "Microservices architecture breaks applications into small, independent services. This approach enables scalability and team autonomy. This roadmap covers service design, communication patterns, deployment, and operational concerns."
+Prerequisites:
+- "Experience with monolithic applications"
+- "Understanding of distributed systems"
+- "Knowledge of containers and orchestration"
+CareerPaths:
+- "Microservices Developer ($85K-$140K)"
+- "Cloud Native Developer ($90K-$150K)"
+- "Microservices Architect ($120K-$190K)"
+- "Platform Engineer ($100K-$170K)"
+
+## Domain-Driven Design (ID: 24)
+Context: "Domain-Driven Design aligns software with business domains. DDD helps manage complexity in large systems through bounded contexts, aggregates, and ubiquitous language. This roadmap covers strategic and tactical DDD patterns."
+Prerequisites:
+- "Experience with complex business applications"
+- "Understanding of OOP and design patterns"
+- "Business domain knowledge"
+CareerPaths:
+- "Domain Expert Developer ($90K-$150K)"
+- "DDD Architect ($120K-$190K)"
+- "Enterprise Architect ($130K-$200K)"
+- "Technical Domain Lead ($140K-$210K)"
+
+## Git & Version Control (ID: 25)
+Context: "Version control is essential for collaborative software development. Git is the industry standard for tracking changes, managing branches, and coordinating team work. This roadmap covers Git fundamentals, workflows, and advanced techniques."
+Prerequisites:
+- "Basic command line usage"
+- "Understanding of file systems"
+- "Collaborative mindset"
+CareerPaths:
+- "Any Software Developer role (+10-20% salary)"
+- "DevOps Engineer ($80K-$140K)"
+- "Release Manager ($75K-$130K)"
+- "SCM Engineer ($70K-$120K)"
+
+## Soft Skills (ID: 26)
+Context: "Soft skills are crucial for career advancement in technology. Strong communication, leadership, and emotional intelligence complement technical abilities. This roadmap covers communication, teamwork, time management, and professional growth."
+Prerequisites:
+- "Openness to feedback and growth"
+- "Willingness to work with others"
+- "Desire for continuous improvement"
+CareerPaths:
+- "Team Lead ($100K-$170K)"
+- "Engineering Manager ($120K-$200K)"
+- "Director of Engineering ($150K-$250K)"
+- "VP of Engineering ($180K-$300K)"
+- "CTO ($200K-$400K)"

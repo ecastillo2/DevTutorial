@@ -1,0 +1,307 @@
+@{
+    ViewData["Title"] = "Blog";
+}
+
+<div class="container mt-4">
+    <div class="hero-section text-center">
+        <h1 class="hero-title">Developer Blog</h1>
+        <p class="hero-subtitle">Latest insights, tutorials, and best practices for .NET developers</p>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-lg-8">
+            <!-- Featured Post -->
+            <div class="blog-post featured-post mb-5">
+                <div class="post-header">
+                    <span class="badge bg-primary mb-2">Featured</span>
+                    <h2><a href="#" class="post-title">Building Scalable .NET Applications with Azure</a></h2>
+                    <div class="post-meta">
+                        <span><i class="bi bi-calendar me-1"></i>January 15, 2024</span>
+                        <span><i class="bi bi-person me-1"></i>Tech Team</span>
+                        <span><i class="bi bi-clock me-1"></i>8 min read</span>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p>Learn how to architect and deploy scalable .NET applications using Azure services. This comprehensive guide covers everything from Azure App Services to implementing microservices with Azure Container Apps.</p>
+                    <a href="#" class="btn btn-outline-primary">Read More <i class="bi bi-arrow-right ms-1"></i></a>
+                </div>
+            </div>
+
+            <!-- Blog Posts -->
+            <div class="blog-posts">
+                <div class="blog-post mb-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="post-image">
+                                <div class="placeholder-image d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-code-slash fs-1 text-primary"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="post-header">
+                                <h4><a href="#" class="post-title">C# 12 New Features Every Developer Should Know</a></h4>
+                                <div class="post-meta">
+                                    <span><i class="bi bi-calendar me-1"></i>January 10, 2024</span>
+                                    <span><i class="bi bi-clock me-1"></i>5 min read</span>
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                <p>Explore the latest features in C# 12, including primary constructors, collection expressions, and interceptors. Learn how these features can improve your code quality and developer productivity.</p>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-post mb-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="post-image">
+                                <div class="placeholder-image d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-database fs-1 text-primary"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="post-header">
+                                <h4><a href="#" class="post-title">Entity Framework Core Performance Tips</a></h4>
+                                <div class="post-meta">
+                                    <span><i class="bi bi-calendar me-1"></i>January 5, 2024</span>
+                                    <span><i class="bi bi-clock me-1"></i>7 min read</span>
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                <p>Optimize your Entity Framework Core queries and improve application performance with these proven strategies. Includes examples of proper indexing, query optimization, and caching techniques.</p>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-post mb-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="post-image">
+                                <div class="placeholder-image d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-cloud fs-1 text-primary"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="post-header">
+                                <h4><a href="#" class="post-title">Azure DevOps CI/CD for .NET Applications</a></h4>
+                                <div class="post-meta">
+                                    <span><i class="bi bi-calendar me-1"></i>December 28, 2023</span>
+                                    <span><i class="bi bi-clock me-1"></i>10 min read</span>
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                <p>Set up automated build and deployment pipelines for your .NET applications using Azure DevOps. Complete walkthrough with YAML pipeline examples and best practices.</p>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-post mb-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="post-image">
+                                <div class="placeholder-image d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-phone fs-1 text-primary"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="post-header">
+                                <h4><a href="#" class="post-title">Getting Started with .NET MAUI Cross-Platform Development</a></h4>
+                                <div class="post-meta">
+                                    <span><i class="bi bi-calendar me-1"></i>December 20, 2023</span>
+                                    <span><i class="bi bi-clock me-1"></i>6 min read</span>
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                <p>Build your first cross-platform mobile application with .NET MAUI. Learn the basics of XAML, data binding, and platform-specific implementations.</p>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <nav aria-label="Blog pagination">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next <i class="bi bi-arrow-right ms-1"></i></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <div class="blog-sidebar">
+                <!-- Newsletter Signup -->
+                <div class="sidebar-widget">
+                    <h5 class="widget-title">Stay Updated</h5>
+                    <p>Get the latest .NET tutorials and best practices delivered to your inbox.</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary" type="button">
+                            <i class="bi bi-envelope me-2"></i>Subscribe to Newsletter
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Categories -->
+                <div class="sidebar-widget">
+                    <h5 class="widget-title">Categories</h5>
+                    <ul class="category-list">
+                        <li><a href="#"><i class="bi bi-dot"></i>C# Development (12)</a></li>
+                        <li><a href="#"><i class="bi bi-dot"></i>ASP.NET Core (8)</a></li>
+                        <li><a href="#"><i class="bi bi-dot"></i>Azure Cloud (15)</a></li>
+                        <li><a href="#"><i class="bi bi-dot"></i>Entity Framework (6)</a></li>
+                        <li><a href="#"><i class="bi bi-dot"></i>.NET MAUI (4)</a></li>
+                        <li><a href="#"><i class="bi bi-dot"></i>Best Practices (10)</a></li>
+                    </ul>
+                </div>
+
+                <!-- Popular Posts -->
+                <div class="sidebar-widget">
+                    <h5 class="widget-title">Popular Posts</h5>
+                    <div class="popular-posts">
+                        <div class="popular-post">
+                            <h6><a href="#">Top 10 C# Interview Questions for 2024</a></h6>
+                            <small class="text-muted">January 1, 2024</small>
+                        </div>
+                        <div class="popular-post">
+                            <h6><a href="#">Building REST APIs with ASP.NET Core</a></h6>
+                            <small class="text-muted">December 15, 2023</small>
+                        </div>
+                        <div class="popular-post">
+                            <h6><a href="#">Azure Functions vs. Azure App Services</a></h6>
+                            <small class="text-muted">December 10, 2023</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .blog-post {
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 2rem;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .blog-post:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .featured-post {
+        border-left: 4px solid var(--primary-color);
+        background: linear-gradient(135deg, rgba(79, 209, 197, 0.05), rgba(79, 172, 254, 0.05));
+    }
+
+    .post-title {
+        color: var(--text-primary);
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .post-title:hover {
+        color: var(--primary-color);
+    }
+
+    .post-meta {
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        margin: 0.5rem 0;
+    }
+
+    .post-meta span {
+        margin-right: 1rem;
+    }
+
+    .post-image {
+        margin-bottom: 1rem;
+    }
+
+    .placeholder-image {
+        background-color: rgba(79, 209, 197, 0.1);
+        border-radius: 8px;
+        height: 120px;
+    }
+
+    .blog-sidebar .sidebar-widget {
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .widget-title {
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
+
+    .category-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .category-list li {
+        margin-bottom: 0.5rem;
+    }
+
+    .category-list a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+    }
+
+    .category-list a:hover {
+        color: var(--primary-color);
+    }
+
+    .popular-post {
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .popular-post:last-child {
+        border-bottom: none;
+    }
+
+    .popular-post h6 a {
+        color: var(--text-primary);
+        text-decoration: none;
+        font-size: 0.9rem;
+    }
+
+    .popular-post h6 a:hover {
+        color: var(--primary-color);
+    }
+
+    @@media (max-width: 768px) {
+        .post-image {
+            margin-bottom: 1rem;
+        }
+        
+        .placeholder-image {
+            height: 80px;
+        }
+    }
+</style>

@@ -13,8 +13,8 @@
         <span><i class="bi bi-bar-chart"></i> @Model.Difficulty</span>
         <span><i class="bi bi-list-check"></i> @Model.Steps.Count modules</span>
     </div>
-    <a asp-action="@Model.Title.Replace(" ", "").Replace("/", "")" 
-       asp-controller="@Model.Category.Replace(" ", "").Replace("&", "").Replace("/", "")" 
+    <a asp-action="@Model.ActionName" 
+       asp-controller="@Model.ControllerName" 
        class="btn btn-primary w-100 mt-3">
         View Roadmap <i class="bi bi-arrow-right"></i>
     </a>

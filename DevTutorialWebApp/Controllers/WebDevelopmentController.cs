@@ -4,13 +4,10 @@ using DevTutorialWebApp.Models;
 
 namespace DevTutorialWebApp.Controllers
 {
-    public class WebDevelopmentController : Controller
+    public class WebDevelopmentController : BaseRoadmapController
     {
-        private readonly IRoadmapService _roadmapService;
-
-        public WebDevelopmentController(IRoadmapService roadmapService)
+        public WebDevelopmentController(IRoadmapService roadmapService) : base(roadmapService)
         {
-            _roadmapService = roadmapService;
         }
 
         public IActionResult Index()
@@ -94,6 +91,33 @@ namespace DevTutorialWebApp.Controllers
         public IActionResult GitVersionControl()
         {
             var roadmap = _roadmapService.GetRoadmapById(25); // Git & Version Control
+            if (roadmap == null)
+                return NotFound();
+            
+            return View("RoadmapDetail", roadmap);
+        }
+
+        public IActionResult JavaScriptDeveloper()
+        {
+            var roadmap = _roadmapService.GetRoadmapById(19); // JavaScript Developer
+            if (roadmap == null)
+                return NotFound();
+            
+            return View("RoadmapDetail", roadmap);
+        }
+
+        public IActionResult ReactDeveloper()
+        {
+            var roadmap = _roadmapService.GetRoadmapById(20); // React Developer
+            if (roadmap == null)
+                return NotFound();
+            
+            return View("RoadmapDetail", roadmap);
+        }
+
+        public IActionResult AngularDeveloper()
+        {
+            var roadmap = _roadmapService.GetRoadmapById(21); // Angular Developer
             if (roadmap == null)
                 return NotFound();
             

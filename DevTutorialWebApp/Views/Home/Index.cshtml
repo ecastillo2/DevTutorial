@@ -4,112 +4,312 @@
 
 <div class="main-container">
     <div class="hero-section">
-        <h1 class="hero-title">TechPath Professional</h1>
-        <p class="hero-subtitle">Your comprehensive guide to mastering modern technology careers</p>
+        <h1 class="hero-title">Full Stack .NET Azure Developer Hub</h1>
+        <p class="hero-subtitle">Master enterprise-grade .NET development with Azure cloud integration</p>
+        <div class="hero-badge">
+            <span class="badge bg-primary fs-6 px-3 py-2">
+                <i class="bi bi-microsoft me-2"></i>Microsoft .NET Focused
+            </span>
+        </div>
         
-        <div class="container mt-5">
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
-                    <div class="category-card fade-in">
-                        <div class="category-icon">
-                            <i class="bi bi-code-slash text-gradient"></i>
+        <!-- Search Bar -->
+        <div class="hero-search mt-4">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 col-xl-6">
+                        <form asp-controller="Search" asp-action="Index" method="get" class="search-form">
+                            <div class="input-group input-group-lg search-input-group">
+                                <span class="input-group-text search-icon">
+                                    <i class="bi bi-search"></i>
+                                </span>
+                                <input type="text" name="q" class="form-control search-input" 
+                                       placeholder="Search topics, tutorials, code examples..." 
+                                       autocomplete="off" 
+                                       id="searchInput">
+                                <button class="btn btn-primary search-btn" type="submit">
+                                    Search
+                                </button>
+                            </div>
+                            
+                            <!-- Search Suggestions -->
+                            <div class="search-suggestions" id="searchSuggestions">
+                                <div class="suggestion-item" data-search="C# fundamentals">
+                                    <i class="bi bi-code me-2"></i>C# Fundamentals
+                                </div>
+                                <div class="suggestion-item" data-search="ASP.NET Core">
+                                    <i class="bi bi-globe me-2"></i>ASP.NET Core
+                                </div>
+                                <div class="suggestion-item" data-search="Azure services">
+                                    <i class="bi bi-cloud me-2"></i>Azure Services
+                                </div>
+                                <div class="suggestion-item" data-search="Entity Framework">
+                                    <i class="bi bi-database me-2"></i>Entity Framework
+                                </div>
+                                <div class="suggestion-item" data-search="JavaScript React">
+                                    <i class="bi bi-filetype-jsx me-2"></i>JavaScript & React
+                                </div>
+                                <div class="suggestion-item" data-search="SQL optimization">
+                                    <i class="bi bi-speedometer2 me-2"></i>SQL Optimization
+                                </div>
+                            </div>
+                        </form>
+                        
+                        <!-- Popular Searches -->
+                        <div class="popular-searches mt-3">
+                            <small class="text-muted me-2">Popular searches:</small>
+                            <span class="popular-tag" data-search="C# interview questions">C# Interview</span>
+                            <span class="popular-tag" data-search="Azure deployment">Azure Deploy</span>
+                            <span class="popular-tag" data-search="LINQ examples">LINQ Examples</span>
+                            <span class="popular-tag" data-search="microservices">Microservices</span>
                         </div>
-                        <h3 class="category-title">Web Development</h3>
-                        <p class="category-description">Master modern web technologies from frontend to backend development</p>
-                        <a asp-controller="WebDevelopment" asp-action="Index" class="btn btn-primary">
-                            Explore <i class="bi bi-arrow-right"></i>
-                        </a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
 
-                <div class="col-md-6 col-lg-4">
-                    <div class="category-card fade-in">
-                        <div class="category-icon">
-                            <i class="bi bi-phone text-gradient"></i>
-                        </div>
-                        <h3 class="category-title">Mobile Development</h3>
-                        <p class="category-description">Create native and cross-platform mobile applications</p>
-                        <a asp-controller="Mobile" asp-action="Index" class="btn btn-primary">
-                            Explore <i class="bi bi-arrow-right"></i>
-                        </a>
+    <div class="container mt-5">
+        <!-- Core .NET Technologies -->
+        <h2 class="text-gradient text-center mb-4">.NET Core Technologies</h2>
+        <div class="row g-4 mb-5">
+            <div class="col-md-6 col-lg-4">
+                <div class="category-card fade-in dotnet-card">
+                    <div class="category-icon">
+                        <span style="font-size: 3rem;">🔷</span>
+                    </div>
+                    <h3 class="category-title">C# Developer</h3>
+                    <p class="category-description">Master C# programming from fundamentals to advanced enterprise patterns</p>
+                    <a asp-controller="WebDevelopment" asp-action="CSharpDeveloper" class="btn btn-primary">
+                        Start Learning <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="category-card fade-in dotnet-card">
+                    <div class="category-icon">
+                        <span style="font-size: 3rem;">⚡</span>
+                    </div>
+                    <h3 class="category-title">.NET Core & ASP.NET</h3>
+                    <p class="category-description">Build scalable web APIs and applications with .NET Core and ASP.NET Core</p>
+                    <a asp-controller="WebDevelopment" asp-action="NETCoreDeveloper" class="btn btn-primary">
+                        Start Learning <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="category-card fade-in dotnet-card">
+                    <div class="category-icon">
+                        <i class="bi bi-phone-fill text-gradient" style="font-size: 3rem;"></i>
+                    </div>
+                    <h3 class="category-title">.NET MAUI</h3>
+                    <p class="category-description">Create cross-platform mobile and desktop apps with .NET Multi-platform App UI</p>
+                    <a asp-controller="Mobile" asp-action="NETMAUIDeveloper" class="btn btn-primary">
+                        Start Learning <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="category-card fade-in dotnet-card">
+                    <div class="category-icon">
+                        <span style="font-size: 3rem;">🗄️</span>
+                    </div>
+                    <h3 class="category-title">SQL Server & EF Core</h3>
+                    <p class="category-description">Master database development with SQL Server and Entity Framework Core</p>
+                    <a asp-controller="WebDevelopment" asp-action="SQLDatabaseDevelopment" class="btn btn-primary">
+                        Start Learning <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="category-card fade-in azure-card">
+                    <div class="category-icon">
+                        <i class="bi bi-cloud-fill text-gradient" style="font-size: 3rem; color: #0078d4;"></i>
+                    </div>
+                    <h3 class="category-title">Microsoft Azure</h3>
+                    <p class="category-description">Deploy and scale .NET applications in Azure cloud with DevOps practices</p>
+                    <a asp-controller="DevOps" asp-action="AzureDeveloper" class="btn btn-primary">
+                        Start Learning <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="category-card fade-in dotnet-card">
+                    <div class="category-icon">
+                        <i class="bi bi-building text-gradient" style="font-size: 3rem;"></i>
+                    </div>
+                    <h3 class="category-title">Software Architecture</h3>
+                    <p class="category-description">Design enterprise-grade .NET applications with Clean Architecture and DDD</p>
+                    <a asp-controller="Architecture" asp-action="Index" class="btn btn-primary">
+                        Start Learning <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="category-card fade-in devops-card">
+                    <div class="category-icon">
+                        <i class="bi bi-git text-gradient" style="font-size: 3rem; color: #f05032;"></i>
+                    </div>
+                    <h3 class="category-title">Azure DevOps & Git CI/CD</h3>
+                    <p class="category-description">Master version control, automated builds, and deployment pipelines</p>
+                    <a asp-controller="DevOps" asp-action="GitCICD" class="btn btn-warning">
+                        Start Learning <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="category-card fade-in sql-card">
+                    <div class="category-icon">
+                        <i class="bi bi-database-fill text-gradient" style="font-size: 3rem; color: #cc2936;"></i>
+                    </div>
+                    <h3 class="category-title">SQL Database</h3>
+                    <p class="category-description">Master T-SQL, stored procedures, performance tuning, and database design</p>
+                    <a asp-controller="WebDevelopment" asp-action="SQLDatabaseDevelopment" class="btn btn-danger">
+                        Start Learning <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="category-card fade-in testing-card">
+                    <div class="category-icon">
+                        <i class="bi bi-check2-circle text-gradient" style="font-size: 3rem; color: #28a745;"></i>
+                    </div>
+                    <h3 class="category-title">xUnit Unit Testing</h3>
+                    <p class="category-description">Write robust unit tests with xUnit, mocking, and test-driven development</p>
+                    <a asp-controller="Testing" asp-action="XUnitTesting" class="btn btn-success">
+                        Start Testing <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Frontend Technologies -->
+        <h2 class="text-gradient text-center mb-4">Frontend Technologies</h2>
+        <div class="row g-4 mb-5">
+            <div class="col-md-6 col-lg-4">
+                <div class="category-card fade-in js-card">
+                    <div class="category-icon">
+                        <i class="bi bi-filetype-js text-gradient" style="font-size: 3rem; color: #f7df1e;"></i>
+                    </div>
+                    <h3 class="category-title">JavaScript</h3>
+                    <p class="category-description">Master modern JavaScript ES6+, DOM manipulation, and asynchronous programming</p>
+                    <a asp-controller="WebDevelopment" asp-action="JavaScriptDeveloper" class="btn btn-warning">
+                        Start Learning <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="category-card fade-in react-card">
+                    <div class="category-icon">
+                        <i class="bi bi-filetype-jsx text-gradient" style="font-size: 3rem; color: #61dafb;"></i>
+                    </div>
+                    <h3 class="category-title">React</h3>
+                    <p class="category-description">Build dynamic user interfaces with React hooks, components, and state management</p>
+                    <a asp-controller="WebDevelopment" asp-action="ReactDeveloper" class="btn btn-info">
+                        Start Learning <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="category-card fade-in angular-card">
+                    <div class="category-icon">
+                        <i class="bi bi-triangle text-gradient" style="font-size: 3rem; color: #dd0031;"></i>
+                    </div>
+                    <h3 class="category-title">Angular</h3>
+                    <p class="category-description">Create enterprise applications with Angular, TypeScript, and RxJS</p>
+                    <a asp-controller="WebDevelopment" asp-action="AngularDeveloper" class="btn btn-danger">
+                        Start Learning <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Professional Development -->
+        <h2 class="text-gradient text-center mb-4">Professional Development</h2>
+        <div class="row g-4 mb-5">
+            <div class="col-md-6 col-lg-4">
+                <div class="category-card fade-in interview-card">
+                    <div class="category-icon">
+                        <i class="bi bi-person-check-fill text-gradient" style="font-size: 3rem;"></i>
+                    </div>
+                    <h3 class="category-title">Interview Preparation</h3>
+                    <p class="category-description">Ace .NET developer interviews with curated questions and coding challenges</p>
+                    <a asp-controller="Interview" asp-action="Index" class="btn btn-success">
+                        Prepare Now <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="category-card fade-in challenge-card">
+                    <div class="category-icon">
+                        <i class="bi bi-code-square text-gradient" style="font-size: 3rem;"></i>
+                    </div>
+                    <h3 class="category-title">Code Challenges</h3>
+                    <p class="category-description">Solve real-world .NET coding problems and algorithm challenges</p>
+                    <a asp-controller="Challenges" asp-action="Index" class="btn btn-warning">
+                        Start Coding <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="category-card fade-in resource-card">
+                    <div class="category-icon">
+                        <i class="bi bi-book-fill text-gradient" style="font-size: 3rem;"></i>
+                    </div>
+                    <h3 class="category-title">Learning Resources</h3>
+                    <p class="category-description">Curated books, courses, and documentation for .NET developers</p>
+                    <a asp-controller="Resources" asp-action="Index" class="btn btn-info">
+                        Explore Resources <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Learning Path Overview -->
+        <div class="learning-path-overview">
+            <h2 class="text-gradient text-center mb-4">Full Stack .NET Developer Learning Path</h2>
+            <div class="path-container">
+                <div class="path-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>C# Fundamentals</h4>
+                        <p>Master object-oriented programming, LINQ, and advanced C# features</p>
                     </div>
                 </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="category-card fade-in">
-                        <div class="category-icon">
-                            <i class="bi bi-graph-up text-gradient"></i>
-                        </div>
-                        <h3 class="category-title">Data Science & AI</h3>
-                        <p class="category-description">Unlock insights from data and build intelligent systems</p>
-                        <a asp-controller="DataScience" asp-action="Index" class="btn btn-primary">
-                            Explore <i class="bi bi-arrow-right"></i>
-                        </a>
+                <div class="path-arrow">→</div>
+                <div class="path-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>ASP.NET Core</h4>
+                        <p>Build web APIs, MVC applications, and implement authentication</p>
                     </div>
                 </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="category-card fade-in">
-                        <div class="category-icon">
-                            <i class="bi bi-cloud text-gradient"></i>
-                        </div>
-                        <h3 class="category-title">DevOps & Cloud</h3>
-                        <p class="category-description">Automate deployment and manage cloud infrastructure</p>
-                        <a asp-controller="DevOps" asp-action="Index" class="btn btn-primary">
-                            Explore <i class="bi bi-arrow-right"></i>
-                        </a>
+                <div class="path-arrow">→</div>
+                <div class="path-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Database & EF Core</h4>
+                        <p>Work with SQL Server, design schemas, and optimize queries</p>
                     </div>
                 </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="category-card fade-in">
-                        <div class="category-icon">
-                            <i class="bi bi-star text-gradient"></i>
-                        </div>
-                        <h3 class="category-title">Specialized Careers</h3>
-                        <p class="category-description">Explore unique tech career paths and specializations</p>
-                        <a asp-controller="Specialized" asp-action="Index" class="btn btn-primary">
-                            Explore <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="category-card fade-in">
-                        <div class="category-icon">
-                            <i class="bi bi-code-square text-gradient"></i>
-                        </div>
-                        <h3 class="category-title">Programming Fundamentals</h3>
-                        <p class="category-description">Master algorithms, data structures, and problem-solving</p>
-                        <a asp-controller="ProgrammingFundamentals" asp-action="Index" class="btn btn-primary">
-                            Explore <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="category-card fade-in">
-                        <div class="category-icon">
-                            <i class="bi bi-check2-circle text-gradient"></i>
-                        </div>
-                        <h3 class="category-title">Testing & QA</h3>
-                        <p class="category-description">Build reliable software through comprehensive testing</p>
-                        <a asp-controller="Testing" asp-action="Index" class="btn btn-primary">
-                            Explore <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="category-card fade-in">
-                        <div class="category-icon">
-                            <i class="bi bi-building text-gradient"></i>
-                        </div>
-                        <h3 class="category-title">Architecture & Design</h3>
-                        <p class="category-description">Design scalable and maintainable software systems</p>
-                        <a asp-controller="Architecture" asp-action="Index" class="btn btn-primary">
-                            Explore <i class="bi bi-arrow-right"></i>
-                        </a>
+                <div class="path-arrow">→</div>
+                <div class="path-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Azure Integration</h4>
+                        <p>Deploy applications, use Azure services, and implement CI/CD</p>
                     </div>
                 </div>
             </div>
@@ -117,29 +317,438 @@
     </div>
 
     <div class="container mt-5 pt-5">
-        <h2 class="text-gradient text-center mb-5">Why Choose TechPath Professional?</h2>
+        <h2 class="text-gradient text-center mb-5">Why Choose Our .NET Learning Platform?</h2>
         <div class="row g-4">
             <div class="col-md-4">
                 <div class="text-center fade-in">
-                    <i class="bi bi-compass display-4 text-gradient mb-3"></i>
-                    <h5 class="text-primary">Structured Learning Paths</h5>
-                    <p class="text-secondary">Clear roadmaps with step-by-step guidance for each career path</p>
+                    <i class="bi bi-microsoft display-4 text-gradient mb-3"></i>
+                    <h5 class="text-primary">Microsoft Certified Content</h5>
+                    <p class="text-secondary">Learn from industry-standard practices and Microsoft's official documentation</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="text-center fade-in">
-                    <i class="bi bi-book display-4 text-gradient mb-3"></i>
-                    <h5 class="text-primary">Curated Resources</h5>
-                    <p class="text-secondary">Hand-picked learning materials from the best sources</p>
+                    <i class="bi bi-cloud-check display-4 text-gradient mb-3"></i>
+                    <h5 class="text-primary">Real-World Projects</h5>
+                    <p class="text-secondary">Build portfolio-worthy applications using enterprise development patterns</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="text-center fade-in">
-                    <i class="bi bi-check2-circle display-4 text-gradient mb-3"></i>
-                    <h5 class="text-primary">Track Your Progress</h5>
-                    <p class="text-secondary">Monitor your learning journey and celebrate milestones</p>
+                    <i class="bi bi-trophy display-4 text-gradient mb-3"></i>
+                    <h5 class="text-primary">Career Ready</h5>
+                    <p class="text-secondary">Prepare for .NET developer roles with interview questions and challenges</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    .hero-badge {
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    .dotnet-card {
+        border-left: 4px solid #512bd4;
+    }
+
+    .azure-card {
+        border-left: 4px solid #0078d4;
+    }
+
+    .interview-card {
+        border-left: 4px solid #198754;
+    }
+
+    .challenge-card {
+        border-left: 4px solid #ffc107;
+    }
+
+    .resource-card {
+        border-left: 4px solid #0dcaf0;
+    }
+
+    .sql-card {
+        border-left: 4px solid #cc2936;
+    }
+
+    .js-card {
+        border-left: 4px solid #f7df1e;
+    }
+
+    .react-card {
+        border-left: 4px solid #61dafb;
+    }
+
+    .angular-card {
+        border-left: 4px solid #dd0031;
+    }
+
+    .devops-card {
+        border-left: 4px solid #f05032;
+    }
+
+    .testing-card {
+        border-left: 4px solid #28a745;
+    }
+
+    .learning-path-overview {
+        background: linear-gradient(135deg, rgba(79, 209, 197, 0.1), rgba(79, 172, 254, 0.1));
+        border-radius: 20px;
+        padding: 3rem 2rem;
+        margin: 4rem 0;
+    }
+
+    .path-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .path-step {
+        text-align: center;
+        flex: 1;
+        min-width: 200px;
+    }
+
+    .step-number {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(45deg, var(--primary-color), #4facfe);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin: 0 auto 1rem auto;
+        box-shadow: 0 4px 15px rgba(79, 209, 197, 0.3);
+    }
+
+    .step-content h4 {
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+    }
+
+    .step-content p {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+    }
+
+    .path-arrow {
+        font-size: 2rem;
+        color: var(--primary-color);
+        font-weight: bold;
+    }
+
+    @@media (max-width: 768px) {
+        .path-container {
+            flex-direction: column;
+        }
+        
+        .path-arrow {
+            transform: rotate(90deg);
+        }
+    }
+
+    .category-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .category-card.dotnet-card:hover {
+        box-shadow: 0 20px 40px rgba(81, 43, 212, 0.3);
+    }
+
+    .category-card.azure-card:hover {
+        box-shadow: 0 20px 40px rgba(0, 120, 212, 0.3);
+    }
+
+    .category-card.sql-card:hover {
+        box-shadow: 0 20px 40px rgba(204, 41, 54, 0.3);
+    }
+
+    .category-card.js-card:hover {
+        box-shadow: 0 20px 40px rgba(247, 223, 30, 0.3);
+    }
+
+    .category-card.react-card:hover {
+        box-shadow: 0 20px 40px rgba(97, 218, 251, 0.3);
+    }
+
+    .category-card.angular-card:hover {
+        box-shadow: 0 20px 40px rgba(221, 0, 49, 0.3);
+    }
+
+    .category-card.devops-card:hover {
+        box-shadow: 0 20px 40px rgba(240, 80, 50, 0.3);
+    }
+
+    .category-card.testing-card:hover {
+        box-shadow: 0 20px 40px rgba(40, 167, 69, 0.3);
+    }
+
+    .hero-title {
+        background: linear-gradient(45deg, #512bd4, #0078d4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* Search Styling */
+    .hero-search {
+        margin-top: 2rem;
+    }
+
+    .search-input-group {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        border-radius: 50px;
+        overflow: hidden;
+        background: white;
+    }
+
+    .search-icon {
+        background: white;
+        border: none;
+        color: var(--primary-color);
+        border-radius: 50px 0 0 50px;
+    }
+
+    .search-input {
+        border: none;
+        background: white;
+        color: #333;
+        font-size: 1.1rem;
+        padding: 1rem 1.5rem;
+    }
+
+    .search-input:focus {
+        border: none;
+        box-shadow: none;
+        background: white;
+        color: #333;
+    }
+
+    .search-input::placeholder {
+        color: #999;
+    }
+
+    .search-btn {
+        border: none;
+        background: var(--primary-color);
+        color: white;
+        font-weight: 600;
+        padding: 1rem 2rem;
+        border-radius: 0 50px 50px 0;
+        transition: all 0.3s ease;
+    }
+
+    .search-btn:hover {
+        background: #45a893;
+        transform: translateX(-2px);
+    }
+
+    .search-suggestions {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        margin-top: 0.5rem;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+
+    .search-suggestions.show {
+        max-height: 300px;
+        padding: 1rem 0;
+    }
+
+    .suggestion-item {
+        padding: 0.75rem 1.5rem;
+        cursor: pointer;
+        color: #333;
+        border-bottom: 1px solid #eee;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+    }
+
+    .suggestion-item:last-child {
+        border-bottom: none;
+    }
+
+    .suggestion-item:hover {
+        background: rgba(79, 209, 197, 0.1);
+        color: var(--primary-color);
+    }
+
+    .popular-searches {
+        text-align: center;
+    }
+
+    .popular-tag {
+        display: inline-block;
+        background: rgba(79, 209, 197, 0.1);
+        color: var(--primary-color);
+        padding: 0.25rem 0.75rem;
+        border-radius: 15px;
+        font-size: 0.875rem;
+        margin: 0.25rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border: 1px solid transparent;
+    }
+
+    .popular-tag:hover {
+        background: var(--primary-color);
+        color: white;
+        transform: translateY(-1px);
+    }
+
+    @@media (max-width: 768px) {
+        .search-input-group {
+            border-radius: 25px;
+        }
+
+        .search-input {
+            font-size: 1rem;
+            padding: 0.8rem 1rem;
+        }
+
+        .search-btn {
+            padding: 0.8rem 1.5rem;
+        }
+
+        .hero-search {
+            margin-top: 1.5rem;
+        }
+    }
+</style>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const searchSuggestions = document.getElementById('searchSuggestions');
+            const suggestionItems = document.querySelectorAll('.suggestion-item');
+            const popularTags = document.querySelectorAll('.popular-tag');
+            
+            // Show/hide suggestions on focus/blur
+            searchInput.addEventListener('focus', function() {
+                if (this.value.length === 0) {
+                    searchSuggestions.classList.add('show');
+                }
+            });
+            
+            // Hide suggestions when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.search-form')) {
+                    searchSuggestions.classList.remove('show');
+                }
+            });
+            
+            // Handle input changes
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase();
+                
+                if (query.length === 0) {
+                    searchSuggestions.classList.add('show');
+                    // Show all suggestions
+                    suggestionItems.forEach(item => {
+                        item.style.display = 'flex';
+                    });
+                } else if (query.length >= 1) {
+                    searchSuggestions.classList.add('show');
+                    // Filter suggestions based on input
+                    let hasVisibleSuggestions = false;
+                    
+                    suggestionItems.forEach(item => {
+                        const text = item.textContent.toLowerCase();
+                        if (text.includes(query)) {
+                            item.style.display = 'flex';
+                            hasVisibleSuggestions = true;
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                    
+                    if (!hasVisibleSuggestions) {
+                        searchSuggestions.classList.remove('show');
+                    }
+                } else {
+                    searchSuggestions.classList.remove('show');
+                }
+            });
+            
+            // Handle suggestion clicks
+            suggestionItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const searchTerm = this.getAttribute('data-search');
+                    searchInput.value = searchTerm;
+                    searchSuggestions.classList.remove('show');
+                    
+                    // Auto-submit the form
+                    document.querySelector('.search-form').submit();
+                });
+            });
+            
+            // Handle popular tag clicks
+            popularTags.forEach(tag => {
+                tag.addEventListener('click', function() {
+                    const searchTerm = this.getAttribute('data-search');
+                    searchInput.value = searchTerm;
+                    
+                    // Auto-submit the form
+                    document.querySelector('.search-form').submit();
+                });
+            });
+            
+            // Handle keyboard navigation
+            let currentSuggestionIndex = -1;
+            
+            searchInput.addEventListener('keydown', function(e) {
+                const visibleSuggestions = Array.from(suggestionItems).filter(item => 
+                    item.style.display !== 'none'
+                );
+                
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    currentSuggestionIndex = Math.min(currentSuggestionIndex + 1, visibleSuggestions.length - 1);
+                    updateSuggestionHighlight(visibleSuggestions);
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    currentSuggestionIndex = Math.max(currentSuggestionIndex - 1, -1);
+                    updateSuggestionHighlight(visibleSuggestions);
+                } else if (e.key === 'Enter') {
+                    if (currentSuggestionIndex >= 0 && visibleSuggestions[currentSuggestionIndex]) {
+                        e.preventDefault();
+                        visibleSuggestions[currentSuggestionIndex].click();
+                    }
+                } else if (e.key === 'Escape') {
+                    searchSuggestions.classList.remove('show');
+                    currentSuggestionIndex = -1;
+                }
+            });
+            
+            function updateSuggestionHighlight(visibleSuggestions) {
+                // Remove all highlights
+                suggestionItems.forEach(item => {
+                    item.style.background = '';
+                    item.style.color = '';
+                });
+                
+                // Highlight current suggestion
+                if (currentSuggestionIndex >= 0 && visibleSuggestions[currentSuggestionIndex]) {
+                    const current = visibleSuggestions[currentSuggestionIndex];
+                    current.style.background = 'rgba(79, 209, 197, 0.1)';
+                    current.style.color = 'var(--primary-color)';
+                }
+            }
+        });
+    </script>
+}

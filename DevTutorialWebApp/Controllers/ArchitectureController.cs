@@ -4,13 +4,10 @@ using DevTutorialWebApp.Models;
 
 namespace DevTutorialWebApp.Controllers
 {
-    public class ArchitectureController : Controller
+    public class ArchitectureController : BaseRoadmapController
     {
-        private readonly IRoadmapService _roadmapService;
-
-        public ArchitectureController(IRoadmapService roadmapService)
+        public ArchitectureController(IRoadmapService roadmapService) : base(roadmapService)
         {
-            _roadmapService = roadmapService;
         }
 
         public IActionResult Index()
@@ -40,6 +37,24 @@ namespace DevTutorialWebApp.Controllers
         public IActionResult DomainDrivenDesign()
         {
             var roadmap = _roadmapService.GetRoadmapById(24);
+            if (roadmap == null)
+                return NotFound();
+            
+            return View("RoadmapDetail", roadmap);
+        }
+
+        public IActionResult SoftwareArchitect()
+        {
+            var roadmap = _roadmapService.GetRoadmapById(10); // Software Architect
+            if (roadmap == null)
+                return NotFound();
+            
+            return View("RoadmapDetail", roadmap);
+        }
+
+        public IActionResult MicroservicesArchitect()
+        {
+            var roadmap = _roadmapService.GetRoadmapById(145); // Microservices Architect
             if (roadmap == null)
                 return NotFound();
             

@@ -4,13 +4,10 @@ using DevTutorialWebApp.Models;
 
 namespace DevTutorialWebApp.Controllers
 {
-    public class MobileController : Controller
+    public class MobileController : BaseRoadmapController
     {
-        private readonly IRoadmapService _roadmapService;
-
-        public MobileController(IRoadmapService roadmapService)
+        public MobileController(IRoadmapService roadmapService) : base(roadmapService)
         {
-            _roadmapService = roadmapService;
         }
 
         public IActionResult Index()
@@ -26,6 +23,33 @@ namespace DevTutorialWebApp.Controllers
                 return NotFound();
             
             return View(roadmap);
+        }
+
+        public IActionResult NETMAUIDeveloper()
+        {
+            var roadmap = _roadmapService.GetRoadmapById(17); // .NET MAUI Developer
+            if (roadmap == null)
+                return NotFound();
+            
+            return View("RoadmapDetail", roadmap);
+        }
+
+        public IActionResult IOSDeveloper()
+        {
+            var roadmap = _roadmapService.GetRoadmapById(13); // iOS Developer
+            if (roadmap == null)
+                return NotFound();
+            
+            return View("RoadmapDetail", roadmap);
+        }
+
+        public IActionResult AndroidDeveloper()
+        {
+            var roadmap = _roadmapService.GetRoadmapById(14); // Android Developer
+            if (roadmap == null)
+                return NotFound();
+            
+            return View("RoadmapDetail", roadmap);
         }
     }
 }

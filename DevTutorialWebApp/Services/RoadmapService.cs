@@ -11,7 +11,7 @@ namespace DevTutorialWebApp.Services
         Roadmap GetRoadmapById(int id);
     }
 
-    public class RoadmapService : IRoadmapService
+    public partial class RoadmapService : IRoadmapService
     {
         private readonly List<Roadmap> _roadmaps;
 
@@ -30,9 +30,9 @@ namespace DevTutorialWebApp.Services
 
         private List<Roadmap> InitializeRoadmaps()
         {
-            return new List<Roadmap>
+            var roadmaps = new List<Roadmap>
             {
-                // Web Development
+                // Frontend Developer
                 new Roadmap
                 {
                     Id = 1,
@@ -42,6 +42,20 @@ namespace DevTutorialWebApp.Services
                     Category = CategoryConstants.WebDevelopment,
                     Duration = "6-8 months",
                     Difficulty = "Beginner to Advanced",
+                    ActionName = "FrontendDeveloper",
+                    ControllerName = "WebDevelopment",
+                    Context = "Frontend development is the practice of creating the visual and interactive elements of websites and web applications.",
+                    Prerequisites = new List<string>
+                    {
+                        "Basic computer literacy",
+                        "No prior programming experience required"
+                    },
+                    CareerPaths = new List<string>
+                    {
+                        "Frontend Developer ($60K-$120K)",
+                        "UI/UX Engineer ($70K-$130K)",
+                        "Full Stack Developer ($80K-$150K)"
+                    },
                     Steps = new List<RoadmapStep>
                     {
                         new RoadmapStep
@@ -50,18 +64,29 @@ namespace DevTutorialWebApp.Services
                             RoadmapId = 1,
                             Title = "HTML & CSS Fundamentals",
                             Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
+                            Content = "Learn the building blocks of web development",
+                            SubTopics = new List<SubTopic>
                             {
-                                new LearningObjective { Id = 1, StepId = 1, Description = "Understand HTML structure and semantic tags" },
-                                new LearningObjective { Id = 2, StepId = 1, Description = "Master CSS selectors and properties" },
-                                new LearningObjective { Id = 3, StepId = 1, Description = "Learn responsive design with Flexbox and Grid" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 1, StepId = 1, Title = "MDN Web Docs - HTML", Url = "https://developer.mozilla.org/en-US/docs/Web/HTML", Type = "article" },
-                                new Resource { Id = 2, StepId = 1, Title = "CSS Tricks", Url = "https://css-tricks.com/", Type = "website" },
-                                new Resource { Id = 3, StepId = 1, Title = "Flexbox Froggy", Url = "https://flexboxfroggy.com/", Type = "interactive" },
-                                new Resource { Id = 4, StepId = 1, Title = "CSS Grid Garden", Url = "https://cssgridgarden.com/", Type = "interactive" }
+                                new SubTopic
+                                {
+                                    Id = 1,
+                                    StepId = 1,
+                                    Title = "HTML Document Structure",
+                                    Description = "Understanding the basics of HTML",
+                                    Content = "Learn about HTML elements, attributes, and document structure",
+                                    KeyPoints = new List<string> { "DOCTYPE", "Head and Body", "Semantic Elements" },
+                                    CodeExample = "<!-- Basic HTML structure example -->"
+                                },
+                                new SubTopic
+                                {
+                                    Id = 2,
+                                    StepId = 1,
+                                    Title = "CSS Styling",
+                                    Description = "Styling web pages with CSS",
+                                    Content = "Learn CSS selectors, properties, and the box model",
+                                    KeyPoints = new List<string> { "Selectors", "Box Model", "Flexbox", "Grid" },
+                                    CodeExample = "/* CSS styling example */"
+                                }
                             }
                         },
                         new RoadmapStep
@@ -70,136 +95,25 @@ namespace DevTutorialWebApp.Services
                             RoadmapId = 1,
                             Title = "JavaScript Programming",
                             Duration = "4-6 weeks",
-                            Objectives = new List<LearningObjective>
+                            Content = "Master JavaScript fundamentals and modern ES6+ features",
+                            SubTopics = new List<SubTopic>
                             {
-                                new LearningObjective { Id = 4, StepId = 2, Description = "Master JavaScript fundamentals and ES6+" },
-                                new LearningObjective { Id = 5, StepId = 2, Description = "Understand DOM manipulation and events" },
-                                new LearningObjective { Id = 6, StepId = 2, Description = "Learn asynchronous programming with Promises and async/await" },
-                                new LearningObjective { Id = 7, StepId = 2, Description = "Work with APIs and JSON data" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 5, StepId = 2, Title = "JavaScript.info", Url = "https://javascript.info/", Type = "website" },
-                                new Resource { Id = 6, StepId = 2, Title = "Eloquent JavaScript", Url = "https://eloquentjavascript.net/", Type = "book" },
-                                new Resource { Id = 7, StepId = 2, Title = "JavaScript 30", Url = "https://javascript30.com/", Type = "course" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 3,
-                            RoadmapId = 1,
-                            Title = "Version Control with Git",
-                            Duration = "1-2 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 8, StepId = 3, Description = "Master Git commands and workflows" },
-                                new LearningObjective { Id = 9, StepId = 3, Description = "Collaborate using GitHub/GitLab" },
-                                new LearningObjective { Id = 10, StepId = 3, Description = "Understand branching strategies and pull requests" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 8, StepId = 3, Title = "Pro Git Book", Url = "https://git-scm.com/book", Type = "book" },
-                                new Resource { Id = 9, StepId = 3, Title = "GitHub Learning Lab", Url = "https://lab.github.com/", Type = "interactive" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 4,
-                            RoadmapId = 1,
-                            Title = "React Framework",
-                            Duration = "4-6 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 11, StepId = 4, Description = "Understand React components and props" },
-                                new LearningObjective { Id = 12, StepId = 4, Description = "Master state management with hooks" },
-                                new LearningObjective { Id = 13, StepId = 4, Description = "Learn React Router and context API" },
-                                new LearningObjective { Id = 14, StepId = 4, Description = "Build reusable component libraries" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 10, StepId = 4, Title = "React Official Docs", Url = "https://react.dev/", Type = "documentation" },
-                                new Resource { Id = 11, StepId = 4, Title = "React Tutorial", Url = "https://react.dev/learn/tutorial-tic-tac-toe", Type = "tutorial" },
-                                new Resource { Id = 12, StepId = 4, Title = "Epic React by Kent C. Dodds", Url = "https://epicreact.dev/", Type = "course" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 5,
-                            RoadmapId = 1,
-                            Title = "State Management & Advanced Patterns",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 15, StepId = 5, Description = "Master Redux Toolkit for global state" },
-                                new LearningObjective { Id = 16, StepId = 5, Description = "Learn Zustand, Jotai, or Valtio as alternatives" },
-                                new LearningObjective { Id = 17, StepId = 5, Description = "Implement advanced React patterns (HOCs, Render Props)" },
-                                new LearningObjective { Id = 18, StepId = 5, Description = "Optimize performance with React.memo and useMemo" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 13, StepId = 5, Title = "Redux Toolkit Docs", Url = "https://redux-toolkit.js.org/", Type = "documentation" },
-                                new Resource { Id = 14, StepId = 5, Title = "Patterns.dev", Url = "https://patterns.dev/", Type = "website" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 6,
-                            RoadmapId = 1,
-                            Title = "Modern Tooling & Build Systems",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 19, StepId = 6, Description = "Master Vite, Webpack, or Next.js" },
-                                new LearningObjective { Id = 20, StepId = 6, Description = "Configure ESLint, Prettier, and Husky" },
-                                new LearningObjective { Id = 21, StepId = 6, Description = "Set up TypeScript for type safety" },
-                                new LearningObjective { Id = 22, StepId = 6, Description = "Implement CI/CD pipelines" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 15, StepId = 6, Title = "Vite Documentation", Url = "https://vitejs.dev/", Type = "documentation" },
-                                new Resource { Id = 16, StepId = 6, Title = "TypeScript Handbook", Url = "https://www.typescriptlang.org/docs/", Type = "documentation" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 7,
-                            RoadmapId = 1,
-                            Title = "Testing & Quality Assurance",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 23, StepId = 7, Description = "Write unit tests with Jest and React Testing Library" },
-                                new LearningObjective { Id = 24, StepId = 7, Description = "Implement integration and E2E tests with Cypress" },
-                                new LearningObjective { Id = 25, StepId = 7, Description = "Set up automated testing in CI/CD" },
-                                new LearningObjective { Id = 26, StepId = 7, Description = "Learn test-driven development (TDD)" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 17, StepId = 7, Title = "Testing JavaScript", Url = "https://testingjavascript.com/", Type = "course" },
-                                new Resource { Id = 18, StepId = 7, Title = "React Testing Library Docs", Url = "https://testing-library.com/docs/react-testing-library/intro/", Type = "documentation" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 8,
-                            RoadmapId = 1,
-                            Title = "Full-Stack Integration & Deployment",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 27, StepId = 8, Description = "Connect to REST and GraphQL APIs" },
-                                new LearningObjective { Id = 28, StepId = 8, Description = "Implement authentication and authorization" },
-                                new LearningObjective { Id = 29, StepId = 8, Description = "Deploy to Vercel, Netlify, or AWS" },
-                                new LearningObjective { Id = 30, StepId = 8, Description = "Monitor performance and errors in production" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 19, StepId = 8, Title = "Next.js Deployment", Url = "https://nextjs.org/docs/deployment", Type = "documentation" },
-                                new Resource { Id = 20, StepId = 8, Title = "Web Performance Optimization", Url = "https://web.dev/fast/", Type = "guide" }
+                                new SubTopic
+                                {
+                                    Id = 3,
+                                    StepId = 2,
+                                    Title = "JavaScript Basics",
+                                    Description = "Core JavaScript concepts",
+                                    Content = "Variables, functions, and control flow",
+                                    KeyPoints = new List<string> { "Variables", "Functions", "Arrays", "Objects" },
+                                    CodeExample = "// JavaScript basics example"
+                                }
                             }
                         }
                     }
                 },
+
+                // Backend Developer
                 new Roadmap
                 {
                     Id = 2,
@@ -209,2149 +123,233 @@ namespace DevTutorialWebApp.Services
                     Category = CategoryConstants.WebDevelopment,
                     Duration = "6-8 months",
                     Difficulty = "Intermediate to Advanced",
+                    ActionName = "BackendDeveloper",
+                    ControllerName = "WebDevelopment",
+                    Context = "Backend development focuses on server-side logic, database management, and API development.",
+                    Prerequisites = new List<string>
+                    {
+                        "Basic programming concepts",
+                        "Understanding of web concepts"
+                    },
+                    CareerPaths = new List<string>
+                    {
+                        "Backend Developer ($70K-$130K)",
+                        ".NET Developer ($65K-$125K)",
+                        "Full Stack Developer ($80K-$150K)"
+                    },
                     Steps = new List<RoadmapStep>
                     {
                         new RoadmapStep
                         {
-                            Id = 4,
+                            Id = 3,
                             RoadmapId = 2,
-                            Title = "Programming Language (C#/.NET)",
-                            Duration = "4-6 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 31, StepId = 4, Description = "Master C# language fundamentals and syntax" },
-                                new LearningObjective { Id = 32, StepId = 4, Description = "Understand .NET 8 framework features" },
-                                new LearningObjective { Id = 33, StepId = 4, Description = "Learn object-oriented and functional programming" },
-                                new LearningObjective { Id = 34, StepId = 4, Description = "Master LINQ and collections" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 21, StepId = 4, Title = "C# Documentation", Url = "https://docs.microsoft.com/en-us/dotnet/csharp/", Type = "documentation" },
-                                new Resource { Id = 22, StepId = 4, Title = "C# in Depth by Jon Skeet", Url = "https://csharpindepth.com/", Type = "book" },
-                                new Resource { Id = 23, StepId = 4, Title = "Pluralsight C# Path", Url = "https://www.pluralsight.com/paths/csharp", Type = "course" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 5,
-                            RoadmapId = 2,
-                            Title = "Database & SQL Mastery",
+                            Title = "C# Fundamentals",
                             Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
+                            Content = "Master C# programming language basics",
+                            SubTopics = new List<SubTopic>
                             {
-                                new LearningObjective { Id = 35, StepId = 5, Description = "Design normalized relational database schemas" },
-                                new LearningObjective { Id = 36, StepId = 5, Description = "Write complex SQL queries with JOINs and CTEs" },
-                                new LearningObjective { Id = 37, StepId = 5, Description = "Implement indexes and query optimization" },
-                                new LearningObjective { Id = 38, StepId = 5, Description = "Work with stored procedures and triggers" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 24, StepId = 5, Title = "SQL Performance Explained", Url = "https://use-the-index-luke.com/", Type = "website" },
-                                new Resource { Id = 25, StepId = 5, Title = "PostgreSQL Tutorial", Url = "https://www.postgresqltutorial.com/", Type = "tutorial" },
-                                new Resource { Id = 26, StepId = 5, Title = "SQL Zoo", Url = "https://sqlzoo.net/", Type = "interactive" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 6,
-                            RoadmapId = 2,
-                            Title = "ASP.NET Core & Web APIs",
-                            Duration = "4-5 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 39, StepId = 6, Description = "Build RESTful APIs with ASP.NET Core" },
-                                new LearningObjective { Id = 40, StepId = 6, Description = "Implement dependency injection and middleware" },
-                                new LearningObjective { Id = 41, StepId = 6, Description = "Master Entity Framework Core ORM" },
-                                new LearningObjective { Id = 42, StepId = 6, Description = "Create minimal APIs and gRPC services" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 27, StepId = 6, Title = "ASP.NET Core Docs", Url = "https://docs.microsoft.com/en-us/aspnet/core/", Type = "documentation" },
-                                new Resource { Id = 28, StepId = 6, Title = "Building Web APIs with ASP.NET Core", Url = "https://www.manning.com/books/asp-net-core-in-action", Type = "book" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 7,
-                            RoadmapId = 2,
-                            Title = "Authentication & Security",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 43, StepId = 7, Description = "Implement JWT authentication" },
-                                new LearningObjective { Id = 44, StepId = 7, Description = "Master OAuth 2.0 and OpenID Connect" },
-                                new LearningObjective { Id = 45, StepId = 7, Description = "Secure APIs against common vulnerabilities" },
-                                new LearningObjective { Id = 46, StepId = 7, Description = "Implement role-based authorization" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 29, StepId = 7, Title = "OWASP Top 10", Url = "https://owasp.org/www-project-top-ten/", Type = "guide" },
-                                new Resource { Id = 30, StepId = 7, Title = "Identity Server Documentation", Url = "https://identityserver4.readthedocs.io/", Type = "documentation" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 8,
-                            RoadmapId = 2,
-                            Title = "Caching & Performance",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 47, StepId = 8, Description = "Implement Redis for distributed caching" },
-                                new LearningObjective { Id = 48, StepId = 8, Description = "Use memory caching strategies" },
-                                new LearningObjective { Id = 49, StepId = 8, Description = "Optimize database queries and connections" },
-                                new LearningObjective { Id = 50, StepId = 8, Description = "Profile and benchmark API performance" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 31, StepId = 8, Title = "Redis University", Url = "https://university.redis.com/", Type = "course" },
-                                new Resource { Id = 32, StepId = 8, Title = "High Performance .NET", Url = "https://www.stevejgordon.co.uk/", Type = "blog" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 9,
-                            RoadmapId = 2,
-                            Title = "Message Queues & Microservices",
-                            Duration = "4-5 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 51, StepId = 9, Description = "Implement RabbitMQ or Azure Service Bus" },
-                                new LearningObjective { Id = 52, StepId = 9, Description = "Design microservices architecture" },
-                                new LearningObjective { Id = 53, StepId = 9, Description = "Master event-driven patterns" },
-                                new LearningObjective { Id = 54, StepId = 9, Description = "Implement saga pattern for transactions" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 33, StepId = 9, Title = "Microservices.io", Url = "https://microservices.io/", Type = "website" },
-                                new Resource { Id = 34, StepId = 9, Title = "Building Microservices", Url = "https://samnewman.io/books/building_microservices_2nd_edition/", Type = "book" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 10,
-                            RoadmapId = 2,
-                            Title = "Testing & Quality Assurance",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 55, StepId = 10, Description = "Write unit tests with xUnit/NUnit" },
-                                new LearningObjective { Id = 56, StepId = 10, Description = "Implement integration testing" },
-                                new LearningObjective { Id = 57, StepId = 10, Description = "Use test doubles and mocking" },
-                                new LearningObjective { Id = 58, StepId = 10, Description = "Set up automated testing pipelines" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 35, StepId = 10, Title = "Unit Testing Principles", Url = "https://www.manning.com/books/unit-testing", Type = "book" },
-                                new Resource { Id = 36, StepId = 10, Title = "xUnit Documentation", Url = "https://xunit.net/", Type = "documentation" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 11,
-                            RoadmapId = 2,
-                            Title = "Cloud & DevOps Integration",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 59, StepId = 11, Description = "Deploy to Azure App Service or AWS" },
-                                new LearningObjective { Id = 60, StepId = 11, Description = "Containerize apps with Docker" },
-                                new LearningObjective { Id = 61, StepId = 11, Description = "Orchestrate with Kubernetes" },
-                                new LearningObjective { Id = 62, StepId = 11, Description = "Implement monitoring and logging" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 37, StepId = 11, Title = "Docker for .NET Developers", Url = "https://docs.docker.com/language/dotnet/", Type = "guide" },
-                                new Resource { Id = 38, StepId = 11, Title = "Azure for .NET Developers", Url = "https://docs.microsoft.com/en-us/dotnet/azure/", Type = "documentation" }
+                                new SubTopic
+                                {
+                                    Id = 31,
+                                    StepId = 3,
+                                    Title = "C# Language Basics",
+                                    Description = "Introduction to C# programming",
+                                    Content = "Learn the fundamentals of C# programming language",
+                                    KeyPoints = new List<string> { "Syntax", "Types", "Classes", "Methods" }
+                                }
                             }
                         }
                     }
                 },
-                // Mobile Development
-                new Roadmap
-                {
-                    Id = 3,
-                    Title = "Mobile App Developer",
-                    Description = "Create native and cross-platform mobile applications",
-                    Icon = "📱",
-                    Category = CategoryConstants.Mobile,
-                    Duration = "6-9 months",
-                    Difficulty = "Intermediate",
-                    Steps = new List<RoadmapStep>
-                    {
-                        new RoadmapStep
-                        {
-                            Id = 12,
-                            RoadmapId = 3,
-                            Title = "Mobile Development Fundamentals",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 63, StepId = 12, Description = "Understand mobile app architecture patterns (MVC, MVVM, MVP)" },
-                                new LearningObjective { Id = 64, StepId = 12, Description = "Learn mobile UI/UX principles and guidelines" },
-                                new LearningObjective { Id = 65, StepId = 12, Description = "Master responsive layouts and adaptive design" },
-                                new LearningObjective { Id = 66, StepId = 12, Description = "Understand app lifecycle and state management" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 39, StepId = 12, Title = "Mobile Design Patterns", Url = "https://www.uxpin.com/studio/blog/mobile-design-patterns/", Type = "article" },
-                                new Resource { Id = 40, StepId = 12, Title = "Material Design", Url = "https://material.io/design", Type = "guide" },
-                                new Resource { Id = 41, StepId = 12, Title = "Human Interface Guidelines", Url = "https://developer.apple.com/design/human-interface-guidelines/", Type = "documentation" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 13,
-                            RoadmapId = 3,
-                            Title = "Native iOS Development (Swift)",
-                            Duration = "6-8 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 67, StepId = 13, Description = "Master Swift programming language" },
-                                new LearningObjective { Id = 68, StepId = 13, Description = "Build apps with SwiftUI and UIKit" },
-                                new LearningObjective { Id = 69, StepId = 13, Description = "Implement Core Data for persistence" },
-                                new LearningObjective { Id = 70, StepId = 13, Description = "Use Xcode and Interface Builder effectively" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 42, StepId = 13, Title = "Swift Programming Language", Url = "https://docs.swift.org/swift-book/", Type = "book" },
-                                new Resource { Id = 43, StepId = 13, Title = "100 Days of SwiftUI", Url = "https://www.hackingwithswift.com/100/swiftui", Type = "course" },
-                                new Resource { Id = 44, StepId = 13, Title = "Ray Wenderlich iOS", Url = "https://www.raywenderlich.com/ios", Type = "tutorial" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 14,
-                            RoadmapId = 3,
-                            Title = "Native Android Development (Kotlin)",
-                            Duration = "6-8 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 71, StepId = 14, Description = "Master Kotlin programming language" },
-                                new LearningObjective { Id = 72, StepId = 14, Description = "Build apps with Jetpack Compose" },
-                                new LearningObjective { Id = 73, StepId = 14, Description = "Implement Room database and DataStore" },
-                                new LearningObjective { Id = 74, StepId = 14, Description = "Use Android Studio and Gradle effectively" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 45, StepId = 14, Title = "Android Developer Docs", Url = "https://developer.android.com/", Type = "documentation" },
-                                new Resource { Id = 46, StepId = 14, Title = "Kotlin Bootcamp", Url = "https://developer.android.com/courses/kotlin-bootcamp/overview", Type = "course" },
-                                new Resource { Id = 47, StepId = 14, Title = "Jetpack Compose Tutorial", Url = "https://developer.android.com/jetpack/compose/tutorial", Type = "tutorial" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 15,
-                            RoadmapId = 3,
-                            Title = "Cross-Platform Development",
-                            Duration = "4-6 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 75, StepId = 15, Description = "Master React Native or Flutter framework" },
-                                new LearningObjective { Id = 76, StepId = 15, Description = "Build once, deploy everywhere apps" },
-                                new LearningObjective { Id = 77, StepId = 15, Description = "Handle platform-specific features" },
-                                new LearningObjective { Id = 78, StepId = 15, Description = "Optimize performance across platforms" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 48, StepId = 15, Title = "React Native Docs", Url = "https://reactnative.dev/", Type = "documentation" },
-                                new Resource { Id = 49, StepId = 15, Title = "Flutter Complete Guide", Url = "https://flutter.dev/docs", Type = "documentation" },
-                                new Resource { Id = 50, StepId = 15, Title = ".NET MAUI", Url = "https://docs.microsoft.com/en-us/dotnet/maui/", Type = "documentation" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 16,
-                            RoadmapId = 3,
-                            Title = "Mobile Backend & APIs",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 79, StepId = 16, Description = "Integrate RESTful APIs and GraphQL" },
-                                new LearningObjective { Id = 80, StepId = 16, Description = "Implement offline-first architecture" },
-                                new LearningObjective { Id = 81, StepId = 16, Description = "Handle authentication and authorization" },
-                                new LearningObjective { Id = 82, StepId = 16, Description = "Use Firebase or AWS Amplify" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 51, StepId = 16, Title = "Firebase Documentation", Url = "https://firebase.google.com/docs", Type = "documentation" },
-                                new Resource { Id = 52, StepId = 16, Title = "AWS Amplify", Url = "https://docs.amplify.aws/", Type = "documentation" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 17,
-                            RoadmapId = 3,
-                            Title = "Push Notifications & Background Tasks",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 83, StepId = 17, Description = "Implement push notifications (FCM/APNs)" },
-                                new LearningObjective { Id = 84, StepId = 17, Description = "Handle background tasks and services" },
-                                new LearningObjective { Id = 85, StepId = 17, Description = "Manage local notifications" },
-                                new LearningObjective { Id = 86, StepId = 17, Description = "Optimize battery usage" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 53, StepId = 17, Title = "FCM Documentation", Url = "https://firebase.google.com/docs/cloud-messaging", Type = "documentation" },
-                                new Resource { Id = 54, StepId = 17, Title = "iOS Background Tasks", Url = "https://developer.apple.com/documentation/backgroundtasks", Type = "documentation" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 18,
-                            RoadmapId = 3,
-                            Title = "App Store Deployment",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 87, StepId = 18, Description = "Prepare apps for App Store/Google Play" },
-                                new LearningObjective { Id = 88, StepId = 18, Description = "Handle app signing and certificates" },
-                                new LearningObjective { Id = 89, StepId = 18, Description = "Implement analytics and crash reporting" },
-                                new LearningObjective { Id = 90, StepId = 18, Description = "Master ASO (App Store Optimization)" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 55, StepId = 18, Title = "App Store Guidelines", Url = "https://developer.apple.com/app-store/review/guidelines/", Type = "guide" },
-                                new Resource { Id = 56, StepId = 18, Title = "Google Play Console", Url = "https://play.google.com/console/about/", Type = "documentation" }
-                            }
-                        }
-                    }
-                },
-                // Data Science & AI
-                new Roadmap
-                {
-                    Id = 4,
-                    Title = "Data Scientist",
-                    Description = "Analyze data and build predictive models",
-                    Icon = "📊",
-                    Category = CategoryConstants.DataScience,
-                    Duration = "8-12 months",
-                    Difficulty = "Intermediate to Advanced",
-                    Steps = new List<RoadmapStep>
-                    {
-                        new RoadmapStep
-                        {
-                            Id = 19,
-                            RoadmapId = 4,
-                            Title = "Statistics & Mathematics Foundation",
-                            Duration = "4-6 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 91, StepId = 19, Description = "Master descriptive and inferential statistics" },
-                                new LearningObjective { Id = 92, StepId = 19, Description = "Learn probability theory and distributions" },
-                                new LearningObjective { Id = 93, StepId = 19, Description = "Understand linear algebra and calculus basics" },
-                                new LearningObjective { Id = 94, StepId = 19, Description = "Apply hypothesis testing and A/B testing" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 57, StepId = 19, Title = "Khan Academy Statistics", Url = "https://www.khanacademy.org/math/statistics-probability", Type = "course" },
-                                new Resource { Id = 58, StepId = 19, Title = "Think Stats", Url = "https://greenteapress.com/thinkstats/", Type = "book" },
-                                new Resource { Id = 59, StepId = 19, Title = "3Blue1Brown Linear Algebra", Url = "https://www.3blue1brown.com/topics/linear-algebra", Type = "video" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 20,
-                            RoadmapId = 4,
-                            Title = "Python for Data Science",
-                            Duration = "4-5 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 95, StepId = 20, Description = "Master Python programming fundamentals" },
-                                new LearningObjective { Id = 96, StepId = 20, Description = "Work with NumPy for numerical computing" },
-                                new LearningObjective { Id = 97, StepId = 20, Description = "Analyze data with Pandas DataFrames" },
-                                new LearningObjective { Id = 98, StepId = 20, Description = "Create visualizations with Matplotlib and Seaborn" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 60, StepId = 20, Title = "Python for Data Analysis", Url = "https://wesmckinney.com/book/", Type = "book" },
-                                new Resource { Id = 61, StepId = 20, Title = "Kaggle Learn", Url = "https://www.kaggle.com/learn", Type = "tutorial" },
-                                new Resource { Id = 62, StepId = 20, Title = "Real Python Data Science", Url = "https://realpython.com/tutorials/data-science/", Type = "tutorial" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 21,
-                            RoadmapId = 4,
-                            Title = "Data Wrangling & EDA",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 99, StepId = 21, Description = "Clean and preprocess messy datasets" },
-                                new LearningObjective { Id = 100, StepId = 21, Description = "Handle missing data and outliers" },
-                                new LearningObjective { Id = 101, StepId = 21, Description = "Perform exploratory data analysis (EDA)" },
-                                new LearningObjective { Id = 102, StepId = 21, Description = "Feature engineering and selection" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 63, StepId = 21, Title = "Data Cleaning Tutorial", Url = "https://www.kaggle.com/learn/data-cleaning", Type = "tutorial" },
-                                new Resource { Id = 64, StepId = 21, Title = "EDA Guide", Url = "https://www.kaggle.com/learn/data-visualization", Type = "tutorial" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 22,
-                            RoadmapId = 4,
-                            Title = "Machine Learning Foundations",
-                            Duration = "6-8 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 103, StepId = 22, Description = "Understand supervised vs unsupervised learning" },
-                                new LearningObjective { Id = 104, StepId = 22, Description = "Implement classification and regression models" },
-                                new LearningObjective { Id = 105, StepId = 22, Description = "Master scikit-learn library" },
-                                new LearningObjective { Id = 106, StepId = 22, Description = "Evaluate models and avoid overfitting" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 65, StepId = 22, Title = "Andrew Ng's ML Course", Url = "https://www.coursera.org/learn/machine-learning", Type = "course" },
-                                new Resource { Id = 66, StepId = 22, Title = "Hands-On ML Book", Url = "https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/", Type = "book" },
-                                new Resource { Id = 67, StepId = 22, Title = "Fast.ai Practical Deep Learning", Url = "https://course.fast.ai/", Type = "course" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 23,
-                            RoadmapId = 4,
-                            Title = "SQL & Database Skills",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 107, StepId = 23, Description = "Write complex SQL queries for analysis" },
-                                new LearningObjective { Id = 108, StepId = 23, Description = "Work with data warehouses" },
-                                new LearningObjective { Id = 109, StepId = 23, Description = "Understand NoSQL databases" },
-                                new LearningObjective { Id = 110, StepId = 23, Description = "Connect databases to Python" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 68, StepId = 23, Title = "SQL for Data Scientists", Url = "https://www.datacamp.com/courses/intro-to-sql-for-data-science", Type = "course" },
-                                new Resource { Id = 69, StepId = 23, Title = "Mode SQL Tutorial", Url = "https://mode.com/sql-tutorial/", Type = "tutorial" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 24,
-                            RoadmapId = 4,
-                            Title = "Big Data & Cloud Computing",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 111, StepId = 24, Description = "Work with Apache Spark for big data" },
-                                new LearningObjective { Id = 112, StepId = 24, Description = "Use cloud platforms (AWS, GCP, Azure)" },
-                                new LearningObjective { Id = 113, StepId = 24, Description = "Implement data pipelines" },
-                                new LearningObjective { Id = 114, StepId = 24, Description = "Deploy models to production" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 70, StepId = 24, Title = "PySpark Tutorial", Url = "https://spark.apache.org/docs/latest/api/python/", Type = "documentation" },
-                                new Resource { Id = 71, StepId = 24, Title = "AWS Data Analytics", Url = "https://aws.amazon.com/training/learn-about/data-analytics/", Type = "course" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 25,
-                            RoadmapId = 4,
-                            Title = "Business Intelligence & Visualization",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 115, StepId = 25, Description = "Create dashboards with Tableau/Power BI" },
-                                new LearningObjective { Id = 116, StepId = 25, Description = "Tell stories with data" },
-                                new LearningObjective { Id = 117, StepId = 25, Description = "Present insights to stakeholders" },
-                                new LearningObjective { Id = 118, StepId = 25, Description = "Build interactive visualizations" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 72, StepId = 25, Title = "Tableau Learning", Url = "https://www.tableau.com/learn", Type = "tutorial" },
-                                new Resource { Id = 73, StepId = 25, Title = "Storytelling with Data", Url = "https://www.storytellingwithdata.com/", Type = "book" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 26,
-                            RoadmapId = 4,
-                            Title = "Real-World Projects & Portfolio",
-                            Duration = "4-6 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 119, StepId = 26, Description = "Complete end-to-end data science projects" },
-                                new LearningObjective { Id = 120, StepId = 26, Description = "Participate in Kaggle competitions" },
-                                new LearningObjective { Id = 121, StepId = 26, Description = "Build a GitHub portfolio" },
-                                new LearningObjective { Id = 122, StepId = 26, Description = "Write technical blog posts" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 74, StepId = 26, Title = "Kaggle Competitions", Url = "https://www.kaggle.com/competitions", Type = "website" },
-                                new Resource { Id = 75, StepId = 26, Title = "DataCamp Projects", Url = "https://www.datacamp.com/projects", Type = "interactive" }
-                            }
-                        }
-                    }
-                },
-                new Roadmap
-                {
-                    Id = 5,
-                    Title = "AI/ML Engineer",
-                    Description = "Build intelligent systems using machine learning",
-                    Icon = "🤖",
-                    Category = CategoryConstants.DataScience,
-                    Duration = "10-14 months",
-                    Difficulty = "Advanced",
-                    Steps = new List<RoadmapStep>
-                    {
-                        new RoadmapStep
-                        {
-                            Id = 27,
-                            RoadmapId = 5,
-                            Title = "Mathematics & Python Foundation",
-                            Duration = "4-6 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 123, StepId = 27, Description = "Master linear algebra, calculus, and statistics" },
-                                new LearningObjective { Id = 124, StepId = 27, Description = "Advanced Python programming and OOP" },
-                                new LearningObjective { Id = 125, StepId = 27, Description = "NumPy, Pandas, and scientific computing" },
-                                new LearningObjective { Id = 126, StepId = 27, Description = "Jupyter notebooks and development environments" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 76, StepId = 27, Title = "Mathematics for ML", Url = "https://mml-book.github.io/", Type = "book" },
-                                new Resource { Id = 77, StepId = 27, Title = "Deep Learning Book", Url = "https://www.deeplearningbook.org/", Type = "book" },
-                                new Resource { Id = 78, StepId = 27, Title = "Python ML Ecosystem", Url = "https://jakevdp.github.io/PythonDataScienceHandbook/", Type = "book" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 28,
-                            RoadmapId = 5,
-                            Title = "Classical Machine Learning",
-                            Duration = "5-6 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 127, StepId = 28, Description = "Master supervised learning algorithms" },
-                                new LearningObjective { Id = 128, StepId = 28, Description = "Implement unsupervised learning techniques" },
-                                new LearningObjective { Id = 129, StepId = 28, Description = "Feature engineering and selection" },
-                                new LearningObjective { Id = 130, StepId = 28, Description = "Model evaluation and cross-validation" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 79, StepId = 28, Title = "Pattern Recognition and ML", Url = "https://www.microsoft.com/en-us/research/publication/pattern-recognition-machine-learning/", Type = "book" },
-                                new Resource { Id = 80, StepId = 28, Title = "Scikit-learn Documentation", Url = "https://scikit-learn.org/stable/", Type = "documentation" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 29,
-                            RoadmapId = 5,
-                            Title = "Deep Learning Fundamentals",
-                            Duration = "6-8 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 131, StepId = 29, Description = "Understand neural networks and backpropagation" },
-                                new LearningObjective { Id = 132, StepId = 29, Description = "Master PyTorch or TensorFlow" },
-                                new LearningObjective { Id = 133, StepId = 29, Description = "Build CNNs for computer vision" },
-                                new LearningObjective { Id = 134, StepId = 29, Description = "Implement RNNs and LSTMs for sequences" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 81, StepId = 29, Title = "PyTorch Tutorials", Url = "https://pytorch.org/tutorials/", Type = "tutorial" },
-                                new Resource { Id = 82, StepId = 29, Title = "Deep Learning Specialization", Url = "https://www.coursera.org/specializations/deep-learning", Type = "course" },
-                                new Resource { Id = 83, StepId = 29, Title = "Papers with Code", Url = "https://paperswithcode.com/", Type = "website" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 30,
-                            RoadmapId = 5,
-                            Title = "Natural Language Processing",
-                            Duration = "4-6 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 135, StepId = 30, Description = "Text preprocessing and tokenization" },
-                                new LearningObjective { Id = 136, StepId = 30, Description = "Word embeddings and transformers" },
-                                new LearningObjective { Id = 137, StepId = 30, Description = "Fine-tune BERT, GPT models" },
-                                new LearningObjective { Id = 138, StepId = 30, Description = "Build chatbots and text classifiers" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 84, StepId = 30, Title = "Hugging Face Course", Url = "https://huggingface.co/course", Type = "course" },
-                                new Resource { Id = 85, StepId = 30, Title = "NLP with Transformers", Url = "https://www.oreilly.com/library/view/natural-language-processing/9781098103231/", Type = "book" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 31,
-                            RoadmapId = 5,
-                            Title = "Computer Vision & GANs",
-                            Duration = "4-6 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 139, StepId = 31, Description = "Object detection and segmentation" },
-                                new LearningObjective { Id = 140, StepId = 31, Description = "Transfer learning and fine-tuning" },
-                                new LearningObjective { Id = 141, StepId = 31, Description = "Generative Adversarial Networks" },
-                                new LearningObjective { Id = 142, StepId = 31, Description = "Work with OpenCV and image processing" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 86, StepId = 31, Title = "CS231n Stanford Course", Url = "http://cs231n.stanford.edu/", Type = "course" },
-                                new Resource { Id = 87, StepId = 31, Title = "PyImageSearch", Url = "https://pyimagesearch.com/", Type = "website" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 32,
-                            RoadmapId = 5,
-                            Title = "MLOps & Production Deployment",
-                            Duration = "4-5 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 143, StepId = 32, Description = "Model versioning with MLflow/DVC" },
-                                new LearningObjective { Id = 144, StepId = 32, Description = "Deploy models with Docker and Kubernetes" },
-                                new LearningObjective { Id = 145, StepId = 32, Description = "Build REST APIs for ML models" },
-                                new LearningObjective { Id = 146, StepId = 32, Description = "Monitor model performance in production" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 88, StepId = 32, Title = "MLOps Course", Url = "https://www.coursera.org/specializations/machine-learning-engineering-for-production-mlops", Type = "course" },
-                                new Resource { Id = 89, StepId = 32, Title = "Made With ML", Url = "https://madewithml.com/", Type = "website" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 33,
-                            RoadmapId = 5,
-                            Title = "Advanced Topics & Research",
-                            Duration = "6-8 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 147, StepId = 33, Description = "Reinforcement learning and deep RL" },
-                                new LearningObjective { Id = 148, StepId = 33, Description = "Explainable AI and interpretability" },
-                                new LearningObjective { Id = 149, StepId = 33, Description = "Federated learning and privacy" },
-                                new LearningObjective { Id = 150, StepId = 33, Description = "Read and implement research papers" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 90, StepId = 33, Title = "Spinning Up in Deep RL", Url = "https://spinningup.openai.com/", Type = "guide" },
-                                new Resource { Id = 91, StepId = 33, Title = "arXiv ML Papers", Url = "https://arxiv.org/list/cs.LG/recent", Type = "website" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 34,
-                            RoadmapId = 5,
-                            Title = "Industry Projects & Specialization",
-                            Duration = "4-6 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 151, StepId = 34, Description = "Build end-to-end ML projects" },
-                                new LearningObjective { Id = 152, StepId = 34, Description = "Contribute to open source ML projects" },
-                                new LearningObjective { Id = 153, StepId = 34, Description = "Specialize in a domain (healthcare, finance, etc.)" },
-                                new LearningObjective { Id = 154, StepId = 34, Description = "Create ML blog and portfolio" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 92, StepId = 34, Title = "Google AI Projects", Url = "https://ai.google/education/", Type = "website" },
-                                new Resource { Id = 93, StepId = 34, Title = "Fast.ai Projects", Url = "https://www.fast.ai/projects/", Type = "website" }
-                            }
-                        }
-                    }
-                },
-                // DevOps & Cloud
-                new Roadmap
-                {
-                    Id = 6,
-                    Title = "DevOps Engineer",
-                    Description = "Automate deployment and manage infrastructure",
-                    Icon = "🔧",
-                    Category = CategoryConstants.DevOps,
-                    Duration = "6-9 months",
-                    Difficulty = "Intermediate to Advanced",
-                    Steps = new List<RoadmapStep>
-                    {
-                        new RoadmapStep
-                        {
-                            Id = 35,
-                            RoadmapId = 6,
-                            Title = "Linux & Scripting Fundamentals",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 155, StepId = 35, Description = "Master Linux command line and system administration" },
-                                new LearningObjective { Id = 156, StepId = 35, Description = "Write Bash scripts for automation" },
-                                new LearningObjective { Id = 157, StepId = 35, Description = "Learn Python for DevOps tasks" },
-                                new LearningObjective { Id = 158, StepId = 35, Description = "Understand networking and protocols" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 94, StepId = 35, Title = "Linux Command Line", Url = "https://linuxcommand.org/", Type = "tutorial" },
-                                new Resource { Id = 95, StepId = 35, Title = "Bash Scripting Tutorial", Url = "https://www.gnu.org/software/bash/manual/", Type = "documentation" },
-                                new Resource { Id = 96, StepId = 35, Title = "Python for DevOps", Url = "https://www.oreilly.com/library/view/python-for-devops/9781492057680/", Type = "book" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 36,
-                            RoadmapId = 6,
-                            Title = "Version Control & Git Workflows",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 159, StepId = 36, Description = "Master advanced Git commands and workflows" },
-                                new LearningObjective { Id = 160, StepId = 36, Description = "Implement Git branching strategies (GitFlow, GitHub Flow)" },
-                                new LearningObjective { Id = 161, StepId = 36, Description = "Set up Git hooks and automation" },
-                                new LearningObjective { Id = 162, StepId = 36, Description = "Manage monorepos and submodules" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 97, StepId = 36, Title = "Pro Git Book", Url = "https://git-scm.com/book", Type = "book" },
-                                new Resource { Id = 98, StepId = 36, Title = "Git Branching Strategies", Url = "https://www.atlassian.com/git/tutorials/comparing-workflows", Type = "guide" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 37,
-                            RoadmapId = 6,
-                            Title = "CI/CD Pipeline Implementation",
-                            Duration = "4-5 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 163, StepId = 37, Description = "Set up CI/CD with Jenkins, GitHub Actions, or GitLab CI" },
-                                new LearningObjective { Id = 164, StepId = 37, Description = "Implement automated testing strategies" },
-                                new LearningObjective { Id = 165, StepId = 37, Description = "Configure build automation and artifact management" },
-                                new LearningObjective { Id = 166, StepId = 37, Description = "Deploy with blue-green and canary strategies" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 99, StepId = 37, Title = "GitHub Actions Docs", Url = "https://docs.github.com/en/actions", Type = "documentation" },
-                                new Resource { Id = 100, StepId = 37, Title = "Jenkins User Handbook", Url = "https://www.jenkins.io/doc/book/", Type = "documentation" },
-                                new Resource { Id = 101, StepId = 37, Title = "CI/CD Best Practices", Url = "https://www.redhat.com/en/topics/devops/what-is-ci-cd", Type = "guide" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 38,
-                            RoadmapId = 6,
-                            Title = "Containerization with Docker",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 167, StepId = 38, Description = "Master Docker fundamentals and architecture" },
-                                new LearningObjective { Id = 168, StepId = 38, Description = "Write efficient Dockerfiles and multi-stage builds" },
-                                new LearningObjective { Id = 169, StepId = 38, Description = "Use Docker Compose for multi-container apps" },
-                                new LearningObjective { Id = 170, StepId = 38, Description = "Implement Docker security best practices" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 102, StepId = 38, Title = "Docker Documentation", Url = "https://docs.docker.com/", Type = "documentation" },
-                                new Resource { Id = 103, StepId = 38, Title = "Docker Deep Dive", Url = "https://www.pluralsight.com/courses/docker-deep-dive-update", Type = "course" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 39,
-                            RoadmapId = 6,
-                            Title = "Kubernetes & Container Orchestration",
-                            Duration = "5-6 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 171, StepId = 39, Description = "Deploy and manage Kubernetes clusters" },
-                                new LearningObjective { Id = 172, StepId = 39, Description = "Create Kubernetes manifests and Helm charts" },
-                                new LearningObjective { Id = 173, StepId = 39, Description = "Implement service mesh with Istio" },
-                                new LearningObjective { Id = 174, StepId = 39, Description = "Set up GitOps with ArgoCD or Flux" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 104, StepId = 39, Title = "Kubernetes Documentation", Url = "https://kubernetes.io/docs/", Type = "documentation" },
-                                new Resource { Id = 105, StepId = 39, Title = "CKA Certification Guide", Url = "https://www.cncf.io/certification/cka/", Type = "guide" },
-                                new Resource { Id = 106, StepId = 39, Title = "Kubernetes the Hard Way", Url = "https://github.com/kelseyhightower/kubernetes-the-hard-way", Type = "tutorial" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 40,
-                            RoadmapId = 6,
-                            Title = "Infrastructure as Code",
-                            Duration = "4-5 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 175, StepId = 40, Description = "Master Terraform for infrastructure provisioning" },
-                                new LearningObjective { Id = 176, StepId = 40, Description = "Use Ansible for configuration management" },
-                                new LearningObjective { Id = 177, StepId = 40, Description = "Implement Pulumi or CloudFormation" },
-                                new LearningObjective { Id = 178, StepId = 40, Description = "Version control infrastructure code" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 107, StepId = 40, Title = "Terraform Documentation", Url = "https://www.terraform.io/docs", Type = "documentation" },
-                                new Resource { Id = 108, StepId = 40, Title = "Ansible for DevOps", Url = "https://www.ansiblefordevops.com/", Type = "book" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 41,
-                            RoadmapId = 6,
-                            Title = "Monitoring & Observability",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 179, StepId = 41, Description = "Implement Prometheus and Grafana monitoring" },
-                                new LearningObjective { Id = 180, StepId = 41, Description = "Set up ELK stack for log management" },
-                                new LearningObjective { Id = 181, StepId = 41, Description = "Configure distributed tracing with Jaeger" },
-                                new LearningObjective { Id = 182, StepId = 41, Description = "Create alerts and incident response" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 109, StepId = 41, Title = "Prometheus Up & Running", Url = "https://www.oreilly.com/library/view/prometheus-up/9781492034131/", Type = "book" },
-                                new Resource { Id = 110, StepId = 41, Title = "Elastic Stack Guide", Url = "https://www.elastic.co/guide/", Type = "documentation" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 42,
-                            RoadmapId = 6,
-                            Title = "Security & Compliance",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 183, StepId = 42, Description = "Implement DevSecOps practices" },
-                                new LearningObjective { Id = 184, StepId = 42, Description = "Scan for vulnerabilities in CI/CD" },
-                                new LearningObjective { Id = 185, StepId = 42, Description = "Manage secrets with Vault or AWS Secrets Manager" },
-                                new LearningObjective { Id = 186, StepId = 42, Description = "Ensure compliance (GDPR, HIPAA, SOC2)" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 111, StepId = 42, Title = "DevSecOps Hub", Url = "https://www.devsecops.org/", Type = "website" },
-                                new Resource { Id = 112, StepId = 42, Title = "HashiCorp Vault Docs", Url = "https://www.vaultproject.io/docs", Type = "documentation" }
-                            }
-                        }
-                    }
-                },
-                new Roadmap
-                {
-                    Id = 7,
-                    Title = "Cloud Solutions Architect",
-                    Description = "Design scalable cloud infrastructure",
-                    Icon = "☁️",
-                    Category = CategoryConstants.DevOps,
-                    Duration = "8-12 months",
-                    Difficulty = "Advanced",
-                    Steps = new List<RoadmapStep>
-                    {
-                        new RoadmapStep
-                        {
-                            Id = 43,
-                            RoadmapId = 7,
-                            Title = "Cloud Computing Fundamentals",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 187, StepId = 43, Description = "Understand cloud service models (IaaS, PaaS, SaaS)" },
-                                new LearningObjective { Id = 188, StepId = 43, Description = "Learn cloud deployment models and concepts" },
-                                new LearningObjective { Id = 189, StepId = 43, Description = "Master virtualization and containerization" },
-                                new LearningObjective { Id = 190, StepId = 43, Description = "Compare major cloud providers (AWS, Azure, GCP)" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 113, StepId = 43, Title = "Cloud Computing Concepts", Url = "https://aws.amazon.com/what-is-cloud-computing/", Type = "guide" },
-                                new Resource { Id = 114, StepId = 43, Title = "Cloud Architecture Patterns", Url = "https://docs.microsoft.com/en-us/azure/architecture/patterns/", Type = "documentation" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 44,
-                            RoadmapId = 7,
-                            Title = "AWS Core Services Mastery",
-                            Duration = "5-6 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 191, StepId = 44, Description = "Master EC2, VPC, and networking" },
-                                new LearningObjective { Id = 192, StepId = 44, Description = "Implement S3, EBS, and storage solutions" },
-                                new LearningObjective { Id = 193, StepId = 44, Description = "Configure RDS, DynamoDB, and databases" },
-                                new LearningObjective { Id = 194, StepId = 44, Description = "Use Lambda and serverless computing" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 115, StepId = 44, Title = "AWS Documentation", Url = "https://docs.aws.amazon.com/", Type = "documentation" },
-                                new Resource { Id = 116, StepId = 44, Title = "AWS Solutions Architect Associate", Url = "https://aws.amazon.com/certification/certified-solutions-architect-associate/", Type = "certification" },
-                                new Resource { Id = 117, StepId = 44, Title = "AWS Well-Architected Framework", Url = "https://aws.amazon.com/architecture/well-architected/", Type = "guide" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 45,
-                            RoadmapId = 7,
-                            Title = "Multi-Cloud & Hybrid Architecture",
-                            Duration = "4-5 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 195, StepId = 45, Description = "Design multi-cloud strategies" },
-                                new LearningObjective { Id = 196, StepId = 45, Description = "Implement hybrid cloud solutions" },
-                                new LearningObjective { Id = 197, StepId = 45, Description = "Master Azure and GCP services" },
-                                new LearningObjective { Id = 198, StepId = 45, Description = "Use cloud-agnostic tools (Terraform, Kubernetes)" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 118, StepId = 45, Title = "Azure Architecture Center", Url = "https://docs.microsoft.com/en-us/azure/architecture/", Type = "documentation" },
-                                new Resource { Id = 119, StepId = 45, Title = "Google Cloud Architecture", Url = "https://cloud.google.com/architecture", Type = "documentation" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 46,
-                            RoadmapId = 7,
-                            Title = "High Availability & Disaster Recovery",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 199, StepId = 46, Description = "Design for 99.99% availability" },
-                                new LearningObjective { Id = 200, StepId = 46, Description = "Implement auto-scaling and load balancing" },
-                                new LearningObjective { Id = 201, StepId = 46, Description = "Create disaster recovery plans" },
-                                new LearningObjective { Id = 202, StepId = 46, Description = "Set up multi-region deployments" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 120, StepId = 46, Title = "AWS Disaster Recovery", Url = "https://aws.amazon.com/disaster-recovery/", Type = "guide" },
-                                new Resource { Id = 121, StepId = 46, Title = "High Availability Architecture", Url = "https://www.nginx.com/blog/microservices-reference-architecture-nginx-high-availability/", Type = "article" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 47,
-                            RoadmapId = 7,
-                            Title = "Security & Compliance Architecture",
-                            Duration = "4-5 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 203, StepId = 47, Description = "Implement zero-trust security model" },
-                                new LearningObjective { Id = 204, StepId = 47, Description = "Design identity and access management" },
-                                new LearningObjective { Id = 205, StepId = 47, Description = "Ensure data encryption and privacy" },
-                                new LearningObjective { Id = 206, StepId = 47, Description = "Meet compliance requirements (GDPR, HIPAA)" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 122, StepId = 47, Title = "AWS Security Best Practices", Url = "https://aws.amazon.com/architecture/security-identity-compliance/", Type = "guide" },
-                                new Resource { Id = 123, StepId = 47, Title = "Cloud Security Alliance", Url = "https://cloudsecurityalliance.org/", Type = "website" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 48,
-                            RoadmapId = 7,
-                            Title = "Cost Optimization & FinOps",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 207, StepId = 48, Description = "Optimize cloud costs and resource usage" },
-                                new LearningObjective { Id = 208, StepId = 48, Description = "Implement cost allocation and tagging" },
-                                new LearningObjective { Id = 209, StepId = 48, Description = "Use reserved instances and savings plans" },
-                                new LearningObjective { Id = 210, StepId = 48, Description = "Create cost monitoring dashboards" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 124, StepId = 48, Title = "FinOps Foundation", Url = "https://www.finops.org/", Type = "website" },
-                                new Resource { Id = 125, StepId = 48, Title = "AWS Cost Optimization", Url = "https://aws.amazon.com/aws-cost-management/", Type = "guide" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 49,
-                            RoadmapId = 7,
-                            Title = "Microservices & Event-Driven Architecture",
-                            Duration = "4-5 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 211, StepId = 49, Description = "Design microservices architectures" },
-                                new LearningObjective { Id = 212, StepId = 49, Description = "Implement event-driven patterns" },
-                                new LearningObjective { Id = 213, StepId = 49, Description = "Use message queues and event streams" },
-                                new LearningObjective { Id = 214, StepId = 49, Description = "Handle distributed transactions" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 126, StepId = 49, Title = "Microservices Patterns", Url = "https://microservices.io/patterns/", Type = "website" },
-                                new Resource { Id = 127, StepId = 49, Title = "Event-Driven Architecture", Url = "https://aws.amazon.com/event-driven-architecture/", Type = "guide" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 50,
-                            RoadmapId = 7,
-                            Title = "Enterprise Architecture & Migration",
-                            Duration = "4-6 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 215, StepId = 50, Description = "Plan large-scale cloud migrations" },
-                                new LearningObjective { Id = 216, StepId = 50, Description = "Use cloud adoption frameworks" },
-                                new LearningObjective { Id = 217, StepId = 50, Description = "Design enterprise-grade solutions" },
-                                new LearningObjective { Id = 218, StepId = 50, Description = "Lead architectural reviews and decisions" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 128, StepId = 50, Title = "AWS Migration Hub", Url = "https://aws.amazon.com/migration-hub/", Type = "documentation" },
-                                new Resource { Id = 129, StepId = 50, Title = "Cloud Adoption Framework", Url = "https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/", Type = "guide" }
-                            }
-                        }
-                    }
-                },
-                // Specialized
-                new Roadmap
-                {
-                    Id = 8,
-                    Title = "Cybersecurity Specialist",
-                    Description = "Protect systems and data from security threats",
-                    Icon = "🔒",
-                    Category = CategoryConstants.Specialized,
-                    Duration = "8-12 months",
-                    Difficulty = "Advanced",
-                    Steps = new List<RoadmapStep>
-                    {
-                        new RoadmapStep
-                        {
-                            Id = 51,
-                            RoadmapId = 8,
-                            Title = "Security Fundamentals & Networking",
-                            Duration = "4-5 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 219, StepId = 51, Description = "Master CIA triad and security principles" },
-                                new LearningObjective { Id = 220, StepId = 51, Description = "Understand OSI model and TCP/IP stack" },
-                                new LearningObjective { Id = 221, StepId = 51, Description = "Learn network protocols and vulnerabilities" },
-                                new LearningObjective { Id = 222, StepId = 51, Description = "Configure firewalls and network segmentation" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 130, StepId = 51, Title = "CompTIA Security+", Url = "https://www.comptia.org/certifications/security", Type = "certification" },
-                                new Resource { Id = 131, StepId = 51, Title = "Cybrary Security Fundamentals", Url = "https://www.cybrary.it/", Type = "course" },
-                                new Resource { Id = 132, StepId = 51, Title = "NIST Cybersecurity Framework", Url = "https://www.nist.gov/cyberframework", Type = "guide" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 52,
-                            RoadmapId = 8,
-                            Title = "Ethical Hacking & Penetration Testing",
-                            Duration = "6-8 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 223, StepId = 52, Description = "Master Kali Linux and security tools" },
-                                new LearningObjective { Id = 224, StepId = 52, Description = "Perform vulnerability assessments" },
-                                new LearningObjective { Id = 225, StepId = 52, Description = "Conduct penetration testing methodologies" },
-                                new LearningObjective { Id = 226, StepId = 52, Description = "Write professional security reports" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 133, StepId = 52, Title = "OSCP Certification", Url = "https://www.offensive-security.com/pwk-oscp/", Type = "certification" },
-                                new Resource { Id = 134, StepId = 52, Title = "HackTheBox", Url = "https://www.hackthebox.com/", Type = "interactive" },
-                                new Resource { Id = 135, StepId = 52, Title = "TryHackMe", Url = "https://tryhackme.com/", Type = "interactive" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 53,
-                            RoadmapId = 8,
-                            Title = "Web Application Security",
-                            Duration = "4-5 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 227, StepId = 53, Description = "Master OWASP Top 10 vulnerabilities" },
-                                new LearningObjective { Id = 228, StepId = 53, Description = "Perform SQL injection and XSS attacks" },
-                                new LearningObjective { Id = 229, StepId = 53, Description = "Secure APIs and authentication" },
-                                new LearningObjective { Id = 230, StepId = 53, Description = "Use Burp Suite and OWASP ZAP" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 136, StepId = 53, Title = "OWASP WebGoat", Url = "https://owasp.org/www-project-webgoat/", Type = "interactive" },
-                                new Resource { Id = 137, StepId = 53, Title = "PortSwigger Web Security", Url = "https://portswigger.net/web-security", Type = "tutorial" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 54,
-                            RoadmapId = 8,
-                            Title = "Cryptography & PKI",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 231, StepId = 54, Description = "Understand encryption algorithms (AES, RSA)" },
-                                new LearningObjective { Id = 232, StepId = 54, Description = "Implement SSL/TLS and certificates" },
-                                new LearningObjective { Id = 233, StepId = 54, Description = "Master hashing and digital signatures" },
-                                new LearningObjective { Id = 234, StepId = 54, Description = "Design public key infrastructure" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 138, StepId = 54, Title = "Cryptography I", Url = "https://www.coursera.org/learn/crypto", Type = "course" },
-                                new Resource { Id = 139, StepId = 54, Title = "Applied Cryptography", Url = "https://www.schneier.com/books/applied-cryptography/", Type = "book" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 55,
-                            RoadmapId = 8,
-                            Title = "Incident Response & Forensics",
-                            Duration = "4-5 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 235, StepId = 55, Description = "Create incident response plans" },
-                                new LearningObjective { Id = 236, StepId = 55, Description = "Perform digital forensics analysis" },
-                                new LearningObjective { Id = 237, StepId = 55, Description = "Use SIEM tools (Splunk, ELK)" },
-                                new LearningObjective { Id = 238, StepId = 55, Description = "Conduct threat hunting" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 140, StepId = 55, Title = "SANS Incident Response", Url = "https://www.sans.org/cyber-security-courses/incident-handler/", Type = "course" },
-                                new Resource { Id = 141, StepId = 55, Title = "Digital Forensics with Autopsy", Url = "https://www.autopsy.com/", Type = "tool" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 56,
-                            RoadmapId = 8,
-                            Title = "Cloud Security & DevSecOps",
-                            Duration = "4-5 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 239, StepId = 56, Description = "Secure cloud infrastructure (AWS, Azure)" },
-                                new LearningObjective { Id = 240, StepId = 56, Description = "Implement container security" },
-                                new LearningObjective { Id = 241, StepId = 56, Description = "Integrate security in CI/CD pipelines" },
-                                new LearningObjective { Id = 242, StepId = 56, Description = "Use infrastructure as code security" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 142, StepId = 56, Title = "AWS Security Specialty", Url = "https://aws.amazon.com/certification/certified-security-specialty/", Type = "certification" },
-                                new Resource { Id = 143, StepId = 56, Title = "DevSecOps Manifesto", Url = "https://www.devsecops.org/", Type = "website" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 57,
-                            RoadmapId = 8,
-                            Title = "Compliance & Risk Management",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 243, StepId = 57, Description = "Understand compliance frameworks (ISO 27001, SOC2)" },
-                                new LearningObjective { Id = 244, StepId = 57, Description = "Perform risk assessments" },
-                                new LearningObjective { Id = 245, StepId = 57, Description = "Create security policies and procedures" },
-                                new LearningObjective { Id = 246, StepId = 57, Description = "Conduct security audits" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 144, StepId = 57, Title = "CISA Certification", Url = "https://www.isaca.org/credentialing/cisa", Type = "certification" },
-                                new Resource { Id = 145, StepId = 57, Title = "NIST Risk Management", Url = "https://www.nist.gov/risk-management", Type = "guide" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 58,
-                            RoadmapId = 8,
-                            Title = "Advanced Threats & Red Teaming",
-                            Duration = "4-6 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 247, StepId = 58, Description = "Analyze advanced persistent threats (APTs)" },
-                                new LearningObjective { Id = 248, StepId = 58, Description = "Conduct red team exercises" },
-                                new LearningObjective { Id = 249, StepId = 58, Description = "Implement threat intelligence" },
-                                new LearningObjective { Id = 250, StepId = 58, Description = "Master exploit development" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 146, StepId = 58, Title = "MITRE ATT&CK Framework", Url = "https://attack.mitre.org/", Type = "framework" },
-                                new Resource { Id = 147, StepId = 58, Title = "Red Team Field Manual", Url = "https://www.amazon.com/Rtfm-Red-Team-Field-Manual/dp/1494295504", Type = "book" }
-                            }
-                        }
-                    }
-                },
-                new Roadmap
-                {
-                    Id = 9,
-                    Title = "UX/UI Designer",
-                    Description = "Create beautiful and intuitive user experiences",
-                    Icon = "🎯",
-                    Category = CategoryConstants.Specialized,
-                    Duration = "6-8 months",
-                    Difficulty = "Beginner to Intermediate",
-                    Steps = new List<RoadmapStep>
-                    {
-                        new RoadmapStep
-                        {
-                            Id = 59,
-                            RoadmapId = 9,
-                            Title = "Design Fundamentals & Theory",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 251, StepId = 59, Description = "Master color theory, typography, and composition" },
-                                new LearningObjective { Id = 252, StepId = 59, Description = "Understand Gestalt principles and visual hierarchy" },
-                                new LearningObjective { Id = 253, StepId = 59, Description = "Learn design history and movements" },
-                                new LearningObjective { Id = 254, StepId = 59, Description = "Apply grid systems and spacing" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 148, StepId = 59, Title = "Design Principles Course", Url = "https://www.coursera.org/learn/design-principles", Type = "course" },
-                                new Resource { Id = 149, StepId = 59, Title = "The Design of Everyday Things", Url = "https://www.nngroup.com/books/design-everyday-things-revised/", Type = "book" },
-                                new Resource { Id = 150, StepId = 59, Title = "Refactoring UI", Url = "https://www.refactoringui.com/", Type = "book" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 60,
-                            RoadmapId = 9,
-                            Title = "User Research & Psychology",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 255, StepId = 60, Description = "Conduct user interviews and surveys" },
-                                new LearningObjective { Id = 256, StepId = 60, Description = "Create user personas and journey maps" },
-                                new LearningObjective { Id = 257, StepId = 60, Description = "Understand cognitive psychology in design" },
-                                new LearningObjective { Id = 258, StepId = 60, Description = "Apply behavioral design principles" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 151, StepId = 60, Title = "UX Research Methods", Url = "https://www.nngroup.com/articles/which-ux-research-methods/", Type = "article" },
-                                new Resource { Id = 152, StepId = 60, Title = "Don't Make Me Think", Url = "https://sensible.com/dont-make-me-think/", Type = "book" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 61,
-                            RoadmapId = 9,
-                            Title = "Design Tools Mastery",
-                            Duration = "4-5 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 259, StepId = 61, Description = "Master Figma for UI design and prototyping" },
-                                new LearningObjective { Id = 260, StepId = 61, Description = "Learn Adobe XD or Sketch" },
-                                new LearningObjective { Id = 261, StepId = 61, Description = "Use design systems and component libraries" },
-                                new LearningObjective { Id = 262, StepId = 61, Description = "Create interactive prototypes" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 153, StepId = 61, Title = "Figma Academy", Url = "https://www.figma.com/resources/learn-design/", Type = "tutorial" },
-                                new Resource { Id = 154, StepId = 61, Title = "Design+Code", Url = "https://designcode.io/", Type = "course" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 62,
-                            RoadmapId = 9,
-                            Title = "Information Architecture & Wireframing",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 263, StepId = 62, Description = "Structure information hierarchies" },
-                                new LearningObjective { Id = 264, StepId = 62, Description = "Create sitemaps and user flows" },
-                                new LearningObjective { Id = 265, StepId = 62, Description = "Design low and high-fidelity wireframes" },
-                                new LearningObjective { Id = 266, StepId = 62, Description = "Conduct card sorting exercises" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 155, StepId = 62, Title = "Information Architecture", Url = "https://www.oreilly.com/library/view/information-architecture-4th/9781491913529/", Type = "book" },
-                                new Resource { Id = 156, StepId = 62, Title = "Wireframing Guide", Url = "https://www.usability.gov/how-to-and-tools/methods/wireframing.html", Type = "guide" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 63,
-                            RoadmapId = 9,
-                            Title = "Visual & Interaction Design",
-                            Duration = "4-5 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 267, StepId = 63, Description = "Design beautiful and consistent interfaces" },
-                                new LearningObjective { Id = 268, StepId = 63, Description = "Create micro-interactions and animations" },
-                                new LearningObjective { Id = 269, StepId = 63, Description = "Implement responsive design principles" },
-                                new LearningObjective { Id = 270, StepId = 63, Description = "Design for accessibility (WCAG guidelines)" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 157, StepId = 63, Title = "Material Design", Url = "https://material.io/design", Type = "guide" },
-                                new Resource { Id = 158, StepId = 63, Title = "Interaction Design Foundation", Url = "https://www.interaction-design.org/", Type = "course" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 64,
-                            RoadmapId = 9,
-                            Title = "Design Systems & Style Guides",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 271, StepId = 64, Description = "Build scalable design systems" },
-                                new LearningObjective { Id = 272, StepId = 64, Description = "Create component libraries" },
-                                new LearningObjective { Id = 273, StepId = 64, Description = "Document design patterns" },
-                                new LearningObjective { Id = 274, StepId = 64, Description = "Maintain brand consistency" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 159, StepId = 64, Title = "Design Systems Handbook", Url = "https://www.designsystems.com/", Type = "book" },
-                                new Resource { Id = 160, StepId = 64, Title = "Atomic Design", Url = "https://atomicdesign.bradfrost.com/", Type = "book" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 65,
-                            RoadmapId = 9,
-                            Title = "Usability Testing & Iteration",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 275, StepId = 65, Description = "Plan and conduct usability tests" },
-                                new LearningObjective { Id = 276, StepId = 65, Description = "Analyze user feedback and metrics" },
-                                new LearningObjective { Id = 277, StepId = 65, Description = "Iterate designs based on insights" },
-                                new LearningObjective { Id = 278, StepId = 65, Description = "A/B test design variations" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 161, StepId = 65, Title = "Rocket Surgery Made Easy", Url = "https://sensible.com/rocket-surgery-made-easy/", Type = "book" },
-                                new Resource { Id = 162, StepId = 65, Title = "UsabilityHub", Url = "https://usabilityhub.com/", Type = "tool" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 66,
-                            RoadmapId = 9,
-                            Title = "Portfolio & Career Development",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 279, StepId = 66, Description = "Build a compelling design portfolio" },
-                                new LearningObjective { Id = 280, StepId = 66, Description = "Present case studies effectively" },
-                                new LearningObjective { Id = 281, StepId = 66, Description = "Network with design community" },
-                                new LearningObjective { Id = 282, StepId = 66, Description = "Prepare for design interviews" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 163, StepId = 66, Title = "Behance", Url = "https://www.behance.net/", Type = "website" },
-                                new Resource { Id = 164, StepId = 66, Title = "UX Portfolio Formula", Url = "https://uxdesign.cc/ux-portfolio-formula-7d5ba2c7c4d2", Type = "article" }
-                            }
-                        }
-                    }
-                },
-                new Roadmap
-                {
-                    Id = 10,
-                    Title = "Product Manager",
-                    Description = "Lead product strategy and development",
-                    Icon = "💼",
-                    Category = CategoryConstants.Specialized,
-                    Duration = "6-9 months",
-                    Difficulty = "Intermediate",
-                    Steps = new List<RoadmapStep>
-                    {
-                        new RoadmapStep
-                        {
-                            Id = 67,
-                            RoadmapId = 10,
-                            Title = "Product Management Fundamentals",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 283, StepId = 67, Description = "Understand the product manager role and responsibilities" },
-                                new LearningObjective { Id = 284, StepId = 67, Description = "Learn product development lifecycle" },
-                                new LearningObjective { Id = 285, StepId = 67, Description = "Master agile and scrum methodologies" },
-                                new LearningObjective { Id = 286, StepId = 67, Description = "Develop product thinking mindset" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 165, StepId = 67, Title = "Inspired by Marty Cagan", Url = "https://www.svpg.com/inspired-how-to-create-products-customers-love/", Type = "book" },
-                                new Resource { Id = 166, StepId = 67, Title = "Product School", Url = "https://productschool.com/", Type = "course" },
-                                new Resource { Id = 167, StepId = 67, Title = "The Lean Startup", Url = "http://theleanstartup.com/", Type = "book" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 68,
-                            RoadmapId = 10,
-                            Title = "Market Research & Analysis",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 287, StepId = 68, Description = "Conduct competitive analysis" },
-                                new LearningObjective { Id = 288, StepId = 68, Description = "Identify market opportunities" },
-                                new LearningObjective { Id = 289, StepId = 68, Description = "Analyze industry trends" },
-                                new LearningObjective { Id = 290, StepId = 68, Description = "Define target customer segments" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 168, StepId = 68, Title = "Competitive Strategy", Url = "https://www.hbs.edu/faculty/Pages/item.aspx?num=195", Type = "book" },
-                                new Resource { Id = 169, StepId = 68, Title = "Market Research Guide", Url = "https://www.hubspot.com/market-research", Type = "guide" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 69,
-                            RoadmapId = 10,
-                            Title = "User Research & Customer Development",
-                            Duration = "4-5 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 291, StepId = 69, Description = "Conduct customer interviews and surveys" },
-                                new LearningObjective { Id = 292, StepId = 69, Description = "Create user personas and jobs-to-be-done" },
-                                new LearningObjective { Id = 293, StepId = 69, Description = "Map customer journeys" },
-                                new LearningObjective { Id = 294, StepId = 69, Description = "Validate problem-solution fit" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 170, StepId = 69, Title = "The Mom Test", Url = "http://momtestbook.com/", Type = "book" },
-                                new Resource { Id = 171, StepId = 69, Title = "Jobs to be Done", Url = "https://jobs-to-be-done.com/", Type = "framework" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 70,
-                            RoadmapId = 10,
-                            Title = "Product Strategy & Vision",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 295, StepId = 70, Description = "Define product vision and mission" },
-                                new LearningObjective { Id = 296, StepId = 70, Description = "Create product strategy and positioning" },
-                                new LearningObjective { Id = 297, StepId = 70, Description = "Develop value propositions" },
-                                new LearningObjective { Id = 298, StepId = 70, Description = "Build strategic roadmaps" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 172, StepId = 70, Title = "Good Strategy Bad Strategy", Url = "https://www.amazon.com/Good-Strategy-Bad-Difference-Matters/dp/0307886239", Type = "book" },
-                                new Resource { Id = 173, StepId = 70, Title = "Product Strategy Stack", Url = "https://www.reforge.com/product-strategy", Type = "course" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 71,
-                            RoadmapId = 10,
-                            Title = "Data Analytics & Metrics",
-                            Duration = "4-5 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 299, StepId = 71, Description = "Define KPIs and success metrics" },
-                                new LearningObjective { Id = 300, StepId = 71, Description = "Master analytics tools (Google Analytics, Mixpanel)" },
-                                new LearningObjective { Id = 301, StepId = 71, Description = "Conduct A/B testing and experiments" },
-                                new LearningObjective { Id = 302, StepId = 71, Description = "Create data-driven insights" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 174, StepId = 71, Title = "Lean Analytics", Url = "https://leananalyticsbook.com/", Type = "book" },
-                                new Resource { Id = 175, StepId = 71, Title = "Google Analytics Academy", Url = "https://analytics.google.com/analytics/academy/", Type = "course" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 72,
-                            RoadmapId = 10,
-                            Title = "Prioritization & Roadmapping",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 303, StepId = 72, Description = "Master prioritization frameworks (RICE, Value vs Effort)" },
-                                new LearningObjective { Id = 304, StepId = 72, Description = "Build and maintain product roadmaps" },
-                                new LearningObjective { Id = 305, StepId = 72, Description = "Manage feature backlogs" },
-                                new LearningObjective { Id = 306, StepId = 72, Description = "Balance stakeholder needs" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 176, StepId = 72, Title = "Roadmapping Tools", Url = "https://www.productplan.com/", Type = "tool" },
-                                new Resource { Id = 177, StepId = 72, Title = "Prioritization Techniques", Url = "https://www.productplan.com/learn/product-prioritization-techniques/", Type = "guide" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 73,
-                            RoadmapId = 10,
-                            Title = "Stakeholder Management",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 307, StepId = 73, Description = "Collaborate with engineering and design teams" },
-                                new LearningObjective { Id = 308, StepId = 73, Description = "Manage executive expectations" },
-                                new LearningObjective { Id = 309, StepId = 73, Description = "Work with sales and marketing" },
-                                new LearningObjective { Id = 310, StepId = 73, Description = "Communicate product decisions effectively" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 178, StepId = 73, Title = "Crucial Conversations", Url = "https://cruciallearning.com/crucial-conversations-book/", Type = "book" },
-                                new Resource { Id = 179, StepId = 73, Title = "Stakeholder Management", Url = "https://www.mindtools.com/pages/article/newPPM_08.htm", Type = "article" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 74,
-                            RoadmapId = 10,
-                            Title = "Go-to-Market & Growth",
-                            Duration = "4-5 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 311, StepId = 74, Description = "Develop go-to-market strategies" },
-                                new LearningObjective { Id = 312, StepId = 74, Description = "Create pricing models" },
-                                new LearningObjective { Id = 313, StepId = 74, Description = "Plan product launches" },
-                                new LearningObjective { Id = 314, StepId = 74, Description = "Implement growth hacking techniques" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 180, StepId = 74, Title = "Crossing the Chasm", Url = "https://www.amazon.com/Crossing-Chasm-Marketing-High-Tech-Mainstream/dp/0062292988", Type = "book" },
-                                new Resource { Id = 181, StepId = 74, Title = "Growth Hacking Course", Url = "https://www.udemy.com/course/growth-hacking/", Type = "course" }
-                            }
-                        }
-                    }
-                },
-                
-                // C# Fundamentals
+
+                // C# Developer
                 new Roadmap
                 {
                     Id = 11,
                     Title = "C# Developer",
-                    Description = "Master C# programming language from basics to advanced concepts",
+                    Description = "Master C# programming from basics to advanced features",
                     Icon = "🔷",
                     Category = CategoryConstants.WebDevelopment,
                     Duration = "4-6 months",
                     Difficulty = "Beginner to Advanced",
+                    ActionName = "CSharpDeveloper",
+                    ControllerName = "WebDevelopment",
+                    Context = "C# is a modern, object-oriented programming language developed by Microsoft.",
+                    Prerequisites = new List<string>
+                    {
+                        "Basic computer skills",
+                        "Logical thinking"
+                    },
+                    CareerPaths = new List<string>
+                    {
+                        "C# Developer ($60K-$120K)",
+                        ".NET Developer ($65K-$125K)",
+                        "Software Engineer ($70K-$140K)"
+                    },
                     Steps = new List<RoadmapStep>
                     {
-                        new RoadmapStep
-                        {
-                            Id = 75,
-                            RoadmapId = 11,
-                            Title = "C# Language Basics",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 315, StepId = 75, Description = "Understand C# syntax and basic constructs" },
-                                new LearningObjective { Id = 316, StepId = 75, Description = "Master data types, variables, and operators" },
-                                new LearningObjective { Id = 317, StepId = 75, Description = "Learn control flow and loops" },
-                                new LearningObjective { Id = 318, StepId = 75, Description = "Work with arrays and collections" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 182, StepId = 75, Title = "Microsoft C# Documentation", Url = "https://docs.microsoft.com/en-us/dotnet/csharp/", Type = "article" },
-                                new Resource { Id = 183, StepId = 75, Title = "C# Fundamentals by Scott Allen", Url = "https://www.pluralsight.com/courses/csharp-fundamentals-dev", Type = "course" },
-                                new Resource { Id = 184, StepId = 75, Title = "C# Yellow Book", Url = "http://www.csharpcourse.com/", Type = "book" },
-                                new Resource { Id = 185, StepId = 75, Title = "C# Interactive Tutorial", Url = "https://dotnet.microsoft.com/en-us/learn/csharp", Type = "interactive" },
-                                new Resource { Id = 186, StepId = 75, Title = "C# Programming Guide", Url = "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/", Type = "documentation" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 76,
-                            RoadmapId = 11,
-                            Title = "Object-Oriented Programming in C#",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 319, StepId = 76, Description = "Master classes, objects, and constructors" },
-                                new LearningObjective { Id = 320, StepId = 76, Description = "Understand inheritance and polymorphism" },
-                                new LearningObjective { Id = 321, StepId = 76, Description = "Learn interfaces and abstract classes" },
-                                new LearningObjective { Id = 322, StepId = 76, Description = "Apply encapsulation and access modifiers" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 187, StepId = 76, Title = "OOP Concepts in C#", Url = "https://www.tutorialspoint.com/csharp/csharp_object_oriented.htm", Type = "article" },
-                                new Resource { Id = 188, StepId = 76, Title = "Object-Oriented Programming in C# (Video Series)", Url = "https://www.youtube.com/playlist?list=PLLWMQd6PeGY0bEMxObA6dtYXuJOGfxSPx", Type = "video" },
-                                new Resource { Id = 189, StepId = 76, Title = "Head First C#", Url = "https://www.oreilly.com/library/view/head-first-c/9781491976692/", Type = "book" },
-                                new Resource { Id = 190, StepId = 76, Title = "C# OOP Exercises", Url = "https://www.w3resource.com/csharp-exercises/oop/index.php", Type = "interactive" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 77,
-                            RoadmapId = 11,
-                            Title = "Advanced C# Features",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 323, StepId = 77, Description = "Master LINQ and lambda expressions" },
-                                new LearningObjective { Id = 324, StepId = 77, Description = "Understand delegates and events" },
-                                new LearningObjective { Id = 325, StepId = 77, Description = "Learn async/await programming" },
-                                new LearningObjective { Id = 326, StepId = 77, Description = "Work with generics and attributes" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 191, StepId = 77, Title = "LINQ Tutorial", Url = "https://www.tutorialsteacher.com/linq", Type = "article" },
-                                new Resource { Id = 192, StepId = 77, Title = "Async Programming in C#", Url = "https://docs.microsoft.com/en-us/dotnet/csharp/async", Type = "documentation" },
-                                new Resource { Id = 193, StepId = 77, Title = "C# Advanced Features Course", Url = "https://www.udemy.com/course/csharp-advanced/", Type = "course" },
-                                new Resource { Id = 194, StepId = 77, Title = "Functional Programming in C#", Url = "https://www.manning.com/books/functional-programming-in-c-sharp", Type = "book" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 78,
-                            RoadmapId = 11,
-                            Title = "C# Best Practices",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 327, StepId = 78, Description = "Apply coding standards and naming conventions" },
-                                new LearningObjective { Id = 328, StepId = 78, Description = "Handle exceptions properly" },
-                                new LearningObjective { Id = 329, StepId = 78, Description = "Implement memory management best practices" },
-                                new LearningObjective { Id = 330, StepId = 78, Description = "Write clean and maintainable code" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 195, StepId = 78, Title = "C# Coding Standards and Naming Conventions", Url = "https://www.dofactory.com/csharp-coding-standards", Type = "article" },
-                                new Resource { Id = 196, StepId = 78, Title = "Clean Code in C#", Url = "https://github.com/thangchung/clean-code-dotnet", Type = "website" },
-                                new Resource { Id = 197, StepId = 78, Title = "Effective C# by Bill Wagner", Url = "https://www.oreilly.com/library/view/effective-c-covers/9780134579290/", Type = "book" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 101,
-                            RoadmapId = 11,
-                            Title = ".NET Framework and Core",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 419, StepId = 101, Description = "Understand .NET architecture and CLR" },
-                                new LearningObjective { Id = 420, StepId = 101, Description = "Master .NET Core vs .NET Framework differences" },
-                                new LearningObjective { Id = 421, StepId = 101, Description = "Work with NuGet packages and dependencies" },
-                                new LearningObjective { Id = 422, StepId = 101, Description = "Learn cross-platform development" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 198, StepId = 101, Title = ".NET Documentation", Url = "https://docs.microsoft.com/en-us/dotnet/", Type = "documentation" },
-                                new Resource { Id = 199, StepId = 101, Title = "Pro .NET 5", Url = "https://www.apress.com/gp/book/9781484263006", Type = "book" },
-                                new Resource { Id = 200, StepId = 101, Title = ".NET Core in Action", Url = "https://www.manning.com/books/dotnet-core-in-action", Type = "book" },
-                                new Resource { Id = 201, StepId = 101, Title = ".NET Core Tutorials", Url = "https://dotnet.microsoft.com/learn/dotnet/hello-world-tutorial", Type = "interactive" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 102,
-                            RoadmapId = 11,
-                            Title = "C# Performance and Optimization",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 423, StepId = 102, Description = "Profile and benchmark C# applications" },
-                                new LearningObjective { Id = 424, StepId = 102, Description = "Optimize memory usage and garbage collection" },
-                                new LearningObjective { Id = 425, StepId = 102, Description = "Improve algorithm efficiency" },
-                                new LearningObjective { Id = 426, StepId = 102, Description = "Use parallel and concurrent programming" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 202, StepId = 102, Title = "Writing High-Performance .NET Code", Url = "https://www.writinghighperf.net/", Type = "book" },
-                                new Resource { Id = 203, StepId = 102, Title = "BenchmarkDotNet", Url = "https://benchmarkdotnet.org/", Type = "website" },
-                                new Resource { Id = 204, StepId = 102, Title = "Pro .NET Memory Management", Url = "https://prodotnetmemory.com/", Type = "book" },
-                                new Resource { Id = 205, StepId = 102, Title = "C# Performance Tips", Url = "https://docs.microsoft.com/en-us/dotnet/csharp/write-safe-efficient-code", Type = "article" }
-                            }
-                        }
-                    }
-                },
-                
-                // OOP Concepts
-                new Roadmap
-                {
-                    Id = 12,
-                    Title = "Object-Oriented Programming",
-                    Description = "Master OOP concepts and principles for better software design",
-                    Icon = "🔸",
-                    Category = CategoryConstants.WebDevelopment,
-                    Duration = "3-4 months",
-                    Difficulty = "Intermediate",
-                    Steps = new List<RoadmapStep>
-                    {
-                        new RoadmapStep
-                        {
-                            Id = 79,
-                            RoadmapId = 12,
-                            Title = "OOP Fundamentals",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 331, StepId = 79, Description = "Understand classes and objects" },
-                                new LearningObjective { Id = 332, StepId = 79, Description = "Master encapsulation principle" },
-                                new LearningObjective { Id = 333, StepId = 79, Description = "Learn constructors and destructors" },
-                                new LearningObjective { Id = 334, StepId = 79, Description = "Apply access modifiers effectively" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 206, StepId = 79, Title = "Object-Oriented Programming Concepts", Url = "https://www.geeksforgeeks.org/object-oriented-programming-oops-concept-in-java/", Type = "article" },
-                                new Resource { Id = 207, StepId = 79, Title = "OOP Fundamentals Course", Url = "https://www.coursera.org/learn/object-oriented-programming", Type = "course" },
-                                new Resource { Id = 208, StepId = 79, Title = "Head First Object-Oriented Analysis and Design", Url = "https://www.oreilly.com/library/view/head-first-object-oriented/0596008678/", Type = "book" },
-                                new Resource { Id = 209, StepId = 79, Title = "OOP Interactive Tutorial", Url = "https://www.codecademy.com/learn/learn-object-oriented-programming", Type = "interactive" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 80,
-                            RoadmapId = 12,
-                            Title = "Inheritance & Polymorphism",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 335, StepId = 80, Description = "Master inheritance hierarchies" },
-                                new LearningObjective { Id = 336, StepId = 80, Description = "Understand method overriding and overloading" },
-                                new LearningObjective { Id = 337, StepId = 80, Description = "Apply polymorphism in real scenarios" },
-                                new LearningObjective { Id = 338, StepId = 80, Description = "Learn abstract classes and interfaces" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 210, StepId = 80, Title = "Understanding Inheritance and Polymorphism", Url = "https://www.tutorialspoint.com/cplusplus/cpp_inheritance.htm", Type = "article" },
-                                new Resource { Id = 211, StepId = 80, Title = "Polymorphism in OOP", Url = "https://www.youtube.com/watch?v=AmdgJ-HhilE", Type = "video" },
-                                new Resource { Id = 212, StepId = 80, Title = "Design Patterns: Elements of Reusable Object-Oriented Software", Url = "https://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612", Type = "book" },
-                                new Resource { Id = 213, StepId = 80, Title = "Inheritance vs Composition", Url = "https://www.thoughtworks.com/insights/blog/composition-vs-inheritance-how-choose", Type = "article" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 81,
-                            RoadmapId = 12,
-                            Title = "Advanced OOP Concepts",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 339, StepId = 81, Description = "Master composition over inheritance" },
-                                new LearningObjective { Id = 340, StepId = 81, Description = "Understand dependency injection" },
-                                new LearningObjective { Id = 341, StepId = 81, Description = "Apply SOLID principles" },
-                                new LearningObjective { Id = 342, StepId = 81, Description = "Learn design patterns basics" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 214, StepId = 81, Title = "Composition over Inheritance", Url = "https://medium.com/humans-create-software/composition-over-inheritance-cb6f88070205", Type = "article" },
-                                new Resource { Id = 215, StepId = 81, Title = "Dependency Injection Explained", Url = "https://www.freecodecamp.org/news/a-quick-intro-to-dependency-injection-what-it-is-and-when-to-use-it-7578c84fa88f/", Type = "article" },
-                                new Resource { Id = 216, StepId = 81, Title = "Clean Architecture", Url = "https://www.amazon.com/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164", Type = "book" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 103,
-                            RoadmapId = 12,
-                            Title = "Abstraction and Interfaces",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 427, StepId = 103, Description = "Design effective abstractions" },
-                                new LearningObjective { Id = 428, StepId = 103, Description = "Create and implement interfaces" },
-                                new LearningObjective { Id = 429, StepId = 103, Description = "Understand interface segregation" },
-                                new LearningObjective { Id = 430, StepId = 103, Description = "Apply abstraction in real-world scenarios" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 217, StepId = 103, Title = "Abstraction in OOP", Url = "https://stackify.com/oop-concept-abstraction/", Type = "article" },
-                                new Resource { Id = 218, StepId = 103, Title = "Interface Design Principles", Url = "https://www.oodesign.com/interface-segregation-principle.html", Type = "article" },
-                                new Resource { Id = 219, StepId = 103, Title = "Programming to Interfaces", Url = "https://www.youtube.com/watch?v=GKQY0r8hGJg", Type = "video" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 104,
-                            RoadmapId = 12,
-                            Title = "OOP in Different Languages",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 431, StepId = 104, Description = "Compare OOP in C#, Java, and Python" },
-                                new LearningObjective { Id = 432, StepId = 104, Description = "Understand language-specific OOP features" },
-                                new LearningObjective { Id = 433, StepId = 104, Description = "Learn prototype-based vs class-based OOP" },
-                                new LearningObjective { Id = 434, StepId = 104, Description = "Apply OOP patterns across languages" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 220, StepId = 104, Title = "OOP in Different Languages", Url = "https://www.geeksforgeeks.org/comparison-of-object-oriented-programming-languages/", Type = "article" },
-                                new Resource { Id = 221, StepId = 104, Title = "JavaScript OOP vs Classical OOP", Url = "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object-oriented_programming", Type = "article" },
-                                new Resource { Id = 222, StepId = 104, Title = "Python OOP Tutorial", Url = "https://realpython.com/python3-object-oriented-programming/", Type = "article" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 105,
-                            RoadmapId = 12,
-                            Title = "OOP Best Practices and Anti-patterns",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 435, StepId = 105, Description = "Identify and avoid common OOP anti-patterns" },
-                                new LearningObjective { Id = 436, StepId = 105, Description = "Apply OOP best practices" },
-                                new LearningObjective { Id = 437, StepId = 105, Description = "Refactor code to improve OOP design" },
-                                new LearningObjective { Id = 438, StepId = 105, Description = "Balance OOP with functional programming" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 223, StepId = 105, Title = "OOP Anti-patterns", Url = "https://sourcemaking.com/antipatterns", Type = "website" },
-                                new Resource { Id = 224, StepId = 105, Title = "Refactoring: Improving the Design of Existing Code", Url = "https://martinfowler.com/books/refactoring.html", Type = "book" },
-                                new Resource { Id = 225, StepId = 105, Title = "OOP Best Practices", Url = "https://www.educative.io/blog/object-oriented-programming-best-practices", Type = "article" }
-                            }
-                        }
-                    }
-                },
-                
-                // SOLID Principles
-                new Roadmap
-                {
-                    Id = 13,
-                    Title = "SOLID Principles",
-                    Description = "Master SOLID principles for creating maintainable and scalable code",
-                    Icon = "📐",
-                    Category = CategoryConstants.WebDevelopment,
-                    Duration = "2-3 months",
-                    Difficulty = "Intermediate to Advanced",
-                    Steps = new List<RoadmapStep>
-                    {
-                        new RoadmapStep
-                        {
-                            Id = 82,
-                            RoadmapId = 13,
-                            Title = "Single Responsibility Principle",
-                            Duration = "2 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 343, StepId = 82, Description = "Understand SRP concept and benefits" },
-                                new LearningObjective { Id = 344, StepId = 82, Description = "Identify SRP violations in code" },
-                                new LearningObjective { Id = 345, StepId = 82, Description = "Refactor code to follow SRP" },
-                                new LearningObjective { Id = 346, StepId = 82, Description = "Apply SRP in real projects" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 226, StepId = 82, Title = "Single Responsibility Principle Explained", Url = "https://www.digitalocean.com/community/conceptual_articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design#single-responsibility-principle", Type = "article" },
-                                new Resource { Id = 227, StepId = 82, Title = "SRP in Practice", Url = "https://www.youtube.com/watch?v=AEnePs2Evg0", Type = "video" },
-                                new Resource { Id = 228, StepId = 82, Title = "Clean Code Chapter 10: Classes", Url = "https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882", Type = "book" },
-                                new Resource { Id = 229, StepId = 82, Title = "SRP Code Examples", Url = "https://github.com/mikeknep/SOLID", Type = "website" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 83,
-                            RoadmapId = 13,
-                            Title = "Open/Closed Principle",
-                            Duration = "2 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 347, StepId = 83, Description = "Master OCP fundamentals" },
-                                new LearningObjective { Id = 348, StepId = 83, Description = "Use abstraction and inheritance for OCP" },
-                                new LearningObjective { Id = 349, StepId = 83, Description = "Apply strategy pattern for extensibility" },
-                                new LearningObjective { Id = 350, StepId = 83, Description = "Design extensible systems" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 230, StepId = 83, Title = "Open/Closed Principle in Depth", Url = "https://stackify.com/solid-design-open-closed-principle/", Type = "article" },
-                                new Resource { Id = 231, StepId = 83, Title = "OCP and Strategy Pattern", Url = "https://www.youtube.com/watch?v=-xMaMREgkm4", Type = "video" },
-                                new Resource { Id = 232, StepId = 83, Title = "Agile Software Development, Principles, Patterns, and Practices", Url = "https://www.amazon.com/Software-Development-Principles-Patterns-Practices/dp/0135974445", Type = "book" },
-                                new Resource { Id = 233, StepId = 83, Title = "OCP Examples and Exercises", Url = "https://www.baeldung.com/solid-principles#o", Type = "article" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 84,
-                            RoadmapId = 13,
-                            Title = "Liskov Substitution & Interface Segregation",
-                            Duration = "2 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 351, StepId = 84, Description = "Understand LSP and its importance" },
-                                new LearningObjective { Id = 352, StepId = 84, Description = "Design proper inheritance hierarchies" },
-                                new LearningObjective { Id = 353, StepId = 84, Description = "Master ISP and interface design" },
-                                new LearningObjective { Id = 354, StepId = 84, Description = "Create focused interfaces" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 234, StepId = 84, Title = "Liskov Substitution Principle Explained", Url = "https://www.tomdalling.com/blog/software-design/solid-class-design-the-liskov-substitution-principle/", Type = "article" },
-                                new Resource { Id = 235, StepId = 84, Title = "Interface Segregation Principle", Url = "https://www.youtube.com/watch?v=JVWZR23B_iE", Type = "video" },
-                                new Resource { Id = 236, StepId = 84, Title = "LSP and ISP in Practice", Url = "https://www.pluralsight.com/courses/principles-oo-design", Type = "course" },
-                                new Resource { Id = 237, StepId = 84, Title = "SOLID Principles Interactive Examples", Url = "https://www.codeproject.com/Articles/1210833/SOLID-Principles-with-Csharp-NET-Core", Type = "article" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 85,
-                            RoadmapId = 13,
-                            Title = "Dependency Inversion Principle",
-                            Duration = "2 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 355, StepId = 85, Description = "Master DIP concepts" },
-                                new LearningObjective { Id = 356, StepId = 85, Description = "Implement dependency injection" },
-                                new LearningObjective { Id = 357, StepId = 85, Description = "Use IoC containers effectively" },
-                                new LearningObjective { Id = 358, StepId = 85, Description = "Design loosely coupled systems" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 238, StepId = 85, Title = "Dependency Inversion Principle", Url = "https://www.tutorialsteacher.com/ioc/dependency-inversion-principle", Type = "article" },
-                                new Resource { Id = 239, StepId = 85, Title = "DI and IoC Explained", Url = "https://www.youtube.com/watch?v=EPv9-cHEmQw", Type = "video" },
-                                new Resource { Id = 240, StepId = 85, Title = "Dependency Injection in .NET", Url = "https://docs.microsoft.com/en-us/dotnet/core/extensions/dependency-injection", Type = "documentation" },
-                                new Resource { Id = 241, StepId = 85, Title = "IoC Container Comparison", Url = "https://www.claudiobernasconi.ch/2019/01/24/the-ultimate-list-of-net-dependency-injection-frameworks/", Type = "article" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 106,
-                            RoadmapId = 13,
-                            Title = "SOLID in Practice",
-                            Duration = "3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 439, StepId = 106, Description = "Apply all SOLID principles together" },
-                                new LearningObjective { Id = 440, StepId = 106, Description = "Refactor legacy code using SOLID" },
-                                new LearningObjective { Id = 441, StepId = 106, Description = "Design new systems with SOLID in mind" },
-                                new LearningObjective { Id = 442, StepId = 106, Description = "Balance SOLID with pragmatism" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 242, StepId = 106, Title = "SOLID Principles Applied", Url = "https://www.pluralsight.com/courses/csharp-solid-principles", Type = "course" },
-                                new Resource { Id = 243, StepId = 106, Title = "Refactoring to SOLID Code", Url = "https://github.com/ardalis/SolidSample", Type = "website" },
-                                new Resource { Id = 244, StepId = 106, Title = "SOLID Case Studies", Url = "https://www.codeproject.com/Articles/1244275/SOLID-Principles-in-Csharp-Single-Responsibility", Type = "article" },
-                                new Resource { Id = 245, StepId = 106, Title = "Working Effectively with Legacy Code", Url = "https://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052", Type = "book" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 107,
-                            RoadmapId = 13,
-                            Title = "SOLID and Modern Architectures",
-                            Duration = "2 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 443, StepId = 107, Description = "Apply SOLID in microservices" },
-                                new LearningObjective { Id = 444, StepId = 107, Description = "Use SOLID with Domain-Driven Design" },
-                                new LearningObjective { Id = 445, StepId = 107, Description = "Implement SOLID in serverless architectures" },
-                                new LearningObjective { Id = 446, StepId = 107, Description = "Balance SOLID with functional programming" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 246, StepId = 107, Title = "SOLID in Microservices", Url = "https://www.infoq.com/articles/solid-principles-microservices/", Type = "article" },
-                                new Resource { Id = 247, StepId = 107, Title = "Clean Architecture", Url = "https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html", Type = "article" },
-                                new Resource { Id = 248, StepId = 107, Title = "SOLID and DDD", Url = "https://www.youtube.com/watch?v=dnUFEg68ESM", Type = "video" },
-                                new Resource { Id = 249, StepId = 107, Title = "Functional and Object-Oriented Programming", Url = "https://www.manning.com/books/functional-programming-in-c-sharp-second-edition", Type = "book" }
-                            }
-                        }
-                    }
-                },
-                
-                // Design Patterns
-                new Roadmap
-                {
-                    Id = 14,
-                    Title = "Design Patterns",
-                    Description = "Learn essential design patterns for solving common programming problems",
-                    Icon = "🎯",
-                    Category = CategoryConstants.WebDevelopment,
-                    Duration = "4-5 months",
-                    Difficulty = "Advanced",
-                    Steps = new List<RoadmapStep>
-                    {
-                        new RoadmapStep
-                        {
-                            Id = 86,
-                            RoadmapId = 14,
-                            Title = "Creational Patterns",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 359, StepId = 86, Description = "Master Singleton and Factory patterns" },
-                                new LearningObjective { Id = 360, StepId = 86, Description = "Learn Abstract Factory and Builder" },
-                                new LearningObjective { Id = 361, StepId = 86, Description = "Understand Prototype pattern" },
-                                new LearningObjective { Id = 362, StepId = 86, Description = "Apply patterns in real scenarios" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 250, StepId = 86, Title = "Creational Design Patterns", Url = "https://refactoring.guru/design-patterns/creational-patterns", Type = "website" },
-                                new Resource { Id = 251, StepId = 86, Title = "Factory Pattern Explained", Url = "https://www.youtube.com/watch?v=EcFVTgRHJLM", Type = "video" },
-                                new Resource { Id = 252, StepId = 86, Title = "Design Patterns: Elements of Reusable Object-Oriented Software", Url = "https://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612", Type = "book" },
-                                new Resource { Id = 253, StepId = 86, Title = "Interactive Design Patterns", Url = "https://www.patterns.dev/", Type = "interactive" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 87,
-                            RoadmapId = 14,
-                            Title = "Structural Patterns",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 363, StepId = 87, Description = "Master Adapter and Bridge patterns" },
-                                new LearningObjective { Id = 364, StepId = 87, Description = "Learn Composite and Decorator" },
-                                new LearningObjective { Id = 365, StepId = 87, Description = "Understand Facade and Proxy" },
-                                new LearningObjective { Id = 366, StepId = 87, Description = "Apply Flyweight pattern" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 254, StepId = 87, Title = "Structural Design Patterns", Url = "https://refactoring.guru/design-patterns/structural-patterns", Type = "website" },
-                                new Resource { Id = 255, StepId = 87, Title = "Decorator Pattern Tutorial", Url = "https://www.youtube.com/watch?v=GCraGHx6gso", Type = "video" },
-                                new Resource { Id = 256, StepId = 87, Title = "Head First Design Patterns", Url = "https://www.oreilly.com/library/view/head-first-design/0596007124/", Type = "book" },
-                                new Resource { Id = 257, StepId = 87, Title = "Structural Patterns in C#", Url = "https://www.dofactory.com/net/design-patterns#structural", Type = "website" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 88,
-                            RoadmapId = 14,
-                            Title = "Behavioral Patterns",
-                            Duration = "4-5 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 367, StepId = 88, Description = "Master Observer and Strategy patterns" },
-                                new LearningObjective { Id = 368, StepId = 88, Description = "Learn Command and Iterator" },
-                                new LearningObjective { Id = 369, StepId = 88, Description = "Understand Template Method and Visitor" },
-                                new LearningObjective { Id = 370, StepId = 88, Description = "Apply Chain of Responsibility" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 258, StepId = 88, Title = "Behavioral Design Patterns", Url = "https://refactoring.guru/design-patterns/behavioral-patterns", Type = "website" },
-                                new Resource { Id = 259, StepId = 88, Title = "Observer Pattern Explained", Url = "https://www.youtube.com/watch?v=_BpmfnqjgzQ", Type = "video" },
-                                new Resource { Id = 260, StepId = 88, Title = "Game Programming Patterns", Url = "https://gameprogrammingpatterns.com/", Type = "book" },
-                                new Resource { Id = 261, StepId = 88, Title = "Strategy Pattern in Practice", Url = "https://www.baeldung.com/java-strategy-pattern", Type = "article" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 108,
-                            RoadmapId = 14,
-                            Title = "Modern Patterns and Anti-patterns",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 447, StepId = 108, Description = "Learn MVC, MVP, and MVVM patterns" },
-                                new LearningObjective { Id = 448, StepId = 108, Description = "Understand Repository and Unit of Work" },
-                                new LearningObjective { Id = 449, StepId = 108, Description = "Identify and avoid anti-patterns" },
-                                new LearningObjective { Id = 450, StepId = 108, Description = "Apply patterns in modern frameworks" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 262, StepId = 108, Title = "MVC, MVP, MVVM Comparison", Url = "https://www.raywenderlich.com/34-design-patterns-by-tutorials-mvvm", Type = "article" },
-                                new Resource { Id = 263, StepId = 108, Title = "Repository Pattern", Url = "https://www.youtube.com/watch?v=rtXpYpZdOzM", Type = "video" },
-                                new Resource { Id = 264, StepId = 108, Title = "AntiPatterns", Url = "https://sourcemaking.com/antipatterns", Type = "website" },
-                                new Resource { Id = 265, StepId = 108, Title = "Patterns of Enterprise Application Architecture", Url = "https://www.amazon.com/Patterns-Enterprise-Application-Architecture-Martin/dp/0321127420", Type = "book" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 109,
-                            RoadmapId = 14,
-                            Title = "Concurrent and Parallel Patterns",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 451, StepId = 109, Description = "Master Producer-Consumer pattern" },
-                                new LearningObjective { Id = 452, StepId = 109, Description = "Learn Thread Pool and Future patterns" },
-                                new LearningObjective { Id = 453, StepId = 109, Description = "Understand Actor model" },
-                                new LearningObjective { Id = 454, StepId = 109, Description = "Apply async patterns effectively" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 266, StepId = 109, Title = "Concurrent Programming Patterns", Url = "https://www.dre.vanderbilt.edu/~schmidt/PDF/POSA2-concurrency-patterns.pdf", Type = "article" },
-                                new Resource { Id = 267, StepId = 109, Title = "Async/Await Pattern", Url = "https://docs.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/", Type = "documentation" },
-                                new Resource { Id = 268, StepId = 109, Title = "Java Concurrency in Practice", Url = "https://www.amazon.com/Java-Concurrency-Practice-Brian-Goetz/dp/0321349601", Type = "book" },
-                                new Resource { Id = 269, StepId = 109, Title = "Actor Model Explained", Url = "https://www.youtube.com/watch?v=ELwEdb_pD0k", Type = "video" }
-                            }
-                        },
                         new RoadmapStep
                         {
                             Id = 110,
-                            RoadmapId = 14,
-                            Title = "Architectural Patterns",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
+                            RoadmapId = 11,
+                            Title = "C# Basics",
+                            Duration = "3 weeks",
+                            Content = "Learn C# syntax and basic programming concepts",
+                            SubTopics = new List<SubTopic>
                             {
-                                new LearningObjective { Id = 455, StepId = 110, Description = "Master Layered and Hexagonal architectures" },
-                                new LearningObjective { Id = 456, StepId = 110, Description = "Learn Event-Driven and CQRS patterns" },
-                                new LearningObjective { Id = 457, StepId = 110, Description = "Understand Microservices patterns" },
-                                new LearningObjective { Id = 458, StepId = 110, Description = "Apply Domain-Driven Design patterns" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 270, StepId = 110, Title = "Software Architecture Patterns", Url = "https://www.oreilly.com/content/software-architecture-patterns/", Type = "article" },
-                                new Resource { Id = 271, StepId = 110, Title = "CQRS Pattern", Url = "https://martinfowler.com/bliki/CQRS.html", Type = "article" },
-                                new Resource { Id = 272, StepId = 110, Title = "Microservices Patterns", Url = "https://microservices.io/patterns/", Type = "website" },
-                                new Resource { Id = 273, StepId = 110, Title = "Domain-Driven Design", Url = "https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215", Type = "book" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 111,
-                            RoadmapId = 14,
-                            Title = "Patterns in Practice",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 459, StepId = 111, Description = "Combine multiple patterns effectively" },
-                                new LearningObjective { Id = 460, StepId = 111, Description = "Refactor existing code using patterns" },
-                                new LearningObjective { Id = 461, StepId = 111, Description = "Know when NOT to use patterns" },
-                                new LearningObjective { Id = 462, StepId = 111, Description = "Document patterns in your codebase" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 274, StepId = 111, Title = "Design Patterns in the Real World", Url = "https://www.pluralsight.com/courses/design-patterns-on-ramp", Type = "course" },
-                                new Resource { Id = 275, StepId = 111, Title = "Refactoring to Patterns", Url = "https://www.amazon.com/Refactoring-Patterns-Joshua-Kerievsky/dp/0321213351", Type = "book" },
-                                new Resource { Id = 276, StepId = 111, Title = "Pattern-Oriented Software Architecture", Url = "https://www.amazon.com/Pattern-Oriented-Software-Architecture-System-Patterns/dp/0471958697", Type = "book" },
-                                new Resource { Id = 277, StepId = 111, Title = "Real World Design Patterns", Url = "https://github.com/kamranahmedse/design-patterns-for-humans", Type = "website" }
+                                new SubTopic
+                                {
+                                    Id = 1101,
+                                    StepId = 110,
+                                    Title = "C# Fundamentals",
+                                    Description = "Master the core building blocks of C# programming language",
+                                    Content = "C# is a modern, object-oriented programming language developed by Microsoft as part of the .NET framework. Understanding C# fundamentals is essential for building robust applications. This comprehensive guide covers variables, data types, control flow, methods, and object-oriented programming concepts that form the foundation of C# development.",
+                                    KeyPoints = new List<string> 
+                                    { 
+                                        "Variables and Data Types", 
+                                        "Control Flow Statements", 
+                                        "Methods and Parameters", 
+                                        "Object-Oriented Programming", 
+                                        "Exception Handling",
+                                        "Collections and Arrays",
+                                        "String Manipulation",
+                                        "LINQ Basics"
+                                    },
+                                    CodeExample = @"// C# Fundamentals Examples
+
+// 1. Variables and Data Types
+int age = 25;
+double salary = 75000.50;
+string name = ""John Doe"";
+bool isActive = true;
+char grade = 'A';
+
+// Nullable types
+int? nullableAge = null;
+
+// 2. Control Flow
+if (age >= 18)
+{
+    Console.WriteLine(""Adult"");
+}
+else
+{
+    Console.WriteLine(""Minor"");
+}
+
+// Switch expression (C# 8.0+)
+string category = age switch
+{
+    &lt; 13 => ""Child"",
+    &lt; 18 => ""Teenager"",
+    _ => ""Adult""
+};
+
+// Loops
+for (int i = 0; i &lt; 5; i++)
+{
+    Console.WriteLine($""Number: {i}"");
+}
+
+// 3. Methods
+public static int CalculateSum(int a, int b)
+{
+    return a + b;
+}
+
+// Method with optional parameters
+public static void PrintInfo(string name, int age = 0, bool showAge = true)
+{
+    Console.WriteLine(showAge ? $""Name: {name}, Age: {age}"" : $""Name: {name}"");
+}
+
+// 4. Object-Oriented Programming
+public class Person
+{
+    // Properties
+    public string Name { get; set; }
+    public int Age { get; private set; }
+    
+    // Constructor
+    public Person(string name, int age)
+    {
+        Name = name;
+        Age = age;
+    }
+    
+    // Method
+    public void Introduce()
+    {
+        Console.WriteLine($""Hello, I'm {Name} and I'm {Age} years old."");
+    }
+}
+
+// 5. Exception Handling
+try
+{
+    int result = 10 / 0;
+}
+catch (DivideByZeroException ex)
+{
+    Console.WriteLine($""Error: {ex.Message}"");
+}
+finally
+{
+    Console.WriteLine(""Cleanup code here"");
+}
+
+// 6. Collections
+List<string> names = new List<string> { ""Alice"", ""Bob"", ""Charlie"" };
+Dictionary<string, int> ages = new Dictionary<string, int>
+{
+    [""Alice""] = 25,
+    [""Bob""] = 30
+};
+
+// 7. LINQ Examples
+var adults = names.Where(name => ages.GetValueOrDefault(name, 0) >= 18).ToList();
+var totalAge = ages.Values.Sum();
+
+// 8. String Manipulation
+string text = ""Hello, World!"";
+string upper = text.ToUpper();
+string substring = text.Substring(0, 5);
+bool contains = text.Contains(""World"");
+string formatted = $""Welcome, {name}!"";
+
+// String interpolation with formatting
+string price = $""Price: {salary:C}""; // Currency format
+string percentage = $""Rate: {0.85:P}""; // Percentage format"
+                                }
                             }
                         }
                     }
                 },
-                
-                // SQL & Databases
-                new Roadmap
-                {
-                    Id = 15,
-                    Title = "SQL & Database Development",
-                    Description = "Master SQL and database design for efficient data management",
-                    Icon = "🗄️",
-                    Category = CategoryConstants.WebDevelopment,
-                    Duration = "3-4 months",
-                    Difficulty = "Beginner to Advanced",
-                    Steps = new List<RoadmapStep>
-                    {
-                        new RoadmapStep
-                        {
-                            Id = 89,
-                            RoadmapId = 15,
-                            Title = "SQL Fundamentals",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 371, StepId = 89, Description = "Master SELECT, INSERT, UPDATE, DELETE" },
-                                new LearningObjective { Id = 372, StepId = 89, Description = "Learn JOINs and subqueries" },
-                                new LearningObjective { Id = 373, StepId = 89, Description = "Understand GROUP BY and aggregations" },
-                                new LearningObjective { Id = 374, StepId = 89, Description = "Work with functions and expressions" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 90,
-                            RoadmapId = 15,
-                            Title = "Database Design",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 375, StepId = 90, Description = "Master normalization (1NF to BCNF)" },
-                                new LearningObjective { Id = 376, StepId = 90, Description = "Design ER diagrams and schemas" },
-                                new LearningObjective { Id = 377, StepId = 90, Description = "Implement primary and foreign keys" },
-                                new LearningObjective { Id = 378, StepId = 90, Description = "Apply indexes and constraints" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 91,
-                            RoadmapId = 15,
-                            Title = "Advanced SQL & Performance",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 379, StepId = 91, Description = "Master stored procedures and functions" },
-                                new LearningObjective { Id = 380, StepId = 91, Description = "Optimize queries and execution plans" },
-                                new LearningObjective { Id = 381, StepId = 91, Description = "Implement transactions and ACID" },
-                                new LearningObjective { Id = 382, StepId = 91, Description = "Use CTEs and window functions" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 92,
-                            RoadmapId = 15,
-                            Title = "NoSQL & Modern Databases",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 383, StepId = 92, Description = "Understand NoSQL concepts" },
-                                new LearningObjective { Id = 384, StepId = 92, Description = "Work with MongoDB and document stores" },
-                                new LearningObjective { Id = 385, StepId = 92, Description = "Learn Redis for caching" },
-                                new LearningObjective { Id = 386, StepId = 92, Description = "Choose the right database for your needs" }
-                            }
-                        }
-                    }
-                },
-                
-                // .NET Core
+
+                // .NET Core Developer
                 new Roadmap
                 {
                     Id = 16,
                     Title = ".NET Core Developer",
-                    Description = "Build modern cross-platform applications with .NET Core/.NET 6+",
+                    Description = "Build modern applications with .NET Core and ASP.NET Core",
                     Icon = "⚡",
                     Category = CategoryConstants.WebDevelopment,
-                    Duration = "4-6 months",
+                    Duration = "5-7 months",
                     Difficulty = "Intermediate to Advanced",
+                    ActionName = "NETCoreDeveloper",
+                    ControllerName = "WebDevelopment",
+                    Context = ".NET Core is a cross-platform, high-performance framework for building modern applications.",
+                    Prerequisites = new List<string>
+                    {
+                        "C# programming knowledge",
+                        "Basic web development concepts"
+                    },
+                    CareerPaths = new List<string>
+                    {
+                        ".NET Developer ($65K-$125K)",
+                        "Full Stack Developer ($80K-$150K)",
+                        "Solutions Architect ($120K-$180K)"
+                    },
                     Steps = new List<RoadmapStep>
                     {
                         new RoadmapStep
@@ -2360,1692 +358,3766 @@ namespace DevTutorialWebApp.Services
                             RoadmapId = 16,
                             Title = ".NET Core Fundamentals",
                             Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
+                            Content = "Understanding .NET Core architecture and basics",
+                            SubTopics = new List<SubTopic>
                             {
-                                new LearningObjective { Id = 387, StepId = 93, Description = "Understand .NET Core architecture" },
-                                new LearningObjective { Id = 388, StepId = 93, Description = "Master CLI tools and project structure" },
-                                new LearningObjective { Id = 389, StepId = 93, Description = "Learn dependency injection in .NET Core" },
-                                new LearningObjective { Id = 390, StepId = 93, Description = "Work with configuration and environments" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 94,
-                            RoadmapId = 16,
-                            Title = "ASP.NET Core Web Development",
-                            Duration = "4-5 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 391, StepId = 94, Description = "Build MVC applications" },
-                                new LearningObjective { Id = 392, StepId = 94, Description = "Create RESTful Web APIs" },
-                                new LearningObjective { Id = 393, StepId = 94, Description = "Implement authentication and authorization" },
-                                new LearningObjective { Id = 394, StepId = 94, Description = "Master middleware and filters" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 95,
-                            RoadmapId = 16,
-                            Title = "Entity Framework Core",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 395, StepId = 95, Description = "Master Code First and migrations" },
-                                new LearningObjective { Id = 396, StepId = 95, Description = "Implement repository pattern" },
-                                new LearningObjective { Id = 397, StepId = 95, Description = "Optimize queries and performance" },
-                                new LearningObjective { Id = 398, StepId = 95, Description = "Handle relationships and complex mappings" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 96,
-                            RoadmapId = 16,
-                            Title = "Microservices & Cloud-Ready Apps",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 399, StepId = 96, Description = "Build microservices architecture" },
-                                new LearningObjective { Id = 400, StepId = 96, Description = "Implement gRPC and message queues" },
-                                new LearningObjective { Id = 401, StepId = 96, Description = "Containerize with Docker" },
-                                new LearningObjective { Id = 402, StepId = 96, Description = "Deploy to cloud platforms" }
+                                new SubTopic
+                                {
+                                    Id = 931,
+                                    StepId = 93,
+                                    Title = ".NET Core Architecture",
+                                    Description = "Understanding the modular architecture of .NET Core",
+                                    Content = ".NET Core is a cross-platform framework",
+                                    KeyPoints = new List<string> { "Cross-platform", "Modular", "High performance" },
+                                    CodeExample = "// .NET Core example"
+                                }
                             }
                         }
                     }
                 },
-                
-                // Git & Version Control
+
+                // SQL & Database
                 new Roadmap
                 {
-                    Id = 25,
-                    Title = "Git & Version Control",
-                    Description = "Master version control systems and collaborative development workflows",
-                    Icon = "🌿",
+                    Id = 15,
+                    Title = "SQL & Database Developer",
+                    Description = "Master database design, SQL queries, and optimization",
+                    Icon = "🗄️",
                     Category = CategoryConstants.WebDevelopment,
-                    Duration = "2-3 months",
-                    Difficulty = "Beginner to Advanced",
-                    Steps = new List<RoadmapStep>
-                    {
-                        new RoadmapStep
-                        {
-                            Id = 166,
-                            RoadmapId = 25,
-                            Title = "Git Fundamentals",
-                            Duration = "1-2 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 679, StepId = 166, Description = "Understand version control concepts and Git architecture" },
-                                new LearningObjective { Id = 680, StepId = 166, Description = "Master basic Git commands: init, add, commit, status, log" },
-                                new LearningObjective { Id = 681, StepId = 166, Description = "Configure Git settings and understand .gitignore" },
-                                new LearningObjective { Id = 682, StepId = 166, Description = "Work with remote repositories: clone, push, pull, fetch" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 494, StepId = 166, Title = "Pro Git Book", Url = "https://git-scm.com/book", Type = "book" },
-                                new Resource { Id = 495, StepId = 166, Title = "Git Tutorial by Atlassian", Url = "https://www.atlassian.com/git/tutorials", Type = "tutorial" },
-                                new Resource { Id = 496, StepId = 166, Title = "Learn Git Branching", Url = "https://learngitbranching.js.org/", Type = "interactive" },
-                                new Resource { Id = 497, StepId = 166, Title = "GitHub Skills", Url = "https://skills.github.com/", Type = "course" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 167,
-                            RoadmapId = 25,
-                            Title = "Branching and Merging Strategies",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 683, StepId = 167, Description = "Master branching commands: branch, checkout, merge" },
-                                new LearningObjective { Id = 684, StepId = 167, Description = "Understand different branching strategies: Git Flow, GitHub Flow, GitLab Flow" },
-                                new LearningObjective { Id = 685, StepId = 167, Description = "Resolve merge conflicts effectively" },
-                                new LearningObjective { Id = 686, StepId = 167, Description = "Learn rebasing vs merging and when to use each" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 498, StepId = 167, Title = "Git Branching Strategies", Url = "https://www.flagship.io/git-branching-strategies/", Type = "article" },
-                                new Resource { Id = 499, StepId = 167, Title = "Understanding Git Flow", Url = "https://www.youtube.com/watch?v=1SXpE08hvGs", Type = "video" },
-                                new Resource { Id = 500, StepId = 167, Title = "Merge vs Rebase", Url = "https://www.atlassian.com/git/tutorials/merging-vs-rebasing", Type = "article" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 168,
-                            RoadmapId = 25,
-                            Title = "Collaborative Development Workflows",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 687, StepId = 168, Description = "Master pull requests and code review processes" },
-                                new LearningObjective { Id = 688, StepId = 168, Description = "Understand forking workflow and contributing to open source" },
-                                new LearningObjective { Id = 689, StepId = 168, Description = "Work with issues, project boards, and milestones" },
-                                new LearningObjective { Id = 690, StepId = 168, Description = "Implement continuous integration with Git hooks" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 501, StepId = 168, Title = "GitHub Guides", Url = "https://guides.github.com/", Type = "documentation" },
-                                new Resource { Id = 502, StepId = 168, Title = "Contributing to Open Source", Url = "https://opensource.guide/how-to-contribute/", Type = "guide" },
-                                new Resource { Id = 503, StepId = 168, Title = "Code Review Best Practices", Url = "https://github.blog/2015-01-21-how-to-write-the-perfect-pull-request/", Type = "article" },
-                                new Resource { Id = 504, StepId = 168, Title = "Git Hooks Tutorial", Url = "https://www.atlassian.com/git/tutorials/git-hooks", Type = "tutorial" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 169,
-                            RoadmapId = 25,
-                            Title = "Advanced Git Techniques",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 691, StepId = 169, Description = "Master interactive rebase and history rewriting" },
-                                new LearningObjective { Id = 692, StepId = 169, Description = "Use cherry-pick, stash, and reflog effectively" },
-                                new LearningObjective { Id = 693, StepId = 169, Description = "Understand Git internals: objects, refs, and packfiles" },
-                                new LearningObjective { Id = 694, StepId = 169, Description = "Debug with bisect and blame" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 505, StepId = 169, Title = "Git Internals", Url = "https://git-scm.com/book/en/v2/Git-Internals-Plumbing-and-Porcelain", Type = "book" },
-                                new Resource { Id = 506, StepId = 169, Title = "Advanced Git Tutorial", Url = "https://www.youtube.com/watch?v=qsTthZi23VE", Type = "video" },
-                                new Resource { Id = 507, StepId = 169, Title = "Git Tips and Tricks", Url = "https://github.com/git-tips/tips", Type = "repository" },
-                                new Resource { Id = 508, StepId = 169, Title = "Interactive Rebase Guide", Url = "https://thoughtbot.com/blog/git-interactive-rebase-squash-amend-rewriting-history", Type = "article" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 170,
-                            RoadmapId = 25,
-                            Title = "Git Best Practices and Workflows",
-                            Duration = "1-2 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 695, StepId = 170, Description = "Write effective commit messages and maintain clean history" },
-                                new LearningObjective { Id = 696, StepId = 170, Description = "Implement semantic versioning and release management" },
-                                new LearningObjective { Id = 697, StepId = 170, Description = "Set up Git aliases and productivity tools" },
-                                new LearningObjective { Id = 698, StepId = 170, Description = "Handle large files with Git LFS" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 509, StepId = 170, Title = "Conventional Commits", Url = "https://www.conventionalcommits.org/", Type = "specification" },
-                                new Resource { Id = 510, StepId = 170, Title = "Git Best Practices", Url = "https://sethrobertson.github.io/GitBestPractices/", Type = "guide" },
-                                new Resource { Id = 511, StepId = 170, Title = "Git LFS Tutorial", Url = "https://www.atlassian.com/git/tutorials/git-lfs", Type = "tutorial" },
-                                new Resource { Id = 512, StepId = 170, Title = "Semantic Versioning", Url = "https://semver.org/", Type = "specification" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 171,
-                            RoadmapId = 25,
-                            Title = "Version Control for Teams",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 699, StepId = 171, Description = "Set up team workflows and branch protection rules" },
-                                new LearningObjective { Id = 700, StepId = 171, Description = "Implement CI/CD integration with version control" },
-                                new LearningObjective { Id = 701, StepId = 171, Description = "Manage mono-repos vs multi-repos strategies" },
-                                new LearningObjective { Id = 702, StepId = 171, Description = "Handle security and access control" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 513, StepId = 171, Title = "GitHub Actions", Url = "https://docs.github.com/en/actions", Type = "documentation" },
-                                new Resource { Id = 514, StepId = 171, Title = "GitLab CI/CD", Url = "https://docs.gitlab.com/ee/ci/", Type = "documentation" },
-                                new Resource { Id = 515, StepId = 171, Title = "Monorepo vs Polyrepo", Url = "https://www.toptal.com/front-end/guide-to-monorepos", Type = "article" },
-                                new Resource { Id = 516, StepId = 171, Title = "Git Security Best Practices", Url = "https://owasp.org/www-community/Source_Code_Analysis_Tools", Type = "guide" }
-                            }
-                        }
-                    }
-                },
-                
-                // Azure
-                new Roadmap
-                {
-                    Id = 17,
-                    Title = "Azure Cloud Developer",
-                    Description = "Master Microsoft Azure for building scalable cloud solutions",
-                    Icon = "☁️",
-                    Category = CategoryConstants.DevOps,
-                    Duration = "5-6 months",
-                    Difficulty = "Intermediate to Advanced",
-                    Steps = new List<RoadmapStep>
-                    {
-                        new RoadmapStep
-                        {
-                            Id = 97,
-                            RoadmapId = 17,
-                            Title = "Azure Fundamentals",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 403, StepId = 97, Description = "Understand Azure architecture and regions" },
-                                new LearningObjective { Id = 404, StepId = 97, Description = "Master Azure Portal and CLI" },
-                                new LearningObjective { Id = 405, StepId = 97, Description = "Learn resource groups and subscriptions" },
-                                new LearningObjective { Id = 406, StepId = 97, Description = "Implement Azure Active Directory" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 98,
-                            RoadmapId = 17,
-                            Title = "Azure Compute Services",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 407, StepId = 98, Description = "Deploy and manage Virtual Machines" },
-                                new LearningObjective { Id = 408, StepId = 98, Description = "Master App Services and Web Apps" },
-                                new LearningObjective { Id = 409, StepId = 98, Description = "Implement Azure Functions" },
-                                new LearningObjective { Id = 410, StepId = 98, Description = "Use Container Instances and AKS" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 99,
-                            RoadmapId = 17,
-                            Title = "Azure Data Services",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 411, StepId = 99, Description = "Master Azure SQL Database" },
-                                new LearningObjective { Id = 412, StepId = 99, Description = "Implement Cosmos DB" },
-                                new LearningObjective { Id = 413, StepId = 99, Description = "Use Azure Storage services" },
-                                new LearningObjective { Id = 414, StepId = 99, Description = "Build data pipelines with Data Factory" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 100,
-                            RoadmapId = 17,
-                            Title = "Azure DevOps & Security",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 415, StepId = 100, Description = "Implement CI/CD with Azure DevOps" },
-                                new LearningObjective { Id = 416, StepId = 100, Description = "Master Azure Key Vault" },
-                                new LearningObjective { Id = 417, StepId = 100, Description = "Apply Azure Security Center" },
-                                new LearningObjective { Id = 418, StepId = 100, Description = "Monitor with Application Insights" }
-                            }
-                        }
-                    }
-                },
-                
-                // Algorithms & Data Structures
-                new Roadmap
-                {
-                    Id = 18,
-                    Title = "Algorithms & Data Structures",
-                    Description = "Master fundamental algorithms and data structures for efficient problem solving",
-                    Icon = "🔢",
-                    Category = CategoryConstants.ProgrammingFundamentals,
-                    Duration = "4-6 months",
-                    Difficulty = "Intermediate to Advanced",
-                    Steps = new List<RoadmapStep>
-                    {
-                        new RoadmapStep
-                        {
-                            Id = 112,
-                            RoadmapId = 18,
-                            Title = "Basic Data Structures",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 463, StepId = 112, Description = "Master arrays, linked lists, and strings" },
-                                new LearningObjective { Id = 464, StepId = 112, Description = "Implement stacks and queues" },
-                                new LearningObjective { Id = 465, StepId = 112, Description = "Understand hash tables and sets" },
-                                new LearningObjective { Id = 466, StepId = 112, Description = "Apply data structures to real problems" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 278, StepId = 112, Title = "Data Structures Visualization", Url = "https://visualgo.net/en", Type = "interactive" },
-                                new Resource { Id = 279, StepId = 112, Title = "Introduction to Algorithms", Url = "https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/", Type = "book" },
-                                new Resource { Id = 280, StepId = 112, Title = "Data Structures Course", Url = "https://www.coursera.org/learn/data-structures", Type = "course" },
-                                new Resource { Id = 281, StepId = 112, Title = "GeeksforGeeks Data Structures", Url = "https://www.geeksforgeeks.org/data-structures/", Type = "article" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 113,
-                            RoadmapId = 18,
-                            Title = "Trees and Graphs",
-                            Duration = "4-5 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 467, StepId = 113, Description = "Master binary trees and BSTs" },
-                                new LearningObjective { Id = 468, StepId = 113, Description = "Implement balanced trees (AVL, Red-Black)" },
-                                new LearningObjective { Id = 469, StepId = 113, Description = "Understand graph representations and traversals" },
-                                new LearningObjective { Id = 470, StepId = 113, Description = "Learn tries and segment trees" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 282, StepId = 113, Title = "Binary Tree Bootcamp", Url = "https://www.youtube.com/watch?v=fAAZixBzIAI", Type = "video" },
-                                new Resource { Id = 283, StepId = 113, Title = "Graph Theory Tutorial", Url = "https://www.hackerearth.com/practice/algorithms/graphs/", Type = "website" },
-                                new Resource { Id = 284, StepId = 113, Title = "Tree and Graph Algorithms", Url = "https://www.topcoder.com/thrive/articles/trees-and-graphs", Type = "article" },
-                                new Resource { Id = 285, StepId = 113, Title = "Interactive Graph Algorithms", Url = "https://www.cs.usfca.edu/~galles/visualization/Algorithms.html", Type = "interactive" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 114,
-                            RoadmapId = 18,
-                            Title = "Sorting and Searching",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 471, StepId = 114, Description = "Master comparison-based sorting algorithms" },
-                                new LearningObjective { Id = 472, StepId = 114, Description = "Learn non-comparison sorting (counting, radix)" },
-                                new LearningObjective { Id = 473, StepId = 114, Description = "Implement binary search variations" },
-                                new LearningObjective { Id = 474, StepId = 114, Description = "Understand algorithm complexity and stability" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 286, StepId = 114, Title = "Sorting Algorithms Visualized", Url = "https://www.toptal.com/developers/sorting-algorithms", Type = "interactive" },
-                                new Resource { Id = 287, StepId = 114, Title = "Binary Search Deep Dive", Url = "https://www.topcoder.com/thrive/articles/Binary%20Search", Type = "article" },
-                                new Resource { Id = 288, StepId = 114, Title = "Algorithms Part I", Url = "https://www.coursera.org/learn/algorithms-part1", Type = "course" },
-                                new Resource { Id = 289, StepId = 114, Title = "The Algorithm Design Manual", Url = "https://www.algorist.com/", Type = "book" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 115,
-                            RoadmapId = 18,
-                            Title = "Dynamic Programming",
-                            Duration = "4-5 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 475, StepId = 115, Description = "Understand memoization and tabulation" },
-                                new LearningObjective { Id = 476, StepId = 115, Description = "Solve classic DP problems" },
-                                new LearningObjective { Id = 477, StepId = 115, Description = "Master state space reduction" },
-                                new LearningObjective { Id = 478, StepId = 115, Description = "Apply DP to optimization problems" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 290, StepId = 115, Title = "Dynamic Programming Patterns", Url = "https://leetcode.com/discuss/study-guide/458695/dynamic-programming-patterns", Type = "article" },
-                                new Resource { Id = 291, StepId = 115, Title = "DP Video Series", Url = "https://www.youtube.com/playlist?list=PLVrpF4r7WIhTT1hJqZmjP10nxsmrbRvlf", Type = "video" },
-                                new Resource { Id = 292, StepId = 115, Title = "Competitive Programming 3", Url = "https://cpbook.net/", Type = "book" },
-                                new Resource { Id = 293, StepId = 115, Title = "DP Practice Problems", Url = "https://atcoder.jp/contests/dp/tasks", Type = "interactive" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 116,
-                            RoadmapId = 18,
-                            Title = "Graph Algorithms",
-                            Duration = "4-5 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 479, StepId = 116, Description = "Master shortest path algorithms (Dijkstra, Bellman-Ford)" },
-                                new LearningObjective { Id = 480, StepId = 116, Description = "Learn minimum spanning tree algorithms" },
-                                new LearningObjective { Id = 481, StepId = 116, Description = "Implement network flow algorithms" },
-                                new LearningObjective { Id = 482, StepId = 116, Description = "Understand topological sorting and SCCs" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 294, StepId = 116, Title = "Graph Algorithms Visualization", Url = "https://www.cs.usfca.edu/~galles/visualization/Dijkstra.html", Type = "interactive" },
-                                new Resource { Id = 295, StepId = 116, Title = "Network Flows", Url = "https://www.topcoder.com/thrive/articles/maximum-flow-section-1", Type = "article" },
-                                new Resource { Id = 296, StepId = 116, Title = "Algorithms on Graphs", Url = "https://www.coursera.org/learn/algorithms-graphs-data-structures", Type = "course" },
-                                new Resource { Id = 297, StepId = 116, Title = "CLRS Graph Algorithms", Url = "https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/", Type = "book" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 117,
-                            RoadmapId = 18,
-                            Title = "Advanced Data Structures",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 483, StepId = 117, Description = "Master heaps and priority queues" },
-                                new LearningObjective { Id = 484, StepId = 117, Description = "Implement disjoint set union (DSU)" },
-                                new LearningObjective { Id = 485, StepId = 117, Description = "Learn Fenwick trees and segment trees" },
-                                new LearningObjective { Id = 486, StepId = 117, Description = "Understand persistent data structures" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 298, StepId = 117, Title = "Advanced Data Structures", Url = "https://courses.csail.mit.edu/6.851/fall17/", Type = "course" },
-                                new Resource { Id = 299, StepId = 117, Title = "Fenwick Tree Tutorial", Url = "https://www.topcoder.com/thrive/articles/Binary%20Indexed%20Trees", Type = "article" },
-                                new Resource { Id = 300, StepId = 117, Title = "CP Algorithms", Url = "https://cp-algorithms.com/", Type = "website" },
-                                new Resource { Id = 301, StepId = 117, Title = "Data Structures for Competitive Programming", Url = "https://www.youtube.com/playlist?list=PLUl4u3cNGP63EdVPNLG3ToM6LaEUuStEY", Type = "video" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 118,
-                            RoadmapId = 18,
-                            Title = "String Algorithms",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 487, StepId = 118, Description = "Master pattern matching algorithms (KMP, Rabin-Karp)" },
-                                new LearningObjective { Id = 488, StepId = 118, Description = "Learn suffix arrays and suffix trees" },
-                                new LearningObjective { Id = 489, StepId = 118, Description = "Implement string hashing techniques" },
-                                new LearningObjective { Id = 490, StepId = 118, Description = "Solve advanced string problems" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 302, StepId = 118, Title = "String Algorithms", Url = "https://www.geeksforgeeks.org/string-data-structure/", Type = "article" },
-                                new Resource { Id = 303, StepId = 118, Title = "KMP Algorithm Explained", Url = "https://www.youtube.com/watch?v=V5-7GzOfADQ", Type = "video" },
-                                new Resource { Id = 304, StepId = 118, Title = "Suffix Arrays Tutorial", Url = "https://www.hackerrank.com/topics/suffix-array", Type = "article" },
-                                new Resource { Id = 305, StepId = 118, Title = "Algorithms on Strings", Url = "https://www.coursera.org/learn/algorithms-on-strings", Type = "course" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 119,
-                            RoadmapId = 18,
-                            Title = "Computational Geometry",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 491, StepId = 119, Description = "Understand geometric primitives" },
-                                new LearningObjective { Id = 492, StepId = 119, Description = "Implement convex hull algorithms" },
-                                new LearningObjective { Id = 493, StepId = 119, Description = "Learn line intersection and sweep line" },
-                                new LearningObjective { Id = 494, StepId = 119, Description = "Solve computational geometry problems" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 306, StepId = 119, Title = "Computational Geometry", Url = "https://www.cs.princeton.edu/~rs/AlgsDS07/", Type = "course" },
-                                new Resource { Id = 307, StepId = 119, Title = "Convex Hull Visualization", Url = "https://algorithmtutor.com/Computational-Geometry/Convex-Hull-Algorithms-Jarvis-s-March/", Type = "interactive" },
-                                new Resource { Id = 308, StepId = 119, Title = "Geometry for Competitive Programming", Url = "https://vlecomte.github.io/cp-geo.pdf", Type = "article" },
-                                new Resource { Id = 309, StepId = 119, Title = "Computational Geometry in C++", Url = "https://www.amazon.com/Computational-Geometry-Applications-Joseph-ORourke/dp/0521649765", Type = "book" }
-                            }
-                        }
-                    }
-                },
-                
-                // Problem Solving & Coding Interviews
-                new Roadmap
-                {
-                    Id = 19,
-                    Title = "Problem Solving & Coding Interviews",
-                    Description = "Master problem-solving techniques and ace technical interviews",
-                    Icon = "💡",
-                    Category = CategoryConstants.ProgrammingFundamentals,
                     Duration = "3-4 months",
-                    Difficulty = "Intermediate to Advanced",
-                    Steps = new List<RoadmapStep>
+                    Difficulty = "Beginner to Intermediate",
+                    ActionName = "SQLDatabaseDevelopment",
+                    ControllerName = "WebDevelopment",
+                    Context = "SQL is the standard language for managing and manipulating databases.",
+                    Prerequisites = new List<string>
                     {
-                        new RoadmapStep
-                        {
-                            Id = 120,
-                            RoadmapId = 19,
-                            Title = "Problem-Solving Fundamentals",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 495, StepId = 120, Description = "Master problem analysis and understanding" },
-                                new LearningObjective { Id = 496, StepId = 120, Description = "Learn to break down complex problems" },
-                                new LearningObjective { Id = 497, StepId = 120, Description = "Develop algorithmic thinking" },
-                                new LearningObjective { Id = 498, StepId = 120, Description = "Practice time and space complexity analysis" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 310, StepId = 120, Title = "How to Solve It", Url = "https://www.amazon.com/How-Solve-Mathematical-Princeton-Science/dp/069116407X", Type = "book" },
-                                new Resource { Id = 311, StepId = 120, Title = "Problem Solving Techniques", Url = "https://www.coursera.org/learn/algorithmic-thinking-1", Type = "course" },
-                                new Resource { Id = 312, StepId = 120, Title = "Big O Notation", Url = "https://www.youtube.com/watch?v=v4cd1O4zkGw", Type = "video" },
-                                new Resource { Id = 313, StepId = 120, Title = "Competitive Programming Handbook", Url = "https://cses.fi/book/book.pdf", Type = "book" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 121,
-                            RoadmapId = 19,
-                            Title = "Interview Problem Patterns",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 499, StepId = 121, Description = "Master two-pointer and sliding window" },
-                                new LearningObjective { Id = 500, StepId = 121, Description = "Learn fast and slow pointer patterns" },
-                                new LearningObjective { Id = 501, StepId = 121, Description = "Understand merge intervals pattern" },
-                                new LearningObjective { Id = 502, StepId = 121, Description = "Apply pattern recognition to new problems" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 314, StepId = 121, Title = "14 Patterns to Ace Any Coding Interview", Url = "https://hackernoon.com/14-patterns-to-ace-any-coding-interview-question-c5bb3357f6ed", Type = "article" },
-                                new Resource { Id = 315, StepId = 121, Title = "Grokking the Coding Interview", Url = "https://www.educative.io/courses/grokking-the-coding-interview", Type = "course" },
-                                new Resource { Id = 316, StepId = 121, Title = "LeetCode Patterns", Url = "https://github.com/seanprashad/leetcode-patterns", Type = "website" },
-                                new Resource { Id = 317, StepId = 121, Title = "Coding Interview Patterns", Url = "https://www.youtube.com/playlist?list=PLot-Xpze53leU0Ec0VkBhnf4npMRFiNcB", Type = "video" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 122,
-                            RoadmapId = 19,
-                            Title = "Data Structure Problems",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 503, StepId = 122, Description = "Solve array and string manipulation problems" },
-                                new LearningObjective { Id = 504, StepId = 122, Description = "Master linked list problems" },
-                                new LearningObjective { Id = 505, StepId = 122, Description = "Practice tree and graph problems" },
-                                new LearningObjective { Id = 506, StepId = 122, Description = "Tackle stack and queue challenges" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 318, StepId = 122, Title = "LeetCode Top Interview Questions", Url = "https://leetcode.com/problem-list/top-interview-questions/", Type = "interactive" },
-                                new Resource { Id = 319, StepId = 122, Title = "Cracking the Coding Interview", Url = "https://www.crackingthecodinginterview.com/", Type = "book" },
-                                new Resource { Id = 320, StepId = 122, Title = "Elements of Programming Interviews", Url = "https://elementsofprogramminginterviews.com/", Type = "book" },
-                                new Resource { Id = 321, StepId = 122, Title = "Data Structure Interview Questions", Url = "https://www.interviewbit.com/data-structure-interview-questions/", Type = "website" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 123,
-                            RoadmapId = 19,
-                            Title = "Algorithm Problems",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 507, StepId = 123, Description = "Solve sorting and searching problems" },
-                                new LearningObjective { Id = 508, StepId = 123, Description = "Master recursion and backtracking" },
-                                new LearningObjective { Id = 509, StepId = 123, Description = "Practice dynamic programming problems" },
-                                new LearningObjective { Id = 510, StepId = 123, Description = "Tackle greedy algorithm challenges" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 322, StepId = 123, Title = "Algorithm Interview Questions", Url = "https://www.techinterviewhandbook.org/algorithms/introduction/", Type = "article" },
-                                new Resource { Id = 323, StepId = 123, Title = "Back to Back SWE", Url = "https://backtobackswe.com/", Type = "video" },
-                                new Resource { Id = 324, StepId = 123, Title = "AlgoExpert", Url = "https://www.algoexpert.io/", Type = "interactive" },
-                                new Resource { Id = 325, StepId = 123, Title = "Daily Coding Problem", Url = "https://www.dailycodingproblem.com/", Type = "website" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 124,
-                            RoadmapId = 19,
-                            Title = "System Design Basics",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 511, StepId = 124, Description = "Understand scalability concepts" },
-                                new LearningObjective { Id = 512, StepId = 124, Description = "Learn about load balancing and caching" },
-                                new LearningObjective { Id = 513, StepId = 124, Description = "Master database design basics" },
-                                new LearningObjective { Id = 514, StepId = 124, Description = "Practice designing simple systems" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 326, StepId = 124, Title = "System Design Primer", Url = "https://github.com/donnemartin/system-design-primer", Type = "website" },
-                                new Resource { Id = 327, StepId = 124, Title = "Grokking the System Design Interview", Url = "https://www.educative.io/courses/grokking-the-system-design-interview", Type = "course" },
-                                new Resource { Id = 328, StepId = 124, Title = "System Design Interview", Url = "https://www.youtube.com/c/SystemDesignInterview", Type = "video" },
-                                new Resource { Id = 329, StepId = 124, Title = "Designing Data-Intensive Applications", Url = "https://dataintensive.net/", Type = "book" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 125,
-                            RoadmapId = 19,
-                            Title = "Behavioral Interview Preparation",
-                            Duration = "2 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 515, StepId = 125, Description = "Master the STAR method" },
-                                new LearningObjective { Id = 516, StepId = 125, Description = "Prepare compelling project stories" },
-                                new LearningObjective { Id = 517, StepId = 125, Description = "Practice common behavioral questions" },
-                                new LearningObjective { Id = 518, StepId = 125, Description = "Develop strong communication skills" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 330, StepId = 125, Title = "Behavioral Interview Guide", Url = "https://www.techinterviewhandbook.org/behavioral-interview/", Type = "article" },
-                                new Resource { Id = 331, StepId = 125, Title = "STAR Method Explained", Url = "https://www.youtube.com/watch?v=0nN7Q7DrI6Q", Type = "video" },
-                                new Resource { Id = 332, StepId = 125, Title = "Decode and Conquer", Url = "https://www.lewis-lin.com/decode-and-conquer", Type = "book" },
-                                new Resource { Id = 333, StepId = 125, Title = "Pramp - Mock Interviews", Url = "https://www.pramp.com/", Type = "interactive" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 126,
-                            RoadmapId = 19,
-                            Title = "Mock Interviews & Practice",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 519, StepId = 126, Description = "Complete timed coding challenges" },
-                                new LearningObjective { Id = 520, StepId = 126, Description = "Practice whiteboard coding" },
-                                new LearningObjective { Id = 521, StepId = 126, Description = "Do mock interviews with peers" },
-                                new LearningObjective { Id = 522, StepId = 126, Description = "Review and learn from mistakes" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 334, StepId = 126, Title = "Interviewing.io", Url = "https://interviewing.io/", Type = "interactive" },
-                                new Resource { Id = 335, StepId = 126, Title = "LeetCode Contests", Url = "https://leetcode.com/contest/", Type = "interactive" },
-                                new Resource { Id = 336, StepId = 126, Title = "CodeSignal", Url = "https://codesignal.com/", Type = "website" },
-                                new Resource { Id = 337, StepId = 126, Title = "Interview Cake", Url = "https://www.interviewcake.com/", Type = "course" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 127,
-                            RoadmapId = 19,
-                            Title = "Interview Day Strategy",
-                            Duration = "1 week",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 523, StepId = 127, Description = "Develop interview day routine" },
-                                new LearningObjective { Id = 524, StepId = 127, Description = "Master problem clarification techniques" },
-                                new LearningObjective { Id = 525, StepId = 127, Description = "Learn to think aloud effectively" },
-                                new LearningObjective { Id = 526, StepId = 127, Description = "Handle pressure and mistakes gracefully" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 338, StepId = 127, Title = "Interview Tips and Tricks", Url = "https://www.techinterviewhandbook.org/during-interview/", Type = "article" },
-                                new Resource { Id = 339, StepId = 127, Title = "How to Ace the Coding Interview", Url = "https://www.youtube.com/watch?v=SVvr3ZjtjI8", Type = "video" },
-                                new Resource { Id = 340, StepId = 127, Title = "Programming Interviews Exposed", Url = "https://www.wiley.com/en-us/Programming+Interviews+Exposed%3A+Coding+Your+Way+Through+the+Interview%2C+4th+Edition-p-9781119418474", Type = "book" },
-                                new Resource { Id = 341, StepId = 127, Title = "Interview Success Checklist", Url = "https://www.teamblind.com/post/Interview-Success-Checklist-4wY6Z8vK", Type = "article" }
-                            }
-                        }
-                    }
-                },
-                
-                // Unit Testing & TDD
-                new Roadmap
-                {
-                    Id = 20,
-                    Title = "Unit Testing & TDD",
-                    Description = "Master unit testing and test-driven development for robust software",
-                    Icon = "🧪",
-                    Category = CategoryConstants.Testing,
-                    Duration = "2-3 months",
-                    Difficulty = "Intermediate",
-                    Steps = new List<RoadmapStep>
+                        "Basic computer skills",
+                        "Understanding of data concepts"
+                    },
+                    CareerPaths = new List<string>
                     {
-                        new RoadmapStep
-                        {
-                            Id = 128,
-                            RoadmapId = 20,
-                            Title = "Unit Testing Fundamentals",
-                            Duration = "2 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 527, StepId = 128, Description = "Understand unit testing principles" },
-                                new LearningObjective { Id = 528, StepId = 128, Description = "Learn test structure (AAA pattern)" },
-                                new LearningObjective { Id = 529, StepId = 128, Description = "Write your first unit tests" },
-                                new LearningObjective { Id = 530, StepId = 128, Description = "Understand test isolation and independence" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 342, StepId = 128, Title = "Unit Testing Principles", Url = "https://www.amazon.com/Unit-Testing-Principles-Practices-Patterns/dp/1617296279", Type = "book" },
-                                new Resource { Id = 343, StepId = 128, Title = "Introduction to Unit Testing", Url = "https://www.youtube.com/watch?v=--OJtTWkKuE", Type = "video" },
-                                new Resource { Id = 344, StepId = 128, Title = "Unit Testing Best Practices", Url = "https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-best-practices", Type = "article" },
-                                new Resource { Id = 345, StepId = 128, Title = "xUnit Tutorial", Url = "https://xunit.net/docs/getting-started/netcore/cmdline", Type = "documentation" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 129,
-                            RoadmapId = 20,
-                            Title = "Testing Frameworks and Tools",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 531, StepId = 129, Description = "Master popular testing frameworks (xUnit, NUnit, MSTest)" },
-                                new LearningObjective { Id = 532, StepId = 129, Description = "Learn assertion libraries and matchers" },
-                                new LearningObjective { Id = 533, StepId = 129, Description = "Use test runners and explorers" },
-                                new LearningObjective { Id = 534, StepId = 129, Description = "Configure continuous testing" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 346, StepId = 129, Title = "xUnit vs NUnit vs MSTest", Url = "https://www.lambdatest.com/blog/nunit-vs-xunit-vs-mstest/", Type = "article" },
-                                new Resource { Id = 347, StepId = 129, Title = "Fluent Assertions", Url = "https://fluentassertions.com/", Type = "documentation" },
-                                new Resource { Id = 348, StepId = 129, Title = "Testing Framework Comparison", Url = "https://www.youtube.com/watch?v=t6Uw8THJWR0", Type = "video" },
-                                new Resource { Id = 349, StepId = 129, Title = "NCrunch for Continuous Testing", Url = "https://www.ncrunch.net/", Type = "website" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 130,
-                            RoadmapId = 20,
-                            Title = "Test-Driven Development (TDD)",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 535, StepId = 130, Description = "Master the Red-Green-Refactor cycle" },
-                                new LearningObjective { Id = 536, StepId = 130, Description = "Write tests before implementation" },
-                                new LearningObjective { Id = 537, StepId = 130, Description = "Practice TDD katas" },
-                                new LearningObjective { Id = 538, StepId = 130, Description = "Apply TDD to real projects" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 350, StepId = 130, Title = "Test Driven Development: By Example", Url = "https://www.amazon.com/Test-Driven-Development-Kent-Beck/dp/0321146530", Type = "book" },
-                                new Resource { Id = 351, StepId = 130, Title = "TDD Course", Url = "https://www.pluralsight.com/courses/test-driven-development-big-picture", Type = "course" },
-                                new Resource { Id = 352, StepId = 130, Title = "TDD Kata Exercises", Url = "https://kata-log.rocks/", Type = "interactive" },
-                                new Resource { Id = 353, StepId = 130, Title = "TDD in Practice", Url = "https://www.youtube.com/watch?v=qkblc5WRn-U", Type = "video" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 131,
-                            RoadmapId = 20,
-                            Title = "Mocking and Test Doubles",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 539, StepId = 131, Description = "Understand test doubles (mocks, stubs, fakes)" },
-                                new LearningObjective { Id = 540, StepId = 131, Description = "Master mocking frameworks (Moq, NSubstitute)" },
-                                new LearningObjective { Id = 541, StepId = 131, Description = "Mock external dependencies" },
-                                new LearningObjective { Id = 542, StepId = 131, Description = "Verify interactions and behaviors" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 354, StepId = 131, Title = "Mocks Aren't Stubs", Url = "https://martinfowler.com/articles/mocksArentStubs.html", Type = "article" },
-                                new Resource { Id = 355, StepId = 131, Title = "Moq Quick Start", Url = "https://github.com/moq/moq4/wiki/Quickstart", Type = "documentation" },
-                                new Resource { Id = 356, StepId = 131, Title = "Mocking Explained", Url = "https://www.youtube.com/watch?v=DJDsEH2JaLw", Type = "video" },
-                                new Resource { Id = 357, StepId = 131, Title = "Art of Unit Testing", Url = "https://www.manning.com/books/the-art-of-unit-testing-second-edition", Type = "book" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 132,
-                            RoadmapId = 20,
-                            Title = "Code Coverage and Quality Metrics",
-                            Duration = "1-2 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 543, StepId = 132, Description = "Understand code coverage metrics" },
-                                new LearningObjective { Id = 544, StepId = 132, Description = "Use coverage tools effectively" },
-                                new LearningObjective { Id = 545, StepId = 132, Description = "Balance coverage with test quality" },
-                                new LearningObjective { Id = 546, StepId = 132, Description = "Implement mutation testing" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 358, StepId = 132, Title = "Code Coverage Best Practices", Url = "https://www.atlassian.com/continuous-delivery/software-testing/code-coverage", Type = "article" },
-                                new Resource { Id = 359, StepId = 132, Title = "Coverlet for .NET", Url = "https://github.com/coverlet-coverage/coverlet", Type = "documentation" },
-                                new Resource { Id = 360, StepId = 132, Title = "Mutation Testing", Url = "https://stryker-mutator.io/", Type = "website" },
-                                new Resource { Id = 361, StepId = 132, Title = "Test Coverage Myths", Url = "https://www.youtube.com/watch?v=HzvQl5bGH8k", Type = "video" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 133,
-                            RoadmapId = 20,
-                            Title = "Testing Best Practices",
-                            Duration = "2 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 547, StepId = 133, Description = "Write maintainable test code" },
-                                new LearningObjective { Id = 548, StepId = 133, Description = "Apply test naming conventions" },
-                                new LearningObjective { Id = 549, StepId = 133, Description = "Organize test projects effectively" },
-                                new LearningObjective { Id = 550, StepId = 133, Description = "Handle test data and fixtures" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 362, StepId = 133, Title = "Unit Testing Guidelines", Url = "https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-best-practices", Type = "article" },
-                                new Resource { Id = 363, StepId = 133, Title = "Test Naming Conventions", Url = "https://osherove.com/blog/2005/4/3/naming-standards-for-unit-tests.html", Type = "article" },
-                                new Resource { Id = 364, StepId = 133, Title = "Clean Unit Tests", Url = "https://www.youtube.com/watch?v=ub5bWY9F3YE", Type = "video" },
-                                new Resource { Id = 365, StepId = 133, Title = "Growing Object-Oriented Software", Url = "http://www.growing-object-oriented-software.com/", Type = "book" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 134,
-                            RoadmapId = 20,
-                            Title = "Advanced Testing Techniques",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 551, StepId = 134, Description = "Implement parameterized tests" },
-                                new LearningObjective { Id = 552, StepId = 134, Description = "Use theory-based testing" },
-                                new LearningObjective { Id = 553, StepId = 134, Description = "Apply property-based testing" },
-                                new LearningObjective { Id = 554, StepId = 134, Description = "Test async and concurrent code" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 366, StepId = 134, Title = "Parameterized Tests in xUnit", Url = "https://andrewlock.net/creating-parameterised-tests-in-xunit-with-inlinedata-classdata-and-memberdata/", Type = "article" },
-                                new Resource { Id = 367, StepId = 134, Title = "Property-Based Testing", Url = "https://fscheck.github.io/FsCheck/", Type = "documentation" },
-                                new Resource { Id = 368, StepId = 134, Title = "Testing Async Code", Url = "https://www.youtube.com/watch?v=Krex8aAgNHw", Type = "video" },
-                                new Resource { Id = 369, StepId = 134, Title = "Advanced Unit Testing", Url = "https://www.pluralsight.com/courses/advanced-unit-testing", Type = "course" }
-                            }
-                        }
-                    }
-                },
-                
-                // Integration & API Testing
-                new Roadmap
-                {
-                    Id = 21,
-                    Title = "Integration & API Testing",
-                    Description = "Master integration testing and API testing strategies",
-                    Icon = "🔗",
-                    Category = CategoryConstants.Testing,
-                    Duration = "2-3 months",
-                    Difficulty = "Intermediate to Advanced",
-                    Steps = new List<RoadmapStep>
-                    {
-                        new RoadmapStep
-                        {
-                            Id = 135,
-                            RoadmapId = 21,
-                            Title = "Integration Testing Fundamentals",
-                            Duration = "2 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 555, StepId = 135, Description = "Understand integration testing concepts" },
-                                new LearningObjective { Id = 556, StepId = 135, Description = "Differentiate from unit testing" },
-                                new LearningObjective { Id = 557, StepId = 135, Description = "Design integration test strategies" },
-                                new LearningObjective { Id = 558, StepId = 135, Description = "Set up test environments" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 370, StepId = 135, Title = "Integration Testing Guide", Url = "https://martinfowler.com/bliki/IntegrationTest.html", Type = "article" },
-                                new Resource { Id = 371, StepId = 135, Title = "Integration vs Unit Testing", Url = "https://www.youtube.com/watch?v=0GypdsJulKE", Type = "video" },
-                                new Resource { Id = 372, StepId = 135, Title = "ASP.NET Core Integration Tests", Url = "https://docs.microsoft.com/en-us/aspnet/core/test/integration-tests", Type = "documentation" },
-                                new Resource { Id = 373, StepId = 135, Title = "Testing Microservices", Url = "https://www.oreilly.com/library/view/testing-microservices/9781492073543/", Type = "book" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 136,
-                            RoadmapId = 21,
-                            Title = "API Testing Basics",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 559, StepId = 136, Description = "Master REST API testing" },
-                                new LearningObjective { Id = 560, StepId = 136, Description = "Use Postman and similar tools" },
-                                new LearningObjective { Id = 561, StepId = 136, Description = "Test HTTP methods and status codes" },
-                                new LearningObjective { Id = 562, StepId = 136, Description = "Validate request/response structures" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 374, StepId = 136, Title = "REST API Testing", Url = "https://restfulapi.net/rest-api-test-tools/", Type = "article" },
-                                new Resource { Id = 375, StepId = 136, Title = "Postman Tutorial", Url = "https://www.postman.com/postman/workspace/postman-answers/documentation/9115166-c7b2c162-1bf5-47a4-b792-be2038dc5f2e", Type = "documentation" },
-                                new Resource { Id = 376, StepId = 136, Title = "API Testing Course", Url = "https://www.udemy.com/course/rest-api-testing-automation/", Type = "course" },
-                                new Resource { Id = 377, StepId = 136, Title = "Newman CLI", Url = "https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman/", Type = "documentation" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 137,
-                            RoadmapId = 21,
-                            Title = "Test Automation Frameworks",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 563, StepId = 137, Description = "Implement REST Assured or RestSharp" },
-                                new LearningObjective { Id = 564, StepId = 137, Description = "Build automated API test suites" },
-                                new LearningObjective { Id = 565, StepId = 137, Description = "Create data-driven tests" },
-                                new LearningObjective { Id = 566, StepId = 137, Description = "Integrate with CI/CD pipelines" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 378, StepId = 137, Title = "RestSharp Documentation", Url = "https://restsharp.dev/", Type = "documentation" },
-                                new Resource { Id = 379, StepId = 137, Title = "API Test Automation", Url = "https://www.youtube.com/watch?v=7lQC_q67dAc", Type = "video" },
-                                new Resource { Id = 380, StepId = 137, Title = "REST API Testing with C#", Url = "https://www.toolsqa.com/rest-assured/rest-api-test-using-rest-assured/", Type = "article" },
-                                new Resource { Id = 381, StepId = 137, Title = "Karate Framework", Url = "https://karatelabs.github.io/karate/", Type = "documentation" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 138,
-                            RoadmapId = 21,
-                            Title = "Database Integration Testing",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 567, StepId = 138, Description = "Test database operations" },
-                                new LearningObjective { Id = 568, StepId = 138, Description = "Use in-memory databases" },
-                                new LearningObjective { Id = 569, StepId = 138, Description = "Implement test data management" },
-                                new LearningObjective { Id = 570, StepId = 138, Description = "Handle transaction rollbacks" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 382, StepId = 138, Title = "EF Core Testing", Url = "https://docs.microsoft.com/en-us/ef/core/testing/", Type = "documentation" },
-                                new Resource { Id = 383, StepId = 138, Title = "Database Testing Strategies", Url = "https://www.youtube.com/watch?v=9_x6OkiOm7E", Type = "video" },
-                                new Resource { Id = 384, StepId = 138, Title = "Testcontainers", Url = "https://www.testcontainers.org/", Type = "website" },
-                                new Resource { Id = 385, StepId = 138, Title = "Respawn", Url = "https://github.com/jbogard/Respawn", Type = "documentation" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 139,
-                            RoadmapId = 21,
-                            Title = "Contract Testing",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 571, StepId = 139, Description = "Understand consumer-driven contracts" },
-                                new LearningObjective { Id = 572, StepId = 139, Description = "Implement Pact testing" },
-                                new LearningObjective { Id = 573, StepId = 139, Description = "Test API versioning" },
-                                new LearningObjective { Id = 574, StepId = 139, Description = "Validate schema compliance" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 386, StepId = 139, Title = "Consumer-Driven Contracts", Url = "https://martinfowler.com/articles/consumerDrivenContracts.html", Type = "article" },
-                                new Resource { Id = 387, StepId = 139, Title = "Pact Documentation", Url = "https://docs.pact.io/", Type = "documentation" },
-                                new Resource { Id = 388, StepId = 139, Title = "Contract Testing Explained", Url = "https://www.youtube.com/watch?v=h-79QmIV824", Type = "video" },
-                                new Resource { Id = 389, StepId = 139, Title = "API Schema Validation", Url = "https://json-schema.org/learn/getting-started-step-by-step", Type = "article" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 140,
-                            RoadmapId = 21,
-                            Title = "Performance and Load Testing",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 575, StepId = 140, Description = "Design performance test scenarios" },
-                                new LearningObjective { Id = 576, StepId = 140, Description = "Use JMeter or K6" },
-                                new LearningObjective { Id = 577, StepId = 140, Description = "Analyze performance metrics" },
-                                new LearningObjective { Id = 578, StepId = 140, Description = "Identify bottlenecks" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 390, StepId = 140, Title = "K6 Documentation", Url = "https://k6.io/docs/", Type = "documentation" },
-                                new Resource { Id = 391, StepId = 140, Title = "JMeter Tutorial", Url = "https://jmeter.apache.org/usermanual/get-started.html", Type = "documentation" },
-                                new Resource { Id = 392, StepId = 140, Title = "Load Testing Best Practices", Url = "https://www.youtube.com/watch?v=r-Jte8Y8zag", Type = "video" },
-                                new Resource { Id = 393, StepId = 140, Title = "NBomber", Url = "https://nbomber.com/", Type = "website" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 141,
-                            RoadmapId = 21,
-                            Title = "Security Testing",
-                            Duration = "2 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 579, StepId = 141, Description = "Test authentication and authorization" },
-                                new LearningObjective { Id = 580, StepId = 141, Description = "Validate input sanitization" },
-                                new LearningObjective { Id = 581, StepId = 141, Description = "Check for common vulnerabilities" },
-                                new LearningObjective { Id = 582, StepId = 141, Description = "Implement OWASP guidelines" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 394, StepId = 141, Title = "OWASP Testing Guide", Url = "https://owasp.org/www-project-web-security-testing-guide/", Type = "documentation" },
-                                new Resource { Id = 395, StepId = 141, Title = "API Security Testing", Url = "https://www.youtube.com/watch?v=Pi2KxMW8ELo", Type = "video" },
-                                new Resource { Id = 396, StepId = 141, Title = "ZAP Security Scanner", Url = "https://www.zaproxy.org/", Type = "website" },
-                                new Resource { Id = 397, StepId = 141, Title = "Burp Suite", Url = "https://portswigger.net/burp", Type = "website" }
-                            }
-                        }
-                    }
-                },
-                
-                // Software Architecture Patterns
-                new Roadmap
-                {
-                    Id = 22,
-                    Title = "Software Architecture Patterns",
-                    Description = "Master architectural patterns for building scalable and maintainable systems",
-                    Icon = "🏛️",
-                    Category = CategoryConstants.Architecture,
-                    Duration = "4-5 months",
-                    Difficulty = "Advanced",
-                    Steps = new List<RoadmapStep>
-                    {
-                        new RoadmapStep
-                        {
-                            Id = 142,
-                            RoadmapId = 22,
-                            Title = "Architecture Fundamentals",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 583, StepId = 142, Description = "Understand architectural thinking" },
-                                new LearningObjective { Id = 584, StepId = 142, Description = "Learn quality attributes" },
-                                new LearningObjective { Id = 585, StepId = 142, Description = "Master architectural trade-offs" },
-                                new LearningObjective { Id = 586, StepId = 142, Description = "Create architectural diagrams" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 398, StepId = 142, Title = "Software Architecture in Practice", Url = "https://www.amazon.com/Software-Architecture-Practice-3rd-Engineering/dp/0321815734", Type = "book" },
-                                new Resource { Id = 399, StepId = 142, Title = "Architecture Documentation", Url = "https://c4model.com/", Type = "website" },
-                                new Resource { Id = 400, StepId = 142, Title = "Architectural Thinking", Url = "https://www.youtube.com/watch?v=rrJlOCaFiDg", Type = "video" },
-                                new Resource { Id = 401, StepId = 142, Title = "Quality Attributes", Url = "https://www.sei.cmu.edu/our-work/quality-attributes/", Type = "article" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 143,
-                            RoadmapId = 22,
-                            Title = "Layered Architecture",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 587, StepId = 143, Description = "Master N-tier architecture" },
-                                new LearningObjective { Id = 588, StepId = 143, Description = "Implement presentation, business, and data layers" },
-                                new LearningObjective { Id = 589, StepId = 143, Description = "Handle cross-cutting concerns" },
-                                new LearningObjective { Id = 590, StepId = 143, Description = "Apply layering best practices" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 402, StepId = 143, Title = "Layered Architecture Pattern", Url = "https://www.oreilly.com/library/view/software-architecture-patterns/9781491971437/ch01.html", Type = "article" },
-                                new Resource { Id = 403, StepId = 143, Title = "N-Tier Architecture", Url = "https://docs.microsoft.com/en-us/azure/architecture/guide/architecture-styles/n-tier", Type = "documentation" },
-                                new Resource { Id = 404, StepId = 143, Title = "Layered Architecture Example", Url = "https://github.com/ardalis/CleanArchitecture", Type = "website" },
-                                new Resource { Id = 405, StepId = 143, Title = "Cross-Cutting Concerns", Url = "https://www.youtube.com/watch?v=psrp3TtaYYI", Type = "video" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 144,
-                            RoadmapId = 22,
-                            Title = "Hexagonal Architecture",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 591, StepId = 144, Description = "Understand Ports and Adapters pattern" },
-                                new LearningObjective { Id = 592, StepId = 144, Description = "Implement domain-centric design" },
-                                new LearningObjective { Id = 593, StepId = 144, Description = "Create testable architectures" },
-                                new LearningObjective { Id = 594, StepId = 144, Description = "Apply dependency inversion" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 406, StepId = 144, Title = "Hexagonal Architecture", Url = "https://alistair.cockburn.us/hexagonal-architecture/", Type = "article" },
-                                new Resource { Id = 407, StepId = 144, Title = "Ports and Adapters Example", Url = "https://github.com/Sairyss/domain-driven-hexagon", Type = "website" },
-                                new Resource { Id = 408, StepId = 144, Title = "Hexagonal Architecture in .NET", Url = "https://www.youtube.com/watch?v=diTiw5yw3T8", Type = "video" },
-                                new Resource { Id = 409, StepId = 144, Title = "Get Your Hands Dirty on Clean Architecture", Url = "https://reflectoring.io/book/", Type = "book" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 145,
-                            RoadmapId = 22,
-                            Title = "Event-Driven Architecture",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 595, StepId = 145, Description = "Master event-driven patterns" },
-                                new LearningObjective { Id = 596, StepId = 145, Description = "Implement event sourcing" },
-                                new LearningObjective { Id = 597, StepId = 145, Description = "Use message brokers effectively" },
-                                new LearningObjective { Id = 598, StepId = 145, Description = "Handle eventual consistency" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 410, StepId = 145, Title = "Event-Driven Architecture", Url = "https://martinfowler.com/articles/201701-event-driven.html", Type = "article" },
-                                new Resource { Id = 411, StepId = 145, Title = "Event Sourcing", Url = "https://eventstore.com/event-sourcing/", Type = "website" },
-                                new Resource { Id = 412, StepId = 145, Title = "Building Event-Driven Microservices", Url = "https://www.oreilly.com/library/view/building-event-driven-microservices/9781492057888/", Type = "book" },
-                                new Resource { Id = 413, StepId = 145, Title = "Apache Kafka", Url = "https://kafka.apache.org/intro", Type = "documentation" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 146,
-                            RoadmapId = 22,
-                            Title = "CQRS Pattern",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 599, StepId = 146, Description = "Separate commands and queries" },
-                                new LearningObjective { Id = 600, StepId = 146, Description = "Implement read and write models" },
-                                new LearningObjective { Id = 601, StepId = 146, Description = "Apply CQRS with Event Sourcing" },
-                                new LearningObjective { Id = 602, StepId = 146, Description = "Handle data synchronization" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 414, StepId = 146, Title = "CQRS Pattern", Url = "https://martinfowler.com/bliki/CQRS.html", Type = "article" },
-                                new Resource { Id = 415, StepId = 146, Title = "CQRS Journey", Url = "https://docs.microsoft.com/en-us/previous-versions/msp-n-p/jj554200(v=pandp.10)", Type = "documentation" },
-                                new Resource { Id = 416, StepId = 146, Title = "Implementing CQRS", Url = "https://www.youtube.com/watch?v=B1-6R1_Vm2s", Type = "video" },
-                                new Resource { Id = 417, StepId = 146, Title = "MediatR", Url = "https://github.com/jbogard/MediatR", Type = "documentation" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 147,
-                            RoadmapId = 22,
-                            Title = "Service-Oriented Architecture",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 603, StepId = 147, Description = "Understand SOA principles" },
-                                new LearningObjective { Id = 604, StepId = 147, Description = "Design service contracts" },
-                                new LearningObjective { Id = 605, StepId = 147, Description = "Implement service orchestration" },
-                                new LearningObjective { Id = 606, StepId = 147, Description = "Apply SOA governance" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 418, StepId = 147, Title = "SOA Principles", Url = "https://www.ibm.com/cloud/learn/soa", Type = "article" },
-                                new Resource { Id = 419, StepId = 147, Title = "Service-Oriented Architecture", Url = "https://www.amazon.com/Service-Oriented-Architecture-Thomas-Erl/dp/0132344823", Type = "book" },
-                                new Resource { Id = 420, StepId = 147, Title = "REST vs SOAP", Url = "https://www.youtube.com/watch?v=bPNfu0IZhoE", Type = "video" },
-                                new Resource { Id = 421, StepId = 147, Title = "WCF Documentation", Url = "https://docs.microsoft.com/en-us/dotnet/framework/wcf/", Type = "documentation" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 148,
-                            RoadmapId = 22,
-                            Title = "Serverless Architecture",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 607, StepId = 148, Description = "Understand Function-as-a-Service" },
-                                new LearningObjective { Id = 608, StepId = 148, Description = "Design stateless functions" },
-                                new LearningObjective { Id = 609, StepId = 148, Description = "Handle serverless orchestration" },
-                                new LearningObjective { Id = 610, StepId = 148, Description = "Manage cold starts and performance" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 422, StepId = 148, Title = "Serverless Architectures", Url = "https://martinfowler.com/articles/serverless.html", Type = "article" },
-                                new Resource { Id = 423, StepId = 148, Title = "AWS Lambda", Url = "https://aws.amazon.com/lambda/", Type = "documentation" },
-                                new Resource { Id = 424, StepId = 148, Title = "Azure Functions", Url = "https://docs.microsoft.com/en-us/azure/azure-functions/", Type = "documentation" },
-                                new Resource { Id = 425, StepId = 148, Title = "Serverless Framework", Url = "https://www.serverless.com/", Type = "website" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 149,
-                            RoadmapId = 22,
-                            Title = "Architecture Documentation & ADRs",
-                            Duration = "2 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 611, StepId = 149, Description = "Create architecture decision records" },
-                                new LearningObjective { Id = 612, StepId = 149, Description = "Document architectural views" },
-                                new LearningObjective { Id = 613, StepId = 149, Description = "Use modeling tools effectively" },
-                                new LearningObjective { Id = 614, StepId = 149, Description = "Communicate architecture effectively" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 426, StepId = 149, Title = "Architecture Decision Records", Url = "https://adr.github.io/", Type = "website" },
-                                new Resource { Id = 427, StepId = 149, Title = "C4 Model", Url = "https://c4model.com/", Type = "website" },
-                                new Resource { Id = 428, StepId = 149, Title = "Documenting Software Architecture", Url = "https://www.amazon.com/Documenting-Software-Architectures-Views-Beyond/dp/0321552687", Type = "book" },
-                                new Resource { Id = 429, StepId = 149, Title = "PlantUML", Url = "https://plantuml.com/", Type = "website" }
-                            }
-                        }
-                    }
-                },
-                
-                // Microservices Architecture
-                new Roadmap
-                {
-                    Id = 23,
-                    Title = "Microservices Architecture",
-                    Description = "Design and build distributed systems using microservices patterns",
-                    Icon = "🔷",
-                    Category = CategoryConstants.Architecture,
-                    Duration = "5-6 months",
-                    Difficulty = "Advanced",
+                        "Database Developer ($65K-$120K)",
+                        "Data Analyst ($60K-$110K)",
+                        "Database Administrator ($70K-$130K)"
+                    },
                     Steps = new List<RoadmapStep>
                     {
                         new RoadmapStep
                         {
                             Id = 150,
-                            RoadmapId = 23,
-                            Title = "Microservices Fundamentals",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
+                            RoadmapId = 15,
+                            Title = "SQL Basics",
+                            Duration = "2 weeks",
+                            Content = "Learn SQL fundamentals and database concepts",
+                            SubTopics = new List<SubTopic>
                             {
-                                new LearningObjective { Id = 615, StepId = 150, Description = "Understand microservices principles" },
-                                new LearningObjective { Id = 616, StepId = 150, Description = "Compare with monolithic architecture" },
-                                new LearningObjective { Id = 617, StepId = 150, Description = "Learn bounded contexts" },
-                                new LearningObjective { Id = 618, StepId = 150, Description = "Design service boundaries" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 430, StepId = 150, Title = "Building Microservices", Url = "https://www.oreilly.com/library/view/building-microservices-2nd/9781492089025/", Type = "book" },
-                                new Resource { Id = 431, StepId = 150, Title = "Microservices.io", Url = "https://microservices.io/", Type = "website" },
-                                new Resource { Id = 432, StepId = 150, Title = "Martin Fowler on Microservices", Url = "https://martinfowler.com/articles/microservices.html", Type = "article" },
-                                new Resource { Id = 433, StepId = 150, Title = "Microservices Architecture Course", Url = "https://www.udemy.com/course/microservices-software-architecture-patterns-and-techniques/", Type = "course" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 151,
-                            RoadmapId = 23,
-                            Title = "Service Communication",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 619, StepId = 151, Description = "Implement synchronous communication (REST, gRPC)" },
-                                new LearningObjective { Id = 620, StepId = 151, Description = "Master asynchronous messaging" },
-                                new LearningObjective { Id = 621, StepId = 151, Description = "Handle service discovery" },
-                                new LearningObjective { Id = 622, StepId = 151, Description = "Implement API gateways" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 434, StepId = 151, Title = "gRPC Documentation", Url = "https://grpc.io/docs/", Type = "documentation" },
-                                new Resource { Id = 435, StepId = 151, Title = "RabbitMQ Tutorials", Url = "https://www.rabbitmq.com/getstarted.html", Type = "documentation" },
-                                new Resource { Id = 436, StepId = 151, Title = "API Gateway Pattern", Url = "https://microservices.io/patterns/apigateway.html", Type = "article" },
-                                new Resource { Id = 437, StepId = 151, Title = "Service Mesh with Istio", Url = "https://istio.io/latest/docs/", Type = "documentation" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 152,
-                            RoadmapId = 23,
-                            Title = "Data Management",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 623, StepId = 152, Description = "Implement database per service" },
-                                new LearningObjective { Id = 624, StepId = 152, Description = "Handle distributed transactions" },
-                                new LearningObjective { Id = 625, StepId = 152, Description = "Apply Saga pattern" },
-                                new LearningObjective { Id = 626, StepId = 152, Description = "Manage data consistency" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 438, StepId = 152, Title = "Data Management in Microservices", Url = "https://microservices.io/patterns/data/database-per-service.html", Type = "article" },
-                                new Resource { Id = 439, StepId = 152, Title = "Saga Pattern", Url = "https://microservices.io/patterns/data/saga.html", Type = "article" },
-                                new Resource { Id = 440, StepId = 152, Title = "Distributed Transactions", Url = "https://www.youtube.com/watch?v=YPbGW3Fnmbc", Type = "video" },
-                                new Resource { Id = 441, StepId = 152, Title = "Event Sourcing", Url = "https://docs.microsoft.com/en-us/azure/architecture/patterns/event-sourcing", Type = "documentation" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 153,
-                            RoadmapId = 23,
-                            Title = "Resilience and Fault Tolerance",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 627, StepId = 153, Description = "Implement circuit breaker pattern" },
-                                new LearningObjective { Id = 628, StepId = 153, Description = "Apply retry and timeout strategies" },
-                                new LearningObjective { Id = 629, StepId = 153, Description = "Handle cascading failures" },
-                                new LearningObjective { Id = 630, StepId = 153, Description = "Implement bulkhead pattern" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 442, StepId = 153, Title = "Polly Resilience Library", Url = "https://github.com/App-vNext/Polly", Type = "documentation" },
-                                new Resource { Id = 443, StepId = 153, Title = "Circuit Breaker Pattern", Url = "https://martinfowler.com/bliki/CircuitBreaker.html", Type = "article" },
-                                new Resource { Id = 444, StepId = 153, Title = "Hystrix", Url = "https://github.com/Netflix/Hystrix", Type = "documentation" },
-                                new Resource { Id = 445, StepId = 153, Title = "Resilience Patterns", Url = "https://www.youtube.com/watch?v=7kX3dyscZpg", Type = "video" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 154,
-                            RoadmapId = 23,
-                            Title = "Security in Microservices",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 631, StepId = 154, Description = "Implement OAuth 2.0 and JWT" },
-                                new LearningObjective { Id = 632, StepId = 154, Description = "Secure service-to-service communication" },
-                                new LearningObjective { Id = 633, StepId = 154, Description = "Apply zero-trust security" },
-                                new LearningObjective { Id = 634, StepId = 154, Description = "Handle API security" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 446, StepId = 154, Title = "OAuth 2.0", Url = "https://oauth.net/2/", Type = "documentation" },
-                                new Resource { Id = 447, StepId = 154, Title = "JWT.io", Url = "https://jwt.io/", Type = "website" },
-                                new Resource { Id = 448, StepId = 154, Title = "Microservices Security", Url = "https://www.oreilly.com/library/view/microservices-security-in/9781492027638/", Type = "book" },
-                                new Resource { Id = 449, StepId = 154, Title = "IdentityServer", Url = "https://identityserver.io/", Type = "documentation" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 155,
-                            RoadmapId = 23,
-                            Title = "Monitoring and Observability",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 635, StepId = 155, Description = "Implement distributed tracing" },
-                                new LearningObjective { Id = 636, StepId = 155, Description = "Set up centralized logging" },
-                                new LearningObjective { Id = 637, StepId = 155, Description = "Monitor service health" },
-                                new LearningObjective { Id = 638, StepId = 155, Description = "Create dashboards and alerts" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 450, StepId = 155, Title = "OpenTelemetry", Url = "https://opentelemetry.io/", Type = "documentation" },
-                                new Resource { Id = 451, StepId = 155, Title = "ELK Stack", Url = "https://www.elastic.co/what-is/elk-stack", Type = "article" },
-                                new Resource { Id = 452, StepId = 155, Title = "Prometheus and Grafana", Url = "https://prometheus.io/docs/visualization/grafana/", Type = "documentation" },
-                                new Resource { Id = 453, StepId = 155, Title = "Distributed Tracing", Url = "https://www.youtube.com/watch?v=EJV_CgiqlOE", Type = "video" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 156,
-                            RoadmapId = 23,
-                            Title = "Deployment and Orchestration",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 639, StepId = 156, Description = "Containerize microservices with Docker" },
-                                new LearningObjective { Id = 640, StepId = 156, Description = "Orchestrate with Kubernetes" },
-                                new LearningObjective { Id = 641, StepId = 156, Description = "Implement CI/CD pipelines" },
-                                new LearningObjective { Id = 642, StepId = 156, Description = "Apply deployment strategies" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 454, StepId = 156, Title = "Docker Documentation", Url = "https://docs.docker.com/", Type = "documentation" },
-                                new Resource { Id = 455, StepId = 156, Title = "Kubernetes Documentation", Url = "https://kubernetes.io/docs/", Type = "documentation" },
-                                new Resource { Id = 456, StepId = 156, Title = "Helm Charts", Url = "https://helm.sh/", Type = "documentation" },
-                                new Resource { Id = 457, StepId = 156, Title = "GitOps with ArgoCD", Url = "https://argo-cd.readthedocs.io/", Type = "documentation" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 157,
-                            RoadmapId = 23,
-                            Title = "Microservices Testing",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 643, StepId = 157, Description = "Implement unit and integration tests" },
-                                new LearningObjective { Id = 644, StepId = 157, Description = "Create contract tests" },
-                                new LearningObjective { Id = 645, StepId = 157, Description = "Perform end-to-end testing" },
-                                new LearningObjective { Id = 646, StepId = 157, Description = "Test in production safely" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 458, StepId = 157, Title = "Testing Microservices", Url = "https://martinfowler.com/articles/microservice-testing/", Type = "article" },
-                                new Resource { Id = 459, StepId = 157, Title = "Pact Contract Testing", Url = "https://pact.io/", Type = "documentation" },
-                                new Resource { Id = 460, StepId = 157, Title = "Chaos Engineering", Url = "https://principlesofchaos.org/", Type = "website" },
-                                new Resource { Id = 461, StepId = 157, Title = "TestContainers", Url = "https://www.testcontainers.org/", Type = "documentation" }
+                                new SubTopic
+                                {
+                                    Id = 1501,
+                                    StepId = 150,
+                                    Title = "Introduction to SQL",
+                                    Description = "Understanding SQL and relational databases",
+                                    Content = "SQL is a declarative language for working with data",
+                                    KeyPoints = new List<string> { "SELECT statements", "WHERE clauses", "JOIN operations" }
+                                }
                             }
                         }
                     }
                 },
-                
-                // Domain-Driven Design
+
+                // Add other roadmaps with minimal structure...
                 new Roadmap
                 {
-                    Id = 24,
-                    Title = "Domain-Driven Design",
-                    Description = "Master DDD principles for complex business domain modeling",
-                    Icon = "🎯",
-                    Category = CategoryConstants.Architecture,
-                    Duration = "4-5 months",
+                    Id = 3,
+                    Title = "Mobile App Developer",
+                    Description = "Create native and cross-platform mobile applications",
+                    Icon = "📱",
+                    Category = CategoryConstants.Mobile,
+                    Duration = "6-8 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "AppDeveloper",
+                    ControllerName = "Mobile",
+                    Context = "Mobile development involves creating applications for iOS and Android devices.",
+                    Prerequisites = new List<string> { "Programming basics", "Understanding of mobile UX" },
+                    CareerPaths = new List<string> { "Mobile Developer ($70K-$140K)", "iOS Developer ($75K-$150K)" },
+                    Steps = new List<RoadmapStep>
+                    {
+                        new RoadmapStep
+                        {
+                            Id = 30,
+                            RoadmapId = 3,
+                            Title = "Mobile Development Basics",
+                            Duration = "2 weeks",
+                            Content = "Introduction to mobile development concepts",
+                            SubTopics = new List<SubTopic>
+                            {
+                                new SubTopic
+                                {
+                                    Id = 301,
+                                    StepId = 30,
+                                    Title = "Mobile Platforms Overview",
+                                    Description = "Understanding iOS and Android ecosystems",
+                                    Content = "Learn about different mobile platforms and their characteristics",
+                                    KeyPoints = new List<string> { "iOS vs Android", "Native vs Cross-platform", "Mobile UI/UX principles" }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                new Roadmap
+                {
+                    Id = 4,
+                    Title = "Data Scientist",
+                    Description = "Analyze data and build predictive models",
+                    Icon = "📊",
+                    Category = CategoryConstants.DataScience,
+                    Duration = "8-12 months",
                     Difficulty = "Advanced",
+                    ActionName = "DataScientist",
+                    ControllerName = "DataScience",
+                    Context = "Data science combines statistics, programming, and domain expertise.",
+                    Prerequisites = new List<string> { "Statistics knowledge", "Programming skills" },
+                    CareerPaths = new List<string> { "Data Scientist ($90K-$160K)", "ML Engineer ($100K-$180K)" },
                     Steps = new List<RoadmapStep>
                     {
                         new RoadmapStep
                         {
-                            Id = 158,
-                            RoadmapId = 24,
-                            Title = "DDD Fundamentals",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
+                            Id = 40,
+                            RoadmapId = 4,
+                            Title = "Data Science Fundamentals",
+                            Duration = "3 weeks",
+                            Content = "Introduction to data science concepts and tools",
+                            SubTopics = new List<SubTopic>
                             {
-                                new LearningObjective { Id = 647, StepId = 158, Description = "Understand DDD philosophy and principles" },
-                                new LearningObjective { Id = 648, StepId = 158, Description = "Learn ubiquitous language" },
-                                new LearningObjective { Id = 649, StepId = 158, Description = "Identify domain and subdomains" },
-                                new LearningObjective { Id = 650, StepId = 158, Description = "Differentiate core, supporting, and generic domains" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 462, StepId = 158, Title = "Domain-Driven Design (Blue Book)", Url = "https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215", Type = "book" },
-                                new Resource { Id = 463, StepId = 158, Title = "DDD Quickly", Url = "https://www.infoq.com/minibooks/domain-driven-design-quickly/", Type = "book" },
-                                new Resource { Id = 464, StepId = 158, Title = "DDD Introduction", Url = "https://www.youtube.com/watch?v=pMuiVlnGqjk", Type = "video" },
-                                new Resource { Id = 465, StepId = 158, Title = "DDD Community", Url = "https://dddcommunity.org/", Type = "website" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 159,
-                            RoadmapId = 24,
-                            Title = "Strategic Design",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 651, StepId = 159, Description = "Master bounded contexts" },
-                                new LearningObjective { Id = 652, StepId = 159, Description = "Create context maps" },
-                                new LearningObjective { Id = 653, StepId = 159, Description = "Apply context integration patterns" },
-                                new LearningObjective { Id = 654, StepId = 159, Description = "Design strategic boundaries" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 466, StepId = 159, Title = "Bounded Context", Url = "https://martinfowler.com/bliki/BoundedContext.html", Type = "article" },
-                                new Resource { Id = 467, StepId = 159, Title = "Context Mapping", Url = "https://www.infoq.com/articles/ddd-contextmapping/", Type = "article" },
-                                new Resource { Id = 468, StepId = 159, Title = "Strategic DDD", Url = "https://www.youtube.com/watch?v=oMPnv1QfBjg", Type = "video" },
-                                new Resource { Id = 469, StepId = 159, Title = "DDD Distilled", Url = "https://www.amazon.com/Domain-Driven-Design-Distilled-Vaughn-Vernon/dp/0134434420", Type = "book" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 160,
-                            RoadmapId = 24,
-                            Title = "Tactical Design - Entities and Value Objects",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 655, StepId = 160, Description = "Design entities with identity" },
-                                new LearningObjective { Id = 656, StepId = 160, Description = "Create immutable value objects" },
-                                new LearningObjective { Id = 657, StepId = 160, Description = "Implement equality and validation" },
-                                new LearningObjective { Id = 658, StepId = 160, Description = "Apply domain logic properly" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 470, StepId = 160, Title = "Entities vs Value Objects", Url = "https://enterprisecraftsmanship.com/posts/entity-vs-value-object-the-ultimate-list-of-differences/", Type = "article" },
-                                new Resource { Id = 471, StepId = 160, Title = "Value Objects", Url = "https://martinfowler.com/bliki/ValueObject.html", Type = "article" },
-                                new Resource { Id = 472, StepId = 160, Title = "DDD Building Blocks", Url = "https://www.youtube.com/watch?v=_dCpbBl8FCM", Type = "video" },
-                                new Resource { Id = 473, StepId = 160, Title = "Implementing DDD", Url = "https://www.amazon.com/Implementing-Domain-Driven-Design-Vaughn-Vernon/dp/0321834577", Type = "book" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 161,
-                            RoadmapId = 24,
-                            Title = "Aggregates and Domain Services",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 659, StepId = 161, Description = "Design aggregate boundaries" },
-                                new LearningObjective { Id = 660, StepId = 161, Description = "Implement aggregate roots" },
-                                new LearningObjective { Id = 661, StepId = 161, Description = "Create domain services" },
-                                new LearningObjective { Id = 662, StepId = 161, Description = "Handle cross-aggregate transactions" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 474, StepId = 161, Title = "Aggregate Design", Url = "https://www.dddcommunity.org/wp-content/uploads/files/pdf_articles/Vernon_2011_2.pdf", Type = "article" },
-                                new Resource { Id = 475, StepId = 161, Title = "Domain Services", Url = "https://enterprisecraftsmanship.com/posts/domain-services-vs-application-services/", Type = "article" },
-                                new Resource { Id = 476, StepId = 161, Title = "Aggregate Pattern", Url = "https://www.youtube.com/watch?v=r3qsjB_B-Lc", Type = "video" },
-                                new Resource { Id = 477, StepId = 161, Title = "DDD Sample Application", Url = "https://github.com/citerus/dddsample-core", Type = "website" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 162,
-                            RoadmapId = 24,
-                            Title = "Domain Events",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 663, StepId = 162, Description = "Model domain events" },
-                                new LearningObjective { Id = 664, StepId = 162, Description = "Implement event publishing" },
-                                new LearningObjective { Id = 665, StepId = 162, Description = "Handle event ordering" },
-                                new LearningObjective { Id = 666, StepId = 162, Description = "Apply event sourcing" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 478, StepId = 162, Title = "Domain Events", Url = "https://martinfowler.com/eaaDev/DomainEvent.html", Type = "article" },
-                                new Resource { Id = 479, StepId = 162, Title = "Event Storming", Url = "https://www.eventstorming.com/", Type = "website" },
-                                new Resource { Id = 480, StepId = 162, Title = "Domain Events in Practice", Url = "https://www.youtube.com/watch?v=yZUJJPSdSNc", Type = "video" },
-                                new Resource { Id = 481, StepId = 162, Title = "Event Sourcing", Url = "https://eventstore.com/blog/what-is-event-sourcing/", Type = "article" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 163,
-                            RoadmapId = 24,
-                            Title = "Repositories and Specifications",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 667, StepId = 163, Description = "Implement repository pattern" },
-                                new LearningObjective { Id = 668, StepId = 163, Description = "Create specification pattern" },
-                                new LearningObjective { Id = 669, StepId = 163, Description = "Handle persistence ignorance" },
-                                new LearningObjective { Id = 670, StepId = 163, Description = "Design query objects" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 482, StepId = 163, Title = "Repository Pattern", Url = "https://martinfowler.com/eaaCatalog/repository.html", Type = "article" },
-                                new Resource { Id = 483, StepId = 163, Title = "Specification Pattern", Url = "https://enterprisecraftsmanship.com/posts/specification-pattern-c-implementation/", Type = "article" },
-                                new Resource { Id = 484, StepId = 163, Title = "DDD Repository", Url = "https://www.youtube.com/watch?v=dfLhvwQ_qCw", Type = "video" },
-                                new Resource { Id = 485, StepId = 163, Title = "Ardalis.Specification", Url = "https://github.com/ardalis/Specification", Type = "website" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 164,
-                            RoadmapId = 24,
-                            Title = "Application Services and CQRS",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 671, StepId = 164, Description = "Design application services" },
-                                new LearningObjective { Id = 672, StepId = 164, Description = "Implement use cases" },
-                                new LearningObjective { Id = 673, StepId = 164, Description = "Apply CQRS with DDD" },
-                                new LearningObjective { Id = 674, StepId = 164, Description = "Handle cross-cutting concerns" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 486, StepId = 164, Title = "Application Services", Url = "https://enterprisecraftsmanship.com/posts/domain-vs-application-services/", Type = "article" },
-                                new Resource { Id = 487, StepId = 164, Title = "CQRS and DDD", Url = "https://www.youtube.com/watch?v=QZiY0JYoTHg", Type = "video" },
-                                new Resource { Id = 488, StepId = 164, Title = "Clean Architecture", Url = "https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html", Type = "article" },
-                                new Resource { Id = 489, StepId = 164, Title = "MediatR with DDD", Url = "https://github.com/jbogard/MediatR", Type = "documentation" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 165,
-                            RoadmapId = 24,
-                            Title = "DDD in Practice",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 675, StepId = 165, Description = "Apply DDD to real projects" },
-                                new LearningObjective { Id = 676, StepId = 165, Description = "Handle legacy system integration" },
-                                new LearningObjective { Id = 677, StepId = 165, Description = "Balance DDD complexity" },
-                                new LearningObjective { Id = 678, StepId = 165, Description = "Evolve domain models" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 490, StepId = 165, Title = "DDD Case Studies", Url = "https://github.com/ddd-crew/welcome-to-ddd", Type = "website" },
-                                new Resource { Id = 491, StepId = 165, Title = "Refactoring to DDD", Url = "https://www.youtube.com/watch?v=_f25QMJY9bY", Type = "video" },
-                                new Resource { Id = 492, StepId = 165, Title = "DDD Anti-patterns", Url = "https://www.infoq.com/articles/ddd-anti-patterns-mistakes/", Type = "article" },
-                                new Resource { Id = 493, StepId = 165, Title = "Learning Domain-Driven Design", Url = "https://www.oreilly.com/library/view/learning-domain-driven-design/9781098100124/", Type = "book" }
+                                new SubTopic
+                                {
+                                    Id = 401,
+                                    StepId = 40,
+                                    Title = "Data Science Overview",
+                                    Description = "Understanding the data science workflow",
+                                    Content = "Learn about the data science process and key concepts",
+                                    KeyPoints = new List<string> { "Data collection", "Data cleaning", "Exploratory analysis", "Model building" }
+                                }
                             }
                         }
                     }
                 },
-                
-                // Soft Skills
+
+                // DevOps Engineer
                 new Roadmap
                 {
-                    Id = 26,
-                    Title = "Soft Skills for Developers",
-                    Description = "Develop essential soft skills for career growth and team collaboration",
-                    Icon = "🤝",
-                    Category = CategoryConstants.Specialized,
-                    Duration = "3-4 months",
-                    Difficulty = "All Levels",
+                    Id = 5,
+                    Title = "DevOps Engineer",
+                    Description = "Master continuous integration, deployment, and cloud infrastructure",
+                    Icon = "🚀",
+                    Category = CategoryConstants.DevOps,
+                    Duration = "6-9 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "DevOpsEngineer",
+                    ControllerName = "DevOps",
+                    Context = "DevOps bridges development and operations through automation and collaboration.",
+                    Prerequisites = new List<string> { "Linux basics", "Scripting knowledge" },
+                    CareerPaths = new List<string> { "DevOps Engineer ($80K-$150K)", "SRE ($90K-$170K)" },
                     Steps = new List<RoadmapStep>
                     {
                         new RoadmapStep
                         {
-                            Id = 166,
-                            RoadmapId = 26,
-                            Title = "Communication Skills",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
+                            Id = 50,
+                            RoadmapId = 5,
+                            Title = "DevOps Fundamentals",
+                            Duration = "2 weeks",
+                            Content = "Introduction to DevOps principles and practices",
+                            SubTopics = new List<SubTopic>
                             {
-                                new LearningObjective { Id = 679, StepId = 166, Description = "Master written communication for technical documentation" },
-                                new LearningObjective { Id = 680, StepId = 166, Description = "Develop effective verbal communication with stakeholders" },
-                                new LearningObjective { Id = 681, StepId = 166, Description = "Practice active listening and asking clarifying questions" },
-                                new LearningObjective { Id = 682, StepId = 166, Description = "Learn to explain complex technical concepts simply" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 494, StepId = 166, Title = "The Pyramid Principle", Url = "https://www.amazon.com/Pyramid-Principle-Logic-Writing-Thinking/dp/0273710516", Type = "book" },
-                                new Resource { Id = 495, StepId = 166, Title = "Technical Writing Course", Url = "https://developers.google.com/tech-writing", Type = "course" },
-                                new Resource { Id = 496, StepId = 166, Title = "Communication for Engineers", Url = "https://www.youtube.com/watch?v=YgBs_lbdCYg", Type = "video" },
-                                new Resource { Id = 497, StepId = 166, Title = "How to Explain Anything", Url = "https://blog.usejournal.com/how-to-explain-anything-to-anyone-4df233142cbf", Type = "article" }
+                                new SubTopic
+                                {
+                                    Id = 501,
+                                    StepId = 50,
+                                    Title = "DevOps Culture",
+                                    Description = "Understanding DevOps philosophy",
+                                    Content = "Learn about DevOps principles and benefits",
+                                    KeyPoints = new List<string> { "CI/CD", "Infrastructure as Code", "Monitoring" }
+                                }
                             }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 167,
-                            RoadmapId = 26,
-                            Title = "Teamwork and Collaboration",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 683, StepId = 167, Description = "Build effective working relationships with team members" },
-                                new LearningObjective { Id = 684, StepId = 167, Description = "Navigate conflicts and disagreements constructively" },
-                                new LearningObjective { Id = 685, StepId = 167, Description = "Collaborate effectively in diverse and remote teams" },
-                                new LearningObjective { Id = 686, StepId = 167, Description = "Give and receive constructive feedback" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 498, StepId = 167, Title = "The Five Dysfunctions of a Team", Url = "https://www.amazon.com/Five-Dysfunctions-Team-Leadership-Fable/dp/0787960756", Type = "book" },
-                                new Resource { Id = 499, StepId = 167, Title = "Collaboration Skills Course", Url = "https://www.coursera.org/learn/collaboration-skills", Type = "course" },
-                                new Resource { Id = 500, StepId = 167, Title = "Remote Team Collaboration", Url = "https://www.youtube.com/watch?v=F2QN_ue2L2w", Type = "video" },
-                                new Resource { Id = 501, StepId = 167, Title = "Giving Effective Feedback", Url = "https://hbr.org/2019/03/the-feedback-fallacy", Type = "article" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 168,
-                            RoadmapId = 26,
-                            Title = "Problem Solving and Critical Thinking",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 687, StepId = 168, Description = "Apply structured problem-solving methodologies" },
-                                new LearningObjective { Id = 688, StepId = 168, Description = "Develop analytical thinking and root cause analysis skills" },
-                                new LearningObjective { Id = 689, StepId = 168, Description = "Make decisions under uncertainty and constraints" },
-                                new LearningObjective { Id = 690, StepId = 168, Description = "Think creatively and generate innovative solutions" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 502, StepId = 168, Title = "Thinking, Fast and Slow", Url = "https://www.amazon.com/Thinking-Fast-Slow-Daniel-Kahneman/dp/0374533555", Type = "book" },
-                                new Resource { Id = 503, StepId = 168, Title = "Critical Thinking Course", Url = "https://www.edx.org/course/introduction-to-critical-thinking", Type = "course" },
-                                new Resource { Id = 504, StepId = 168, Title = "Problem Solving Techniques", Url = "https://www.youtube.com/watch?v=bI3dFeEpOGc", Type = "video" },
-                                new Resource { Id = 505, StepId = 168, Title = "Root Cause Analysis", Url = "https://blog.hubspot.com/service/what-is-root-cause-analysis", Type = "article" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 169,
-                            RoadmapId = 26,
-                            Title = "Time Management and Productivity",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 691, StepId = 169, Description = "Master prioritization frameworks and techniques" },
-                                new LearningObjective { Id = 692, StepId = 169, Description = "Develop focus and minimize distractions" },
-                                new LearningObjective { Id = 693, StepId = 169, Description = "Create sustainable work habits and routines" },
-                                new LearningObjective { Id = 694, StepId = 169, Description = "Balance multiple projects and deadlines effectively" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 506, StepId = 169, Title = "Getting Things Done", Url = "https://www.amazon.com/Getting-Things-Done-Stress-Free-Productivity/dp/0142000280", Type = "book" },
-                                new Resource { Id = 507, StepId = 169, Title = "Time Management Fundamentals", Url = "https://www.linkedin.com/learning/time-management-fundamentals", Type = "course" },
-                                new Resource { Id = 508, StepId = 169, Title = "Deep Work", Url = "https://www.youtube.com/watch?v=b6xQpoVgN68", Type = "video" },
-                                new Resource { Id = 509, StepId = 169, Title = "Eisenhower Matrix", Url = "https://todoist.com/productivity-methods/eisenhower-matrix", Type = "article" }
-                            }
-                        },
+                        }
+                    }
+                },
+
+                // Cloud Architect
+                new Roadmap
+                {
+                    Id = 6,
+                    Title = "Cloud Architect",
+                    Description = "Design and implement scalable cloud solutions",
+                    Icon = "☁️",
+                    Category = CategoryConstants.DevOps,
+                    Duration = "8-10 months",
+                    Difficulty = "Advanced",
+                    ActionName = "CloudArchitect",
+                    ControllerName = "DevOps",
+                    Context = "Cloud architects design distributed systems and cloud infrastructure.",
+                    Prerequisites = new List<string> { "Networking basics", "System design" },
+                    CareerPaths = new List<string> { "Cloud Architect ($120K-$200K)", "Solutions Architect ($130K-$220K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                // Machine Learning Engineer
+                new Roadmap
+                {
+                    Id = 7,
+                    Title = "Machine Learning Engineer",
+                    Description = "Build and deploy machine learning systems",
+                    Icon = "🤖",
+                    Category = CategoryConstants.DataScience,
+                    Duration = "9-12 months",
+                    Difficulty = "Advanced",
+                    ActionName = "MLEngineer",
+                    ControllerName = "DataScience",
+                    Context = "ML engineers build production-ready machine learning systems.",
+                    Prerequisites = new List<string> { "Python programming", "Mathematics basics" },
+                    CareerPaths = new List<string> { "ML Engineer ($100K-$180K)", "AI Engineer ($110K-$200K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                // Cybersecurity Specialist
+                new Roadmap
+                {
+                    Id = 8,
+                    Title = "Cybersecurity Specialist",
+                    Description = "Protect systems and data from security threats",
+                    Icon = "🔒",
+                    Category = CategoryConstants.Specialized,
+                    Duration = "6-9 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "Cybersecurity",
+                    ControllerName = "Specialized",
+                    Context = "Cybersecurity professionals protect organizations from digital threats.",
+                    Prerequisites = new List<string> { "Networking knowledge", "Operating systems" },
+                    CareerPaths = new List<string> { "Security Analyst ($70K-$130K)", "Security Engineer ($90K-$160K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                // QA Engineer
+                new Roadmap
+                {
+                    Id = 9,
+                    Title = "QA Engineer",
+                    Description = "Ensure software quality through comprehensive testing",
+                    Icon = "✅",
+                    Category = CategoryConstants.Testing,
+                    Duration = "4-6 months",
+                    Difficulty = "Beginner to Intermediate",
+                    ActionName = "QAEngineer",
+                    ControllerName = "Testing",
+                    Context = "QA engineers ensure software meets quality standards.",
+                    Prerequisites = new List<string> { "Attention to detail", "Basic programming" },
+                    CareerPaths = new List<string> { "QA Engineer ($60K-$110K)", "Test Lead ($80K-$140K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                // Software Architect
+                new Roadmap
+                {
+                    Id = 10,
+                    Title = "Software Architect",
+                    Description = "Design scalable and maintainable software systems",
+                    Icon = "🏗️",
+                    Category = CategoryConstants.Architecture,
+                    Duration = "12-18 months",
+                    Difficulty = "Expert",
+                    ActionName = "SoftwareArchitect",
+                    ControllerName = "Architecture",
+                    Context = "Software architects design high-level software structures.",
+                    Prerequisites = new List<string> { "5+ years experience", "System design knowledge" },
+                    CareerPaths = new List<string> { "Software Architect ($130K-$200K)", "Principal Engineer ($150K-$250K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                // Data Engineer
+                new Roadmap
+                {
+                    Id = 12,
+                    Title = "Data Engineer",
+                    Description = "Build data pipelines and infrastructure",
+                    Icon = "🔧",
+                    Category = CategoryConstants.DataScience,
+                    Duration = "6-8 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "DataEngineer",
+                    ControllerName = "DataScience",
+                    Context = "Data engineers build the infrastructure for data generation, collection, and storage.",
+                    Prerequisites = new List<string> { "SQL knowledge", "Programming skills" },
+                    CareerPaths = new List<string> { "Data Engineer ($80K-$150K)", "Big Data Engineer ($90K-$170K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                // iOS Developer
+                new Roadmap
+                {
+                    Id = 13,
+                    Title = "iOS Developer",
+                    Description = "Create native iOS applications with Swift",
+                    Icon = "🍎",
+                    Category = CategoryConstants.Mobile,
+                    Duration = "5-7 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "IOSDeveloper",
+                    ControllerName = "Mobile",
+                    Context = "iOS developers create applications for Apple devices.",
+                    Prerequisites = new List<string> { "Mac computer", "Basic programming" },
+                    CareerPaths = new List<string> { "iOS Developer ($75K-$150K)", "Senior iOS Developer ($120K-$180K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                // Android Developer
+                new Roadmap
+                {
+                    Id = 14,
+                    Title = "Android Developer",
+                    Description = "Build Android apps with Kotlin and Java",
+                    Icon = "🤖",
+                    Category = CategoryConstants.Mobile,
+                    Duration = "5-7 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "AndroidDeveloper",
+                    ControllerName = "Mobile",
+                    Context = "Android developers create applications for Android devices.",
+                    Prerequisites = new List<string> { "Java or Kotlin basics", "OOP concepts" },
+                    CareerPaths = new List<string> { "Android Developer ($70K-$140K)", "Senior Android Developer ($110K-$170K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                // .NET MAUI Developer
+                new Roadmap
+                {
+                    Id = 17,
+                    Title = ".NET MAUI Developer",
+                    Description = "Create cross-platform mobile and desktop applications with .NET MAUI",
+                    Icon = "📱",
+                    Category = CategoryConstants.Mobile,
+                    Duration = "4-6 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "NETMAUIDeveloper",
+                    ControllerName = "Mobile",
+                    Context = ".NET MAUI is Microsoft's framework for building cross-platform native mobile and desktop apps with C# and XAML.",
+                    Prerequisites = new List<string> { "C# programming", ".NET fundamentals", "XAML basics" },
+                    CareerPaths = new List<string> { ".NET MAUI Developer ($75K-$140K)", "Mobile App Developer ($80K-$150K)", "Cross-Platform Developer ($85K-$160K)" },
+                    Steps = new List<RoadmapStep>
+                    {
                         new RoadmapStep
                         {
                             Id = 170,
-                            RoadmapId = 26,
-                            Title = "Leadership and Mentoring",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 695, StepId = 170, Description = "Develop leadership presence and influence without authority" },
-                                new LearningObjective { Id = 696, StepId = 170, Description = "Learn to mentor junior developers and peers" },
-                                new LearningObjective { Id = 697, StepId = 170, Description = "Build and lead high-performing teams" },
-                                new LearningObjective { Id = 698, StepId = 170, Description = "Navigate organizational dynamics and politics" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 510, StepId = 170, Title = "The Manager's Path", Url = "https://www.amazon.com/Managers-Path-Leaders-Navigating-Growth/dp/1491973897", Type = "book" },
-                                new Resource { Id = 511, StepId = 170, Title = "Leadership for Engineers", Url = "https://www.pluralsight.com/courses/leadership-for-engineers", Type = "course" },
-                                new Resource { Id = 512, StepId = 170, Title = "Technical Leadership", Url = "https://www.youtube.com/watch?v=MotQObb8YSA", Type = "video" },
-                                new Resource { Id = 513, StepId = 170, Title = "Mentoring Developers", Url = "https://medium.com/@codepo8/mentoring-developers-some-thoughts-ef2ae30b27e6", Type = "article" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 171,
-                            RoadmapId = 26,
-                            Title = "Presentation and Public Speaking",
+                            RoadmapId = 17,
+                            Title = "MAUI Fundamentals",
                             Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
+                            Content = "Learn the basics of .NET MAUI development",
+                            SubTopics = new List<SubTopic>
                             {
-                                new LearningObjective { Id = 699, StepId = 171, Description = "Prepare and deliver compelling technical presentations" },
-                                new LearningObjective { Id = 700, StepId = 171, Description = "Engage audiences and handle questions confidently" },
-                                new LearningObjective { Id = 701, StepId = 171, Description = "Create effective visual aids and slides" },
-                                new LearningObjective { Id = 702, StepId = 171, Description = "Present to different audiences: technical and non-technical" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 514, StepId = 171, Title = "Made to Stick", Url = "https://www.amazon.com/Made-Stick-Ideas-Survive-Others/dp/1400064287", Type = "book" },
-                                new Resource { Id = 515, StepId = 171, Title = "Public Speaking for Engineers", Url = "https://www.udemy.com/course/public-speaking-for-engineers/", Type = "course" },
-                                new Resource { Id = 516, StepId = 171, Title = "How to Give a Great Tech Talk", Url = "https://www.youtube.com/watch?v=yE67bo7dmbY", Type = "video" },
-                                new Resource { Id = 517, StepId = 171, Title = "Presentation Design Tips", Url = "https://blog.hubspot.com/marketing/easy-presentation-design-tricks-ht", Type = "article" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 172,
-                            RoadmapId = 26,
-                            Title = "Emotional Intelligence",
-                            Duration = "2-3 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 703, StepId = 172, Description = "Develop self-awareness and emotional regulation" },
-                                new LearningObjective { Id = 704, StepId = 172, Description = "Improve empathy and social awareness" },
-                                new LearningObjective { Id = 705, StepId = 172, Description = "Handle stress and pressure effectively" },
-                                new LearningObjective { Id = 706, StepId = 172, Description = "Build resilience and adaptability" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 518, StepId = 172, Title = "Emotional Intelligence 2.0", Url = "https://www.amazon.com/Emotional-Intelligence-2-0-Travis-Bradberry/dp/0974320625", Type = "book" },
-                                new Resource { Id = 519, StepId = 172, Title = "Emotional Intelligence Course", Url = "https://www.coursera.org/learn/emotional-intelligence-introduction", Type = "course" },
-                                new Resource { Id = 520, StepId = 172, Title = "EQ in the Workplace", Url = "https://www.youtube.com/watch?v=Y7m9eNoB3NU", Type = "video" },
-                                new Resource { Id = 521, StepId = 172, Title = "Building Resilience", Url = "https://hbr.org/2016/06/building-resilience-i", Type = "article" }
-                            }
-                        },
-                        new RoadmapStep
-                        {
-                            Id = 173,
-                            RoadmapId = 26,
-                            Title = "Career Development and Networking",
-                            Duration = "3-4 weeks",
-                            Objectives = new List<LearningObjective>
-                            {
-                                new LearningObjective { Id = 707, StepId = 173, Description = "Create a strategic career development plan" },
-                                new LearningObjective { Id = 708, StepId = 173, Description = "Build and maintain professional networks" },
-                                new LearningObjective { Id = 709, StepId = 173, Description = "Develop personal branding and online presence" },
-                                new LearningObjective { Id = 710, StepId = 173, Description = "Master job interviews and salary negotiations" }
-                            },
-                            Resources = new List<Resource>
-                            {
-                                new Resource { Id = 522, StepId = 173, Title = "The Coding Career Handbook", Url = "https://www.learninpublic.org/", Type = "book" },
-                                new Resource { Id = 523, StepId = 173, Title = "Developer Career Masterclass", Url = "https://www.udemy.com/course/the-complete-junior-to-senior-web-developer-roadmap/", Type = "course" },
-                                new Resource { Id = 524, StepId = 173, Title = "Building Your Developer Brand", Url = "https://www.youtube.com/watch?v=QaBXkjGP8gE", Type = "video" },
-                                new Resource { Id = 525, StepId = 173, Title = "Networking for Developers", Url = "https://simpleprogrammer.com/networking-software-developers/", Type = "article" }
+                                new SubTopic
+                                {
+                                    Id = 1701,
+                                    StepId = 170,
+                                    Title = "MAUI Project Structure",
+                                    Description = "Understanding .NET MAUI project organization",
+                                    Content = "Learn how .NET MAUI projects are structured and organized",
+                                    KeyPoints = new List<string> { "Single project approach", "Platform-specific code", "Shared resources", "App lifecycle" }
+                                }
                             }
                         }
                     }
+                },
+
+                // Azure Developer
+                new Roadmap
+                {
+                    Id = 18,
+                    Title = "Azure Cloud Developer",
+                    Description = "Master Azure cloud services and .NET integration",
+                    Icon = "☁️",
+                    Category = CategoryConstants.DevOps,
+                    Duration = "6-8 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "AzureDeveloper",
+                    ControllerName = "DevOps",
+                    Context = "Azure developers build and deploy scalable cloud applications using Microsoft Azure services.",
+                    Prerequisites = new List<string> { ".NET Core experience", "Basic cloud concepts", "HTTP/REST APIs" },
+                    CareerPaths = new List<string> { "Azure Developer ($85K-$160K)", "Cloud Solutions Architect ($120K-$200K)", "DevOps Engineer ($90K-$170K)" },
+                    Steps = new List<RoadmapStep>
+                    {
+                        new RoadmapStep
+                        {
+                            Id = 180,
+                            RoadmapId = 18,
+                            Title = "Azure Fundamentals",
+                            Duration = "3-4 weeks",
+                            Content = "Introduction to Microsoft Azure cloud services",
+                            SubTopics = new List<SubTopic>
+                            {
+                                new SubTopic
+                                {
+                                    Id = 1801,
+                                    StepId = 180,
+                                    Title = "Azure Core Services",
+                                    Description = "Essential Azure services for developers",
+                                    Content = "Learn about the core Azure services used in application development",
+                                    KeyPoints = new List<string> { "App Services", "Azure Functions", "Storage Account", "Key Vault", "Application Insights" }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                // JavaScript Developer
+                new Roadmap
+                {
+                    Id = 19,
+                    Title = "JavaScript Developer",
+                    Description = "Master modern JavaScript from fundamentals to advanced concepts",
+                    Icon = "📜",
+                    Category = CategoryConstants.WebDevelopment,
+                    Duration = "3-4 months",
+                    Difficulty = "Beginner to Advanced",
+                    ActionName = "JavaScriptDeveloper",
+                    ControllerName = "WebDevelopment",
+                    Context = "JavaScript is the programming language of the web, essential for all frontend development and increasingly important for backend development.",
+                    Prerequisites = new List<string> { "Basic computer skills", "HTML/CSS basics" },
+                    CareerPaths = new List<string> { "Frontend Developer ($60K-$120K)", "Full Stack Developer ($80K-$150K)", "JavaScript Developer ($70K-$130K)" },
+                    Steps = new List<RoadmapStep>
+                    {
+                        new RoadmapStep
+                        {
+                            Id = 190,
+                            RoadmapId = 19,
+                            Title = "JavaScript Fundamentals",
+                            Duration = "3-4 weeks",
+                            Content = "Learn core JavaScript concepts and syntax",
+                            SubTopics = new List<SubTopic>
+                            {
+                                new SubTopic
+                                {
+                                    Id = 1901,
+                                    StepId = 190,
+                                    Title = "Variables and Data Types",
+                                    Description = "Understanding JavaScript variables and primitive data types",
+                                    Content = "Learn about var, let, const and JavaScript's dynamic typing system",
+                                    KeyPoints = new List<string> { "Variable declarations", "Primitive types", "Type coercion", "Scope" }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                // React Developer
+                new Roadmap
+                {
+                    Id = 20,
+                    Title = "React Developer",
+                    Description = "Build modern user interfaces with React and its ecosystem",
+                    Icon = "⚛️",
+                    Category = CategoryConstants.WebDevelopment,
+                    Duration = "4-6 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "ReactDeveloper",
+                    ControllerName = "WebDevelopment",
+                    Context = "React is a popular JavaScript library for building user interfaces, especially single-page applications where you need fast, interactive UIs.",
+                    Prerequisites = new List<string> { "JavaScript ES6+", "HTML/CSS", "Basic programming concepts" },
+                    CareerPaths = new List<string> { "React Developer ($70K-$140K)", "Frontend Engineer ($80K-$150K)", "Full Stack Developer ($90K-$170K)" },
+                    Steps = new List<RoadmapStep>
+                    {
+                        new RoadmapStep
+                        {
+                            Id = 200,
+                            RoadmapId = 20,
+                            Title = "React Fundamentals",
+                            Duration = "3-4 weeks",
+                            Content = "Learn the core concepts of React development",
+                            SubTopics = new List<SubTopic>
+                            {
+                                new SubTopic
+                                {
+                                    Id = 2001,
+                                    StepId = 200,
+                                    Title = "Components and JSX",
+                                    Description = "Understanding React components and JSX syntax",
+                                    Content = "Learn how to create and use React components with JSX",
+                                    KeyPoints = new List<string> { "Functional components", "JSX syntax", "Props", "Component composition" }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                // Angular Developer
+                new Roadmap
+                {
+                    Id = 21,
+                    Title = "Angular Developer",
+                    Description = "Create enterprise applications with Angular and TypeScript",
+                    Icon = "🔺",
+                    Category = CategoryConstants.WebDevelopment,
+                    Duration = "5-7 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "AngularDeveloper",
+                    ControllerName = "WebDevelopment",
+                    Context = "Angular is a platform and framework for building single-page client applications using HTML and TypeScript, developed by Google.",
+                    Prerequisites = new List<string> { "JavaScript/TypeScript", "HTML/CSS", "Object-oriented programming" },
+                    CareerPaths = new List<string> { "Angular Developer ($75K-$145K)", "Frontend Architect ($100K-$180K)", "Full Stack Developer ($90K-$170K)" },
+                    Steps = new List<RoadmapStep>
+                    {
+                        new RoadmapStep
+                        {
+                            Id = 210,
+                            RoadmapId = 21,
+                            Title = "Angular Fundamentals",
+                            Duration = "4-5 weeks",
+                            Content = "Learn the core concepts of Angular development",
+                            SubTopics = new List<SubTopic>
+                            {
+                                new SubTopic
+                                {
+                                    Id = 2101,
+                                    StepId = 210,
+                                    Title = "Angular Architecture",
+                                    Description = "Understanding Angular's component-based architecture",
+                                    Content = "Learn about components, services, modules, and dependency injection",
+                                    KeyPoints = new List<string> { "Components", "Services", "Modules", "Dependency Injection" }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                // Azure DevOps & Git CI/CD
+                new Roadmap
+                {
+                    Id = 22,
+                    Title = "Azure DevOps & Git CI/CD",
+                    Description = "Master version control, continuous integration, and deployment pipelines",
+                    Icon = "🔄",
+                    Category = CategoryConstants.DevOps,
+                    Duration = "4-6 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "GitCICD",
+                    ControllerName = "DevOps",
+                    Context = "Learn Git version control, Azure DevOps, and CI/CD pipelines to automate your development workflow and deployments.",
+                    Prerequisites = new List<string> { "Basic programming knowledge", "Command line familiarity", "Understanding of software development lifecycle" },
+                    CareerPaths = new List<string> { "DevOps Engineer ($80K-$150K)", "Build Engineer ($70K-$130K)", "Release Manager ($85K-$160K)", "Site Reliability Engineer ($90K-$170K)" },
+                    Steps = new List<RoadmapStep>
+                    {
+                        new RoadmapStep
+                        {
+                            Id = 220,
+                            RoadmapId = 22,
+                            Title = "Git Version Control",
+                            Duration = "2-3 weeks",
+                            Content = "Master Git fundamentals and collaboration workflows",
+                            SubTopics = new List<SubTopic>
+                            {
+                                new SubTopic
+                                {
+                                    Id = 2201,
+                                    StepId = 220,
+                                    Title = "Git Fundamentals",
+                                    Description = "Core Git concepts and commands",
+                                    Content = "Learn essential Git commands, branching, merging, and repository management",
+                                    KeyPoints = new List<string> { "Repository initialization", "Staging and commits", "Branching strategies", "Merge vs Rebase", "Remote repositories" }
+                                },
+                                new SubTopic
+                                {
+                                    Id = 2202,
+                                    StepId = 220,
+                                    Title = "Git Workflows",
+                                    Description = "Professional Git workflows and best practices",
+                                    Content = "Understand GitFlow, GitHub Flow, and enterprise Git workflows",
+                                    KeyPoints = new List<string> { "GitFlow workflow", "Feature branches", "Pull requests", "Code reviews", "Conflict resolution" }
+                                }
+                            }
+                        },
+                        new RoadmapStep
+                        {
+                            Id = 221,
+                            RoadmapId = 22,
+                            Title = "Azure DevOps Fundamentals",
+                            Duration = "3-4 weeks",
+                            Content = "Learn Azure DevOps services and project management",
+                            SubTopics = new List<SubTopic>
+                            {
+                                new SubTopic
+                                {
+                                    Id = 2211,
+                                    StepId = 221,
+                                    Title = "Azure Repos & Boards",
+                                    Description = "Source control and project management in Azure DevOps",
+                                    Content = "Set up repositories, manage work items, and track project progress",
+                                    KeyPoints = new List<string> { "Azure Repos setup", "Work items", "Boards and sprints", "Branch policies", "Team collaboration" }
+                                },
+                                new SubTopic
+                                {
+                                    Id = 2212,
+                                    StepId = 221,
+                                    Title = "Azure Test Plans",
+                                    Description = "Testing and quality assurance with Azure DevOps",
+                                    Content = "Create test plans, run automated tests, and track quality metrics",
+                                    KeyPoints = new List<string> { "Test cases", "Test suites", "Automated testing", "Test reporting", "Quality gates" }
+                                }
+                            }
+                        },
+                        new RoadmapStep
+                        {
+                            Id = 222,
+                            RoadmapId = 22,
+                            Title = "CI/CD Pipelines",
+                            Duration = "4-5 weeks",
+                            Content = "Build automated CI/CD pipelines with Azure Pipelines",
+                            SubTopics = new List<SubTopic>
+                            {
+                                new SubTopic
+                                {
+                                    Id = 2221,
+                                    StepId = 222,
+                                    Title = "Build Pipelines",
+                                    Description = "Automated build and compilation processes",
+                                    Content = "Create build pipelines for .NET applications with automated testing",
+                                    KeyPoints = new List<string> { "YAML pipelines", "Build agents", "Build tasks", "Artifact publishing", "Multi-stage builds" }
+                                },
+                                new SubTopic
+                                {
+                                    Id = 2222,
+                                    StepId = 222,
+                                    Title = "Release Pipelines",
+                                    Description = "Automated deployment and release management",
+                                    Content = "Deploy applications to multiple environments with approval gates",
+                                    KeyPoints = new List<string> { "Deployment stages", "Environment approvals", "Variable groups", "Release triggers", "Rollback strategies" }
+                                }
+                            }
+                        },
+                        new RoadmapStep
+                        {
+                            Id = 223,
+                            RoadmapId = 22,
+                            Title = "Advanced DevOps Practices",
+                            Duration = "3-4 weeks",
+                            Content = "Advanced DevOps concepts and infrastructure as code",
+                            SubTopics = new List<SubTopic>
+                            {
+                                new SubTopic
+                                {
+                                    Id = 2231,
+                                    StepId = 223,
+                                    Title = "Infrastructure as Code",
+                                    Description = "Manage infrastructure using code and templates",
+                                    Content = "Use ARM templates, Terraform, and Azure Resource Manager for infrastructure automation",
+                                    KeyPoints = new List<string> { "ARM templates", "Terraform basics", "Resource groups", "Infrastructure pipelines", "State management" }
+                                },
+                                new SubTopic
+                                {
+                                    Id = 2232,
+                                    StepId = 223,
+                                    Title = "Monitoring & Observability",
+                                    Description = "Application monitoring and performance tracking",
+                                    Content = "Implement monitoring, logging, and alerting for production applications",
+                                    KeyPoints = new List<string> { "Application Insights", "Log Analytics", "Performance counters", "Custom metrics", "Alert rules" }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                // xUnit Unit Testing
+                new Roadmap
+                {
+                    Id = 23,
+                    Title = "xUnit Unit Testing",
+                    Description = "Master unit testing with xUnit, mocking, and test-driven development",
+                    Icon = "✅",
+                    Category = CategoryConstants.Testing,
+                    Duration = "3-4 months",
+                    Difficulty = "Beginner to Advanced",
+                    ActionName = "XUnitTesting",
+                    ControllerName = "Testing",
+                    Context = "Unit testing is essential for building reliable, maintainable software. xUnit is the most popular testing framework for .NET applications.",
+                    Prerequisites = new List<string> { "C# fundamentals", "Basic .NET knowledge", "Understanding of OOP concepts" },
+                    CareerPaths = new List<string> { "Software Developer ($70K-$140K)", "QA Engineer ($60K-$120K)", "Test Automation Engineer ($75K-$135K)", "Senior Developer ($90K-$160K)" },
+                    Steps = new List<RoadmapStep>
+                    {
+                        new RoadmapStep
+                        {
+                            Id = 230,
+                            RoadmapId = 23,
+                            Title = "Unit Testing Fundamentals",
+                            Duration = "2-3 weeks",
+                            Content = "Learn the principles and benefits of unit testing",
+                            SubTopics = new List<SubTopic>
+                            {
+                                new SubTopic
+                                {
+                                    Id = 2301,
+                                    StepId = 230,
+                                    Title = "Testing Principles",
+                                    Description = "Core concepts of unit testing and test design",
+                                    Content = "Understand the fundamentals of unit testing, test isolation, and the testing pyramid",
+                                    KeyPoints = new List<string> { "Test isolation", "Arrange-Act-Assert pattern", "Test naming conventions", "Testing pyramid", "FIRST principles" }
+                                },
+                                new SubTopic
+                                {
+                                    Id = 2302,
+                                    StepId = 230,
+                                    Title = "Test-Driven Development (TDD)",
+                                    Description = "Red-Green-Refactor cycle and TDD best practices",
+                                    Content = "Master the TDD workflow and understand when and how to apply it effectively",
+                                    KeyPoints = new List<string> { "Red-Green-Refactor", "Writing failing tests first", "Minimal implementation", "Refactoring with confidence" }
+                                }
+                            }
+                        },
+                        new RoadmapStep
+                        {
+                            Id = 231,
+                            RoadmapId = 23,
+                            Title = "xUnit Framework Basics",
+                            Duration = "3-4 weeks",
+                            Content = "Learn xUnit syntax, attributes, and basic test writing",
+                            SubTopics = new List<SubTopic>
+                            {
+                                new SubTopic
+                                {
+                                    Id = 2311,
+                                    StepId = 231,
+                                    Title = "xUnit Test Structure",
+                                    Description = "Understanding xUnit test classes and methods",
+                                    Content = "Learn how to structure xUnit tests and use core attributes",
+                                    KeyPoints = new List<string> { "[Fact] attribute", "[Theory] attribute", "Test class organization", "Test method naming", "Assert methods" }
+                                },
+                                new SubTopic
+                                {
+                                    Id = 2312,
+                                    StepId = 231,
+                                    Title = "Data-Driven Tests",
+                                    Description = "Parameterized tests with Theory and InlineData",
+                                    Content = "Create flexible tests that run with multiple data sets using Theory and various data sources",
+                                    KeyPoints = new List<string> { "[InlineData] attribute", "[MemberData] attribute", "[ClassData] attribute", "Custom data sources", "Test data organization" }
+                                }
+                            }
+                        },
+                        new RoadmapStep
+                        {
+                            Id = 232,
+                            RoadmapId = 23,
+                            Title = "Advanced Testing Concepts",
+                            Duration = "4-5 weeks",
+                            Content = "Master mocking, test doubles, and advanced testing patterns",
+                            SubTopics = new List<SubTopic>
+                            {
+                                new SubTopic
+                                {
+                                    Id = 2321,
+                                    StepId = 232,
+                                    Title = "Mocking with Moq",
+                                    Description = "Create test doubles and mock dependencies",
+                                    Content = "Use Moq framework to create mocks, stubs, and verify interactions between objects",
+                                    KeyPoints = new List<string> { "Mock creation", "Setup methods", "Verify calls", "Callback functions", "Strict vs loose mocks" }
+                                },
+                                new SubTopic
+                                {
+                                    Id = 2322,
+                                    StepId = 232,
+                                    Title = "Testing Async Code",
+                                    Description = "Unit testing asynchronous methods and operations",
+                                    Content = "Learn patterns for testing async/await code, handling timing issues, and testing concurrent operations",
+                                    KeyPoints = new List<string> { "Testing async methods", "ConfigureAwait in tests", "Task completion", "Testing cancellation tokens", "Avoiding deadlocks" }
+                                }
+                            }
+                        },
+                        new RoadmapStep
+                        {
+                            Id = 233,
+                            RoadmapId = 23,
+                            Title = "Integration & End-to-End Testing",
+                            Duration = "3-4 weeks",
+                            Content = "Expand testing to integration tests and end-to-end scenarios",
+                            SubTopics = new List<SubTopic>
+                            {
+                                new SubTopic
+                                {
+                                    Id = 2331,
+                                    StepId = 233,
+                                    Title = "ASP.NET Core Testing",
+                                    Description = "Testing web APIs and MVC applications",
+                                    Content = "Use TestServer and WebApplicationFactory to test ASP.NET Core applications",
+                                    KeyPoints = new List<string> { "TestServer setup", "WebApplicationFactory", "Testing controllers", "Testing middleware", "Database testing strategies" }
+                                },
+                                new SubTopic
+                                {
+                                    Id = 2332,
+                                    StepId = 233,
+                                    Title = "Test Organization & CI/CD",
+                                    Description = "Organizing tests and integrating with build pipelines",
+                                    Content = "Structure test projects, configure test execution, and integrate with continuous integration",
+                                    KeyPoints = new List<string> { "Test project organization", "Test categories", "Parallel test execution", "Test reporting", "CI/CD integration" }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                // Azure Developer
+                new Roadmap
+                {
+                    Id = 24,
+                    Title = "Azure Developer",
+                    Description = "Master Microsoft Azure cloud platform for building, deploying, and managing applications",
+                    Icon = "☁️",
+                    Category = CategoryConstants.DevOps,
+                    Duration = "4-6 months",
+                    Difficulty = "Beginner to Advanced",
+                    ActionName = "AzureCloudDeveloper",
+                    ControllerName = "DevOps",
+                    Context = "Microsoft Azure is one of the leading cloud platforms, offering a comprehensive suite of cloud services for building, testing, deploying, and managing applications.",
+                    Prerequisites = new List<string> 
+                    { 
+                        "Basic programming knowledge (C#, Python, or JavaScript)",
+                        "Understanding of web technologies",
+                        "Basic networking concepts",
+                        "Familiarity with databases"
+                    },
+                    CareerPaths = new List<string> 
+                    { 
+                        "Azure Developer ($80K-$150K)",
+                        "Cloud Solutions Architect ($100K-$180K)",
+                        "DevOps Engineer ($85K-$160K)",
+                        "Cloud Security Engineer ($95K-$170K)"
+                    },
+                    Steps = new List<RoadmapStep>
+                    {
+                        new RoadmapStep
+                        {
+                            Id = 240,
+                            RoadmapId = 24,
+                            Title = "Azure Fundamentals",
+                            Duration = "2-3 weeks",
+                            Content = "Learn the core concepts of Microsoft Azure",
+                            SubTopics = new List<SubTopic>
+                            {
+                                new SubTopic
+                                {
+                                    Id = 2401,
+                                    StepId = 240,
+                                    Title = "Azure Architecture & Services",
+                                    Description = "Understanding Azure's global infrastructure",
+                                    Content = "Learn about Azure regions, availability zones, and core services",
+                                    KeyPoints = new List<string> 
+                                    { 
+                                        "Azure regions and geography",
+                                        "Availability zones and sets",
+                                        "Resource groups and subscriptions",
+                                        "Azure Resource Manager (ARM)",
+                                        "Azure Portal navigation"
+                                    }
+                                },
+                                new SubTopic
+                                {
+                                    Id = 2402,
+                                    StepId = 240,
+                                    Title = "Azure Identity & Security",
+                                    Description = "Secure access to Azure resources",
+                                    Content = "Master Azure Active Directory and security fundamentals",
+                                    KeyPoints = new List<string> 
+                                    { 
+                                        "Azure Active Directory basics",
+                                        "Authentication and authorization",
+                                        "Role-Based Access Control (RBAC)",
+                                        "Managed identities",
+                                        "Azure Key Vault"
+                                    }
+                                }
+                            }
+                        },
+                        new RoadmapStep
+                        {
+                            Id = 241,
+                            RoadmapId = 24,
+                            Title = "Azure Compute Services",
+                            Duration = "3-4 weeks",
+                            Content = "Master Azure compute options for running applications",
+                            SubTopics = new List<SubTopic>
+                            {
+                                new SubTopic
+                                {
+                                    Id = 2411,
+                                    StepId = 241,
+                                    Title = "Azure Virtual Machines",
+                                    Description = "Deploy and manage VMs in Azure",
+                                    Content = "Learn to create, configure, and manage Azure VMs",
+                                    KeyPoints = new List<string> 
+                                    { 
+                                        "VM sizes and families",
+                                        "VM creation and configuration",
+                                        "Availability sets and scale sets",
+                                        "VM extensions and automation",
+                                        "Cost optimization"
+                                    }
+                                },
+                                new SubTopic
+                                {
+                                    Id = 2412,
+                                    StepId = 241,
+                                    Title = "Azure App Service",
+                                    Description = "PaaS for web applications",
+                                    Content = "Build and deploy web apps using Azure App Service",
+                                    KeyPoints = new List<string> 
+                                    { 
+                                        "Web Apps deployment",
+                                        "App Service plans",
+                                        "Deployment slots",
+                                        "Custom domains and SSL",
+                                        "Continuous deployment"
+                                    }
+                                }
+                            }
+                        },
+                        new RoadmapStep
+                        {
+                            Id = 242,
+                            RoadmapId = 24,
+                            Title = "Azure Storage & Data Services",
+                            Duration = "3-4 weeks",
+                            Content = "Work with Azure storage solutions and databases",
+                            SubTopics = new List<SubTopic>
+                            {
+                                new SubTopic
+                                {
+                                    Id = 2421,
+                                    StepId = 242,
+                                    Title = "Azure Storage Services",
+                                    Description = "Master Azure storage options",
+                                    Content = "Learn about different storage types and their use cases",
+                                    KeyPoints = new List<string> 
+                                    { 
+                                        "Blob storage",
+                                        "File storage",
+                                        "Queue storage",
+                                        "Table storage",
+                                        "Storage security and access"
+                                    }
+                                },
+                                new SubTopic
+                                {
+                                    Id = 2422,
+                                    StepId = 242,
+                                    Title = "Azure Databases",
+                                    Description = "Managed database services in Azure",
+                                    Content = "Deploy and manage databases in Azure",
+                                    KeyPoints = new List<string> 
+                                    { 
+                                        "Azure SQL Database",
+                                        "Cosmos DB",
+                                        "Azure Database for PostgreSQL/MySQL",
+                                        "Azure Cache for Redis",
+                                        "Database security and backup"
+                                    }
+                                }
+                            }
+                        },
+                        new RoadmapStep
+                        {
+                            Id = 243,
+                            RoadmapId = 24,
+                            Title = "Azure DevOps & Monitoring",
+                            Duration = "3-4 weeks",
+                            Content = "Implement DevOps practices and monitoring in Azure",
+                            SubTopics = new List<SubTopic>
+                            {
+                                new SubTopic
+                                {
+                                    Id = 2431,
+                                    StepId = 243,
+                                    Title = "Azure DevOps Services",
+                                    Description = "CI/CD with Azure DevOps",
+                                    Content = "Build continuous integration and deployment pipelines",
+                                    KeyPoints = new List<string> 
+                                    { 
+                                        "Azure Repos",
+                                        "Azure Pipelines",
+                                        "Azure Artifacts",
+                                        "Azure Test Plans",
+                                        "Release management"
+                                    }
+                                },
+                                new SubTopic
+                                {
+                                    Id = 2432,
+                                    StepId = 243,
+                                    Title = "Azure Monitoring",
+                                    Description = "Monitor and troubleshoot Azure applications",
+                                    Content = "Implement comprehensive monitoring solutions",
+                                    KeyPoints = new List<string> 
+                                    { 
+                                        "Azure Monitor",
+                                        "Application Insights",
+                                        "Log Analytics",
+                                        "Alerts and notifications",
+                                        "Azure Dashboard"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                // New Extended Roadmaps - Web Development Category
+                new Roadmap
+                {
+                    Id = 25,
+                    Title = "Vue.js Developer",
+                    Description = "Build progressive web applications with Vue.js framework",
+                    Icon = "💚",
+                    Category = CategoryConstants.WebDevelopment,
+                    Duration = "4-5 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "VueJSDeveloper",
+                    ControllerName = "WebDevelopment",
+                    Context = "Vue.js is a progressive JavaScript framework for building user interfaces, known for its gentle learning curve.",
+                    Prerequisites = new List<string> { "JavaScript ES6+", "HTML/CSS", "Basic programming concepts" },
+                    CareerPaths = new List<string> { "Vue.js Developer ($65K-$130K)", "Frontend Engineer ($75K-$140K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 26,
+                    Title = "TypeScript Developer",
+                    Description = "Master TypeScript for type-safe JavaScript development",
+                    Icon = "🔷",
+                    Category = CategoryConstants.WebDevelopment,
+                    Duration = "2-3 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "TypeScriptDeveloper",
+                    ControllerName = "WebDevelopment",
+                    Context = "TypeScript adds static typing to JavaScript, improving code quality and developer productivity.",
+                    Prerequisites = new List<string> { "JavaScript proficiency", "Basic OOP concepts" },
+                    CareerPaths = new List<string> { "TypeScript Developer ($75K-$140K)", "Senior Frontend Developer ($90K-$160K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 27,
+                    Title = "Node.js Developer",
+                    Description = "Build scalable backend applications with Node.js",
+                    Icon = "🟢",
+                    Category = CategoryConstants.WebDevelopment,
+                    Duration = "5-6 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "NodeJSDeveloper",
+                    ControllerName = "WebDevelopment",
+                    Context = "Node.js enables JavaScript on the server-side, perfect for building fast, scalable network applications.",
+                    Prerequisites = new List<string> { "JavaScript expertise", "Basic server concepts" },
+                    CareerPaths = new List<string> { "Node.js Developer ($70K-$140K)", "Full Stack Developer ($80K-$150K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 28,
+                    Title = "GraphQL Developer",
+                    Description = "Master GraphQL for efficient API development",
+                    Icon = "🔷",
+                    Category = CategoryConstants.WebDevelopment,
+                    Duration = "3-4 months",
+                    Difficulty = "Advanced",
+                    ActionName = "GraphQLDeveloper",
+                    ControllerName = "WebDevelopment",
+                    Context = "GraphQL provides a more efficient, powerful and flexible alternative to REST APIs.",
+                    Prerequisites = new List<string> { "API development experience", "JavaScript/TypeScript" },
+                    CareerPaths = new List<string> { "API Developer ($75K-$145K)", "Backend Architect ($100K-$170K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 29,
+                    Title = "Next.js Developer",
+                    Description = "Build production-ready React applications with Next.js",
+                    Icon = "⚡",
+                    Category = CategoryConstants.WebDevelopment,
+                    Duration = "3-4 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "NextJSDeveloper",
+                    ControllerName = "WebDevelopment",
+                    Context = "Next.js is the React framework for production, offering server-side rendering and static generation.",
+                    Prerequisites = new List<string> { "React proficiency", "JavaScript ES6+" },
+                    CareerPaths = new List<string> { "Next.js Developer ($80K-$150K)", "Senior React Developer ($90K-$170K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 30,
+                    Title = "Svelte Developer",
+                    Description = "Learn the compile-time framework that writes less code",
+                    Icon = "🟠",
+                    Category = CategoryConstants.WebDevelopment,
+                    Duration = "3-4 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "SvelteDeveloper",
+                    ControllerName = "WebDevelopment",
+                    Context = "Svelte shifts work from runtime to compile-time, resulting in faster applications.",
+                    Prerequisites = new List<string> { "JavaScript fundamentals", "HTML/CSS" },
+                    CareerPaths = new List<string> { "Svelte Developer ($70K-$135K)", "Frontend Developer ($75K-$140K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 31,
+                    Title = "Web Components Developer",
+                    Description = "Create reusable custom elements with Web Components",
+                    Icon = "🧩",
+                    Category = CategoryConstants.WebDevelopment,
+                    Duration = "3-4 months",
+                    Difficulty = "Advanced",
+                    ActionName = "WebComponentsDeveloper",
+                    ControllerName = "WebDevelopment",
+                    Context = "Web Components let you create reusable custom elements with encapsulated functionality.",
+                    Prerequisites = new List<string> { "Advanced JavaScript", "DOM manipulation" },
+                    CareerPaths = new List<string> { "Component Library Developer ($80K-$145K)", "UI Architect ($90K-$160K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 32,
+                    Title = "PWA Developer",
+                    Description = "Build Progressive Web Apps that work offline",
+                    Icon = "📱",
+                    Category = CategoryConstants.WebDevelopment,
+                    Duration = "3-4 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "PWADeveloper",
+                    ControllerName = "WebDevelopment",
+                    Context = "Progressive Web Apps combine the best of web and mobile apps with offline capabilities.",
+                    Prerequisites = new List<string> { "Web development basics", "JavaScript proficiency" },
+                    CareerPaths = new List<string> { "PWA Developer ($75K-$140K)", "Mobile Web Developer ($80K-$150K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 33,
+                    Title = "WebAssembly Developer",
+                    Description = "Run high-performance applications in the browser",
+                    Icon = "🚀",
+                    Category = CategoryConstants.WebDevelopment,
+                    Duration = "4-5 months",
+                    Difficulty = "Expert",
+                    ActionName = "WebAssemblyDeveloper",
+                    ControllerName = "WebDevelopment",
+                    Context = "WebAssembly enables near-native performance for web applications.",
+                    Prerequisites = new List<string> { "C/C++ or Rust", "Web development", "Systems programming" },
+                    CareerPaths = new List<string> { "WebAssembly Engineer ($90K-$170K)", "Performance Engineer ($100K-$180K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 34,
+                    Title = "Jamstack Developer",
+                    Description = "Build fast and secure sites with Jamstack architecture",
+                    Icon = "🏗️",
+                    Category = CategoryConstants.WebDevelopment,
+                    Duration = "3-4 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "JamstackDeveloper",
+                    ControllerName = "WebDevelopment",
+                    Context = "Jamstack architecture delivers better performance, security, and developer experience.",
+                    Prerequisites = new List<string> { "JavaScript", "Git", "API basics" },
+                    CareerPaths = new List<string> { "Jamstack Developer ($70K-$140K)", "Frontend Architect ($85K-$160K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 35,
+                    Title = "Micro Frontend Developer",
+                    Description = "Architect scalable applications with micro frontends",
+                    Icon = "🔲",
+                    Category = CategoryConstants.WebDevelopment,
+                    Duration = "4-5 months",
+                    Difficulty = "Expert",
+                    ActionName = "MicroFrontendDeveloper",
+                    ControllerName = "WebDevelopment",
+                    Context = "Micro frontends bring microservice principles to frontend development.",
+                    Prerequisites = new List<string> { "Frontend frameworks", "Architecture patterns", "DevOps basics" },
+                    CareerPaths = new List<string> { "Frontend Architect ($100K-$180K)", "Technical Lead ($110K-$190K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 36,
+                    Title = "PHP Laravel Developer",
+                    Description = "Build modern web applications with PHP and Laravel",
+                    Icon = "🐘",
+                    Category = CategoryConstants.WebDevelopment,
+                    Duration = "4-5 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "PHPLaravelDeveloper",
+                    ControllerName = "WebDevelopment",
+                    Context = "Laravel is the most popular PHP framework for building elegant web applications.",
+                    Prerequisites = new List<string> { "PHP basics", "MySQL", "Web fundamentals" },
+                    CareerPaths = new List<string> { "PHP Developer ($60K-$120K)", "Laravel Developer ($65K-$130K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 37,
+                    Title = "Python Django Developer",
+                    Description = "Build secure web applications with Python and Django",
+                    Icon = "🐍",
+                    Category = CategoryConstants.WebDevelopment,
+                    Duration = "5-6 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "PythonDjangoDeveloper",
+                    ControllerName = "WebDevelopment",
+                    Context = "Django is a high-level Python framework that encourages rapid development.",
+                    Prerequisites = new List<string> { "Python programming", "Web concepts", "Database basics" },
+                    CareerPaths = new List<string> { "Django Developer ($70K-$140K)", "Python Full Stack ($80K-$150K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 38,
+                    Title = "Ruby on Rails Developer",
+                    Description = "Build web applications with Ruby on Rails",
+                    Icon = "💎",
+                    Category = CategoryConstants.WebDevelopment,
+                    Duration = "5-6 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "RubyOnRailsDeveloper",
+                    ControllerName = "WebDevelopment",
+                    Context = "Ruby on Rails emphasizes convention over configuration for rapid development.",
+                    Prerequisites = new List<string> { "Ruby basics", "MVC pattern", "Web fundamentals" },
+                    CareerPaths = new List<string> { "Rails Developer ($70K-$140K)", "Ruby Engineer ($75K-$145K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 39,
+                    Title = "Java Spring Developer",
+                    Description = "Build enterprise applications with Spring Framework",
+                    Icon = "🍃",
+                    Category = CategoryConstants.WebDevelopment,
+                    Duration = "6-7 months",
+                    Difficulty = "Advanced",
+                    ActionName = "JavaSpringDeveloper",
+                    ControllerName = "WebDevelopment",
+                    Context = "Spring is the most popular Java framework for building enterprise applications.",
+                    Prerequisites = new List<string> { "Java proficiency", "OOP concepts", "Web services" },
+                    CareerPaths = new List<string> { "Spring Developer ($80K-$150K)", "Java Architect ($100K-$180K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 40,
+                    Title = "Golang Developer",
+                    Description = "Build high-performance applications with Go",
+                    Icon = "🐹",
+                    Category = CategoryConstants.WebDevelopment,
+                    Duration = "4-5 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "GolangDeveloper",
+                    ControllerName = "WebDevelopment",
+                    Context = "Go is perfect for building scalable web services and cloud-native applications.",
+                    Prerequisites = new List<string> { "Programming experience", "Concurrency concepts" },
+                    CareerPaths = new List<string> { "Go Developer ($85K-$160K)", "Backend Engineer ($90K-$170K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 41,
+                    Title = "Rust Web Developer",
+                    Description = "Build blazing fast web services with Rust",
+                    Icon = "🦀",
+                    Category = CategoryConstants.WebDevelopment,
+                    Duration = "5-6 months",
+                    Difficulty = "Expert",
+                    ActionName = "RustWebDeveloper",
+                    ControllerName = "WebDevelopment",
+                    Context = "Rust offers memory safety and performance for web development.",
+                    Prerequisites = new List<string> { "Systems programming", "Memory management concepts" },
+                    CareerPaths = new List<string> { "Rust Developer ($90K-$170K)", "Systems Engineer ($95K-$180K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 42,
+                    Title = "Elixir Phoenix Developer",
+                    Description = "Build fault-tolerant applications with Elixir and Phoenix",
+                    Icon = "💜",
+                    Category = CategoryConstants.WebDevelopment,
+                    Duration = "5-6 months",
+                    Difficulty = "Advanced",
+                    ActionName = "ElixirPhoenixDeveloper",
+                    ControllerName = "WebDevelopment",
+                    Context = "Elixir and Phoenix enable building highly concurrent, fault-tolerant applications.",
+                    Prerequisites = new List<string> { "Functional programming basics", "Web development" },
+                    CareerPaths = new List<string> { "Elixir Developer ($80K-$150K)", "Distributed Systems Engineer ($90K-$170K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 43,
+                    Title = "API Design Expert",
+                    Description = "Master the art of designing robust and scalable APIs",
+                    Icon = "🔌",
+                    Category = CategoryConstants.WebDevelopment,
+                    Duration = "3-4 months",
+                    Difficulty = "Advanced",
+                    ActionName = "APIDesignExpert",
+                    ControllerName = "WebDevelopment",
+                    Context = "Well-designed APIs are crucial for modern software architecture.",
+                    Prerequisites = new List<string> { "HTTP/REST knowledge", "Backend development", "Security basics" },
+                    CareerPaths = new List<string> { "API Architect ($90K-$160K)", "Platform Engineer ($95K-$170K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 44,
+                    Title = "WebRTC Developer",
+                    Description = "Build real-time communication applications",
+                    Icon = "📹",
+                    Category = CategoryConstants.WebDevelopment,
+                    Duration = "4-5 months",
+                    Difficulty = "Advanced",
+                    ActionName = "WebRTCDeveloper",
+                    ControllerName = "WebDevelopment",
+                    Context = "WebRTC enables peer-to-peer communication in web browsers.",
+                    Prerequisites = new List<string> { "JavaScript expertise", "Networking concepts", "Media streaming" },
+                    CareerPaths = new List<string> { "WebRTC Developer ($85K-$160K)", "Real-time Systems Engineer ($90K-$170K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                // Mobile Development Extended Roadmaps
+                new Roadmap
+                {
+                    Id = 45,
+                    Title = "React Native Developer",
+                    Description = "Build cross-platform mobile apps with React Native",
+                    Icon = "⚛️",
+                    Category = CategoryConstants.Mobile,
+                    Duration = "4-5 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "ReactNativeDeveloper",
+                    ControllerName = "Mobile",
+                    Context = "React Native enables building native mobile apps using React.",
+                    Prerequisites = new List<string> { "React knowledge", "JavaScript ES6+", "Mobile concepts" },
+                    CareerPaths = new List<string> { "React Native Developer ($75K-$145K)", "Mobile Engineer ($80K-$150K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 46,
+                    Title = "Flutter Developer",
+                    Description = "Create beautiful native apps with Flutter and Dart",
+                    Icon = "🦋",
+                    Category = CategoryConstants.Mobile,
+                    Duration = "4-5 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "FlutterDeveloper",
+                    ControllerName = "Mobile",
+                    Context = "Flutter is Google's UI toolkit for building native applications from a single codebase.",
+                    Prerequisites = new List<string> { "Programming basics", "OOP concepts", "Mobile design" },
+                    CareerPaths = new List<string> { "Flutter Developer ($70K-$140K)", "Cross-platform Developer ($75K-$145K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 47,
+                    Title = "Swift iOS Developer",
+                    Description = "Master native iOS development with Swift",
+                    Icon = "🍏",
+                    Category = CategoryConstants.Mobile,
+                    Duration = "5-6 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "SwiftiOSDeveloper",
+                    ControllerName = "Mobile",
+                    Context = "Swift is Apple's powerful and intuitive programming language for iOS development.",
+                    Prerequisites = new List<string> { "Mac computer", "Programming fundamentals", "iOS basics" },
+                    CareerPaths = new List<string> { "iOS Developer ($80K-$160K)", "Senior iOS Engineer ($100K-$180K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 48,
+                    Title = "Kotlin Android Developer",
+                    Description = "Build modern Android apps with Kotlin",
+                    Icon = "🤖",
+                    Category = CategoryConstants.Mobile,
+                    Duration = "5-6 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "KotlinAndroidDeveloper",
+                    ControllerName = "Mobile",
+                    Context = "Kotlin is the preferred language for Android development, offering modern features and safety.",
+                    Prerequisites = new List<string> { "Java basics", "Android Studio", "Mobile concepts" },
+                    CareerPaths = new List<string> { "Android Developer ($75K-$150K)", "Senior Android Engineer ($95K-$170K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 49,
+                    Title = "Xamarin Developer",
+                    Description = "Build native apps for multiple platforms with C# and Xamarin",
+                    Icon = "📱",
+                    Category = CategoryConstants.Mobile,
+                    Duration = "4-5 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "XamarinDeveloper",
+                    ControllerName = "Mobile",
+                    Context = "Xamarin allows building native mobile apps using C# and .NET.",
+                    Prerequisites = new List<string> { "C# proficiency", ".NET knowledge", "Mobile basics" },
+                    CareerPaths = new List<string> { "Xamarin Developer ($70K-$140K)", ".NET Mobile Developer ($75K-$145K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 50,
+                    Title = "Ionic Developer",
+                    Description = "Build hybrid mobile apps with web technologies",
+                    Icon = "⚡",
+                    Category = CategoryConstants.Mobile,
+                    Duration = "3-4 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "IonicDeveloper",
+                    ControllerName = "Mobile",
+                    Context = "Ionic enables building mobile apps using web technologies like HTML, CSS, and JavaScript.",
+                    Prerequisites = new List<string> { "Web development", "Angular/React/Vue", "Mobile concepts" },
+                    CareerPaths = new List<string> { "Ionic Developer ($65K-$130K)", "Hybrid App Developer ($70K-$135K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 51,
+                    Title = "Mobile Game Developer",
+                    Description = "Create engaging mobile games with Unity",
+                    Icon = "🎮",
+                    Category = CategoryConstants.Mobile,
+                    Duration = "6-8 months",
+                    Difficulty = "Advanced",
+                    ActionName = "MobileGameDeveloper",
+                    ControllerName = "Mobile",
+                    Context = "Mobile game development combines programming skills with game design principles.",
+                    Prerequisites = new List<string> { "C# programming", "Mathematics basics", "Game design interest" },
+                    CareerPaths = new List<string> { "Mobile Game Developer ($70K-$140K)", "Unity Developer ($75K-$150K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 52,
+                    Title = "AR/VR Mobile Developer",
+                    Description = "Build augmented and virtual reality mobile experiences",
+                    Icon = "🥽",
+                    Category = CategoryConstants.Mobile,
+                    Duration = "5-6 months",
+                    Difficulty = "Advanced",
+                    ActionName = "ARVRMobileDeveloper",
+                    ControllerName = "Mobile",
+                    Context = "AR/VR technologies are transforming mobile experiences across industries.",
+                    Prerequisites = new List<string> { "3D mathematics", "Mobile development", "Graphics programming" },
+                    CareerPaths = new List<string> { "AR/VR Developer ($80K-$160K)", "XR Engineer ($85K-$170K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 53,
+                    Title = "Mobile Security Specialist",
+                    Description = "Secure mobile applications against threats",
+                    Icon = "🔐",
+                    Category = CategoryConstants.Mobile,
+                    Duration = "4-5 months",
+                    Difficulty = "Advanced",
+                    ActionName = "MobileSecuritySpecialist",
+                    ControllerName = "Mobile",
+                    Context = "Mobile security is critical for protecting user data and preventing attacks.",
+                    Prerequisites = new List<string> { "Mobile development", "Security concepts", "Cryptography basics" },
+                    CareerPaths = new List<string> { "Mobile Security Engineer ($85K-$160K)", "Security Architect ($95K-$175K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 54,
+                    Title = "Mobile DevOps Engineer",
+                    Description = "Automate mobile app deployment and testing",
+                    Icon = "🔄",
+                    Category = CategoryConstants.Mobile,
+                    Duration = "4-5 months",
+                    Difficulty = "Advanced",
+                    ActionName = "MobileDevOpsEngineer",
+                    ControllerName = "Mobile",
+                    Context = "Mobile DevOps streamlines the development, testing, and deployment of mobile apps.",
+                    Prerequisites = new List<string> { "Mobile development", "CI/CD concepts", "Scripting" },
+                    CareerPaths = new List<string> { "Mobile DevOps Engineer ($80K-$155K)", "Release Engineer ($85K-$160K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 55,
+                    Title = "Mobile Performance Engineer",
+                    Description = "Optimize mobile app performance and battery life",
+                    Icon = "⚡",
+                    Category = CategoryConstants.Mobile,
+                    Duration = "3-4 months",
+                    Difficulty = "Advanced",
+                    ActionName = "MobilePerformanceEngineer",
+                    ControllerName = "Mobile",
+                    Context = "Performance optimization is crucial for mobile app success and user retention.",
+                    Prerequisites = new List<string> { "Mobile development", "Profiling tools", "System architecture" },
+                    CareerPaths = new List<string> { "Performance Engineer ($85K-$160K)", "Mobile Architect ($95K-$175K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 56,
+                    Title = "Mobile UI/UX Designer",
+                    Description = "Design intuitive mobile user experiences",
+                    Icon = "🎨",
+                    Category = CategoryConstants.Mobile,
+                    Duration = "4-5 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "MobileUIUXDesigner",
+                    ControllerName = "Mobile",
+                    Context = "Great mobile UI/UX is essential for app success and user satisfaction.",
+                    Prerequisites = new List<string> { "Design principles", "Mobile patterns", "User research" },
+                    CareerPaths = new List<string> { "Mobile UI/UX Designer ($70K-$140K)", "Product Designer ($80K-$150K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 57,
+                    Title = "Mobile Backend Developer",
+                    Description = "Build scalable backends for mobile applications",
+                    Icon = "☁️",
+                    Category = CategoryConstants.Mobile,
+                    Duration = "5-6 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "MobileBackendDeveloper",
+                    ControllerName = "Mobile",
+                    Context = "Mobile backends handle data synchronization, push notifications, and user management.",
+                    Prerequisites = new List<string> { "Backend development", "API design", "Cloud services" },
+                    CareerPaths = new List<string> { "Mobile Backend Developer ($75K-$145K)", "Backend Engineer ($80K-$155K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 58,
+                    Title = "Mobile Analytics Engineer",
+                    Description = "Implement analytics and data tracking for mobile apps",
+                    Icon = "📊",
+                    Category = CategoryConstants.Mobile,
+                    Duration = "3-4 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "MobileAnalyticsEngineer",
+                    ControllerName = "Mobile",
+                    Context = "Mobile analytics provide insights into user behavior and app performance.",
+                    Prerequisites = new List<string> { "Mobile development", "Analytics tools", "Data analysis" },
+                    CareerPaths = new List<string> { "Analytics Engineer ($75K-$145K)", "Data Engineer ($80K-$150K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 59,
+                    Title = "Mobile Automation Tester",
+                    Description = "Automate testing for mobile applications",
+                    Icon = "🤖",
+                    Category = CategoryConstants.Mobile,
+                    Duration = "3-4 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "MobileAutomationTester",
+                    ControllerName = "Mobile",
+                    Context = "Automated testing ensures mobile app quality across devices and platforms.",
+                    Prerequisites = new List<string> { "Testing concepts", "Mobile basics", "Scripting" },
+                    CareerPaths = new List<string> { "Mobile QA Engineer ($65K-$125K)", "Test Automation Lead ($75K-$140K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 60,
+                    Title = "Mobile Accessibility Specialist",
+                    Description = "Make mobile apps accessible to all users",
+                    Icon = "♿",
+                    Category = CategoryConstants.Mobile,
+                    Duration = "3-4 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "MobileAccessibilitySpecialist",
+                    ControllerName = "Mobile",
+                    Context = "Accessibility ensures mobile apps can be used by people with disabilities.",
+                    Prerequisites = new List<string> { "Mobile development", "Accessibility guidelines", "Testing tools" },
+                    CareerPaths = new List<string> { "Accessibility Engineer ($70K-$135K)", "Inclusive Design Lead ($80K-$145K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 61,
+                    Title = "Mobile Commerce Developer",
+                    Description = "Build mobile e-commerce applications",
+                    Icon = "🛒",
+                    Category = CategoryConstants.Mobile,
+                    Duration = "4-5 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "MobileCommerceDeveloper",
+                    ControllerName = "Mobile",
+                    Context = "Mobile commerce is revolutionizing how people shop and make payments.",
+                    Prerequisites = new List<string> { "Mobile development", "Payment systems", "Security" },
+                    CareerPaths = new List<string> { "M-Commerce Developer ($75K-$145K)", "Payment Systems Engineer ($80K-$155K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 62,
+                    Title = "Mobile AI/ML Engineer",
+                    Description = "Integrate AI and machine learning into mobile apps",
+                    Icon = "🤖",
+                    Category = CategoryConstants.Mobile,
+                    Duration = "5-6 months",
+                    Difficulty = "Advanced",
+                    ActionName = "MobileAIMLEngineer",
+                    ControllerName = "Mobile",
+                    Context = "On-device AI enables intelligent features while preserving user privacy.",
+                    Prerequisites = new List<string> { "Mobile development", "ML basics", "Mathematics" },
+                    CareerPaths = new List<string> { "Mobile ML Engineer ($85K-$165K)", "AI Mobile Developer ($90K-$170K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 63,
+                    Title = "Mobile IoT Developer",
+                    Description = "Connect mobile apps with IoT devices",
+                    Icon = "📡",
+                    Category = CategoryConstants.Mobile,
+                    Duration = "4-5 months",
+                    Difficulty = "Advanced",
+                    ActionName = "MobileIoTDeveloper",
+                    ControllerName = "Mobile",
+                    Context = "Mobile apps serve as the primary interface for IoT devices and smart home systems.",
+                    Prerequisites = new List<string> { "Mobile development", "Networking", "IoT protocols" },
+                    CareerPaths = new List<string> { "IoT Mobile Developer ($75K-$150K)", "Connected Systems Engineer ($80K-$160K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 64,
+                    Title = "Mobile Blockchain Developer",
+                    Description = "Build blockchain-powered mobile applications",
+                    Icon = "⛓️",
+                    Category = CategoryConstants.Mobile,
+                    Duration = "5-6 months",
+                    Difficulty = "Expert",
+                    ActionName = "MobileBlockchainDeveloper",
+                    ControllerName = "Mobile",
+                    Context = "Blockchain technology enables secure, decentralized mobile applications.",
+                    Prerequisites = new List<string> { "Mobile development", "Blockchain concepts", "Cryptography" },
+                    CareerPaths = new List<string> { "Blockchain Mobile Developer ($85K-$170K)", "DApp Developer ($90K-$180K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                // Data Science & AI Extended Roadmaps
+                new Roadmap
+                {
+                    Id = 65,
+                    Title = "AI Engineer",
+                    Description = "Build and deploy artificial intelligence systems",
+                    Icon = "🧠",
+                    Category = CategoryConstants.DataScience,
+                    Duration = "8-10 months",
+                    Difficulty = "Advanced",
+                    ActionName = "AIEngineer",
+                    ControllerName = "DataScience",
+                    Context = "AI Engineers bridge the gap between AI research and practical applications.",
+                    Prerequisites = new List<string> { "Python proficiency", "ML knowledge", "Software engineering" },
+                    CareerPaths = new List<string> { "AI Engineer ($100K-$180K)", "ML Platform Engineer ($110K-$190K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 66,
+                    Title = "Computer Vision Engineer",
+                    Description = "Develop systems that understand visual information",
+                    Icon = "👁️",
+                    Category = CategoryConstants.DataScience,
+                    Duration = "6-8 months",
+                    Difficulty = "Advanced",
+                    ActionName = "ComputerVisionEngineer",
+                    ControllerName = "DataScience",
+                    Context = "Computer vision enables machines to interpret and understand visual information.",
+                    Prerequisites = new List<string> { "Python/C++", "Linear algebra", "Image processing" },
+                    CareerPaths = new List<string> { "CV Engineer ($90K-$170K)", "Vision Research Engineer ($95K-$180K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 67,
+                    Title = "NLP Engineer",
+                    Description = "Build systems that understand human language",
+                    Icon = "💬",
+                    Category = CategoryConstants.DataScience,
+                    Duration = "6-8 months",
+                    Difficulty = "Advanced",
+                    ActionName = "NLPEngineer",
+                    ControllerName = "DataScience",
+                    Context = "Natural Language Processing enables machines to understand and generate human language.",
+                    Prerequisites = new List<string> { "Python", "Linguistics basics", "Deep learning" },
+                    CareerPaths = new List<string> { "NLP Engineer ($95K-$175K)", "Language AI Developer ($100K-$185K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 68,
+                    Title = "MLOps Engineer",
+                    Description = "Deploy and maintain ML models in production",
+                    Icon = "🔧",
+                    Category = CategoryConstants.DataScience,
+                    Duration = "5-7 months",
+                    Difficulty = "Advanced",
+                    ActionName = "MLOpsEngineer",
+                    ControllerName = "DataScience",
+                    Context = "MLOps combines ML, DevOps, and data engineering to deliver ML solutions at scale.",
+                    Prerequisites = new List<string> { "ML basics", "DevOps", "Cloud platforms" },
+                    CareerPaths = new List<string> { "MLOps Engineer ($95K-$170K)", "ML Infrastructure Engineer ($100K-$180K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 69,
+                    Title = "Data Analytics Engineer",
+                    Description = "Transform data into actionable insights",
+                    Icon = "📈",
+                    Category = CategoryConstants.DataScience,
+                    Duration = "4-6 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "DataAnalyticsEngineer",
+                    ControllerName = "DataScience",
+                    Context = "Data analytics engineers build systems to analyze and visualize complex data.",
+                    Prerequisites = new List<string> { "SQL", "Python/R", "Statistics" },
+                    CareerPaths = new List<string> { "Analytics Engineer ($75K-$140K)", "BI Developer ($80K-$145K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 70,
+                    Title = "Big Data Engineer",
+                    Description = "Process and analyze massive datasets",
+                    Icon = "🗄️",
+                    Category = CategoryConstants.DataScience,
+                    Duration = "6-8 months",
+                    Difficulty = "Advanced",
+                    ActionName = "BigDataEngineer",
+                    ControllerName = "DataScience",
+                    Context = "Big Data engineers build infrastructure to handle petabyte-scale data processing.",
+                    Prerequisites = new List<string> { "Distributed systems", "Spark/Hadoop", "Cloud platforms" },
+                    CareerPaths = new List<string> { "Big Data Engineer ($90K-$170K)", "Data Platform Engineer ($95K-$180K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 71,
+                    Title = "Business Intelligence Developer",
+                    Description = "Create data-driven business solutions",
+                    Icon = "💼",
+                    Category = CategoryConstants.DataScience,
+                    Duration = "4-5 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "BIDeeveloper",
+                    ControllerName = "DataScience",
+                    Context = "BI developers create tools and systems for business decision-making.",
+                    Prerequisites = new List<string> { "SQL expertise", "Data modeling", "Visualization tools" },
+                    CareerPaths = new List<string> { "BI Developer ($70K-$135K)", "BI Architect ($85K-$155K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 72,
+                    Title = "Deep Learning Engineer",
+                    Description = "Build advanced neural network systems",
+                    Icon = "🧬",
+                    Category = CategoryConstants.DataScience,
+                    Duration = "7-9 months",
+                    Difficulty = "Expert",
+                    ActionName = "DeepLearningEngineer",
+                    ControllerName = "DataScience",
+                    Context = "Deep Learning engineers create sophisticated AI models for complex problems.",
+                    Prerequisites = new List<string> { "Neural networks", "Python", "GPU programming" },
+                    CareerPaths = new List<string> { "DL Engineer ($100K-$185K)", "AI Research Engineer ($110K-$200K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 73,
+                    Title = "Reinforcement Learning Engineer",
+                    Description = "Build AI agents that learn through interaction",
+                    Icon = "🎮",
+                    Category = CategoryConstants.DataScience,
+                    Duration = "6-8 months",
+                    Difficulty = "Expert",
+                    ActionName = "RLEngineer",
+                    ControllerName = "DataScience",
+                    Context = "RL engineers create AI systems that learn optimal behaviors through trial and error.",
+                    Prerequisites = new List<string> { "ML foundations", "Probability theory", "Python" },
+                    CareerPaths = new List<string> { "RL Engineer ($95K-$180K)", "AI Research Scientist ($105K-$195K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 74,
+                    Title = "Quantitative Analyst",
+                    Description = "Apply data science to financial markets",
+                    Icon = "💹",
+                    Category = CategoryConstants.DataScience,
+                    Duration = "6-8 months",
+                    Difficulty = "Advanced",
+                    ActionName = "QuantitativeAnalyst",
+                    ControllerName = "DataScience",
+                    Context = "Quants use mathematical models to analyze financial markets and securities.",
+                    Prerequisites = new List<string> { "Mathematics", "Statistics", "Programming" },
+                    CareerPaths = new List<string> { "Quant Analyst ($90K-$200K)", "Quant Developer ($100K-$250K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 75,
+                    Title = "Bioinformatics Specialist",
+                    Description = "Apply data science to biological data",
+                    Icon = "🧬",
+                    Category = CategoryConstants.DataScience,
+                    Duration = "6-8 months",
+                    Difficulty = "Advanced",
+                    ActionName = "BioinformaticsSpecialist",
+                    ControllerName = "DataScience",
+                    Context = "Bioinformatics combines biology, computer science, and data analysis.",
+                    Prerequisites = new List<string> { "Biology basics", "Programming", "Statistics" },
+                    CareerPaths = new List<string> { "Bioinformatics Analyst ($70K-$140K)", "Computational Biologist ($80K-$160K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 76,
+                    Title = "Time Series Analyst",
+                    Description = "Analyze and forecast temporal data",
+                    Icon = "⏰",
+                    Category = CategoryConstants.DataScience,
+                    Duration = "4-5 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "TimeSeriesAnalyst",
+                    ControllerName = "DataScience",
+                    Context = "Time series analysis is crucial for forecasting and understanding temporal patterns.",
+                    Prerequisites = new List<string> { "Statistics", "Python/R", "Mathematical modeling" },
+                    CareerPaths = new List<string> { "Time Series Analyst ($75K-$145K)", "Forecasting Specialist ($80K-$155K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 77,
+                    Title = "Recommendation Systems Engineer",
+                    Description = "Build personalized recommendation engines",
+                    Icon = "🎯",
+                    Category = CategoryConstants.DataScience,
+                    Duration = "5-6 months",
+                    Difficulty = "Advanced",
+                    ActionName = "RecommendationSystemsEngineer",
+                    ControllerName = "DataScience",
+                    Context = "Recommendation systems power personalized experiences in e-commerce and content platforms.",
+                    Prerequisites = new List<string> { "ML algorithms", "Collaborative filtering", "Python" },
+                    CareerPaths = new List<string> { "RecSys Engineer ($85K-$165K)", "Personalization Engineer ($90K-$170K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 78,
+                    Title = "Data Visualization Specialist",
+                    Description = "Create compelling data stories through visualization",
+                    Icon = "📊",
+                    Category = CategoryConstants.DataScience,
+                    Duration = "3-4 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "DataVisualizationSpecialist",
+                    ControllerName = "DataScience",
+                    Context = "Data visualization makes complex data accessible and actionable for decision-makers.",
+                    Prerequisites = new List<string> { "Design principles", "Statistics", "Visualization tools" },
+                    CareerPaths = new List<string> { "Data Viz Specialist ($70K-$135K)", "Analytics Designer ($75K-$145K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 79,
+                    Title = "AI Ethics Specialist",
+                    Description = "Ensure responsible AI development and deployment",
+                    Icon = "⚖️",
+                    Category = CategoryConstants.DataScience,
+                    Duration = "4-5 months",
+                    Difficulty = "Advanced",
+                    ActionName = "AIEthicsSpecialist",
+                    ControllerName = "DataScience",
+                    Context = "AI ethics ensures fairness, transparency, and accountability in AI systems.",
+                    Prerequisites = new List<string> { "AI/ML knowledge", "Ethics", "Policy understanding" },
+                    CareerPaths = new List<string> { "AI Ethics Specialist ($80K-$150K)", "Responsible AI Lead ($90K-$170K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 80,
+                    Title = "Generative AI Developer",
+                    Description = "Build creative AI systems using generative models",
+                    Icon = "🎨",
+                    Category = CategoryConstants.DataScience,
+                    Duration = "5-6 months",
+                    Difficulty = "Advanced",
+                    ActionName = "GenerativeAIDeveloper",
+                    ControllerName = "DataScience",
+                    Context = "Generative AI creates new content including text, images, music, and code.",
+                    Prerequisites = new List<string> { "Deep learning", "GANs/Transformers", "Python" },
+                    CareerPaths = new List<string> { "Gen AI Developer ($95K-$180K)", "AI Creative Engineer ($100K-$190K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 81,
+                    Title = "Edge AI Engineer",
+                    Description = "Deploy AI models on edge devices",
+                    Icon = "📱",
+                    Category = CategoryConstants.DataScience,
+                    Duration = "5-6 months",
+                    Difficulty = "Advanced",
+                    ActionName = "EdgeAIEngineer",
+                    ControllerName = "DataScience",
+                    Context = "Edge AI brings intelligence to IoT devices and embedded systems.",
+                    Prerequisites = new List<string> { "ML optimization", "Embedded systems", "Model compression" },
+                    CareerPaths = new List<string> { "Edge AI Engineer ($85K-$165K)", "Embedded ML Engineer ($90K-$170K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 82,
+                    Title = "AutoML Engineer",
+                    Description = "Automate machine learning pipeline development",
+                    Icon = "🤖",
+                    Category = CategoryConstants.DataScience,
+                    Duration = "4-5 months",
+                    Difficulty = "Advanced",
+                    ActionName = "AutoMLEngineer",
+                    ControllerName = "DataScience",
+                    Context = "AutoML democratizes machine learning by automating model selection and tuning.",
+                    Prerequisites = new List<string> { "ML pipelines", "Hyperparameter tuning", "Python" },
+                    CareerPaths = new List<string> { "AutoML Engineer ($85K-$160K)", "ML Platform Developer ($90K-$170K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 83,
+                    Title = "Federated Learning Engineer",
+                    Description = "Build privacy-preserving distributed ML systems",
+                    Icon = "🔐",
+                    Category = CategoryConstants.DataScience,
+                    Duration = "5-6 months",
+                    Difficulty = "Expert",
+                    ActionName = "FederatedLearningEngineer",
+                    ControllerName = "DataScience",
+                    Context = "Federated learning enables ML training on distributed data while preserving privacy.",
+                    Prerequisites = new List<string> { "Distributed systems", "ML theory", "Privacy techniques" },
+                    CareerPaths = new List<string> { "FL Engineer ($90K-$175K)", "Privacy ML Engineer ($95K-$185K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 84,
+                    Title = "Explainable AI Engineer",
+                    Description = "Make AI decisions transparent and interpretable",
+                    Icon = "🔍",
+                    Category = CategoryConstants.DataScience,
+                    Duration = "4-5 months",
+                    Difficulty = "Advanced",
+                    ActionName = "ExplainableAIEngineer",
+                    ControllerName = "DataScience",
+                    Context = "Explainable AI makes complex models understandable to humans.",
+                    Prerequisites = new List<string> { "ML models", "Interpretability methods", "Visualization" },
+                    CareerPaths = new List<string> { "XAI Engineer ($85K-$165K)", "AI Transparency Lead ($90K-$175K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                // DevOps & Cloud Extended Roadmaps
+                new Roadmap
+                {
+                    Id = 85,
+                    Title = "Kubernetes Engineer",
+                    Description = "Master container orchestration with Kubernetes",
+                    Icon = "☸️",
+                    Category = CategoryConstants.DevOps,
+                    Duration = "4-6 months",
+                    Difficulty = "Advanced",
+                    ActionName = "KubernetesEngineer",
+                    ControllerName = "DevOps",
+                    Context = "Kubernetes is the industry standard for container orchestration at scale.",
+                    Prerequisites = new List<string> { "Docker", "Linux", "Networking basics" },
+                    CareerPaths = new List<string> { "K8s Engineer ($90K-$170K)", "Platform Engineer ($95K-$180K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 86,
+                    Title = "Site Reliability Engineer",
+                    Description = "Ensure system reliability and performance at scale",
+                    Icon = "🛡️",
+                    Category = CategoryConstants.DevOps,
+                    Duration = "6-8 months",
+                    Difficulty = "Advanced",
+                    ActionName = "SiteReliabilityEngineer",
+                    ControllerName = "DevOps",
+                    Context = "SREs combine software engineering with operations to build reliable systems.",
+                    Prerequisites = new List<string> { "Systems thinking", "Programming", "Operations experience" },
+                    CareerPaths = new List<string> { "SRE ($95K-$180K)", "Principal SRE ($120K-$220K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 87,
+                    Title = "Infrastructure as Code Engineer",
+                    Description = "Automate infrastructure with code",
+                    Icon = "📝",
+                    Category = CategoryConstants.DevOps,
+                    Duration = "4-5 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "IaCEngineer",
+                    ControllerName = "DevOps",
+                    Context = "IaC enables version-controlled, reproducible infrastructure deployment.",
+                    Prerequisites = new List<string> { "Cloud basics", "Scripting", "Version control" },
+                    CareerPaths = new List<string> { "IaC Engineer ($85K-$160K)", "Cloud Automation Engineer ($90K-$170K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 88,
+                    Title = "AWS Solutions Architect",
+                    Description = "Design scalable solutions on Amazon Web Services",
+                    Icon = "🟠",
+                    Category = CategoryConstants.DevOps,
+                    Duration = "5-7 months",
+                    Difficulty = "Advanced",
+                    ActionName = "AWSSolutionsArchitect",
+                    ControllerName = "DevOps",
+                    Context = "AWS is the leading cloud platform for building scalable applications.",
+                    Prerequisites = new List<string> { "Cloud concepts", "Networking", "Security basics" },
+                    CareerPaths = new List<string> { "AWS Architect ($100K-$190K)", "Cloud Solutions Architect ($110K-$200K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 89,
+                    Title = "Google Cloud Engineer",
+                    Description = "Build and manage applications on Google Cloud Platform",
+                    Icon = "☁️",
+                    Category = CategoryConstants.DevOps,
+                    Duration = "5-6 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "GoogleCloudEngineer",
+                    ControllerName = "DevOps",
+                    Context = "Google Cloud Platform offers cutting-edge services for modern applications.",
+                    Prerequisites = new List<string> { "Cloud basics", "Containerization", "Data concepts" },
+                    CareerPaths = new List<string> { "GCP Engineer ($85K-$165K)", "Cloud Engineer ($90K-$175K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 90,
+                    Title = "Multi-Cloud Architect",
+                    Description = "Design solutions across multiple cloud platforms",
+                    Icon = "☁️",
+                    Category = CategoryConstants.DevOps,
+                    Duration = "6-8 months",
+                    Difficulty = "Expert",
+                    ActionName = "MultiCloudArchitect",
+                    ControllerName = "DevOps",
+                    Context = "Multi-cloud strategies prevent vendor lock-in and optimize for best-of-breed services.",
+                    Prerequisites = new List<string> { "Multiple cloud platforms", "Architecture patterns", "Cost optimization" },
+                    CareerPaths = new List<string> { "Multi-Cloud Architect ($110K-$200K)", "Enterprise Architect ($120K-$220K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 91,
+                    Title = "Docker Specialist",
+                    Description = "Master containerization with Docker",
+                    Icon = "🐳",
+                    Category = CategoryConstants.DevOps,
+                    Duration = "3-4 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "DockerSpecialist",
+                    ControllerName = "DevOps",
+                    Context = "Docker revolutionized application deployment through containerization.",
+                    Prerequisites = new List<string> { "Linux basics", "Application deployment", "Networking" },
+                    CareerPaths = new List<string> { "Container Engineer ($80K-$150K)", "DevOps Engineer ($85K-$160K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 92,
+                    Title = "CI/CD Pipeline Engineer",
+                    Description = "Build automated software delivery pipelines",
+                    Icon = "🔄",
+                    Category = CategoryConstants.DevOps,
+                    Duration = "4-5 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "CICDEngineer",
+                    ControllerName = "DevOps",
+                    Context = "CI/CD pipelines enable rapid, reliable software delivery.",
+                    Prerequisites = new List<string> { "Version control", "Build tools", "Testing basics" },
+                    CareerPaths = new List<string> { "CI/CD Engineer ($80K-$155K)", "Release Engineer ($85K-$165K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 93,
+                    Title = "Platform Engineer",
+                    Description = "Build internal developer platforms",
+                    Icon = "🏗️",
+                    Category = CategoryConstants.DevOps,
+                    Duration = "5-7 months",
+                    Difficulty = "Advanced",
+                    ActionName = "PlatformEngineer",
+                    ControllerName = "DevOps",
+                    Context = "Platform engineers create self-service platforms for development teams.",
+                    Prerequisites = new List<string> { "Cloud platforms", "Automation", "Developer tools" },
+                    CareerPaths = new List<string> { "Platform Engineer ($95K-$175K)", "Principal Platform Engineer ($110K-$200K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 94,
+                    Title = "Chaos Engineer",
+                    Description = "Build resilient systems through controlled failure",
+                    Icon = "💥",
+                    Category = CategoryConstants.DevOps,
+                    Duration = "4-5 months",
+                    Difficulty = "Advanced",
+                    ActionName = "ChaosEngineer",
+                    ControllerName = "DevOps",
+                    Context = "Chaos engineering proactively discovers system weaknesses before they cause outages.",
+                    Prerequisites = new List<string> { "Distributed systems", "Monitoring", "Scripting" },
+                    CareerPaths = new List<string> { "Chaos Engineer ($90K-$170K)", "Reliability Engineer ($95K-$180K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 95,
+                    Title = "Cloud Security Engineer",
+                    Description = "Secure cloud infrastructure and applications",
+                    Icon = "🔒",
+                    Category = CategoryConstants.DevOps,
+                    Duration = "5-6 months",
+                    Difficulty = "Advanced",
+                    ActionName = "CloudSecurityEngineer",
+                    ControllerName = "DevOps",
+                    Context = "Cloud security engineers protect cloud resources from threats and ensure compliance.",
+                    Prerequisites = new List<string> { "Cloud platforms", "Security principles", "Compliance knowledge" },
+                    CareerPaths = new List<string> { "Cloud Security Engineer ($95K-$175K)", "Security Architect ($105K-$190K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 96,
+                    Title = "Monitoring & Observability Engineer",
+                    Description = "Build comprehensive monitoring solutions",
+                    Icon = "📊",
+                    Category = CategoryConstants.DevOps,
+                    Duration = "4-5 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "MonitoringEngineer",
+                    ControllerName = "DevOps",
+                    Context = "Observability enables understanding complex system behavior in production.",
+                    Prerequisites = new List<string> { "Metrics/Logs/Traces", "Data analysis", "Distributed systems" },
+                    CareerPaths = new List<string> { "Observability Engineer ($85K-$165K)", "SRE ($90K-$175K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 97,
+                    Title = "GitOps Engineer",
+                    Description = "Implement Git-based operational workflows",
+                    Icon = "🔀",
+                    Category = CategoryConstants.DevOps,
+                    Duration = "3-4 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "GitOpsEngineer",
+                    ControllerName = "DevOps",
+                    Context = "GitOps uses Git as the single source of truth for infrastructure and applications.",
+                    Prerequisites = new List<string> { "Git expertise", "Kubernetes", "CI/CD" },
+                    CareerPaths = new List<string> { "GitOps Engineer ($85K-$160K)", "Platform Engineer ($90K-$170K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 98,
+                    Title = "Edge Computing Engineer",
+                    Description = "Deploy applications at the network edge",
+                    Icon = "🌐",
+                    Category = CategoryConstants.DevOps,
+                    Duration = "5-6 months",
+                    Difficulty = "Advanced",
+                    ActionName = "EdgeComputingEngineer",
+                    ControllerName = "DevOps",
+                    Context = "Edge computing brings computation closer to data sources for reduced latency.",
+                    Prerequisites = new List<string> { "Distributed systems", "IoT basics", "Networking" },
+                    CareerPaths = new List<string> { "Edge Engineer ($85K-$165K)", "Distributed Systems Engineer ($90K-$175K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 99,
+                    Title = "FinOps Engineer",
+                    Description = "Optimize cloud costs and financial operations",
+                    Icon = "💰",
+                    Category = CategoryConstants.DevOps,
+                    Duration = "3-4 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "FinOpsEngineer",
+                    ControllerName = "DevOps",
+                    Context = "FinOps brings financial accountability to cloud spending.",
+                    Prerequisites = new List<string> { "Cloud platforms", "Cost analysis", "Automation" },
+                    CareerPaths = new List<string> { "FinOps Engineer ($80K-$155K)", "Cloud Cost Analyst ($85K-$160K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 100,
+                    Title = "Serverless Architect",
+                    Description = "Design applications using serverless technologies",
+                    Icon = "⚡",
+                    Category = CategoryConstants.DevOps,
+                    Duration = "4-5 months",
+                    Difficulty = "Advanced",
+                    ActionName = "ServerlessArchitect",
+                    ControllerName = "DevOps",
+                    Context = "Serverless computing enables building applications without managing servers.",
+                    Prerequisites = new List<string> { "Cloud functions", "Event-driven architecture", "API design" },
+                    CareerPaths = new List<string> { "Serverless Architect ($90K-$170K)", "Cloud Architect ($95K-$180K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 101,
+                    Title = "Service Mesh Engineer",
+                    Description = "Implement microservices communication infrastructure",
+                    Icon = "🕸️",
+                    Category = CategoryConstants.DevOps,
+                    Duration = "4-5 months",
+                    Difficulty = "Advanced",
+                    ActionName = "ServiceMeshEngineer",
+                    ControllerName = "DevOps",
+                    Context = "Service mesh provides secure, reliable microservices communication.",
+                    Prerequisites = new List<string> { "Microservices", "Kubernetes", "Networking" },
+                    CareerPaths = new List<string> { "Service Mesh Engineer ($90K-$170K)", "Platform Architect ($95K-$180K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 102,
+                    Title = "Database Reliability Engineer",
+                    Description = "Ensure database performance and availability",
+                    Icon = "🗃️",
+                    Category = CategoryConstants.DevOps,
+                    Duration = "5-6 months",
+                    Difficulty = "Advanced",
+                    ActionName = "DatabaseReliabilityEngineer",
+                    ControllerName = "DevOps",
+                    Context = "Database reliability engineers ensure data systems perform optimally at scale.",
+                    Prerequisites = new List<string> { "Database administration", "Performance tuning", "High availability" },
+                    CareerPaths = new List<string> { "Database SRE ($90K-$170K)", "Data Platform Engineer ($95K-$180K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 103,
+                    Title = "Cloud Migration Specialist",
+                    Description = "Lead cloud transformation initiatives",
+                    Icon = "🚀",
+                    Category = CategoryConstants.DevOps,
+                    Duration = "5-6 months",
+                    Difficulty = "Advanced",
+                    ActionName = "CloudMigrationSpecialist",
+                    ControllerName = "DevOps",
+                    Context = "Cloud migration specialists help organizations move to the cloud efficiently.",
+                    Prerequisites = new List<string> { "Legacy systems", "Cloud platforms", "Migration strategies" },
+                    CareerPaths = new List<string> { "Migration Specialist ($85K-$165K)", "Cloud Consultant ($90K-$175K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 104,
+                    Title = "DevSecOps Engineer",
+                    Description = "Integrate security into DevOps practices",
+                    Icon = "🛡️",
+                    Category = CategoryConstants.DevOps,
+                    Duration = "5-6 months",
+                    Difficulty = "Advanced",
+                    ActionName = "DevSecOpsEngineer",
+                    ControllerName = "DevOps",
+                    Context = "DevSecOps embeds security practices throughout the software development lifecycle.",
+                    Prerequisites = new List<string> { "DevOps practices", "Security tools", "Compliance" },
+                    CareerPaths = new List<string> { "DevSecOps Engineer ($90K-$170K)", "Security Architect ($95K-$180K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                // Specialized Category Extended Roadmaps
+                new Roadmap
+                {
+                    Id = 105,
+                    Title = "UX/UI Designer",
+                    Description = "Create intuitive and beautiful user interfaces",
+                    Icon = "🎨",
+                    Category = CategoryConstants.Specialized,
+                    Duration = "5-6 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "UXUIDesigner",
+                    ControllerName = "Specialized",
+                    Context = "UX/UI designers create user-centered designs that balance aesthetics with functionality.",
+                    Prerequisites = new List<string> { "Design principles", "User research", "Design tools" },
+                    CareerPaths = new List<string> { "UI/UX Designer ($65K-$130K)", "Product Designer ($75K-$150K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 106,
+                    Title = "Product Manager",
+                    Description = "Lead product development and strategy",
+                    Icon = "📋",
+                    Category = CategoryConstants.Specialized,
+                    Duration = "6-8 months",
+                    Difficulty = "Advanced",
+                    ActionName = "ProductManager",
+                    ControllerName = "Specialized",
+                    Context = "Product managers bridge business, technology, and user experience to deliver successful products.",
+                    Prerequisites = new List<string> { "Business acumen", "Technical knowledge", "Communication skills" },
+                    CareerPaths = new List<string> { "Product Manager ($90K-$160K)", "Senior PM ($110K-$200K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 107,
+                    Title = "Technical Writer",
+                    Description = "Create clear technical documentation",
+                    Icon = "✍️",
+                    Category = CategoryConstants.Specialized,
+                    Duration = "3-4 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "TechnicalWriter",
+                    ControllerName = "Specialized",
+                    Context = "Technical writers make complex technical information accessible to various audiences.",
+                    Prerequisites = new List<string> { "Writing skills", "Technical understanding", "Documentation tools" },
+                    CareerPaths = new List<string> { "Technical Writer ($60K-$110K)", "Documentation Lead ($75K-$130K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 108,
+                    Title = "Blockchain Developer",
+                    Description = "Build decentralized applications and smart contracts",
+                    Icon = "⛓️",
+                    Category = CategoryConstants.Specialized,
+                    Duration = "6-8 months",
+                    Difficulty = "Advanced",
+                    ActionName = "BlockchainDeveloper",
+                    ControllerName = "Specialized",
+                    Context = "Blockchain developers create decentralized solutions using blockchain technology.",
+                    Prerequisites = new List<string> { "Cryptography basics", "Distributed systems", "Smart contracts" },
+                    CareerPaths = new List<string> { "Blockchain Developer ($85K-$170K)", "DApp Developer ($90K-$180K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 109,
+                    Title = "IoT Developer",
+                    Description = "Build connected device solutions",
+                    Icon = "📡",
+                    Category = CategoryConstants.Specialized,
+                    Duration = "5-6 months",
+                    Difficulty = "Advanced",
+                    ActionName = "IoTDeveloper",
+                    ControllerName = "Specialized",
+                    Context = "IoT developers create systems that connect physical devices to the internet.",
+                    Prerequisites = new List<string> { "Embedded systems", "Networking", "Cloud platforms" },
+                    CareerPaths = new List<string> { "IoT Developer ($75K-$145K)", "IoT Architect ($85K-$160K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 110,
+                    Title = "Game Developer",
+                    Description = "Create interactive gaming experiences",
+                    Icon = "🎮",
+                    Category = CategoryConstants.Specialized,
+                    Duration = "6-8 months",
+                    Difficulty = "Advanced",
+                    ActionName = "GameDeveloper",
+                    ControllerName = "Specialized",
+                    Context = "Game developers combine programming, art, and design to create engaging games.",
+                    Prerequisites = new List<string> { "Programming (C++/C#)", "Mathematics", "Game engines" },
+                    CareerPaths = new List<string> { "Game Developer ($65K-$130K)", "Game Engineer ($75K-$150K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 111,
+                    Title = "AR/VR Developer",
+                    Description = "Build immersive augmented and virtual reality experiences",
+                    Icon = "🥽",
+                    Category = CategoryConstants.Specialized,
+                    Duration = "6-7 months",
+                    Difficulty = "Advanced",
+                    ActionName = "ARVRDeveloper",
+                    ControllerName = "Specialized",
+                    Context = "AR/VR developers create immersive experiences for various industries.",
+                    Prerequisites = new List<string> { "3D graphics", "Unity/Unreal", "Spatial computing" },
+                    CareerPaths = new List<string> { "AR/VR Developer ($80K-$160K)", "XR Engineer ($85K-$170K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 112,
+                    Title = "Embedded Systems Engineer",
+                    Description = "Program hardware devices and microcontrollers",
+                    Icon = "🔌",
+                    Category = CategoryConstants.Specialized,
+                    Duration = "6-8 months",
+                    Difficulty = "Advanced",
+                    ActionName = "EmbeddedSystemsEngineer",
+                    ControllerName = "Specialized",
+                    Context = "Embedded engineers create software for hardware devices and real-time systems.",
+                    Prerequisites = new List<string> { "C/C++", "Hardware knowledge", "Real-time systems" },
+                    CareerPaths = new List<string> { "Embedded Engineer ($75K-$145K)", "Firmware Engineer ($80K-$155K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 113,
+                    Title = "Robotics Engineer",
+                    Description = "Design and program robotic systems",
+                    Icon = "🤖",
+                    Category = CategoryConstants.Specialized,
+                    Duration = "8-10 months",
+                    Difficulty = "Expert",
+                    ActionName = "RoboticsEngineer",
+                    ControllerName = "Specialized",
+                    Context = "Robotics engineers combine mechanical, electrical, and software engineering.",
+                    Prerequisites = new List<string> { "Mathematics", "Control systems", "Programming", "Electronics" },
+                    CareerPaths = new List<string> { "Robotics Engineer ($80K-$155K)", "Automation Engineer ($85K-$165K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 114,
+                    Title = "Growth Engineer",
+                    Description = "Drive product growth through technical solutions",
+                    Icon = "📈",
+                    Category = CategoryConstants.Specialized,
+                    Duration = "4-5 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "GrowthEngineer",
+                    ControllerName = "Specialized",
+                    Context = "Growth engineers use engineering to drive user acquisition and retention.",
+                    Prerequisites = new List<string> { "Full stack development", "Analytics", "A/B testing" },
+                    CareerPaths = new List<string> { "Growth Engineer ($85K-$160K)", "Growth Lead ($95K-$175K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 115,
+                    Title = "Voice Interface Developer",
+                    Description = "Build voice-activated applications and assistants",
+                    Icon = "🎤",
+                    Category = CategoryConstants.Specialized,
+                    Duration = "4-5 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "VoiceInterfaceDeveloper",
+                    ControllerName = "Specialized",
+                    Context = "Voice developers create natural language interfaces for applications.",
+                    Prerequisites = new List<string> { "NLP basics", "API integration", "Audio processing" },
+                    CareerPaths = new List<string> { "Voice Developer ($75K-$145K)", "Conversational AI Engineer ($80K-$155K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 116,
+                    Title = "Low-Code Developer",
+                    Description = "Build applications using low-code platforms",
+                    Icon = "🧩",
+                    Category = CategoryConstants.Specialized,
+                    Duration = "2-3 months",
+                    Difficulty = "Beginner to Intermediate",
+                    ActionName = "LowCodeDeveloper",
+                    ControllerName = "Specialized",
+                    Context = "Low-code developers rapidly build applications using visual development platforms.",
+                    Prerequisites = new List<string> { "Basic logic", "Process understanding", "Platform knowledge" },
+                    CareerPaths = new List<string> { "Low-Code Developer ($60K-$110K)", "Citizen Developer ($65K-$120K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 117,
+                    Title = "Quantum Computing Developer",
+                    Description = "Program quantum computers and algorithms",
+                    Icon = "⚛️",
+                    Category = CategoryConstants.Specialized,
+                    Duration = "8-10 months",
+                    Difficulty = "Expert",
+                    ActionName = "QuantumComputingDeveloper",
+                    ControllerName = "Specialized",
+                    Context = "Quantum developers create algorithms for quantum computers.",
+                    Prerequisites = new List<string> { "Quantum mechanics", "Linear algebra", "Quantum algorithms" },
+                    CareerPaths = new List<string> { "Quantum Developer ($100K-$200K)", "Quantum Researcher ($110K-$220K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 118,
+                    Title = "3D Graphics Developer",
+                    Description = "Create stunning 3D visualizations and graphics",
+                    Icon = "🎯",
+                    Category = CategoryConstants.Specialized,
+                    Duration = "6-7 months",
+                    Difficulty = "Advanced",
+                    ActionName = "GraphicsDeveloper",
+                    ControllerName = "Specialized",
+                    Context = "3D graphics developers create visual experiences for games, simulations, and applications.",
+                    Prerequisites = new List<string> { "Mathematics", "Graphics APIs", "Shader programming" },
+                    CareerPaths = new List<string> { "Graphics Developer ($75K-$150K)", "Graphics Engineer ($85K-$165K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 119,
+                    Title = "Accessibility Engineer",
+                    Description = "Make technology accessible to everyone",
+                    Icon = "♿",
+                    Category = CategoryConstants.Specialized,
+                    Duration = "3-4 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "AccessibilityEngineer",
+                    ControllerName = "Specialized",
+                    Context = "Accessibility engineers ensure technology is usable by people with disabilities.",
+                    Prerequisites = new List<string> { "Web standards", "WCAG guidelines", "Assistive technologies" },
+                    CareerPaths = new List<string> { "Accessibility Engineer ($70K-$135K)", "Inclusive Design Lead ($80K-$150K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 120,
+                    Title = "Performance Engineer",
+                    Description = "Optimize application and system performance",
+                    Icon = "⚡",
+                    Category = CategoryConstants.Specialized,
+                    Duration = "4-5 months",
+                    Difficulty = "Advanced",
+                    ActionName = "PerformanceEngineer",
+                    ControllerName = "Specialized",
+                    Context = "Performance engineers ensure applications run fast and efficiently.",
+                    Prerequisites = new List<string> { "System architecture", "Profiling tools", "Optimization techniques" },
+                    CareerPaths = new List<string> { "Performance Engineer ($85K-$160K)", "Performance Architect ($95K-$175K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 121,
+                    Title = "API Platform Engineer",
+                    Description = "Build and manage API ecosystems",
+                    Icon = "🔌",
+                    Category = CategoryConstants.Specialized,
+                    Duration = "5-6 months",
+                    Difficulty = "Advanced",
+                    ActionName = "APIPlatformEngineer",
+                    ControllerName = "Specialized",
+                    Context = "API platform engineers create infrastructure for API development and management.",
+                    Prerequisites = new List<string> { "API design", "Gateway patterns", "Developer experience" },
+                    CareerPaths = new List<string> { "API Platform Engineer ($85K-$165K)", "Platform Architect ($95K-$180K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 122,
+                    Title = "Search Engineer",
+                    Description = "Build powerful search and discovery systems",
+                    Icon = "🔍",
+                    Category = CategoryConstants.Specialized,
+                    Duration = "4-5 months",
+                    Difficulty = "Advanced",
+                    ActionName = "SearchEngineer",
+                    ControllerName = "Specialized",
+                    Context = "Search engineers create systems that help users find relevant information quickly.",
+                    Prerequisites = new List<string> { "Information retrieval", "Elasticsearch/Solr", "Relevance tuning" },
+                    CareerPaths = new List<string> { "Search Engineer ($85K-$160K)", "Search Architect ($95K-$175K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 123,
+                    Title = "Streaming Engineer",
+                    Description = "Build real-time data streaming systems",
+                    Icon = "🌊",
+                    Category = CategoryConstants.Specialized,
+                    Duration = "5-6 months",
+                    Difficulty = "Advanced",
+                    ActionName = "StreamingEngineer",
+                    ControllerName = "Specialized",
+                    Context = "Streaming engineers build systems for processing real-time data at scale.",
+                    Prerequisites = new List<string> { "Kafka/Pulsar", "Stream processing", "Distributed systems" },
+                    CareerPaths = new List<string> { "Streaming Engineer ($85K-$165K)", "Data Platform Engineer ($90K-$175K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 124,
+                    Title = "Developer Advocate",
+                    Description = "Bridge the gap between developers and products",
+                    Icon = "🗣️",
+                    Category = CategoryConstants.Specialized,
+                    Duration = "4-5 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "DeveloperAdvocate",
+                    ControllerName = "Specialized",
+                    Context = "Developer advocates help developers succeed with products and technologies.",
+                    Prerequisites = new List<string> { "Technical expertise", "Communication skills", "Community building" },
+                    CareerPaths = new List<string> { "Developer Advocate ($80K-$150K)", "DevRel Lead ($90K-$170K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                // Testing & Quality Assurance Extended Roadmaps
+                new Roadmap
+                {
+                    Id = 125,
+                    Title = "Automation Test Engineer",
+                    Description = "Build comprehensive test automation frameworks",
+                    Icon = "🤖",
+                    Category = CategoryConstants.Testing,
+                    Duration = "4-5 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "AutomationTestEngineer",
+                    ControllerName = "Testing",
+                    Context = "Automation engineers create frameworks that ensure software quality at scale.",
+                    Prerequisites = new List<string> { "Programming skills", "Testing concepts", "CI/CD knowledge" },
+                    CareerPaths = new List<string> { "Automation Engineer ($70K-$135K)", "SDET ($80K-$150K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 126,
+                    Title = "Performance Tester",
+                    Description = "Test application performance and scalability",
+                    Icon = "📊",
+                    Category = CategoryConstants.Testing,
+                    Duration = "3-4 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "PerformanceTester",
+                    ControllerName = "Testing",
+                    Context = "Performance testers ensure applications can handle expected load and scale.",
+                    Prerequisites = new List<string> { "Performance tools", "Metrics analysis", "Scripting" },
+                    CareerPaths = new List<string> { "Performance Tester ($70K-$130K)", "Performance Engineer ($80K-$150K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 127,
+                    Title = "Security Tester",
+                    Description = "Find and fix security vulnerabilities",
+                    Icon = "🔒",
+                    Category = CategoryConstants.Testing,
+                    Duration = "5-6 months",
+                    Difficulty = "Advanced",
+                    ActionName = "SecurityTester",
+                    ControllerName = "Testing",
+                    Context = "Security testers protect applications from threats and vulnerabilities.",
+                    Prerequisites = new List<string> { "Security concepts", "Penetration testing", "OWASP knowledge" },
+                    CareerPaths = new List<string> { "Security Tester ($75K-$140K)", "Security Engineer ($85K-$160K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 128,
+                    Title = "Mobile Test Engineer",
+                    Description = "Test mobile applications across devices",
+                    Icon = "📱",
+                    Category = CategoryConstants.Testing,
+                    Duration = "4-5 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "MobileTestEngineer",
+                    ControllerName = "Testing",
+                    Context = "Mobile testers ensure apps work flawlessly across different devices and platforms.",
+                    Prerequisites = new List<string> { "Mobile platforms", "Testing tools", "Device farms" },
+                    CareerPaths = new List<string> { "Mobile Tester ($65K-$125K)", "Mobile QA Lead ($75K-$140K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 129,
+                    Title = "API Test Engineer",
+                    Description = "Test APIs and web services",
+                    Icon = "🔌",
+                    Category = CategoryConstants.Testing,
+                    Duration = "3-4 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "APITestEngineer",
+                    ControllerName = "Testing",
+                    Context = "API testers ensure web services are reliable, secure, and performant.",
+                    Prerequisites = new List<string> { "REST/GraphQL", "API tools", "Automation basics" },
+                    CareerPaths = new List<string> { "API Tester ($65K-$125K)", "API Test Lead ($75K-$140K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 130,
+                    Title = "Test Architect",
+                    Description = "Design comprehensive testing strategies",
+                    Icon = "🏗️",
+                    Category = CategoryConstants.Testing,
+                    Duration = "6-8 months",
+                    Difficulty = "Expert",
+                    ActionName = "TestArchitect",
+                    ControllerName = "Testing",
+                    Context = "Test architects design testing frameworks and strategies for complex systems.",
+                    Prerequisites = new List<string> { "Testing expertise", "Architecture knowledge", "Leadership skills" },
+                    CareerPaths = new List<string> { "Test Architect ($90K-$170K)", "QA Director ($100K-$180K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 131,
+                    Title = "Accessibility Tester",
+                    Description = "Ensure applications are accessible to all users",
+                    Icon = "♿",
+                    Category = CategoryConstants.Testing,
+                    Duration = "3-4 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "AccessibilityTester",
+                    ControllerName = "Testing",
+                    Context = "Accessibility testers ensure applications meet accessibility standards.",
+                    Prerequisites = new List<string> { "WCAG guidelines", "Screen readers", "Accessibility tools" },
+                    CareerPaths = new List<string> { "Accessibility Tester ($65K-$120K)", "Accessibility Lead ($75K-$135K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 132,
+                    Title = "Game Tester",
+                    Description = "Test video games for bugs and playability",
+                    Icon = "🎮",
+                    Category = CategoryConstants.Testing,
+                    Duration = "3-4 months",
+                    Difficulty = "Beginner to Intermediate",
+                    ActionName = "GameTester",
+                    ControllerName = "Testing",
+                    Context = "Game testers ensure games are bug-free and provide great player experiences.",
+                    Prerequisites = new List<string> { "Gaming knowledge", "Attention to detail", "Bug reporting" },
+                    CareerPaths = new List<string> { "Game Tester ($50K-$90K)", "QA Lead ($65K-$120K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 133,
+                    Title = "ETL Tester",
+                    Description = "Test data pipelines and transformations",
+                    Icon = "🔄",
+                    Category = CategoryConstants.Testing,
+                    Duration = "4-5 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "ETLTester",
+                    ControllerName = "Testing",
+                    Context = "ETL testers ensure data integrity in extract, transform, and load processes.",
+                    Prerequisites = new List<string> { "SQL expertise", "Data warehousing", "ETL tools" },
+                    CareerPaths = new List<string> { "ETL Tester ($70K-$130K)", "Data Quality Engineer ($80K-$145K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 134,
+                    Title = "Blockchain Tester",
+                    Description = "Test blockchain applications and smart contracts",
+                    Icon = "⛓️",
+                    Category = CategoryConstants.Testing,
+                    Duration = "5-6 months",
+                    Difficulty = "Advanced",
+                    ActionName = "BlockchainTester",
+                    ControllerName = "Testing",
+                    Context = "Blockchain testers ensure the security and reliability of decentralized applications.",
+                    Prerequisites = new List<string> { "Blockchain concepts", "Smart contracts", "Security testing" },
+                    CareerPaths = new List<string> { "Blockchain Tester ($75K-$145K)", "DApp QA Engineer ($85K-$160K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 135,
+                    Title = "IoT Tester",
+                    Description = "Test Internet of Things devices and systems",
+                    Icon = "📡",
+                    Category = CategoryConstants.Testing,
+                    Duration = "4-5 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "IoTTester",
+                    ControllerName = "Testing",
+                    Context = "IoT testers ensure connected devices work reliably and securely.",
+                    Prerequisites = new List<string> { "IoT protocols", "Hardware testing", "Network testing" },
+                    CareerPaths = new List<string> { "IoT Tester ($70K-$130K)", "IoT QA Lead ($80K-$145K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 136,
+                    Title = "Usability Tester",
+                    Description = "Test user experience and interface design",
+                    Icon = "👤",
+                    Category = CategoryConstants.Testing,
+                    Duration = "3-4 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "UsabilityTester",
+                    ControllerName = "Testing",
+                    Context = "Usability testers ensure applications are intuitive and user-friendly.",
+                    Prerequisites = new List<string> { "UX principles", "User research", "Testing methods" },
+                    CareerPaths = new List<string> { "Usability Tester ($60K-$115K)", "UX Researcher ($70K-$130K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 137,
+                    Title = "Localization Tester",
+                    Description = "Test software for international markets",
+                    Icon = "🌍",
+                    Category = CategoryConstants.Testing,
+                    Duration = "3-4 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "LocalizationTester",
+                    ControllerName = "Testing",
+                    Context = "Localization testers ensure software works correctly in different languages and regions.",
+                    Prerequisites = new List<string> { "Multiple languages", "Cultural awareness", "Testing tools" },
+                    CareerPaths = new List<string> { "Localization Tester ($60K-$110K)", "L10n QA Lead ($70K-$125K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 138,
+                    Title = "Compliance Tester",
+                    Description = "Ensure software meets regulatory requirements",
+                    Icon = "📋",
+                    Category = CategoryConstants.Testing,
+                    Duration = "4-5 months",
+                    Difficulty = "Advanced",
+                    ActionName = "ComplianceTester",
+                    ControllerName = "Testing",
+                    Context = "Compliance testers verify software meets industry regulations and standards.",
+                    Prerequisites = new List<string> { "Regulatory knowledge", "Audit processes", "Documentation" },
+                    CareerPaths = new List<string> { "Compliance Tester ($70K-$135K)", "Compliance Manager ($80K-$150K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 139,
+                    Title = "Chaos Testing Engineer",
+                    Description = "Test system resilience through controlled failures",
+                    Icon = "💥",
+                    Category = CategoryConstants.Testing,
+                    Duration = "4-5 months",
+                    Difficulty = "Advanced",
+                    ActionName = "ChaosTestingEngineer",
+                    ControllerName = "Testing",
+                    Context = "Chaos testers proactively find system weaknesses through failure injection.",
+                    Prerequisites = new List<string> { "Distributed systems", "Failure scenarios", "Monitoring" },
+                    CareerPaths = new List<string> { "Chaos Engineer ($85K-$160K)", "Resilience Engineer ($90K-$170K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 140,
+                    Title = "Contract Tester",
+                    Description = "Test API contracts between services",
+                    Icon = "📄",
+                    Category = CategoryConstants.Testing,
+                    Duration = "3-4 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "ContractTester",
+                    ControllerName = "Testing",
+                    Context = "Contract testers ensure services communicate correctly through defined interfaces.",
+                    Prerequisites = new List<string> { "API design", "Contract testing tools", "Microservices" },
+                    CareerPaths = new List<string> { "Contract Tester ($70K-$130K)", "Integration Test Lead ($80K-$145K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 141,
+                    Title = "Visual Regression Tester",
+                    Description = "Test UI consistency across changes",
+                    Icon = "👁️",
+                    Category = CategoryConstants.Testing,
+                    Duration = "3-4 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "VisualRegressionTester",
+                    ControllerName = "Testing",
+                    Context = "Visual regression testers ensure UI changes don't break existing designs.",
+                    Prerequisites = new List<string> { "UI testing tools", "Screenshot comparison", "CSS knowledge" },
+                    CareerPaths = new List<string> { "Visual Tester ($65K-$120K)", "UI Test Engineer ($75K-$135K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 142,
+                    Title = "Data Quality Engineer",
+                    Description = "Ensure data accuracy and integrity",
+                    Icon = "📊",
+                    Category = CategoryConstants.Testing,
+                    Duration = "4-5 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "DataQualityEngineer",
+                    ControllerName = "Testing",
+                    Context = "Data quality engineers ensure data meets quality standards for business use.",
+                    Prerequisites = new List<string> { "SQL expertise", "Data profiling", "Quality metrics" },
+                    CareerPaths = new List<string> { "Data Quality Engineer ($75K-$140K)", "Data Governance Lead ($85K-$155K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 143,
+                    Title = "Test Data Engineer",
+                    Description = "Create and manage test data strategies",
+                    Icon = "💾",
+                    Category = CategoryConstants.Testing,
+                    Duration = "4-5 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "TestDataEngineer",
+                    ControllerName = "Testing",
+                    Context = "Test data engineers create realistic data sets for comprehensive testing.",
+                    Prerequisites = new List<string> { "Data modeling", "Privacy compliance", "Automation" },
+                    CareerPaths = new List<string> { "Test Data Engineer ($70K-$135K)", "Data Test Architect ($80K-$150K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 144,
+                    Title = "BDD Test Engineer",
+                    Description = "Implement behavior-driven development testing",
+                    Icon = "📝",
+                    Category = CategoryConstants.Testing,
+                    Duration = "3-4 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "BDDTestEngineer",
+                    ControllerName = "Testing",
+                    Context = "BDD engineers bridge business requirements and automated tests.",
+                    Prerequisites = new List<string> { "Gherkin syntax", "BDD frameworks", "Collaboration skills" },
+                    CareerPaths = new List<string> { "BDD Engineer ($70K-$130K)", "Test Automation Lead ($80K-$145K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                // Architecture & System Design Extended Roadmaps
+                new Roadmap
+                {
+                    Id = 145,
+                    Title = "Microservices Architect",
+                    Description = "Design scalable microservices architectures",
+                    Icon = "🔲",
+                    Category = CategoryConstants.Architecture,
+                    Duration = "6-8 months",
+                    Difficulty = "Expert",
+                    ActionName = "MicroservicesArchitect",
+                    ControllerName = "Architecture",
+                    Context = "Microservices architects design distributed systems using microservice patterns.",
+                    Prerequisites = new List<string> { "Distributed systems", "API design", "Domain-driven design" },
+                    CareerPaths = new List<string> { "Microservices Architect ($110K-$190K)", "Principal Architect ($130K-$220K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 146,
+                    Title = "Cloud Solution Architect",
+                    Description = "Design cloud-native application architectures",
+                    Icon = "☁️",
+                    Category = CategoryConstants.Architecture,
+                    Duration = "6-8 months",
+                    Difficulty = "Advanced",
+                    ActionName = "CloudSolutionArchitect",
+                    ControllerName = "Architecture",
+                    Context = "Cloud architects design scalable, resilient cloud solutions.",
+                    Prerequisites = new List<string> { "Cloud platforms", "Distributed systems", "Security" },
+                    CareerPaths = new List<string> { "Cloud Architect ($100K-$190K)", "Solutions Architect ($110K-$200K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 147,
+                    Title = "Enterprise Architect",
+                    Description = "Align technology with business strategy",
+                    Icon = "🏢",
+                    Category = CategoryConstants.Architecture,
+                    Duration = "12-18 months",
+                    Difficulty = "Expert",
+                    ActionName = "EnterpriseArchitect",
+                    ControllerName = "Architecture",
+                    Context = "Enterprise architects ensure technology supports business objectives.",
+                    Prerequisites = new List<string> { "Business acumen", "Systems thinking", "Leadership" },
+                    CareerPaths = new List<string> { "Enterprise Architect ($120K-$200K)", "Chief Architect ($150K-$250K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 148,
+                    Title = "Security Architect",
+                    Description = "Design secure system architectures",
+                    Icon = "🔐",
+                    Category = CategoryConstants.Architecture,
+                    Duration = "6-8 months",
+                    Difficulty = "Advanced",
+                    ActionName = "SecurityArchitect",
+                    ControllerName = "Architecture",
+                    Context = "Security architects design systems that protect against threats.",
+                    Prerequisites = new List<string> { "Security principles", "Threat modeling", "Compliance" },
+                    CareerPaths = new List<string> { "Security Architect ($105K-$190K)", "Chief Security Officer ($130K-$230K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 149,
+                    Title = "Data Architect",
+                    Description = "Design enterprise data architectures",
+                    Icon = "🗄️",
+                    Category = CategoryConstants.Architecture,
+                    Duration = "6-8 months",
+                    Difficulty = "Advanced",
+                    ActionName = "DataArchitect",
+                    ControllerName = "Architecture",
+                    Context = "Data architects design systems for storing, processing, and analyzing data.",
+                    Prerequisites = new List<string> { "Database design", "Big data", "Data modeling" },
+                    CareerPaths = new List<string> { "Data Architect ($95K-$180K)", "Chief Data Officer ($120K-$220K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 150,
+                    Title = "Domain-Driven Design Expert",
+                    Description = "Master DDD for complex business domains",
+                    Icon = "📐",
+                    Category = CategoryConstants.Architecture,
+                    Duration = "5-6 months",
+                    Difficulty = "Advanced",
+                    ActionName = "DDDExpert",
+                    ControllerName = "Architecture",
+                    Context = "DDD experts model complex business domains in software.",
+                    Prerequisites = new List<string> { "Software design", "Business analysis", "OOP" },
+                    CareerPaths = new List<string> { "DDD Expert ($100K-$180K)", "Domain Architect ($110K-$190K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 151,
+                    Title = "Event-Driven Architect",
+                    Description = "Design event-driven and reactive systems",
+                    Icon = "⚡",
+                    Category = CategoryConstants.Architecture,
+                    Duration = "5-6 months",
+                    Difficulty = "Advanced",
+                    ActionName = "EventDrivenArchitect",
+                    ControllerName = "Architecture",
+                    Context = "Event-driven architects design systems based on event streaming.",
+                    Prerequisites = new List<string> { "Message queuing", "Event sourcing", "CQRS" },
+                    CareerPaths = new List<string> { "Event Architect ($95K-$175K)", "Streaming Architect ($100K-$185K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 152,
+                    Title = "Integration Architect",
+                    Description = "Design system integration solutions",
+                    Icon = "🔗",
+                    Category = CategoryConstants.Architecture,
+                    Duration = "5-6 months",
+                    Difficulty = "Advanced",
+                    ActionName = "IntegrationArchitect",
+                    ControllerName = "Architecture",
+                    Context = "Integration architects connect disparate systems seamlessly.",
+                    Prerequisites = new List<string> { "API design", "Middleware", "ESB patterns" },
+                    CareerPaths = new List<string> { "Integration Architect ($90K-$170K)", "Solution Architect ($100K-$185K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 153,
+                    Title = "Mobile Architecture Expert",
+                    Description = "Design scalable mobile application architectures",
+                    Icon = "📱",
+                    Category = CategoryConstants.Architecture,
+                    Duration = "5-6 months",
+                    Difficulty = "Advanced",
+                    ActionName = "MobileArchitect",
+                    ControllerName = "Architecture",
+                    Context = "Mobile architects design architectures for complex mobile applications.",
+                    Prerequisites = new List<string> { "Mobile platforms", "Offline sync", "Performance" },
+                    CareerPaths = new List<string> { "Mobile Architect ($95K-$175K)", "Principal Mobile Engineer ($105K-$185K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 154,
+                    Title = "API Architecture Specialist",
+                    Description = "Design enterprise API strategies",
+                    Icon = "🔌",
+                    Category = CategoryConstants.Architecture,
+                    Duration = "4-5 months",
+                    Difficulty = "Advanced",
+                    ActionName = "APIArchitect",
+                    ControllerName = "Architecture",
+                    Context = "API architects design consistent, scalable API ecosystems.",
+                    Prerequisites = new List<string> { "REST/GraphQL", "API governance", "Versioning" },
+                    CareerPaths = new List<string> { "API Architect ($90K-$170K)", "Platform Architect ($100K-$185K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 155,
+                    Title = "Serverless Architecture Expert",
+                    Description = "Design serverless-first architectures",
+                    Icon = "⚡",
+                    Category = CategoryConstants.Architecture,
+                    Duration = "4-5 months",
+                    Difficulty = "Advanced",
+                    ActionName = "ServerlessArchitect",
+                    ControllerName = "Architecture",
+                    Context = "Serverless architects design applications without managing servers.",
+                    Prerequisites = new List<string> { "Cloud functions", "Event-driven design", "Cost optimization" },
+                    CareerPaths = new List<string> { "Serverless Architect ($95K-$175K)", "Cloud Architect ($100K-$185K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 156,
+                    Title = "Resilience Architect",
+                    Description = "Design highly available and fault-tolerant systems",
+                    Icon = "🛡️",
+                    Category = CategoryConstants.Architecture,
+                    Duration = "5-6 months",
+                    Difficulty = "Advanced",
+                    ActionName = "ResilienceArchitect",
+                    ControllerName = "Architecture",
+                    Context = "Resilience architects ensure systems survive failures gracefully.",
+                    Prerequisites = new List<string> { "Distributed systems", "Failure patterns", "Recovery strategies" },
+                    CareerPaths = new List<string> { "Resilience Architect ($100K-$180K)", "Reliability Architect ($105K-$190K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 157,
+                    Title = "Clean Architecture Expert",
+                    Description = "Master clean architecture principles",
+                    Icon = "🏛️",
+                    Category = CategoryConstants.Architecture,
+                    Duration = "4-5 months",
+                    Difficulty = "Advanced",
+                    ActionName = "CleanArchitectureExpert",
+                    ControllerName = "Architecture",
+                    Context = "Clean architecture creates maintainable, testable applications.",
+                    Prerequisites = new List<string> { "SOLID principles", "Design patterns", "Testing" },
+                    CareerPaths = new List<string> { "Clean Architecture Expert ($90K-$170K)", "Software Architect ($100K-$185K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 158,
+                    Title = "Performance Architect",
+                    Description = "Design high-performance system architectures",
+                    Icon = "⚡",
+                    Category = CategoryConstants.Architecture,
+                    Duration = "5-6 months",
+                    Difficulty = "Advanced",
+                    ActionName = "PerformanceArchitect",
+                    ControllerName = "Architecture",
+                    Context = "Performance architects optimize systems for speed and efficiency.",
+                    Prerequisites = new List<string> { "Performance analysis", "Caching strategies", "Load balancing" },
+                    CareerPaths = new List<string> { "Performance Architect ($95K-$180K)", "Principal Engineer ($105K-$195K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 159,
+                    Title = "Blockchain Architect",
+                    Description = "Design decentralized blockchain solutions",
+                    Icon = "⛓️",
+                    Category = CategoryConstants.Architecture,
+                    Duration = "6-8 months",
+                    Difficulty = "Expert",
+                    ActionName = "BlockchainArchitect",
+                    ControllerName = "Architecture",
+                    Context = "Blockchain architects design decentralized, trustless systems.",
+                    Prerequisites = new List<string> { "Blockchain protocols", "Cryptography", "Consensus mechanisms" },
+                    CareerPaths = new List<string> { "Blockchain Architect ($100K-$190K)", "DeFi Architect ($110K-$210K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 160,
+                    Title = "IoT Architecture Specialist",
+                    Description = "Design Internet of Things architectures",
+                    Icon = "📡",
+                    Category = CategoryConstants.Architecture,
+                    Duration = "5-6 months",
+                    Difficulty = "Advanced",
+                    ActionName = "IoTArchitect",
+                    ControllerName = "Architecture",
+                    Context = "IoT architects design systems connecting millions of devices.",
+                    Prerequisites = new List<string> { "IoT protocols", "Edge computing", "Security" },
+                    CareerPaths = new List<string> { "IoT Architect ($90K-$170K)", "Connected Systems Architect ($95K-$180K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 161,
+                    Title = "Machine Learning Architect",
+                    Description = "Design ML systems architecture",
+                    Icon = "🧠",
+                    Category = CategoryConstants.Architecture,
+                    Duration = "6-8 months",
+                    Difficulty = "Expert",
+                    ActionName = "MLArchitect",
+                    ControllerName = "Architecture",
+                    Context = "ML architects design scalable machine learning systems.",
+                    Prerequisites = new List<string> { "ML pipelines", "Model serving", "Data architecture" },
+                    CareerPaths = new List<string> { "ML Architect ($105K-$195K)", "AI Architect ($115K-$210K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 162,
+                    Title = "Multi-Tenant Architecture Expert",
+                    Description = "Design scalable multi-tenant SaaS architectures",
+                    Icon = "🏢",
+                    Category = CategoryConstants.Architecture,
+                    Duration = "5-6 months",
+                    Difficulty = "Advanced",
+                    ActionName = "MultiTenantArchitect",
+                    ControllerName = "Architecture",
+                    Context = "Multi-tenant architects design SaaS platforms serving multiple customers.",
+                    Prerequisites = new List<string> { "Data isolation", "Scalability patterns", "Security" },
+                    CareerPaths = new List<string> { "SaaS Architect ($95K-$180K)", "Platform Architect ($100K-$190K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 163,
+                    Title = "Legacy Modernization Architect",
+                    Description = "Transform legacy systems to modern architectures",
+                    Icon = "🔄",
+                    Category = CategoryConstants.Architecture,
+                    Duration = "6-8 months",
+                    Difficulty = "Expert",
+                    ActionName = "ModernizationArchitect",
+                    ControllerName = "Architecture",
+                    Context = "Modernization architects transform legacy systems while maintaining business continuity.",
+                    Prerequisites = new List<string> { "Legacy systems", "Migration patterns", "Risk management" },
+                    CareerPaths = new List<string> { "Modernization Architect ($100K-$185K)", "Transformation Lead ($110K-$200K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 164,
+                    Title = "Observability Architect",
+                    Description = "Design comprehensive observability solutions",
+                    Icon = "👁️",
+                    Category = CategoryConstants.Architecture,
+                    Duration = "4-5 months",
+                    Difficulty = "Advanced",
+                    ActionName = "ObservabilityArchitect",
+                    ControllerName = "Architecture",
+                    Context = "Observability architects design systems for understanding complex system behavior.",
+                    Prerequisites = new List<string> { "Monitoring tools", "Distributed tracing", "Log aggregation" },
+                    CareerPaths = new List<string> { "Observability Architect ($95K-$175K)", "SRE Architect ($100K-$185K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                // Programming Fundamentals Extended Roadmaps
+                new Roadmap
+                {
+                    Id = 165,
+                    Title = "Programming Basics",
+                    Description = "Start your programming journey from scratch",
+                    Icon = "👶",
+                    Category = CategoryConstants.ProgrammingFundamentals,
+                    Duration = "2-3 months",
+                    Difficulty = "Beginner",
+                    ActionName = "ProgrammingBasics",
+                    ControllerName = "ProgrammingFundamentals",
+                    Context = "Learn fundamental programming concepts that apply to any language.",
+                    Prerequisites = new List<string> { "Basic computer skills", "Logical thinking" },
+                    CareerPaths = new List<string> { "Junior Developer ($50K-$80K)", "Software Developer ($60K-$100K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 166,
+                    Title = "Data Structures & Algorithms",
+                    Description = "Master fundamental computer science concepts",
+                    Icon = "🌳",
+                    Category = CategoryConstants.ProgrammingFundamentals,
+                    Duration = "4-6 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "DataStructuresAlgorithms",
+                    ControllerName = "ProgrammingFundamentals",
+                    Context = "Data structures and algorithms are essential for efficient problem solving.",
+                    Prerequisites = new List<string> { "Programming basics", "Mathematics", "Logic" },
+                    CareerPaths = new List<string> { "Software Engineer ($70K-$140K)", "Algorithm Engineer ($80K-$160K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 167,
+                    Title = "Object-Oriented Programming",
+                    Description = "Master OOP principles and design",
+                    Icon = "🔷",
+                    Category = CategoryConstants.ProgrammingFundamentals,
+                    Duration = "3-4 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "ObjectOrientedProgramming",
+                    ControllerName = "ProgrammingFundamentals",
+                    Context = "OOP is a fundamental paradigm for organizing and structuring code.",
+                    Prerequisites = new List<string> { "Basic programming", "Logic", "Problem solving" },
+                    CareerPaths = new List<string> { "OOP Developer ($65K-$125K)", "Software Engineer ($75K-$145K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 168,
+                    Title = "Functional Programming",
+                    Description = "Learn functional programming paradigm",
+                    Icon = "λ",
+                    Category = CategoryConstants.ProgrammingFundamentals,
+                    Duration = "4-5 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "FunctionalProgramming",
+                    ControllerName = "ProgrammingFundamentals",
+                    Context = "Functional programming emphasizes immutability and pure functions.",
+                    Prerequisites = new List<string> { "Programming basics", "Mathematics", "Abstract thinking" },
+                    CareerPaths = new List<string> { "Functional Developer ($75K-$145K)", "Scala/Clojure Developer ($85K-$160K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 169,
+                    Title = "Design Patterns",
+                    Description = "Master software design patterns",
+                    Icon = "🎨",
+                    Category = CategoryConstants.ProgrammingFundamentals,
+                    Duration = "3-4 months",
+                    Difficulty = "Advanced",
+                    ActionName = "DesignPatterns",
+                    ControllerName = "ProgrammingFundamentals",
+                    Context = "Design patterns provide reusable solutions to common programming problems.",
+                    Prerequisites = new List<string> { "OOP", "Software design", "Problem solving" },
+                    CareerPaths = new List<string> { "Senior Developer ($80K-$150K)", "Software Architect ($90K-$170K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 170,
+                    Title = "SOLID Principles",
+                    Description = "Master SOLID design principles",
+                    Icon = "🏗️",
+                    Category = CategoryConstants.ProgrammingFundamentals,
+                    Duration = "2-3 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "SOLIDPrinciples",
+                    ControllerName = "ProgrammingFundamentals",
+                    Context = "SOLID principles guide the creation of maintainable, flexible software.",
+                    Prerequisites = new List<string> { "OOP", "Basic design", "Refactoring" },
+                    CareerPaths = new List<string> { "Senior Developer ($75K-$140K)", "Lead Developer ($85K-$160K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 171,
+                    Title = "Version Control with Git",
+                    Description = "Master Git and collaborative workflows",
+                    Icon = "🔀",
+                    Category = CategoryConstants.ProgrammingFundamentals,
+                    Duration = "2-3 weeks",
+                    Difficulty = "Beginner to Intermediate",
+                    ActionName = "GitVersionControl",
+                    ControllerName = "ProgrammingFundamentals",
+                    Context = "Git is essential for modern software development and collaboration.",
+                    Prerequisites = new List<string> { "Basic command line", "File systems" },
+                    CareerPaths = new List<string> { "Developer ($60K-$120K)", "DevOps Engineer ($70K-$140K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 172,
+                    Title = "Clean Code Principles",
+                    Description = "Write readable, maintainable code",
+                    Icon = "✨",
+                    Category = CategoryConstants.ProgrammingFundamentals,
+                    Duration = "2-3 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "CleanCode",
+                    ControllerName = "ProgrammingFundamentals",
+                    Context = "Clean code principles help create code that's easy to understand and maintain.",
+                    Prerequisites = new List<string> { "Programming experience", "Code review", "Refactoring" },
+                    CareerPaths = new List<string> { "Senior Developer ($75K-$140K)", "Code Quality Lead ($85K-$155K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 173,
+                    Title = "Debugging & Troubleshooting",
+                    Description = "Master debugging techniques and tools",
+                    Icon = "🐛",
+                    Category = CategoryConstants.ProgrammingFundamentals,
+                    Duration = "2-3 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "DebuggingTroubleshooting",
+                    ControllerName = "ProgrammingFundamentals",
+                    Context = "Effective debugging skills are essential for every developer.",
+                    Prerequisites = new List<string> { "Programming basics", "IDE usage", "Problem solving" },
+                    CareerPaths = new List<string> { "Software Developer ($65K-$125K)", "Senior Developer ($75K-$145K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 174,
+                    Title = "Regular Expressions",
+                    Description = "Master pattern matching with regex",
+                    Icon = "🔤",
+                    Category = CategoryConstants.ProgrammingFundamentals,
+                    Duration = "2-3 weeks",
+                    Difficulty = "Intermediate",
+                    ActionName = "RegularExpressions",
+                    ControllerName = "ProgrammingFundamentals",
+                    Context = "Regular expressions are powerful tools for text processing and validation.",
+                    Prerequisites = new List<string> { "String manipulation", "Pattern recognition" },
+                    CareerPaths = new List<string> { "Developer ($60K-$120K)", "Data Engineer ($70K-$140K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 175,
+                    Title = "Concurrency & Parallelism",
+                    Description = "Master concurrent and parallel programming",
+                    Icon = "🔀",
+                    Category = CategoryConstants.ProgrammingFundamentals,
+                    Duration = "4-5 months",
+                    Difficulty = "Advanced",
+                    ActionName = "ConcurrencyParallelism",
+                    ControllerName = "ProgrammingFundamentals",
+                    Context = "Concurrency is essential for building efficient, scalable applications.",
+                    Prerequisites = new List<string> { "Programming proficiency", "Operating systems", "Threading" },
+                    CareerPaths = new List<string> { "Systems Developer ($80K-$150K)", "Performance Engineer ($85K-$160K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 176,
+                    Title = "Memory Management",
+                    Description = "Understand memory allocation and optimization",
+                    Icon = "💾",
+                    Category = CategoryConstants.ProgrammingFundamentals,
+                    Duration = "3-4 months",
+                    Difficulty = "Advanced",
+                    ActionName = "MemoryManagement",
+                    ControllerName = "ProgrammingFundamentals",
+                    Context = "Understanding memory management is crucial for system-level programming.",
+                    Prerequisites = new List<string> { "C/C++ basics", "Operating systems", "Data structures" },
+                    CareerPaths = new List<string> { "Systems Programmer ($75K-$145K)", "Performance Engineer ($85K-$160K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 177,
+                    Title = "Compiler Design",
+                    Description = "Build compilers and interpreters",
+                    Icon = "🔧",
+                    Category = CategoryConstants.ProgrammingFundamentals,
+                    Duration = "6-8 months",
+                    Difficulty = "Expert",
+                    ActionName = "CompilerDesign",
+                    ControllerName = "ProgrammingFundamentals",
+                    Context = "Compiler design teaches deep understanding of programming languages.",
+                    Prerequisites = new List<string> { "Formal languages", "Parsing", "Code generation" },
+                    CareerPaths = new List<string> { "Compiler Engineer ($90K-$170K)", "Language Designer ($100K-$190K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 178,
+                    Title = "Operating Systems Concepts",
+                    Description = "Understand how operating systems work",
+                    Icon = "💻",
+                    Category = CategoryConstants.ProgrammingFundamentals,
+                    Duration = "4-5 months",
+                    Difficulty = "Advanced",
+                    ActionName = "OperatingSystemsConcepts",
+                    ControllerName = "ProgrammingFundamentals",
+                    Context = "OS concepts are fundamental for system programming and optimization.",
+                    Prerequisites = new List<string> { "C programming", "Computer architecture", "Algorithms" },
+                    CareerPaths = new List<string> { "Systems Engineer ($80K-$155K)", "Kernel Developer ($90K-$175K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 179,
+                    Title = "Network Programming",
+                    Description = "Build networked applications and protocols",
+                    Icon = "🌐",
+                    Category = CategoryConstants.ProgrammingFundamentals,
+                    Duration = "4-5 months",
+                    Difficulty = "Advanced",
+                    ActionName = "NetworkProgramming",
+                    ControllerName = "ProgrammingFundamentals",
+                    Context = "Network programming is essential for distributed systems and web applications.",
+                    Prerequisites = new List<string> { "TCP/IP", "Socket programming", "Protocols" },
+                    CareerPaths = new List<string> { "Network Developer ($75K-$145K)", "Backend Engineer ($80K-$155K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 180,
+                    Title = "Database Fundamentals",
+                    Description = "Master database concepts and SQL",
+                    Icon = "🗄️",
+                    Category = CategoryConstants.ProgrammingFundamentals,
+                    Duration = "3-4 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "DatabaseFundamentals",
+                    ControllerName = "ProgrammingFundamentals",
+                    Context = "Database knowledge is essential for building data-driven applications.",
+                    Prerequisites = new List<string> { "Data concepts", "Set theory", "Logic" },
+                    CareerPaths = new List<string> { "Database Developer ($70K-$130K)", "Backend Developer ($75K-$140K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 181,
+                    Title = "Cryptography Basics",
+                    Description = "Understand encryption and security fundamentals",
+                    Icon = "🔐",
+                    Category = CategoryConstants.ProgrammingFundamentals,
+                    Duration = "3-4 months",
+                    Difficulty = "Advanced",
+                    ActionName = "CryptographyBasics",
+                    ControllerName = "ProgrammingFundamentals",
+                    Context = "Cryptography is essential for building secure applications.",
+                    Prerequisites = new List<string> { "Mathematics", "Algorithms", "Security concepts" },
+                    CareerPaths = new List<string> { "Security Developer ($80K-$150K)", "Cryptography Engineer ($90K-$170K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 182,
+                    Title = "Software Testing Fundamentals",
+                    Description = "Learn essential testing principles and practices",
+                    Icon = "✅",
+                    Category = CategoryConstants.ProgrammingFundamentals,
+                    Duration = "2-3 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "TestingFundamentals",
+                    ControllerName = "ProgrammingFundamentals",
+                    Context = "Testing is crucial for delivering quality software.",
+                    Prerequisites = new List<string> { "Programming basics", "Debugging", "Quality concepts" },
+                    CareerPaths = new List<string> { "QA Engineer ($60K-$110K)", "Test Automation Engineer ($70K-$130K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 183,
+                    Title = "Refactoring Techniques",
+                    Description = "Master code refactoring and improvement",
+                    Icon = "♻️",
+                    Category = CategoryConstants.ProgrammingFundamentals,
+                    Duration = "2-3 months",
+                    Difficulty = "Intermediate to Advanced",
+                    ActionName = "RefactoringTechniques",
+                    ControllerName = "ProgrammingFundamentals",
+                    Context = "Refactoring improves code quality without changing functionality.",
+                    Prerequisites = new List<string> { "Clean code", "Testing", "Design patterns" },
+                    CareerPaths = new List<string> { "Senior Developer ($75K-$145K)", "Technical Lead ($85K-$165K)" },
+                    Steps = new List<RoadmapStep>()
+                },
+
+                new Roadmap
+                {
+                    Id = 184,
+                    Title = "API Development Basics",
+                    Description = "Learn to design and build APIs",
+                    Icon = "🔌",
+                    Category = CategoryConstants.ProgrammingFundamentals,
+                    Duration = "3-4 months",
+                    Difficulty = "Intermediate",
+                    ActionName = "APIDevelopmentBasics",
+                    ControllerName = "ProgrammingFundamentals",
+                    Context = "APIs are the backbone of modern software integration.",
+                    Prerequisites = new List<string> { "HTTP basics", "JSON/XML", "Backend basics" },
+                    CareerPaths = new List<string> { "API Developer ($70K-$135K)", "Backend Developer ($75K-$145K)" },
+                    Steps = new List<RoadmapStep>()
                 }
             };
+
+            // Add extended subtopics
+            AddExtendedSubTopics(roadmaps);
+            
+            // Update Azure Developer roadmap with comprehensive structure
+            UpdateAzureDeveloperRoadmap(roadmaps);
+            
+            // Update C# Developer roadmap with comprehensive structure
+            UpdateCSharpDeveloperRoadmap(roadmaps);
+            
+            // Update Software Architect roadmap with comprehensive structure
+            UpdateSoftwareArchitectRoadmap(roadmaps);
+            
+            // Update SQL & Database Developer roadmap with comprehensive structure
+            UpdateSQLDatabaseDeveloperRoadmap(roadmaps);
+            
+            // Update Angular roadmap with comprehensive structure
+            UpdateAngularRoadmap(roadmaps);
+            
+            // Update Azure DevOps & Git CI/CD roadmap with comprehensive structure
+            UpdateAzureDevOpsGitCICDRoadmap(roadmaps);
+            
+            // Update JavaScript roadmap with comprehensive structure
+            UpdateJavaScriptRoadmap(roadmaps);
+            
+            return roadmaps;
         }
     }
 }

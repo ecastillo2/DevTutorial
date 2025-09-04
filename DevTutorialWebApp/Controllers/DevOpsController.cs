@@ -4,13 +4,10 @@ using DevTutorialWebApp.Models;
 
 namespace DevTutorialWebApp.Controllers
 {
-    public class DevOpsController : Controller
+    public class DevOpsController : BaseRoadmapController
     {
-        private readonly IRoadmapService _roadmapService;
-
-        public DevOpsController(IRoadmapService roadmapService)
+        public DevOpsController(IRoadmapService roadmapService) : base(roadmapService)
         {
-            _roadmapService = roadmapService;
         }
 
         public IActionResult Index()
@@ -39,7 +36,25 @@ namespace DevTutorialWebApp.Controllers
 
         public IActionResult AzureCloudDeveloper()
         {
-            var roadmap = _roadmapService.GetRoadmapById(17); // Azure Cloud Developer
+            var roadmap = _roadmapService.GetRoadmapById(24); // Azure Developer
+            if (roadmap == null)
+                return NotFound();
+            
+            return View("RoadmapDetail", roadmap);
+        }
+        
+        public IActionResult AzureDeveloper()
+        {
+            var roadmap = _roadmapService.GetRoadmapById(24); // Azure Developer
+            if (roadmap == null)
+                return NotFound();
+            
+            return View(roadmap);
+        }
+
+        public IActionResult GitCICD()
+        {
+            var roadmap = _roadmapService.GetRoadmapById(22); // Azure DevOps & Git CI/CD
             if (roadmap == null)
                 return NotFound();
             

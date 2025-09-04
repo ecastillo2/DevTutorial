@@ -848,6 +848,528 @@ namespace DevTutorialWebApp.Services
                             }
                         }
                     }
+                },
+
+                // SQL & Database Category
+                new InterviewCategory
+                {
+                    Id = 11,
+                    Name = "SQL & Database",
+                    Icon = "🗄️",
+                    Description = "SQL queries, database design, and optimization",
+                    Topics = new List<InterviewTopic>
+                    {
+                        new InterviewTopic
+                        {
+                            Id = 16,
+                            CategoryId = 11,
+                            Title = "SQL Fundamentals",
+                            Questions = new List<InterviewQuestion>
+                            {
+                                new InterviewQuestion
+                                {
+                                    Id = 38,
+                                    TopicId = 16,
+                                    Question = "What is the difference between WHERE and HAVING clause?",
+                                    Answer = "WHERE filters rows before grouping, HAVING filters groups after GROUP BY. WHERE can't use aggregate functions, HAVING can.",
+                                    Difficulty = "Intermediate",
+                                    KeyPoints = new List<string>
+                                    {
+                                        "WHERE: filters individual rows",
+                                        "HAVING: filters grouped results",
+                                        "WHERE: before GROUP BY",
+                                        "HAVING: after GROUP BY with aggregates"
+                                    },
+                                    CodeExample = @"-- WHERE clause
+SELECT DepartmentId, EmployeeName, Salary 
+FROM Employees 
+WHERE Salary > 50000;
+
+-- HAVING clause with GROUP BY
+SELECT DepartmentId, AVG(Salary) as AvgSalary 
+FROM Employees 
+GROUP BY DepartmentId 
+HAVING AVG(Salary) > 60000;
+
+-- Combined WHERE and HAVING
+SELECT DepartmentId, COUNT(*) as EmployeeCount, AVG(Salary) as AvgSalary
+FROM Employees 
+WHERE IsActive = 1  -- Filter rows first
+GROUP BY DepartmentId 
+HAVING COUNT(*) > 5;  -- Filter groups"
+                                },
+                                new InterviewQuestion
+                                {
+                                    Id = 39,
+                                    TopicId = 16,
+                                    Question = "Explain different types of JOINs in SQL",
+                                    Answer = "INNER JOIN returns matching records from both tables. LEFT JOIN returns all from left table. RIGHT JOIN returns all from right table. FULL OUTER JOIN returns all records when there's a match in either table.",
+                                    Difficulty = "Intermediate",
+                                    KeyPoints = new List<string>
+                                    {
+                                        "INNER JOIN: only matching records",
+                                        "LEFT JOIN: all from left, matching from right",
+                                        "RIGHT JOIN: all from right, matching from left",
+                                        "FULL OUTER JOIN: all records from both"
+                                    },
+                                    CodeExample = @"-- INNER JOIN
+SELECT e.Name, d.DepartmentName 
+FROM Employees e 
+INNER JOIN Departments d ON e.DeptId = d.Id;
+
+-- LEFT JOIN
+SELECT e.Name, d.DepartmentName 
+FROM Employees e 
+LEFT JOIN Departments d ON e.DeptId = d.Id;
+-- Shows all employees even if no department
+
+-- RIGHT JOIN  
+SELECT e.Name, d.DepartmentName 
+FROM Employees e 
+RIGHT JOIN Departments d ON e.DeptId = d.Id;
+-- Shows all departments even if no employees
+
+-- FULL OUTER JOIN
+SELECT e.Name, d.DepartmentName 
+FROM Employees e 
+FULL OUTER JOIN Departments d ON e.DeptId = d.Id;
+-- Shows all employees and all departments"
+                                },
+                                new InterviewQuestion
+                                {
+                                    Id = 40,
+                                    TopicId = 16,
+                                    Question = "What is a Self Join? Give an example",
+                                    Answer = "Self Join is when a table is joined with itself using aliases. Commonly used for hierarchical data like employee-manager relationships.",
+                                    Difficulty = "Intermediate",
+                                    KeyPoints = new List<string>
+                                    {
+                                        "Table joined with itself",
+                                        "Requires table aliases",
+                                        "Used for hierarchical data",
+                                        "Finding relationships within same table"
+                                    },
+                                    CodeExample = @"-- Find employees and their managers
+SELECT 
+    e.EmployeeId,
+    e.Name AS EmployeeName,
+    m.Name AS ManagerName
+FROM Employees e
+LEFT JOIN Employees m ON e.ManagerId = m.EmployeeId;
+
+-- Find colleagues (employees with same manager)
+SELECT 
+    e1.Name AS Employee1,
+    e2.Name AS Employee2,
+    m.Name AS SharedManager
+FROM Employees e1
+INNER JOIN Employees e2 
+    ON e1.ManagerId = e2.ManagerId 
+    AND e1.EmployeeId < e2.EmployeeId
+INNER JOIN Employees m 
+    ON e1.ManagerId = m.EmployeeId;"
+                                },
+                                new InterviewQuestion
+                                {
+                                    Id = 41,
+                                    TopicId = 16,
+                                    Question = "What is the difference between UNION and UNION ALL?",
+                                    Answer = "UNION combines results from multiple queries and removes duplicates. UNION ALL combines results but keeps all rows including duplicates, making it faster.",
+                                    Difficulty = "Intermediate",
+                                    KeyPoints = new List<string>
+                                    {
+                                        "UNION: removes duplicate rows",
+                                        "UNION ALL: keeps all rows",
+                                        "UNION ALL is faster",
+                                        "Both require same number of columns"
+                                    },
+                                    CodeExample = @"-- UNION (removes duplicates)
+SELECT City FROM Customers
+UNION
+SELECT City FROM Suppliers
+ORDER BY City;
+
+-- UNION ALL (keeps duplicates)
+SELECT ProductName, 'Customer' as Source FROM CustomerOrders
+UNION ALL
+SELECT ProductName, 'Supplier' as Source FROM SupplierOrders;
+
+-- Practical example: Active and Inactive users
+SELECT UserId, Name, 'Active' as Status 
+FROM Users WHERE IsActive = 1
+UNION ALL
+SELECT UserId, Name, 'Inactive' as Status 
+FROM Users WHERE IsActive = 0;"
+                                }
+                            }
+                        },
+                        new InterviewTopic
+                        {
+                            Id = 17,
+                            CategoryId = 11,
+                            Title = "Advanced SQL",
+                            Questions = new List<InterviewQuestion>
+                            {
+                                new InterviewQuestion
+                                {
+                                    Id = 42,
+                                    TopicId = 17,
+                                    Question = "Explain Window Functions in SQL",
+                                    Answer = "Window functions perform calculations across a set of rows related to the current row. Unlike GROUP BY, they don't collapse rows. Common functions: ROW_NUMBER(), RANK(), DENSE_RANK(), LAG(), LEAD().",
+                                    Difficulty = "Advanced",
+                                    KeyPoints = new List<string>
+                                    {
+                                        "Calculate over a set of rows",
+                                        "Don't reduce number of rows",
+                                        "OVER clause defines the window",
+                                        "PARTITION BY and ORDER BY control behavior"
+                                    },
+                                    CodeExample = @"-- ROW_NUMBER() - Sequential numbering
+SELECT 
+    Name,
+    Department,
+    Salary,
+    ROW_NUMBER() OVER (PARTITION BY Department ORDER BY Salary DESC) as RowNum
+FROM Employees;
+
+-- RANK() and DENSE_RANK()
+SELECT 
+    Name,
+    Score,
+    RANK() OVER (ORDER BY Score DESC) as Rank,
+    DENSE_RANK() OVER (ORDER BY Score DESC) as DenseRank
+FROM Students;
+-- RANK: 1,2,2,4 (skips 3)
+-- DENSE_RANK: 1,2,2,3 (no skip)
+
+-- LAG() and LEAD() - Access previous/next rows
+SELECT 
+    OrderDate,
+    OrderAmount,
+    LAG(OrderAmount, 1) OVER (ORDER BY OrderDate) as PreviousOrder,
+    LEAD(OrderAmount, 1) OVER (ORDER BY OrderDate) as NextOrder
+FROM Orders;
+
+-- Running total
+SELECT 
+    OrderDate,
+    OrderAmount,
+    SUM(OrderAmount) OVER (ORDER BY OrderDate) as RunningTotal
+FROM Orders;"
+                                },
+                                new InterviewQuestion
+                                {
+                                    Id = 43,
+                                    TopicId = 17,
+                                    Question = "What are CTEs (Common Table Expressions)?",
+                                    Answer = "CTEs are named temporary result sets defined within a SELECT, INSERT, UPDATE, or DELETE statement. They improve readability and can be referenced multiple times within a query.",
+                                    Difficulty = "Advanced",
+                                    KeyPoints = new List<string>
+                                    {
+                                        "Temporary named result set",
+                                        "Defined using WITH clause",
+                                        "More readable than subqueries",
+                                        "Can be recursive for hierarchical data"
+                                    },
+                                    CodeExample = @"-- Simple CTE
+WITH SalesSummary AS (
+    SELECT 
+        SalesPersonId,
+        SUM(Amount) as TotalSales
+    FROM Sales
+    WHERE Year = 2023
+    GROUP BY SalesPersonId
+)
+SELECT 
+    e.Name,
+    s.TotalSales
+FROM Employees e
+JOIN SalesSummary s ON e.Id = s.SalesPersonId
+WHERE s.TotalSales > 100000;
+
+-- Recursive CTE for hierarchy
+WITH EmployeeHierarchy AS (
+    -- Anchor: Top-level employees
+    SELECT 
+        EmployeeId, 
+        Name, 
+        ManagerId, 
+        0 as Level
+    FROM Employees
+    WHERE ManagerId IS NULL
+    
+    UNION ALL
+    
+    -- Recursive: Employees under managers
+    SELECT 
+        e.EmployeeId,
+        e.Name,
+        e.ManagerId,
+        h.Level + 1
+    FROM Employees e
+    INNER JOIN EmployeeHierarchy h ON e.ManagerId = h.EmployeeId
+)
+SELECT * FROM EmployeeHierarchy
+ORDER BY Level, Name;"
+                                },
+                                new InterviewQuestion
+                                {
+                                    Id = 44,
+                                    TopicId = 17,
+                                    Question = "How do you find duplicate records in a table?",
+                                    Answer = "Use GROUP BY with HAVING COUNT(*) > 1 to identify duplicates. Can also use window functions like ROW_NUMBER() to find and handle duplicates.",
+                                    Difficulty = "Intermediate",
+                                    KeyPoints = new List<string>
+                                    {
+                                        "GROUP BY with HAVING COUNT",
+                                        "Window functions for detailed analysis",
+                                        "Self join approach",
+                                        "Consider what defines a duplicate"
+                                    },
+                                    CodeExample = @"-- Find duplicate emails
+SELECT Email, COUNT(*) as DuplicateCount
+FROM Users
+GROUP BY Email
+HAVING COUNT(*) > 1;
+
+-- Find all duplicate records with details
+WITH DuplicateEmails AS (
+    SELECT Email
+    FROM Users
+    GROUP BY Email
+    HAVING COUNT(*) > 1
+)
+SELECT u.*
+FROM Users u
+INNER JOIN DuplicateEmails d ON u.Email = d.Email
+ORDER BY u.Email, u.UserId;
+
+-- Using ROW_NUMBER() to identify duplicates
+WITH RankedUsers AS (
+    SELECT 
+        *,
+        ROW_NUMBER() OVER (PARTITION BY Email ORDER BY CreatedDate) as rn
+    FROM Users
+)
+SELECT * FROM RankedUsers
+WHERE rn > 1;  -- These are the duplicates
+
+-- Delete duplicates keeping oldest
+WITH RankedUsers AS (
+    SELECT 
+        UserId,
+        ROW_NUMBER() OVER (PARTITION BY Email ORDER BY CreatedDate) as rn
+    FROM Users
+)
+DELETE FROM Users
+WHERE UserId IN (
+    SELECT UserId FROM RankedUsers WHERE rn > 1
+);"
+                                },
+                                new InterviewQuestion
+                                {
+                                    Id = 45,
+                                    TopicId = 17,
+                                    Question = "What are indexes and how do they improve performance?",
+                                    Answer = "Indexes are database objects that improve query performance by providing quick access paths to data. Like a book index, they help locate data without scanning entire tables.",
+                                    Difficulty = "Advanced",
+                                    KeyPoints = new List<string>
+                                    {
+                                        "Speed up data retrieval",
+                                        "Slow down inserts/updates",
+                                        "Types: Clustered, Non-clustered, Unique",
+                                        "Consider selectivity and usage patterns"
+                                    },
+                                    CodeExample = @"-- Create a simple index
+CREATE INDEX IX_Employees_LastName 
+ON Employees(LastName);
+
+-- Composite index for multiple columns
+CREATE INDEX IX_Orders_CustomerDate 
+ON Orders(CustomerId, OrderDate DESC);
+
+-- Unique index (enforces uniqueness)
+CREATE UNIQUE INDEX IX_Users_Email 
+ON Users(Email);
+
+-- Filtered index (SQL Server)
+CREATE INDEX IX_Orders_Recent 
+ON Orders(OrderDate, CustomerId)
+WHERE OrderDate >= '2023-01-01';
+
+-- Include columns (covering index)
+CREATE INDEX IX_Products_Category
+ON Products(CategoryId)
+INCLUDE (ProductName, Price);
+
+-- Check index usage
+SELECT 
+    i.name AS IndexName,
+    s.user_seeks + s.user_scans + s.user_lookups AS TotalUsage,
+    s.user_updates AS Updates
+FROM sys.dm_db_index_usage_stats s
+INNER JOIN sys.indexes i ON i.object_id = s.object_id
+WHERE database_id = DB_ID();"
+                                }
+                            }
+                        },
+                        new InterviewTopic
+                        {
+                            Id = 18,
+                            CategoryId = 11,
+                            Title = "Database Design & Optimization",
+                            Questions = new List<InterviewQuestion>
+                            {
+                                new InterviewQuestion
+                                {
+                                    Id = 46,
+                                    TopicId = 18,
+                                    Question = "What is database normalization? Explain different normal forms",
+                                    Answer = "Normalization organizes data to reduce redundancy and dependency. 1NF: Atomic values. 2NF: No partial dependencies. 3NF: No transitive dependencies. BCNF: Every determinant is a candidate key.",
+                                    Difficulty = "Advanced",
+                                    KeyPoints = new List<string>
+                                    {
+                                        "1NF: Eliminate repeating groups",
+                                        "2NF: Remove partial dependencies",
+                                        "3NF: Remove transitive dependencies",
+                                        "Balance normalization with performance"
+                                    },
+                                    CodeExample = @"-- Unnormalized (0NF)
+Orders: OrderId, Customer(Name, Address, Phone), Products(Item1, Price1, Item2, Price2)
+
+-- 1NF: Atomic values, no repeating groups
+Orders: OrderId, CustomerName, CustomerAddress, CustomerPhone
+OrderItems: OrderId, ProductName, Price
+
+-- 2NF: No partial dependencies (separate customer)
+Customers: CustomerId, Name, Address, Phone
+Orders: OrderId, CustomerId, OrderDate
+OrderItems: OrderId, ProductId, Quantity, Price
+
+-- 3NF: No transitive dependencies
+Customers: CustomerId, Name
+CustomerAddresses: CustomerId, Address, Phone
+Products: ProductId, ProductName, CategoryId
+Categories: CategoryId, CategoryName
+Orders: OrderId, CustomerId, OrderDate
+OrderItems: OrderId, ProductId, Quantity, UnitPrice
+
+-- BCNF Example
+-- If TeacherId determines Subject:
+Classes: ClassId, TeacherId, RoomNumber
+Teachers: TeacherId, TeacherName, Subject"
+                                },
+                                new InterviewQuestion
+                                {
+                                    Id = 47,
+                                    TopicId = 18,
+                                    Question = "Explain ACID properties in database transactions",
+                                    Answer = "ACID ensures reliable database transactions. Atomicity: all or nothing. Consistency: data integrity maintained. Isolation: concurrent transactions don't interfere. Durability: committed changes persist.",
+                                    Difficulty = "Intermediate",
+                                    KeyPoints = new List<string>
+                                    {
+                                        "Atomicity: transaction completes fully or not at all",
+                                        "Consistency: maintains data integrity rules",
+                                        "Isolation: prevents concurrent transaction conflicts",
+                                        "Durability: changes survive system failures"
+                                    },
+                                    CodeExample = @"-- Transaction demonstrating ACID
+BEGIN TRANSACTION;
+
+DECLARE @AccountFrom INT = 1001;
+DECLARE @AccountTo INT = 1002;
+DECLARE @Amount DECIMAL(10,2) = 500.00;
+
+-- Atomicity: Both operations succeed or both fail
+UPDATE Accounts 
+SET Balance = Balance - @Amount 
+WHERE AccountId = @AccountFrom;
+
+UPDATE Accounts 
+SET Balance = Balance + @Amount 
+WHERE AccountId = @AccountTo;
+
+-- Consistency: Check business rules
+IF EXISTS (SELECT 1 FROM Accounts WHERE AccountId = @AccountFrom AND Balance < 0)
+BEGIN
+    ROLLBACK TRANSACTION;
+    PRINT 'Insufficient funds';
+    RETURN;
+END
+
+COMMIT TRANSACTION;
+
+-- Isolation levels
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+-- READ UNCOMMITTED: Dirty reads allowed
+-- READ COMMITTED: No dirty reads
+-- REPEATABLE READ: No dirty/non-repeatable reads  
+-- SERIALIZABLE: No dirty/non-repeatable/phantom reads
+
+-- Durability: Use transaction log
+CHECKPOINT; -- Forces log to disk"
+                                },
+                                new InterviewQuestion
+                                {
+                                    Id = 48,
+                                    TopicId = 18,
+                                    Question = "How do you optimize a slow SQL query?",
+                                    Answer = "Analyze execution plan, add appropriate indexes, rewrite query logic, update statistics, consider denormalization, use query hints if needed.",
+                                    Difficulty = "Advanced",
+                                    KeyPoints = new List<string>
+                                    {
+                                        "Check execution plan for bottlenecks",
+                                        "Add missing indexes",
+                                        "Avoid SELECT *",
+                                        "Use appropriate JOIN types",
+                                        "Update table statistics"
+                                    },
+                                    CodeExample = @"-- 1. Check execution plan
+SET STATISTICS IO ON;
+SET STATISTICS TIME ON;
+
+-- 2. Identify slow query
+SELECT c.Name, COUNT(o.OrderId) as OrderCount
+FROM Customers c
+LEFT JOIN Orders o ON c.CustomerId = o.CustomerId
+WHERE o.OrderDate >= '2023-01-01'
+GROUP BY c.CustomerId, c.Name;
+
+-- 3. Add index for WHERE clause
+CREATE INDEX IX_Orders_OrderDate_CustomerId 
+ON Orders(OrderDate, CustomerId);
+
+-- 4. Rewrite using EXISTS (sometimes faster)
+SELECT c.Name, 
+    (SELECT COUNT(*) FROM Orders o 
+     WHERE o.CustomerId = c.CustomerId 
+     AND o.OrderDate >= '2023-01-01') as OrderCount
+FROM Customers c
+WHERE EXISTS (
+    SELECT 1 FROM Orders o 
+    WHERE o.CustomerId = c.CustomerId 
+    AND o.OrderDate >= '2023-01-01'
+);
+
+-- 5. Use indexed view for complex aggregations
+CREATE VIEW vw_CustomerOrderSummary
+WITH SCHEMABINDING
+AS
+SELECT c.CustomerId, c.Name, COUNT_BIG(*) as OrderCount
+FROM dbo.Customers c
+INNER JOIN dbo.Orders o ON c.CustomerId = o.CustomerId
+WHERE o.OrderDate >= '2023-01-01'
+GROUP BY c.CustomerId, c.Name;
+
+CREATE UNIQUE CLUSTERED INDEX IX_vw_CustomerOrderSummary 
+ON vw_CustomerOrderSummary(CustomerId);
+
+-- 6. Update statistics
+UPDATE STATISTICS Orders WITH FULLSCAN;"
+                                }
+                            }
+                        }
+                    }
                 }
             };
         }

@@ -25,6 +25,50 @@
         </div>
     </div>
 
+    @if (!string.IsNullOrEmpty(Model.Context))
+    {
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="roadmap-card">
+                    <h3 class="text-gradient mb-3">Context & Overview</h3>
+                    <p class="lead">@Model.Context</p>
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (Model.Prerequisites != null && Model.Prerequisites.Any())
+    {
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="roadmap-card h-100">
+                    <h4 class="text-primary mb-3"><i class="bi bi-check2-square"></i> Prerequisites</h4>
+                    <ul class="list-unstyled">
+                        @foreach (var prereq in Model.Prerequisites)
+                        {
+                            <li class="mb-2">
+                                <i class="bi bi-check-circle text-success"></i> @prereq
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="roadmap-card h-100">
+                    <h4 class="text-primary mb-3"><i class="bi bi-briefcase"></i> Career Paths</h4>
+                    <ul class="list-unstyled">
+                        @foreach (var career in Model.CareerPaths)
+                        {
+                            <li class="mb-2">
+                                <i class="bi bi-arrow-right-circle text-info"></i> @career
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    }
+
     <div class="row mt-5">
         <div class="col-12">
             <h2 class="text-gradient text-center mb-5">Learning Path</h2>
@@ -38,6 +82,14 @@
                                 @step.Title
                             </div>
                             <div class="d-flex align-items-center gap-3">
+                                <a asp-controller="@Model.ControllerName" 
+                                   asp-action="TopicDetail" 
+                                   asp-route-roadmapId="@Model.Id" 
+                                   asp-route-stepId="@step.Id" 
+                                   class="btn btn-sm btn-outline-primary"
+                                   onclick="event.stopPropagation()">
+                                    View Topic <i class="bi bi-arrow-right-short"></i>
+                                </a>
                                 <span class="step-duration">
                                     <i class="bi bi-clock"></i> @step.Duration
                                 </span>
@@ -50,6 +102,31 @@
                             </div>
                         </div>
                         <div id="step-@step.Id" class="step-content">
+                            @if (!string.IsNullOrEmpty(step.Content))
+                            {
+                                <div class="step-overview mb-4">
+                                    <h4 class="mb-3" style="font-size: 1rem; font-weight: 600;">Overview</h4>
+                                    <p class="text-muted">@step.Content</p>
+                                </div>
+                            }
+                            
+                            @if (step.KeyConcepts != null && step.KeyConcepts.Any())
+                            {
+                                <div class="key-concepts mb-4">
+                                    <h4 class="mb-3" style="font-size: 1rem; font-weight: 600;">Key Concepts</h4>
+                                    <div class="row">
+                                        @foreach (var concept in step.KeyConcepts)
+                                        {
+                                            <div class="col-md-6 mb-2">
+                                                <div class="concept-item">
+                                                    <i class="bi bi-lightning-fill text-primary"></i> @concept
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                            
                             @if (step.Objectives.Any())
                             {
                                 <h4 class="mb-3" style="font-size: 1rem; font-weight: 600;">Learning Objectives</h4>
@@ -59,6 +136,19 @@
                                         <li class="objective-item">@objective.Description</li>
                                     }
                                 </ul>
+                            }
+                            
+                            @if (step.PracticalExercises != null && step.PracticalExercises.Any())
+                            {
+                                <div class="practical-exercises mb-4">
+                                    <h4 class="mb-3" style="font-size: 1rem; font-weight: 600;">Practical Exercises</h4>
+                                    <ol class="exercise-list">
+                                        @foreach (var exercise in step.PracticalExercises)
+                                        {
+                                            <li class="exercise-item mb-2">@exercise</li>
+                                        }
+                                    </ol>
+                                </div>
                             }
                             
                             @if (step.Resources.Any())
