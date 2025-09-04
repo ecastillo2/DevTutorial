@@ -48,11 +48,11 @@ namespace DevTutorialWebApp.Services
                         Content = "Master the foundational concepts of Microsoft Azure cloud platform",
                         KeyConcepts = new List<string> 
                         { 
-                            "Azure Resource Manager (ARM)",
-                            "Subscriptions & Management Groups",
-                            "Resource Groups & Tags",
-                            "Azure Regions & Availability",
-                            "Azure Policy & Governance"
+                            "Azure Resource Manager (ARM): Deployment and management service for Azure. Provides a management layer that enables you to create, update, and delete resources in your Azure account. Uses declarative templates for infrastructure as code.",
+                            "Subscriptions & Management Groups: Organizational containers for Azure resources. Subscriptions provide billing boundaries while Management Groups help organize multiple subscriptions with hierarchical governance and policy inheritance.",
+                            "Resource Groups & Tags: Logical containers for resources that share lifecycle, permissions, and policies. Tags provide metadata for resource categorization, cost tracking, and automation with key-value pairs.",
+                            "Azure Regions & Availability: Geographic locations hosting Azure data centers. Regions provide data residency, compliance, and disaster recovery. Availability Zones within regions provide high availability and fault tolerance.",
+                            "Azure Policy & Governance: Service for creating, assigning, and managing policies. Enforces organizational standards and compliance requirements across Azure resources. Azure Blueprints provide repeatable governance frameworks."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -78,11 +78,11 @@ namespace DevTutorialWebApp.Services
                         Content = "Master all Azure compute options from VMs to serverless",
                         KeyConcepts = new List<string>
                         {
-                            "Virtual Machines & Scale Sets",
-                            "App Service (Web, API, Mobile)",
-                            "Azure Functions (Serverless)",
-                            "Azure Kubernetes Service (AKS)",
-                            "Container Instances & Batch"
+                            "Virtual Machines & Scale Sets: IaaS compute service providing full control over OS and applications. Scale Sets enable automatic scaling of identical VMs with load balancing, fault tolerance, and centralized management.",
+                            "App Service (Web, API, Mobile): PaaS platform for hosting web applications, REST APIs, and mobile backends. Provides built-in auto-scaling, security, load balancing, and automated management with deployment slots.",
+                            "Azure Functions (Serverless): Event-driven, serverless compute service that runs code on-demand without managing infrastructure. Supports multiple triggers, bindings, and pay-per-execution billing model.",
+                            "Azure Kubernetes Service (AKS): Managed Kubernetes container orchestration service. Simplifies deploying, managing, and scaling containerized applications using Kubernetes with integrated CI/CD and security.",
+                            "Container Instances & Batch: Container Instances provide fast container startup without managing VMs. Azure Batch enables large-scale parallel and high-performance computing workloads in the cloud."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -108,11 +108,11 @@ namespace DevTutorialWebApp.Services
                         Content = "Design and implement secure network architectures in Azure",
                         KeyConcepts = new List<string>
                         {
-                            "Virtual Networks & Subnets",
-                            "Network Security Groups",
-                            "Load Balancers & App Gateway",
-                            "VPN & ExpressRoute",
-                            "Azure Firewall & WAF"
+                            "Virtual Networks & Subnets: Software-defined network enabling secure communication between Azure resources. Subnets segment VNets for organization, security, and routing with customizable address spaces.",
+                            "Network Security Groups: Virtual firewall controlling inbound and outbound traffic to Azure resources. Contains security rules that allow or deny traffic based on source, destination, port, and protocol.",
+                            "Load Balancers & App Gateway: Load Balancer distributes traffic across multiple VMs at Layer 4. Application Gateway provides Layer 7 load balancing with SSL termination, URL routing, and web application firewall.",
+                            "VPN & ExpressRoute: VPN Gateway enables secure cross-premises connectivity over the internet. ExpressRoute provides private, dedicated connections to Azure with higher bandwidth, lower latency, and greater security.",
+                            "Azure Firewall & WAF: Cloud-based network security service providing threat protection across VNets. WAF (Web Application Firewall) protects web applications from common attacks like SQL injection and XSS."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -138,11 +138,11 @@ namespace DevTutorialWebApp.Services
                         Content = "Master Azure storage services for different data types and scenarios",
                         KeyConcepts = new List<string>
                         {
-                            "Blob Storage & Tiers",
-                            "Azure Files & File Sync",
-                            "Table & Queue Storage",
-                            "Disk Storage Types",
-                            "Data Lake Storage Gen2"
+                            "Blob Storage & Tiers: Object storage for unstructured data like text and binary data. Access tiers (Hot, Cool, Archive) optimize costs based on data access patterns and retention requirements.",
+                            "Azure Files & File Sync: Fully managed file shares in cloud accessible via SMB and NFS protocols. Azure File Sync enables hybrid cloud file sharing with on-premises Windows servers.",
+                            "Table & Queue Storage: NoSQL key-value store for semi-structured data (Table Storage). Queue Storage provides reliable messaging between application components with FIFO processing.",
+                            "Disk Storage Types: Managed disks for VMs with different performance tiers (Ultra SSD, Premium SSD, Standard SSD, Standard HDD) optimized for different workloads and cost requirements.",
+                            "Data Lake Storage Gen2: Massively scalable data lake service built on Blob Storage. Optimized for big data analytics with hierarchical namespace, fine-grained access control, and Hadoop compatibility."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -168,11 +168,11 @@ namespace DevTutorialWebApp.Services
                         Content = "Deploy and manage various database solutions in Azure",
                         KeyConcepts = new List<string>
                         {
-                            "Azure SQL Database & MI",
-                            "Cosmos DB & Partitioning",
-                            "PostgreSQL, MySQL, MariaDB",
-                            "Synapse Analytics",
-                            "Database Migration"
+                            "Azure SQL Database & MI: Fully managed relational database service with built-in intelligence, automatic tuning, and threat detection. Managed Instance provides near-100% compatibility with on-premises SQL Server.",
+                            "Cosmos DB & Partitioning: Globally distributed, multi-model NoSQL database service. Partitioning distributes data across multiple regions for horizontal scaling, with automatic failover and multi-master replication.",
+                            "PostgreSQL, MySQL, MariaDB: Fully managed open-source database services. Provide high availability, automatic backups, security features, and compatibility with existing open-source applications.",
+                            "Synapse Analytics: Analytics service combining big data and data warehousing. Brings together data integration, data warehousing, and analytics with on-demand or provisioned compute resources.",
+                            "Database Migration: Process of moving databases to Azure using Azure Database Migration Service, Azure Migrate, or native tools. Includes assessment, planning, migration, and optimization phases."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -198,11 +198,11 @@ namespace DevTutorialWebApp.Services
                         Content = "Implement comprehensive security and identity solutions",
                         KeyConcepts = new List<string>
                         {
-                            "Azure AD & Conditional Access",
-                            "Managed Identities",
-                            "Azure Key Vault",
-                            "RBAC & Zero Trust",
-                            "Security Center & Sentinel"
+                            "Azure AD & Conditional Access: Cloud-based identity and access management service. Conditional Access provides granular access controls based on user, device, location, and risk signals for Zero Trust security.",
+                            "Managed Identities: Feature providing Azure services with automatically managed identity in Azure AD. Eliminates need for credentials in code by allowing services to authenticate to Azure resources securely.",
+                            "Azure Key Vault: Cloud service for securely storing and accessing secrets, keys, and certificates. Provides hardware security module (HSM) protection with centralized secret management and access policies.",
+                            "RBAC & Zero Trust: Role-Based Access Control assigns permissions based on user roles. Zero Trust security model assumes breach and explicitly verifies every transaction with 'never trust, always verify' principle.",
+                            "Security Center & Sentinel: Security Center provides unified security management and threat protection across hybrid cloud workloads. Sentinel is cloud-native SIEM providing security analytics and threat intelligence."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -228,11 +228,11 @@ namespace DevTutorialWebApp.Services
                         Content = "Implement DevOps practices with Azure DevOps and GitHub",
                         KeyConcepts = new List<string>
                         {
-                            "Azure Repos & Pipelines",
-                            "Infrastructure as Code",
-                            "ARM, Bicep, Terraform",
-                            "Release Management",
-                            "Feature Flags"
+                            "Azure Repos & Pipelines: Git repositories for source control and CI/CD pipelines for automating build, test, and deployment processes. Supports multi-stage environments with approvals and gates.",
+                            "Infrastructure as Code: Practice of managing infrastructure through machine-readable definition files. Enables version control, testing, and automated deployment of infrastructure changes with consistency and repeatability.",
+                            "ARM, Bicep, Terraform: Infrastructure as Code tools. ARM templates use JSON, Bicep provides simpler syntax, Terraform offers multi-cloud support with HCL syntax and state management.",
+                            "Release Management: Process of managing, planning, scheduling, and controlling software releases. Includes deployment strategies, rollback plans, approval workflows, and environment promotion.",
+                            "Feature Flags: Technique allowing teams to modify system behavior without changing code. Enables gradual rollouts, A/B testing, and quick feature toggles for risk mitigation and experimentation."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -258,11 +258,11 @@ namespace DevTutorialWebApp.Services
                         Content = "Implement comprehensive monitoring and management solutions",
                         KeyConcepts = new List<string>
                         {
-                            "Azure Monitor & Alerts",
-                            "Application Insights",
-                            "Log Analytics",
-                            "Cost Management",
-                            "Azure Automation"
+                            "Azure Monitor & Alerts: Comprehensive monitoring service for Azure resources and applications. Collects telemetry data, creates alerts based on metrics and logs, and provides actionable insights for optimization.",
+                            "Application Insights: Application performance management service providing real-time monitoring, performance counters, exception tracking, and dependency mapping for web applications and services.",
+                            "Log Analytics: Service for collecting, analyzing, and acting on log data from Azure resources. Uses Kusto Query Language (KQL) for powerful data analysis and custom dashboard creation.",
+                            "Cost Management: Service for monitoring, allocating, and optimizing Azure spending. Provides cost analysis, budgets, recommendations, and chargeback capabilities for financial governance.",
+                            "Azure Automation: Cloud-based automation service for configuration management, update management, and process automation using runbooks and PowerShell/Python scripts."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -288,11 +288,11 @@ namespace DevTutorialWebApp.Services
                         Content = "Build event-driven architectures with Azure messaging services",
                         KeyConcepts = new List<string>
                         {
-                            "Service Bus Topics/Queues",
-                            "Event Grid & Event Hubs",
-                            "Logic Apps",
-                            "API Management",
-                            "Durable Functions"
+                            "Service Bus Topics/Queues: Enterprise messaging service with queues for point-to-point communication and topics for publish-subscribe patterns. Provides reliable message delivery, sessions, and transaction support.",
+                            "Event Grid & Event Hubs: Event Grid routes events from Azure services to event handlers with pub/sub model. Event Hubs ingests millions of events per second for real-time analytics and streaming scenarios.",
+                            "Logic Apps: Cloud service for automating workflows and integrating apps, data, and services. Uses visual designer to create workflows that trigger on events and execute actions across services.",
+                            "API Management: Hybrid, multi-cloud management platform for APIs. Provides gateway, developer portal, analytics, security policies, rate limiting, and transformation capabilities.",
+                            "Durable Functions: Extension of Azure Functions for writing stateful functions in serverless compute. Enables function chaining, fan-out/fan-in patterns, and long-running workflows with checkpointing."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -318,11 +318,11 @@ namespace DevTutorialWebApp.Services
                         Content = "Build modern data platforms and analytics solutions",
                         KeyConcepts = new List<string>
                         {
-                            "Synapse Analytics",
-                            "Data Factory & Pipelines",
-                            "Azure Databricks",
-                            "Stream Analytics",
-                            "Power BI Embedded"
+                            "Synapse Analytics: Analytics service combining data integration, data warehousing, and analytics. Provides SQL and Spark engines for processing structured and unstructured data at petabyte scale.",
+                            "Data Factory & Pipelines: Hybrid data integration service for creating, scheduling, and orchestrating ETL/ELT workflows. Supports 90+ data connectors with visual pipeline designer and monitoring.",
+                            "Azure Databricks: Apache Spark-based analytics platform optimized for Azure. Provides collaborative workspace for data scientists and engineers with integrated ML libraries and Delta Lake.",
+                            "Stream Analytics: Real-time analytics service for processing streaming data from IoT devices, applications, and sensors. Uses SQL-like language for complex event processing with low latency.",
+                            "Power BI Embedded: Service for embedding Power BI analytics into applications. Provides programmatic access to reports, dashboards, and datasets with custom branding and integration."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -348,11 +348,11 @@ namespace DevTutorialWebApp.Services
                         Content = "Implement AI solutions with Azure Cognitive Services and ML",
                         KeyConcepts = new List<string>
                         {
-                            "Cognitive Services APIs",
-                            "Azure OpenAI Service",
-                            "Azure ML & MLOps",
-                            "Bot Framework",
-                            "Responsible AI"
+                            "Cognitive Services APIs: Pre-built AI capabilities including vision, speech, language, and decision APIs. Enables developers to add AI features without machine learning expertise through REST APIs.",
+                            "Azure OpenAI Service: Managed service providing access to OpenAI's language models including GPT, Codex, and DALL-E. Offers enterprise security, regional availability, and content filtering.",
+                            "Azure ML & MLOps: End-to-end machine learning service for building, training, and deploying ML models. MLOps provides automated ML pipelines, model versioning, and monitoring for production ML systems.",
+                            "Bot Framework: Platform for building intelligent conversational AI bots. Provides SDK, tools, and services for creating bots that interact naturally with users across multiple channels.",
+                            "Responsible AI: Framework ensuring AI systems are fair, reliable, safe, private, inclusive, transparent, and accountable. Includes bias detection, explainability, and governance practices."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -378,11 +378,11 @@ namespace DevTutorialWebApp.Services
                         Content = "Build and manage IoT solutions with Azure IoT services",
                         KeyConcepts = new List<string>
                         {
-                            "IoT Hub & DPS",
-                            "IoT Edge Computing",
-                            "Azure Sphere Security",
-                            "Digital Twins",
-                            "Time Series Insights"
+                            "IoT Hub & DPS: Managed service for bi-directional communication between IoT applications and devices. Device Provisioning Service (DPS) enables zero-touch device provisioning at scale with security attestation.",
+                            "IoT Edge Computing: Service bringing cloud intelligence to edge devices through containerized workloads. Enables offline operation, reduced latency, and bandwidth optimization with local processing capabilities.",
+                            "Azure Sphere Security: Secured IoT platform combining microcontroller, custom Linux OS, and cloud security service. Provides defense-in-depth security for IoT devices with automatic updates.",
+                            "Digital Twins: IoT platform creating digital representations of physical environments. Enables understanding relationships between people, spaces, and devices with real-time modeling and simulation.",
+                            "Time Series Insights: Analytics service for IoT data providing time-series data exploration, anomaly detection, and predictive analytics with warm and cold data paths."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -408,11 +408,11 @@ namespace DevTutorialWebApp.Services
                         Content = "Design and implement hybrid cloud solutions with Azure Arc",
                         KeyConcepts = new List<string>
                         {
-                            "Azure Arc",
-                            "Azure Stack Family",
-                            "VMware on Azure",
-                            "Hybrid Connectivity",
-                            "Multi-cloud Management"
+                            "Azure Arc: Service extending Azure management and services to any infrastructure including on-premises, edge, and multi-cloud environments. Provides consistent governance, compliance, and monitoring.",
+                            "Azure Stack Family: Portfolio of products extending Azure services to edge and disconnected environments. Includes Azure Stack HCI, Azure Stack Hub, and Azure Stack Edge for different scenarios.",
+                            "VMware on Azure: Native Azure service running VMware workloads on dedicated Azure infrastructure. Provides seamless migration and hybrid operations with familiar VMware tools and processes.",
+                            "Hybrid Connectivity: Network connections between on-premises and cloud environments using VPN, ExpressRoute, or Azure Arc. Enables secure data exchange and unified management across environments.",
+                            "Multi-cloud Management: Strategy for managing workloads across multiple cloud providers. Includes governance, security, networking, and data management across Azure, AWS, GCP, and other platforms."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -438,11 +438,11 @@ namespace DevTutorialWebApp.Services
                         Content = "Plan and execute cloud migration and modernization strategies",
                         KeyConcepts = new List<string>
                         {
-                            "Cloud Adoption Framework",
-                            "Azure Migrate Tools",
-                            "App Modernization",
-                            "Database Migration",
-                            "Cost Optimization"
+                            "Cloud Adoption Framework: Microsoft methodology for cloud adoption providing guidance, tools, and best practices. Includes Strategy, Plan, Ready, Adopt, and Govern phases with proven approaches.",
+                            "Azure Migrate Tools: Hub for migration tools including discovery, assessment, and migration capabilities. Supports servers, databases, web apps, and virtual desktops with dependency mapping.",
+                            "App Modernization: Process of updating legacy applications to take advantage of cloud capabilities. Includes containerization, microservices adoption, and cloud-native service integration.",
+                            "Database Migration: Structured approach to moving databases to Azure with minimal downtime. Includes assessment, schema conversion, data migration, and performance optimization phases.",
+                            "Cost Optimization: Practice of reducing cloud expenses while maintaining performance. Includes rightsizing, reserved instances, spot instances, and automated cost management policies."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -468,11 +468,11 @@ namespace DevTutorialWebApp.Services
                         Content = "Master advanced architectural patterns and design principles",
                         KeyConcepts = new List<string>
                         {
-                            "High Availability & DR",
-                            "Global Scale Design",
-                            "Microservices Patterns",
-                            "Event-Driven Architecture",
-                            "Performance Optimization"
+                            "High Availability & DR: Design principles ensuring systems remain operational during failures. Includes redundancy, failover mechanisms, backup strategies, and disaster recovery planning with RTO/RPO targets.",
+                            "Global Scale Design: Architecture patterns for applications serving users worldwide. Includes content distribution, regional deployments, data partitioning, and consistency models for global performance.",
+                            "Microservices Patterns: Architectural style structuring applications as collection of loosely coupled services. Includes service discovery, circuit breakers, bulkhead, and saga patterns for resilience.",
+                            "Event-Driven Architecture: Design pattern where system components communicate through events. Enables loose coupling, scalability, and real-time processing with event sourcing and CQRS patterns.",
+                            "Performance Optimization: Techniques for improving system responsiveness and throughput. Includes caching strategies, database optimization, CDN usage, and auto-scaling for efficient resource utilization."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -498,11 +498,11 @@ namespace DevTutorialWebApp.Services
                         Content = "Implement governance and ensure compliance in Azure",
                         KeyConcepts = new List<string>
                         {
-                            "Azure Policy & Blueprints",
-                            "Compliance Manager",
-                            "Regulatory Standards",
-                            "Resource Tagging",
-                            "Cost Governance"
+                            "Azure Policy & Blueprints: Policy service for creating, assigning, and managing resource compliance rules. Blueprints package ARM templates, policies, and role assignments for repeatable deployments.",
+                            "Compliance Manager: Tool for managing compliance across Microsoft cloud services. Provides compliance score, improvement actions, and evidence collection for regulatory frameworks.",
+                            "Regulatory Standards: Compliance frameworks including GDPR, HIPAA, SOC 2, ISO 27001, and PCI DSS. Azure provides built-in compliance controls and certification documentation.",
+                            "Resource Tagging: Metadata applied to Azure resources for organization, cost tracking, and automation. Best practices include naming conventions, mandatory tags, and automated tag enforcement.",
+                            "Cost Governance: Framework for managing cloud spending through budgets, cost allocation, chargebacks, and optimization policies. Includes showback reports and cost center accountability."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -528,11 +528,11 @@ namespace DevTutorialWebApp.Services
                         Content = "Explore cutting-edge Azure technologies and future trends",
                         KeyConcepts = new List<string>
                         {
-                            "Confidential Computing",
-                            "Quantum Computing",
-                            "Edge Computing",
-                            "Sustainability",
-                            "Metaverse Technologies"
+                            "Confidential Computing: Technology protecting data in use through hardware-based trusted execution environments. Azure offers confidential VMs and containers for processing sensitive data securely.",
+                            "Quantum Computing: Computing paradigm using quantum mechanics for exponentially faster problem-solving. Azure Quantum provides access to quantum hardware and simulators for algorithm development.",
+                            "Edge Computing: Distributed computing paradigm bringing computation closer to data sources. Azure Stack Edge and IoT Edge enable low-latency processing and reduced bandwidth usage.",
+                            "Sustainability: Cloud practices for reducing environmental impact through carbon-neutral operations, efficient resource usage, and renewable energy. Azure Carbon Footprint tool tracks emissions.",
+                            "Metaverse Technologies: Emerging technologies for immersive digital experiences including mixed reality, spatial computing, and digital twins. Azure provides AR/VR services and spatial anchors."
                         },
                         Objectives = new List<LearningObjective>
                         {

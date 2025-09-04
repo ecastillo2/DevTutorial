@@ -49,12 +49,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master the core concepts of Angular framework including architecture, modules, components, and data binding",
                         KeyConcepts = new List<string> 
                         { 
-                            "Angular Architecture",
-                            "Modules (NgModule)",
-                            "Components & Templates",
-                            "Directives (Structural & Attribute)",
-                            "Data Binding Types",
-                            "Dependency Injection"
+                            "Angular Architecture: Component-based architecture with hierarchical component tree. Application structure includes modules, components, services, and directives working together through dependency injection system.",
+                            "Modules (NgModule): Containers for cohesive blocks of code dedicated to specific application domain or workflow. Root module bootstraps application, feature modules organize functionality by business domain.",
+                            "Components & Templates: Components control views (templates) and contain application logic. Templates use Angular's declarative syntax with interpolation, property binding, and event binding for dynamic UIs.",
+                            "Directives (Structural & Attribute): Classes that add behavior to elements. Structural directives (*ngIf, *ngFor) change DOM structure, attribute directives modify element appearance or behavior.",
+                            "Data Binding Types: Four types - interpolation {{}}, property binding [], event binding (), and two-way binding [()]. Enable communication between component class and template for reactive UIs.",
+                            "Dependency Injection: Design pattern where dependencies are provided to components rather than created internally. Angular's DI system manages service instances and promotes testable, modular code."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -86,12 +86,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master TypeScript features essential for Angular development including types, interfaces, decorators, and generics",
                         KeyConcepts = new List<string>
                         {
-                            "Types & Interfaces",
-                            "Classes & Inheritance",
-                            "Decorators & Metadata",
-                            "Generics & Type Guards",
-                            "Modules & Namespaces",
-                            "Access Modifiers"
+                            "Types & Interfaces: Static type system for JavaScript enabling type safety at compile time. Interfaces define contracts for object shapes, types provide compile-time guarantees reducing runtime errors.",
+                            "Classes & Inheritance: Object-oriented programming features with class syntax, inheritance, and access modifiers. TypeScript classes compile to JavaScript functions with prototype-based inheritance.",
+                            "Decorators & Metadata: Special declarations that modify classes, methods, or properties. Angular extensively uses decorators (@Component, @Injectable, @Input) for metadata-driven development.",
+                            "Generics & Type Guards: Generics enable type-safe reusable components. Type guards are runtime checks that narrow types, enabling safe access to type-specific properties and methods.",
+                            "Modules & Namespaces: Code organization features enabling modularity and scope management. ES6 modules with import/export provide standard module system for TypeScript applications.",
+                            "Access Modifiers: Keywords (public, private, protected) controlling member accessibility in classes. Enable encapsulation and information hiding for better object-oriented design."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -123,12 +123,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master Angular CLI for project setup, code generation, and workspace management",
                         KeyConcepts = new List<string>
                         {
-                            "Project Setup & Configuration",
-                            "Schematics & Code Generation",
-                            "Angular Workspace Structure",
-                            "Configuration Files",
-                            "Building & Serving Apps",
-                            "Environment Management"
+                            "Project Setup & Configuration: Angular CLI commands for creating projects with customizable options. Configuration includes TypeScript settings, linting rules, and build optimization parameters.",
+                            "Schematics & Code Generation: Templates for generating and modifying code. Built-in schematics create components, services, modules while custom schematics automate project-specific patterns.",
+                            "Angular Workspace Structure: Organizational structure with angular.json configuration, src folder containing app code, and projects folder for multiple applications and libraries.",
+                            "Configuration Files: Key files including angular.json (workspace config), tsconfig.json (TypeScript config), package.json (dependencies), and environment files for different deployment targets.",
+                            "Building & Serving Apps: Development server with live reload, production builds with optimization (minification, tree-shaking, bundling), and deployment preparation with different build configurations.",
+                            "Environment Management: Configuration for different deployment environments (development, staging, production) with environment-specific settings and feature flags."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -160,12 +160,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master component lifecycle, communication patterns, and advanced component techniques",
                         KeyConcepts = new List<string>
                         {
-                            "Component Lifecycle Hooks",
-                            "@Input & @Output Properties",
-                            "ViewChild & ContentChild",
-                            "Change Detection Strategies",
-                            "Smart vs Dumb Components",
-                            "Dynamic Component Loading"
+                            "Component Lifecycle Hooks: Eight lifecycle hooks that Angular calls in sequence from component creation to destruction. Includes ngOnInit for initialization logic, ngOnChanges for input property changes, ngOnDestroy for cleanup. Essential for proper resource management and performance optimization.",
+                            "@Input & @Output Properties: Decorators enabling parent-child component communication. @Input allows parent to pass data down to child components, @Output enables child to emit events up to parent. Foundation of Angular's unidirectional data flow architecture.",
+                            "ViewChild & ContentChild: Template query decorators for accessing child components, directives, or DOM elements. ViewChild queries view children (template), ContentChild queries projected content. Critical for component interaction and DOM manipulation.",
+                            "Change Detection Strategies: Mechanisms controlling when Angular checks for changes. Default strategy checks entire component tree, OnPush strategy only checks when inputs change or events occur. Key to optimizing performance in large applications.",
+                            "Smart vs Dumb Components: Architectural pattern separating components by responsibility. Smart components handle data and logic, dumb components only display data and emit events. Promotes reusability, testability, and maintainable code structure.",
+                            "Dynamic Component Loading: Programmatically creating and inserting components at runtime using ComponentFactoryResolver and ViewContainerRef. Enables flexible UIs like modals, tabs, and dynamic forms based on runtime conditions."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -197,12 +197,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master Angular templates, styling techniques, and view encapsulation",
                         KeyConcepts = new List<string>
                         {
-                            "Template Syntax & Expressions",
-                            "Template Reference Variables",
-                            "View Encapsulation Modes",
-                            "CSS/SCSS in Angular",
-                            "Angular Animations API",
-                            "Responsive Design Patterns"
+                            "Template Syntax & Expressions: Angular's declarative template language for defining component views. Includes interpolation {{}}, property/event binding, structural directives, and template expressions. Enables reactive UI development with TypeScript integration.",
+                            "Template Reference Variables: Variables declared in templates using # syntax to reference DOM elements or component instances. Provides direct access to elements for form handling, focus management, and component interaction within templates.",
+                            "View Encapsulation Modes: Strategies for scoping component styles - Emulated (default) uses attribute shimming, None applies styles globally, ShadowDom uses native shadow DOM. Critical for preventing style conflicts and creating reusable components.",
+                            "CSS/SCSS in Angular: Styling approaches including component styles, global styles, and preprocessor support. Features include :host and ::ng-deep selectors, CSS variables integration, and dynamic style binding for theme systems.",
+                            "Angular Animations API: Programmatic animation system built on Web Animations API. Enables complex state-based animations, route transitions, and staggered animations using triggers, states, and transitions with TypeScript control.",
+                            "Responsive Design Patterns: Strategies for building adaptive UIs including Angular Flex Layout, CDK Layout utilities, and responsive directives. Combines media queries, viewport units, and dynamic component loading for optimal mobile experiences."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -234,12 +234,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master Angular Router for complex navigation scenarios and route protection",
                         KeyConcepts = new List<string>
                         {
-                            "Router Configuration",
-                            "Route Guards (CanActivate, etc.)",
-                            "Route Parameters & Query Params",
-                            "Lazy Loading Modules",
-                            "Preloading Strategies",
-                            "Nested Routes & Aux Routes"
+                            "Router Configuration: Declarative route definitions mapping URLs to components. Includes path matching strategies, wildcards, redirects, and route ordering. Forms the navigation backbone of single-page applications with deep linking support.",
+                            "Route Guards (CanActivate, etc.): Interfaces controlling navigation flow - CanActivate for access control, CanDeactivate for unsaved changes, Resolve for data preloading, CanLoad for lazy-loaded modules. Essential for authentication, authorization, and data integrity.",
+                            "Route Parameters & Query Params: Mechanisms for passing data through URLs. Route parameters are required path segments, query parameters are optional key-value pairs. Enable stateful navigation and shareable URLs with data context.",
+                            "Lazy Loading Modules: Loading feature modules on-demand to reduce initial bundle size. Uses dynamic imports with loadChildren property, splitting code into separate chunks loaded when routes are accessed. Critical for performance in large applications.",
+                            "Preloading Strategies: Techniques for loading lazy modules in background after initial load. Includes PreloadAllModules, custom strategies based on user behavior or network conditions. Balances performance with resource optimization.",
+                            "Nested Routes & Aux Routes: Hierarchical route structures with child routes and multiple router outlets. Auxiliary routes enable independent navigation areas like sidebars or modals. Supports complex layouts with multiple simultaneous views."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -271,12 +271,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master both template-driven and reactive forms with advanced validation",
                         KeyConcepts = new List<string>
                         {
-                            "Template-driven Forms",
-                            "Reactive Forms & FormBuilder",
-                            "FormControl & FormGroup",
-                            "FormArray for Dynamic Forms",
-                            "Custom Validators & Async Validators",
-                            "Cross-field Validation"
+                            "Template-driven Forms: Declarative approach using directives in templates. Two-way binding with ngModel, validation through HTML5 attributes and directives. Simple for basic forms but limited for complex scenarios requiring dynamic behavior.",
+                            "Reactive Forms & FormBuilder: Programmatic form creation with explicit state management in component class. FormBuilder service provides convenient API for creating form controls, groups, and arrays. Enables complex validation, dynamic forms, and better testability.",
+                            "FormControl & FormGroup: Building blocks of reactive forms. FormControl represents single input value with validation state, FormGroup contains multiple controls as object structure. Provides fine-grained control over form state, validation, and value changes.",
+                            "FormArray for Dynamic Forms: Managing variable-length collections of form controls. Enables adding/removing form fields at runtime like dynamic questionnaires, shopping carts, or multi-step wizards. Essential for user-driven form structures.",
+                            "Custom Validators & Async Validators: Creating reusable validation logic beyond built-in validators. Synchronous validators for immediate checks, async validators for server-side validation like username availability. Supports complex business rules and real-time validation feedback.",
+                            "Cross-field Validation: Validation logic spanning multiple form fields like password confirmation or date ranges. Implemented at FormGroup level comparing multiple control values. Critical for maintaining data integrity across related fields."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -308,12 +308,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master RxJS for reactive programming patterns in Angular applications",
                         KeyConcepts = new List<string>
                         {
-                            "Observables & Subjects",
-                            "Creation & Transformation Operators",
-                            "Filtering & Combination Operators",
-                            "Error Handling & Retry Logic",
-                            "Higher-order Observables",
-                            "Hot vs Cold Observables"
+                            "Observables & Subjects: Core RxJS primitives for handling asynchronous data streams. Observables are lazy push collections, Subjects are multicast observables acting as both observer and observable. Foundation for reactive programming in Angular applications.",
+                            "Creation & Transformation Operators: Functions creating observables from various sources (of, from, interval) and transforming emitted values (map, scan, reduce). Enable declarative data manipulation and stream composition for complex async workflows.",
+                            "Filtering & Combination Operators: Operators controlling which values pass through (filter, take, skip) and combining multiple streams (merge, concat, combineLatest, forkJoin). Essential for coordinating multiple async operations and user interactions.",
+                            "Error Handling & Retry Logic: Strategies for graceful error recovery using catchError, retry, retryWhen operators. Implements resilient applications with automatic retry policies, fallback values, and error transformation for better user experience.",
+                            "Higher-order Observables: Observables emitting other observables, flattened using mergeMap, switchMap, concatMap, exhaustMap. Critical for handling nested async operations like sequential API calls or user-triggered searches with cancellation.",
+                            "Hot vs Cold Observables: Cold observables create new execution for each subscriber (like HTTP requests), hot observables share single execution among subscribers (like mouse events). Understanding difference prevents bugs in state management and resource usage."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -345,12 +345,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master HTTP communication, interceptors, and API integration patterns",
                         KeyConcepts = new List<string>
                         {
-                            "HttpClient & HTTP Methods",
-                            "HTTP Interceptors",
-                            "Request/Response Transformation",
-                            "Error Handling & Retry",
-                            "Caching Strategies",
-                            "File Upload/Download"
+                            "HttpClient & HTTP Methods: Angular's service for making HTTP requests supporting all REST methods (GET, POST, PUT, DELETE). Returns observables for reactive handling, includes typed responses, and integrates with RxJS operators for powerful data manipulation.",
+                            "HTTP Interceptors: Middleware mechanism for intercepting and transforming HTTP requests/responses globally. Used for authentication tokens, logging, error handling, loading indicators, and request/response transformation. Central point for cross-cutting HTTP concerns.",
+                            "Request/Response Transformation: Modifying HTTP data using interceptors and RxJS operators. Request transformation adds headers or modifies body, response transformation maps API data to application models. Enables clean separation between API and application layers.",
+                            "Error Handling & Retry: Implementing resilient HTTP communication with automatic retry on failure. Uses RxJS retry operators with exponential backoff, circuit breaker patterns, and graceful degradation. Critical for handling network instability and server errors.",
+                            "Caching Strategies: Techniques for storing HTTP responses to reduce server load and improve performance. Includes in-memory caching, localStorage persistence, cache invalidation strategies, and conditional requests. Essential for offline functionality and performance optimization.",
+                            "File Upload/Download: Handling binary data transfers with progress tracking. Supports multipart uploads, streaming downloads, progress events, and cancellation. Includes resumable uploads and proper error handling for large file operations."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -382,12 +382,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master state management patterns from simple to complex with NgRx",
                         KeyConcepts = new List<string>
                         {
-                            "Component State Management",
-                            "Service-based State",
-                            "NgRx Store & Actions",
-                            "Reducers & Effects",
-                            "Selectors & Memoization",
-                            "Entity Management"
+                            "Component State Management: Local state management within components using properties and lifecycle hooks. Simple approach for UI state like form values, loading flags, and view modes. Suitable for isolated components with minimal state sharing needs.",
+                            "Service-based State: Centralized state using Angular services with BehaviorSubject or custom state containers. Enables state sharing between components through dependency injection. Good balance between simplicity and functionality for medium-complexity applications.",
+                            "NgRx Store & Actions: Redux-inspired state container providing single source of truth for application state. Store holds immutable state tree, actions describe state changes as plain objects. Enables predictable state updates, time-travel debugging, and DevTools integration.",
+                            "Reducers & Effects: Pure functions (reducers) handling synchronous state transitions based on actions. Effects handle side effects like API calls, returning new actions. Clear separation of concerns between state calculation and async operations.",
+                            "Selectors & Memoization: Functions deriving data from store state with automatic memoization for performance. Compose complex queries from simple selectors, prevent unnecessary recalculations. Critical for efficient state consumption in large applications.",
+                            "Entity Management: Patterns and utilities for managing collections of entities in normalized state. NgRx Entity provides adapter API for CRUD operations, sorting, and filtering. Reduces boilerplate for common data manipulation patterns."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -419,12 +419,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master unit testing, integration testing, and E2E testing strategies",
                         KeyConcepts = new List<string>
                         {
-                            "Jasmine & Karma Setup",
-                            "TestBed & ComponentFixture",
-                            "Service & Pipe Testing",
-                            "HTTP Testing & Mocking",
-                            "E2E with Cypress/Playwright",
-                            "Code Coverage"
+                            "Jasmine & Karma Setup: Default testing framework (Jasmine) providing BDD-style syntax with describe/it blocks and matchers. Karma test runner executes tests in real browsers, watches file changes, and generates reports. Foundation for Angular's testing infrastructure.",
+                            "TestBed & ComponentFixture: Angular's testing utilities for creating component test environments. TestBed configures testing module with dependencies, ComponentFixture provides wrapper for component instance and DOM access. Enables isolated component testing with mocked dependencies.",
+                            "Service & Pipe Testing: Testing strategies for Angular services and pipes as pure units. Services tested with dependency injection mocking, pipes tested as pure functions. Focuses on business logic validation without UI complexity.",
+                            "HTTP Testing & Mocking: Testing HTTP-dependent code using HttpClientTestingModule and HttpTestingController. Mock backend responses, verify request parameters, test error scenarios. Ensures reliable API integration testing without real network calls.",
+                            "E2E with Cypress/Playwright: Modern end-to-end testing frameworks replacing Protractor. Test real user workflows across multiple pages, interact with actual DOM, verify integration between all application layers. Essential for confidence in production deployments.",
+                            "Code Coverage: Metrics measuring percentage of code executed during tests. Karma coverage reports identify untested code paths, enforce minimum thresholds in CI/CD. Guides testing efforts but not sole measure of test quality."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -456,12 +456,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master techniques for building high-performance Angular applications",
                         KeyConcepts = new List<string>
                         {
-                            "Lazy Loading & Code Splitting",
-                            "OnPush Change Detection",
-                            "Tree Shaking & Bundle Size",
-                            "TrackBy Functions",
-                            "Virtual Scrolling",
-                            "Web Workers Integration"
+                            "Lazy Loading & Code Splitting: Loading features only when needed, splitting application into separate JavaScript chunks. Reduces initial bundle size, improves time-to-interactive. Implemented through router configuration with dynamic imports for scalable applications.",
+                            "OnPush Change Detection: Optimization strategy checking component only when inputs change or events occur. Bypasses default change detection cycle, dramatically improves performance in complex component trees. Requires immutable data patterns for reliability.",
+                            "Tree Shaking & Bundle Size: Build optimization removing unused code from final bundles. Webpack eliminates dead code, Angular CLI optimizes imports. Combined with lazy loading and proper imports reduces application size significantly.",
+                            "TrackBy Functions: Custom tracking for ngFor loops preventing unnecessary DOM manipulation. Returns unique identifier for list items, enabling Angular to reuse DOM elements when data changes. Critical for performance with large lists or frequent updates.",
+                            "Virtual Scrolling: Rendering only visible items in large lists using CDK Virtual Scrolling. Maintains constant DOM element count regardless of data size. Enables smooth scrolling through thousands of items without performance degradation.",
+                            "Web Workers Integration: Offloading heavy computations to background threads preventing UI blocking. Angular CLI supports Web Workers for data processing, image manipulation, or complex calculations. Maintains 60fps interactions during intensive operations."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -493,12 +493,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Build offline-capable Progressive Web Apps with Angular",
                         KeyConcepts = new List<string>
                         {
-                            "Service Worker Setup",
-                            "App Manifest Configuration",
-                            "Offline Caching Strategies",
-                            "Push Notifications",
-                            "Background Sync",
-                            "App Shell Architecture"
+                            "Service Worker Setup: Implementing offline functionality using Angular's service worker module. Automatically generated configuration handles caching, updates, and offline fallbacks. Transforms regular web apps into reliable offline-capable applications.",
+                            "App Manifest Configuration: Web app manifest defining PWA metadata like name, icons, display mode, and theme colors. Enables add-to-homescreen functionality, fullscreen mode, and native-like appearance. Critical for mobile user experience and app discovery.",
+                            "Offline Caching Strategies: Techniques for storing resources and data offline - cache-first for static assets, network-first for dynamic content, stale-while-revalidate for balance. Ensures app functionality without network connection.",
+                            "Push Notifications: Engaging users with timely updates using Push API and service workers. Requires notification permissions, server-side infrastructure for sending messages. Increases user engagement and retention through relevant alerts.",
+                            "Background Sync: Deferring actions until stable network connection available. Queues failed requests, retries when online, ensures data integrity. Critical for form submissions, file uploads in unreliable network conditions.",
+                            "App Shell Architecture: Minimal HTML, CSS, and JavaScript powering user interface cached for instant loading. Separates static UI shell from dynamic content, provides immediate visual feedback. Foundation for perceived performance in PWAs."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -530,12 +530,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Build globally accessible applications with internationalization support",
                         KeyConcepts = new List<string>
                         {
-                            "Angular i18n Tools",
-                            "Translation Management",
-                            "Locale-specific Formatting",
-                            "RTL Support",
-                            "ARIA Attributes",
-                            "Keyboard Navigation"
+                            "Angular i18n Tools: Built-in internationalization framework for extracting, translating, and loading locale-specific content. Uses i18n attributes in templates, xi18n extraction tool, and locale-specific builds. Enables applications to support multiple languages efficiently.",
+                            "Translation Management: Workflow for managing translatable content including extraction, translation, and integration. Supports XLIFF, XMB, and JSON formats, integration with translation management systems. Critical for maintaining consistency across language versions.",
+                            "Locale-specific Formatting: Formatting dates, numbers, and currencies according to locale rules using Angular pipes. Automatic locale detection, custom locale data registration. Ensures culturally appropriate data presentation for global users.",
+                            "RTL Support: Right-to-left language support for Arabic, Hebrew, and other RTL scripts. Requires direction-aware CSS, layout adjustments, and bidirectional text handling. Essential for true global application accessibility.",
+                            "ARIA Attributes: Accessibility attributes making applications usable with assistive technologies. Includes roles, states, and properties for semantic meaning. Required for WCAG compliance and inclusive user experience for disabled users.",
+                            "Keyboard Navigation: Ensuring all functionality accessible via keyboard without mouse. Includes focus management, tab order, keyboard shortcuts, and skip links. Critical for power users and accessibility compliance."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -567,12 +567,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Implement security best practices and protect against common vulnerabilities",
                         KeyConcepts = new List<string>
                         {
-                            "XSS Prevention",
-                            "CSRF Protection",
-                            "Content Security Policy",
-                            "DomSanitizer Usage",
-                            "JWT Authentication",
-                            "Route Guards & RBAC"
+                            "XSS Prevention: Angular's built-in protection against Cross-Site Scripting attacks through automatic sanitization of values in templates. Treats all values as untrusted by default, escapes dangerous content. Critical first line of defense against injection attacks.",
+                            "CSRF Protection: Cross-Site Request Forgery prevention using token-based validation. Angular's HttpClient reads XSRF token from cookie, adds to HTTP headers. Prevents unauthorized actions using authenticated user's credentials.",
+                            "Content Security Policy: HTTP headers restricting resources browser can load, preventing XSS and data injection. Requires careful configuration with Angular's inline styles and scripts. Essential security layer for production applications.",
+                            "DomSanitizer Usage: Service for bypassing Angular's sanitization when trusted content required. Methods like bypassSecurityTrustHtml for rendering user content. Must be used carefully only with validated, trusted sources to maintain security.",
+                            "JWT Authentication: JSON Web Token implementation for stateless authentication. Includes secure storage, automatic token refresh, interceptor integration for API requests. Standard approach for modern SPA authentication with backend APIs.",
+                            "Route Guards & RBAC: Implementing role-based access control through Angular's route guard system. CanActivate guards check permissions, redirect unauthorized users. Combines with JWT claims for fine-grained authorization throughout application."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -604,12 +604,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master integration patterns with various backend technologies and real-time communication",
                         KeyConcepts = new List<string>
                         {
-                            "REST API Integration",
-                            "GraphQL with Apollo",
-                            "WebSockets & SignalR",
-                            "gRPC Web Clients",
-                            "Firebase Integration",
-                            "API Versioning"
+                            "REST API Integration: Building robust RESTful API clients using HttpClient with proper error handling, retry logic, and response transformation. Includes pagination handling, query parameter building, and standardized error responses. Foundation for most web applications.",
+                            "GraphQL with Apollo: Implementing GraphQL clients using Apollo Angular for flexible data fetching. Features include query batching, caching, optimistic updates, and subscription support. Reduces over-fetching and enables precise data requirements.",
+                            "WebSockets & SignalR: Real-time bidirectional communication for live updates, chat, and collaboration features. SignalR provides fallback transports, automatic reconnection, and hub-based architecture. Essential for interactive, real-time applications.",
+                            "gRPC Web Clients: High-performance RPC framework using Protocol Buffers for efficient serialization. Enables strongly-typed service contracts, streaming support, and better performance than JSON/REST. Ideal for microservices communication.",
+                            "Firebase Integration: Backend-as-a-Service integration providing authentication, real-time database, cloud storage, and hosting. AngularFire library offers Observable-based APIs matching Angular patterns. Rapid development solution for modern applications.",
+                            "API Versioning: Strategies for handling multiple API versions including URL versioning, header-based versioning, and content negotiation. Ensures backward compatibility while enabling API evolution. Critical for maintaining stable client-server contracts."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -641,12 +641,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master build optimization, deployment strategies, and CI/CD pipelines",
                         KeyConcepts = new List<string>
                         {
-                            "Build Configurations",
-                            "AOT Compilation",
-                            "Differential Loading",
-                            "Docker Containerization",
-                            "CI/CD Pipelines",
-                            "CDN Deployment"
+                            "Build Configurations: Custom build settings for different environments using angular.json configurations. Includes optimization levels, source maps, budgets, and file replacements. Enables consistent builds across development, staging, and production environments.",
+                            "AOT Compilation: Ahead-of-Time compilation converting Angular templates to JavaScript during build. Smaller bundles, faster rendering, early error detection, better tree-shaking. Default for production builds, critical for performance.",
+                            "Differential Loading: Generating separate bundles for modern and legacy browsers automatically. Modern browsers receive smaller ES2015+ bundles, older browsers get larger ES5 bundles. Optimizes performance while maintaining compatibility.",
+                            "Docker Containerization: Packaging Angular applications with web servers in Docker containers. Includes multi-stage builds for optimization, nginx configuration, environment variable injection. Ensures consistent deployment across environments.",
+                            "CI/CD Pipelines: Automated build, test, and deployment workflows using GitHub Actions, Jenkins, or Azure DevOps. Includes linting, testing, building, and deploying to various environments. Essential for maintaining code quality and rapid delivery.",
+                            "CDN Deployment: Distributing static assets globally through Content Delivery Networks. Includes cache busting strategies, compression, custom headers, and geographic distribution. Dramatically improves loading performance for global users."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -678,12 +678,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master popular Angular UI libraries and component development patterns",
                         KeyConcepts = new List<string>
                         {
-                            "Angular Material & CDK",
-                            "PrimeNG Components",
-                            "NG Bootstrap",
-                            "TailwindCSS Integration",
-                            "Custom Component Libraries",
-                            "Storybook for Angular"
+                            "Angular Material & CDK: Google's Material Design components for Angular with Component Dev Kit. Provides production-ready UI components, theming system, accessibility features, and low-level CDK primitives for building custom components.",
+                            "PrimeNG Components: Comprehensive UI component suite with 80+ components including data tables, charts, and form controls. Features built-in themes, responsive design, and enterprise-focused components like organization charts and terminals.",
+                            "NG Bootstrap: Native Angular directives for Bootstrap components without jQuery dependency. Provides type safety, Angular integration, and accessibility improvements over vanilla Bootstrap. Ideal for teams familiar with Bootstrap ecosystem.",
+                            "TailwindCSS Integration: Utility-first CSS framework integration with Angular's build system. Enables rapid UI development with atomic classes, PurgeCSS integration for production optimization. Popular for custom designs without writing CSS.",
+                            "Custom Component Libraries: Building reusable component libraries for organization-wide consistency. Includes Angular workspace setup, npm publishing, versioning strategies, and documentation. Essential for large teams and design system implementation.",
+                            "Storybook for Angular: Interactive component development and documentation environment. Enables isolated component development, visual testing, and living documentation. Critical tool for maintaining component libraries and design systems."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -715,12 +715,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master enterprise-scale architecture patterns and Angular best practices",
                         KeyConcepts = new List<string>
                         {
-                            "Monorepo with Nx",
-                            "Clean Architecture",
-                            "Feature Modules Pattern",
-                            "Facade Pattern",
-                            "Scalable Folder Structure",
-                            "Code Style & Linting"
+                            "Monorepo with Nx: Managing multiple Angular applications and libraries in single repository using Nx workspace. Provides code sharing, consistent tooling, dependency graph visualization, and affected commands. Essential for enterprise-scale development.",
+                            "Clean Architecture: Organizing code into layers with clear separation of concerns - presentation, business logic, and data access. Domain-driven design principles, dependency inversion, and testability. Creates maintainable, scalable applications.",
+                            "Feature Modules Pattern: Organizing functionality into self-contained feature modules with clear boundaries. Includes lazy loading, module dependencies, and shared modules. Promotes code organization, reusability, and team collaboration.",
+                            "Facade Pattern: Service layer abstracting complex state management and business logic from components. Simplifies component code, centralizes logic, improves testability. Acts as API boundary between smart components and application core.",
+                            "Scalable Folder Structure: Organizing files by feature rather than file type, with consistent naming conventions. Includes barrels for exports, shared utilities placement, and growth accommodation. Critical for long-term maintainability.",
+                            "Code Style & Linting: Enforcing consistent code standards using ESLint, Prettier, and Angular style guide. Includes custom rules, pre-commit hooks, and CI integration. Ensures code quality and reduces review friction across teams."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -752,12 +752,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Explore cutting-edge Angular features and advanced integration patterns",
                         KeyConcepts = new List<string>
                         {
-                            "Standalone Components",
-                            "Angular Signals",
-                            "SSR with Angular Universal",
-                            "Module Federation",
-                            "WebAssembly Integration",
-                            "AI/ML Integration"
+                            "Standalone Components: New Angular architecture eliminating NgModules requirement. Components declare their dependencies directly, enabling better tree-shaking, simpler mental model, and easier migration paths. Future of Angular development.",
+                            "Angular Signals: Reactive primitive for managing state with automatic dependency tracking. Fine-grained reactivity system improving performance over zone.js change detection. Enables more predictable, efficient state management patterns.",
+                            "SSR with Angular Universal: Server-side rendering for improved SEO, faster initial load, and better performance scores. Includes hydration, transfer state, and platform-specific code handling. Critical for public-facing, content-heavy applications.",
+                            "Module Federation: Webpack 5 feature enabling runtime code sharing between separately deployed applications. Supports micro-frontend architecture, independent deployments, and dynamic remote loading. Solution for large-scale distributed applications.",
+                            "WebAssembly Integration: Running high-performance code written in languages like C++ or Rust within Angular applications. Enables compute-intensive operations, legacy code integration, and near-native performance for specific tasks.",
+                            "AI/ML Integration: Incorporating machine learning models using TensorFlow.js, ONNX Runtime, or cloud APIs. Enables intelligent features like image recognition, natural language processing, and predictive analytics directly in Angular applications."
                         },
                         Objectives = new List<LearningObjective>
                         {

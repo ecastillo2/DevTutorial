@@ -49,12 +49,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master the essential building blocks of JavaScript including syntax, data types, operators, and expressions",
                         KeyConcepts = new List<string> 
                         { 
-                            "JavaScript History & Evolution",
-                            "Variables & Constants (var, let, const)",
-                            "Data Types (Primitives & Objects)",
-                            "Type Conversion & Coercion",
-                            "Operators & Expressions",
-                            "Statements vs Expressions"
+                            "JavaScript History & Evolution: Programming language created in 1995, evolved through ECMAScript standards. ES6+ introduced modern features like arrow functions, classes, modules enabling sophisticated application development.",
+                            "Variables & Constants (var, let, const): Variable declarations with different scoping rules. var has function scope, let/const have block scope. const creates immutable bindings for primitive values and object references.",
+                            "Data Types (Primitives & Objects): Seven primitive types (undefined, null, boolean, number, bigint, string, symbol) and objects. Understanding type system crucial for effective JavaScript programming.",
+                            "Type Conversion & Coercion: Explicit conversion using constructors and implicit coercion during operations. Understanding truthy/falsy values and comparison operators (==, ===) prevents unexpected behavior.",
+                            "Operators & Expressions: Arithmetic, logical, comparison, assignment, and specialized operators. Expressions evaluate to values, understanding precedence and associativity ensures correct code behavior.",
+                            "Statements vs Expressions: Statements perform actions (if, for, while), expressions produce values. Understanding distinction important for functional programming and language comprehension."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -86,12 +86,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master function concepts, scope chains, closures, and functional programming patterns",
                         KeyConcepts = new List<string>
                         {
-                            "Function Declarations vs Expressions",
-                            "Arrow Functions",
-                            "Parameters & Arguments",
-                            "Scope & Closures",
-                            "Higher-Order Functions",
-                            "Functional Programming Patterns"
+                            "Function Declarations vs Expressions: Two ways to define functions with different behaviors. Declarations are hoisted and can be called before definition, expressions are not hoisted and create more predictable code.",
+                            "Arrow Functions: Concise function syntax with lexical this binding. Shorter syntax for simple functions, but different behavior for this context and cannot be used as constructors.",
+                            "Parameters & Arguments: Function inputs with various patterns including default parameters, rest parameters, and destructuring. Arguments object provides access to all passed parameters.",
+                            "Scope & Closures: Scope determines variable accessibility, closures allow inner functions to access outer function variables even after outer function returns. Essential for module patterns and data privacy.",
+                            "Higher-Order Functions: Functions that take other functions as arguments or return functions. Foundation of functional programming including map, filter, reduce, and custom utility functions.",
+                            "Functional Programming Patterns: Programming paradigm emphasizing immutability, pure functions, and function composition. Includes currying, partial application, and monadic patterns for cleaner code."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -123,12 +123,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master control structures, iteration patterns, and error handling mechanisms",
                         KeyConcepts = new List<string>
                         {
-                            "Conditionals & Branching",
-                            "Loops & Iteration",
-                            "Iterators & Generators",
-                            "Error Handling",
-                            "Custom Error Types",
-                            "Flow Control Best Practices"
+                            "Conditionals & Branching: Decision-making structures including if/else statements, switch expressions, and ternary operators. Modern features like optional chaining (?.) and nullish coalescing (??) for cleaner branching logic.",
+                            "Loops & Iteration: Repetitive execution patterns including for, while, do-while loops, and modern for-in/for-of loops. Understanding performance implications and choosing appropriate iteration methods.",
+                            "Iterators & Generators: Advanced iteration protocols. Iterators define sequence access, generators create iterators using function* syntax with yield. Enable lazy evaluation and infinite sequences.",
+                            "Error Handling: Managing runtime errors using try/catch/finally blocks. Understanding error types, stack traces, and creating robust error recovery mechanisms for application stability.",
+                            "Custom Error Types: Creating application-specific error classes extending built-in Error types. Enables precise error identification, custom properties, and improved debugging capabilities.",
+                            "Flow Control Best Practices: Guidelines for writing readable, maintainable control flow including early returns, guard clauses, avoiding deep nesting, and clear conditional expressions."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -160,12 +160,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master object-oriented programming in JavaScript with prototypes, classes, and inheritance",
                         KeyConcepts = new List<string>
                         {
-                            "Object Creation Patterns",
-                            "Prototypal Inheritance",
-                            "ES6 Classes",
-                            "this Keyword Binding",
-                            "Object Manipulation",
-                            "Symbols & Metadata"
+                            "Object Creation Patterns: Various methods for creating objects including literal notation, constructor functions, Object.create(), factory functions, and class instantiation. Each pattern has different use cases and performance characteristics.",
+                            "Prototypal Inheritance: JavaScript's inheritance model where objects inherit directly from other objects through prototype chain. Understanding __proto__, prototype property, and Object.setPrototypeOf() for inheritance hierarchies.",
+                            "ES6 Classes: Syntactic sugar over prototypal inheritance providing familiar class-based syntax. Includes constructor methods, static methods, private fields, and extends keyword for inheritance.",
+                            "this Keyword Binding: Context object reference that changes based on invocation pattern. Understanding call-site rules, explicit binding with call/apply/bind, arrow functions, and implicit binding.",
+                            "Object Manipulation: Techniques for working with objects including property enumeration, descriptors, getters/setters, Object.keys/values/entries, and modern spreading/destructuring operations.",
+                            "Symbols & Metadata: Primitive symbol type for unique object property keys. Well-known symbols define object behavior, Symbol.iterator enables custom iteration, metadata programming with symbols."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -197,12 +197,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master array operations, functional array methods, and data transformation patterns",
                         KeyConcepts = new List<string>
                         {
-                            "Array Creation & Access",
-                            "Mutating vs Non-Mutating Methods",
-                            "Functional Array Methods",
-                            "Array Destructuring",
-                            "Multi-dimensional Arrays",
-                            "Typed Arrays"
+                            "Array Creation & Access: Multiple array creation methods including literal notation, Array constructor, Array.from(), Array.of(), and spread operator. Index-based access and length property manipulation.",
+                            "Mutating vs Non-Mutating Methods: Distinction between methods that modify original array (push, pop, splice) and those that return new arrays (map, filter, concat). Critical for functional programming and avoiding side effects.",
+                            "Functional Array Methods: Higher-order functions for data transformation including map, filter, reduce, forEach, find, some, every. Enable declarative programming style and data pipeline construction.",
+                            "Array Destructuring: ES6 syntax for extracting array elements into variables. Includes rest patterns, default values, and nested destructuring for elegant data access patterns.",
+                            "Multi-dimensional Arrays: Arrays containing other arrays for matrix operations, table data, and complex data structures. Techniques for accessing and manipulating nested array data.",
+                            "Typed Arrays: Special array-like objects for handling binary data including Int8Array, Float32Array, etc. Used for high-performance numeric operations, file handling, and WebGL programming."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -234,12 +234,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master async programming with callbacks, promises, async/await, and event loop understanding",
                         KeyConcepts = new List<string>
                         {
-                            "Callbacks & Callback Hell",
-                            "Promises & Promise Chaining",
-                            "Async/Await Patterns",
-                            "Event Loop & Task Queue",
-                            "Microtasks vs Macrotasks",
-                            "Observable Patterns"
+                            "Callbacks & Callback Hell: Function passed as argument to be executed later. Callback hell occurs with nested callbacks creating unreadable code. Understanding inversion of control and callback patterns.",
+                            "Promises & Promise Chaining: Objects representing eventual completion of asynchronous operations. Chaining with then/catch/finally provides linear async code flow and better error handling than callbacks.",
+                            "Async/Await Patterns: Syntactic sugar over promises making asynchronous code look synchronous. Error handling with try/catch, parallel execution with Promise.all, and async iteration patterns.",
+                            "Event Loop & Task Queue: JavaScript's concurrency model using call stack, callback queue, and event loop. Understanding how async operations are scheduled and executed in single-threaded environment.",
+                            "Microtasks vs Macrotasks: Different task types with different priorities. Microtasks (Promise.then, queueMicrotask) execute before macrotasks (setTimeout, setInterval) in each event loop iteration.",
+                            "Observable Patterns: Reactive programming patterns for handling asynchronous data streams. RxJS observables provide powerful composition operators for complex async scenarios and event handling."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -271,12 +271,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master DOM manipulation, event handling, and browser interaction patterns",
                         KeyConcepts = new List<string>
                         {
-                            "DOM Selection & Manipulation",
-                            "Event System & Delegation",
-                            "Event Propagation",
-                            "Custom Events",
-                            "Form Handling",
-                            "Touch & Pointer Events"
+                            "DOM Selection & Manipulation: Methods for selecting DOM elements (querySelector, getElementById) and modifying them (innerHTML, textContent, classList). Understanding performance implications of DOM operations.",
+                            "Event System & Delegation: Browser event system with capturing and bubbling phases. Event delegation uses bubbling to handle events on parent elements, improving performance and handling dynamic content.",
+                            "Event Propagation: Three phases of event handling: capturing (down the tree), target (at element), and bubbling (up the tree). stopPropagation() and preventDefault() control event behavior.",
+                            "Custom Events: Creating and dispatching custom events for component communication. CustomEvent constructor enables passing data between decoupled components using standard event system.",
+                            "Form Handling: Processing form data including validation, submission handling, and user interaction. FormData API for file uploads and modern form validation techniques.",
+                            "Touch & Pointer Events: Handling touch interactions on mobile devices and pointer events for unified input handling. Includes gesture recognition, multi-touch support, and responsive input design."
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -308,12 +308,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master module systems, code organization patterns, and dependency management",
                         KeyConcepts = new List<string>
                         {
-                            "ES6 Modules",
-                            "CommonJS & Node.js Modules",
-                            "Module Bundling",
-                            "Namespaces & IIFE",
-                            "Tree Shaking",
-                            "Dynamic Imports"
+                            "ES6 Modules - The standard module system for JavaScript, using import/export syntax to create reusable, encapsulated code units with explicit dependencies and cleaner namespace management",
+                            "CommonJS & Node.js Modules - The module system used in Node.js environments, utilizing require() and module.exports for synchronous module loading, essential for server-side JavaScript development",
+                            "Module Bundling - The process of combining multiple JavaScript modules into optimized bundles for browser delivery, reducing HTTP requests and enabling modern development workflows with tools like Webpack and Rollup",
+                            "Namespaces & IIFE - Traditional patterns for organizing JavaScript code before modules, using Immediately Invoked Function Expressions to create isolated scopes and prevent global namespace pollution",
+                            "Tree Shaking - Dead code elimination technique that removes unused exports from bundles during the build process, significantly reducing bundle size by only including code that's actually imported and used",
+                            "Dynamic Imports - Runtime module loading using import() expressions, enabling code splitting, lazy loading, and conditional module loading based on user interactions or application state"
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -345,12 +345,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master debugging techniques, error handling patterns, and development tools",
                         KeyConcepts = new List<string>
                         {
-                            "Error Types & Debugging",
-                            "Browser DevTools",
-                            "Console API",
-                            "Debugging Strategies",
-                            "Linting & Code Quality",
-                            "Performance Profiling"
+                            "Error Types & Debugging - Understanding JavaScript's error types (SyntaxError, TypeError, ReferenceError, etc.) and debugging techniques including breakpoints, stack traces, and error handling patterns for robust applications",
+                            "Browser DevTools - Comprehensive developer tools in modern browsers for debugging JavaScript, inspecting DOM/network activity, analyzing performance, and testing code with features like console, debugger, and profiler",
+                            "Console API - Browser's console methods beyond console.log(), including table(), time(), assert(), trace(), and group() for advanced debugging, performance measurement, and organized logging output",
+                            "Debugging Strategies - Systematic approaches to finding and fixing bugs including binary search debugging, rubber duck debugging, logging strategies, and using source maps for debugging minified code",
+                            "Linting & Code Quality - Static code analysis tools like ESLint and Prettier that enforce coding standards, catch errors early, maintain consistency, and improve code quality through automated rule checking",
+                            "Performance Profiling - Using browser profiler tools to identify performance bottlenecks, memory leaks, and inefficient code by analyzing CPU usage, memory allocation, and rendering performance metrics"
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -382,12 +382,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master browser APIs, storage solutions, and modern web capabilities",
                         KeyConcepts = new List<string>
                         {
-                            "DOM & BOM APIs",
-                            "Storage APIs",
-                            "Fetch & Network APIs",
-                            "Geolocation & Device APIs",
-                            "Service Workers",
-                            "WebRTC & Real-time Communication"
+                            "DOM & BOM APIs - Document Object Model for manipulating page structure and Browser Object Model for interacting with browser features like window, location, history, and navigator objects",
+                            "Storage APIs - Browser storage mechanisms including localStorage for persistent data, sessionStorage for session-scoped data, IndexedDB for complex data structures, and Cache API for offline resource storage",
+                            "Fetch & Network APIs - Modern promise-based API for making HTTP requests, handling responses, and managing network operations with features like request/response manipulation, streaming, and CORS handling",
+                            "Geolocation & Device APIs - Browser APIs for accessing device capabilities including GPS location, camera, microphone, device orientation, battery status, and other hardware features with proper permission handling",
+                            "Service Workers - JavaScript workers that act as network proxies, enabling offline functionality, push notifications, background sync, and caching strategies for building Progressive Web Apps",
+                            "WebRTC & Real-time Communication - Web Real-Time Communication API for peer-to-peer audio, video, and data sharing directly between browsers without plugins, enabling video calls, screen sharing, and real-time collaboration"
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -419,12 +419,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master JavaScript integration with HTML/CSS and rendering strategies",
                         KeyConcepts = new List<string>
                         {
-                            "HTML Integration",
-                            "CSS Manipulation",
-                            "Rendering Strategies",
-                            "SPA Concepts",
-                            "Virtual DOM Concepts",
-                            "Performance Optimization"
+                            "HTML Integration - Techniques for efficiently loading and executing JavaScript in web pages, including script placement, defer/async attributes, and module loading strategies for optimal page performance",
+                            "CSS Manipulation - Programmatic styling through JavaScript using inline styles, CSSOM manipulation, CSS classes, CSS-in-JS libraries, and dynamic stylesheet creation for responsive UI updates",
+                            "Rendering Strategies - Understanding browser rendering pipeline, reflow/repaint optimization, critical rendering path, and techniques like requestAnimationFrame for smooth animations and efficient DOM updates",
+                            "SPA Concepts - Single Page Application architecture patterns including client-side routing, state management, component lifecycles, and techniques for building dynamic web apps that update without full page reloads",
+                            "Virtual DOM Concepts - Abstraction layer that represents UI as JavaScript objects, enabling efficient updates by comparing virtual trees and applying minimal changes to the actual DOM, popularized by React",
+                            "Performance Optimization - Web performance techniques including lazy loading, code splitting, resource hints, compression, minification, and Core Web Vitals optimization for fast, responsive user experiences"
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -456,12 +456,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master advanced language features, execution context, and performance optimization",
                         KeyConcepts = new List<string>
                         {
-                            "Execution Context & Call Stack",
-                            "Hoisting & Temporal Dead Zone",
-                            "Strict Mode",
-                            "Memory Management",
-                            "Functional Programming",
-                            "Reactive Programming"
+                            "Execution Context & Call Stack - JavaScript's execution environment including global/function/eval contexts, lexical environment, variable environment, and the call stack mechanism for tracking function execution order",
+                            "Hoisting & Temporal Dead Zone - JavaScript's behavior of moving declarations to the top of their scope during compilation, and the TDZ where let/const variables exist but cannot be accessed before initialization",
+                            "Strict Mode - JavaScript's strict execution mode that eliminates silent errors, prevents unsafe actions, disables confusing features, and enables better optimization by JavaScript engines for cleaner code",
+                            "Memory Management - Understanding JavaScript's automatic garbage collection, memory leaks prevention, heap/stack allocation, reference counting, and techniques for optimizing memory usage in large applications",
+                            "Functional Programming - Programming paradigm emphasizing immutability, pure functions, higher-order functions, function composition, and declarative code style for more predictable and testable JavaScript",
+                            "Reactive Programming - Programming paradigm using observables and data streams to handle asynchronous events, enabling declarative handling of complex async operations with libraries like RxJS"
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -493,12 +493,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master web security concepts and secure JavaScript development practices",
                         KeyConcepts = new List<string>
                         {
-                            "XSS Prevention",
-                            "CSRF Protection",
-                            "CORS Configuration",
-                            "Content Security Policy",
-                            "Input Sanitization",
-                            "Secure Storage Practices"
+                            "XSS Prevention - Cross-Site Scripting attack prevention through proper output encoding, Content Security Policy, avoiding innerHTML with user data, and using frameworks that auto-escape by default",
+                            "CSRF Protection - Cross-Site Request Forgery defense using anti-CSRF tokens, SameSite cookies, double-submit patterns, and verifying origin headers to prevent unauthorized state-changing requests",
+                            "CORS Configuration - Cross-Origin Resource Sharing setup for secure cross-domain requests, understanding preflight requests, allowed origins, credentials handling, and proper header configuration",
+                            "Content Security Policy - HTTP header-based security layer that helps detect and mitigate XSS and data injection attacks by specifying allowed sources for scripts, styles, and other resources",
+                            "Input Sanitization - Techniques for cleaning and validating user input including HTML sanitization, SQL injection prevention, command injection protection, and using allowlists for acceptable input patterns",
+                            "Secure Storage Practices - Best practices for client-side data storage including avoiding sensitive data in localStorage, using secure cookies with proper flags, and implementing encryption for sensitive information"
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -530,12 +530,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master modern JavaScript tooling, bundlers, and development workflow optimization",
                         KeyConcepts = new List<string>
                         {
-                            "Package Managers",
-                            "Module Bundlers",
-                            "Transpilers & Compilers",
-                            "Task Runners",
-                            "Development Servers",
-                            "Monorepo Management"
+                            "Package Managers - Tools like npm, Yarn, and pnpm for managing project dependencies, handling version conflicts, creating lockfiles for reproducible builds, and automating package installation and updates",
+                            "Module Bundlers - Build tools like Webpack, Rollup, and Parcel that combine JavaScript modules into optimized bundles, handle assets, enable code splitting, and transform code for browser compatibility",
+                            "Transpilers & Compilers - Tools like Babel and TypeScript compiler that transform modern JavaScript/TypeScript into backwards-compatible versions, enabling use of latest language features across all browsers",
+                            "Task Runners - Automation tools like Gulp and npm scripts for automating repetitive development tasks such as compilation, minification, testing, and deployment through configurable task pipelines",
+                            "Development Servers - Local development tools like Webpack Dev Server and Vite that provide hot module replacement, proxy configuration, HTTPS support, and optimized build-time performance for rapid development",
+                            "Monorepo Management - Tools and strategies like Lerna, Nx, and Yarn Workspaces for managing multiple related packages in a single repository, enabling code sharing and coordinated versioning"
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -567,12 +567,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master testing strategies, frameworks, and automated testing practices",
                         KeyConcepts = new List<string>
                         {
-                            "Unit Testing Frameworks",
-                            "Integration Testing",
-                            "End-to-End Testing",
-                            "Mocking & Stubbing",
-                            "Code Coverage",
-                            "Test Automation"
+                            "Unit Testing Frameworks - Testing libraries like Jest, Mocha, and Vitest for writing and running isolated tests of individual functions and components with assertions, test suites, and lifecycle hooks",
+                            "Integration Testing - Testing multiple components together to verify their interactions, including API integration tests, database tests, and testing component communication in real scenarios",
+                            "End-to-End Testing - Full application testing with tools like Cypress, Playwright, and Selenium that simulate real user interactions, test complete user flows, and verify application behavior in browsers",
+                            "Mocking & Stubbing - Test doubles techniques for isolating units under test by replacing dependencies with controlled implementations, including spies, stubs, mocks, and fake objects",
+                            "Code Coverage - Metrics and tools for measuring test completeness including statement, branch, function, and line coverage, helping identify untested code paths and improve test suite quality",
+                            "Test Automation - Continuous testing strategies including test runners, CI/CD integration, parallel test execution, visual regression testing, and automated test report generation for reliable software delivery"
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -604,12 +604,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master popular JavaScript frameworks and understand their architectural patterns",
                         KeyConcepts = new List<string>
                         {
-                            "React.js Ecosystem",
-                            "Angular Framework",
-                            "Vue.js & Nuxt",
-                            "Svelte & SvelteKit",
-                            "State Management Libraries",
-                            "Utility Libraries"
+                            "React.js Ecosystem - Component-based library for building UIs with virtual DOM, JSX syntax, hooks for state management, and rich ecosystem including Next.js, React Router, and React Native",
+                            "Angular Framework - Full-featured MVC framework with TypeScript, dependency injection, RxJS for reactive programming, powerful CLI, and comprehensive tooling for enterprise-scale applications",
+                            "Vue.js & Nuxt - Progressive framework with template-based syntax, reactive data binding, single-file components, and Nuxt.js for server-side rendering and static site generation",
+                            "Svelte & SvelteKit - Compile-time framework that generates vanilla JavaScript, eliminating runtime overhead, with reactive declarations and SvelteKit for full-stack application development",
+                            "State Management Libraries - Solutions like Redux, MobX, Zustand, and Pinia for managing complex application state, implementing flux architecture, and handling cross-component data flow",
+                            "Utility Libraries - Essential helper libraries like Lodash for utilities, Axios for HTTP requests, date-fns for date manipulation, and other specialized tools that enhance JavaScript capabilities"
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -641,12 +641,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master server-side JavaScript development with Node.js and backend frameworks",
                         KeyConcepts = new List<string>
                         {
-                            "Node.js Core Modules",
-                            "Express.js & Web Frameworks",
-                            "REST API Development",
-                            "Authentication Systems",
-                            "Real-time Applications",
-                            "Microservices Architecture"
+                            "Node.js Core Modules - Built-in modules like fs for file system operations, http for server creation, path for file paths, crypto for encryption, and stream for handling data flows in Node.js applications",
+                            "Express.js & Web Frameworks - Minimal and flexible Node.js frameworks for building web applications and APIs, featuring middleware, routing, template engines, and extensive plugin ecosystems",
+                            "REST API Development - Building RESTful services with proper HTTP methods, status codes, resource naming, pagination, filtering, versioning, and following REST architectural constraints",
+                            "Authentication Systems - Implementing secure user authentication with JWT tokens, OAuth 2.0, session management, password hashing with bcrypt, and role-based access control for protected resources",
+                            "Real-time Applications - Building live applications using WebSockets, Socket.IO, or Server-Sent Events for features like chat, notifications, collaborative editing, and live data updates",
+                            "Microservices Architecture - Designing distributed systems with Node.js including service discovery, API gateways, message queuing, inter-service communication, and containerization with Docker"
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -678,12 +678,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master database integration, ORMs, and data persistence patterns",
                         KeyConcepts = new List<string>
                         {
-                            "SQL Databases Integration",
-                            "NoSQL Databases",
-                            "ODM/ORM Libraries",
-                            "Database Migrations",
-                            "In-browser Databases",
-                            "Caching Strategies"
+                            "SQL Databases Integration - Working with relational databases like PostgreSQL and MySQL using query builders, connection pooling, prepared statements, and transaction management for data integrity",
+                            "NoSQL Databases - Using document stores like MongoDB, key-value stores like Redis, and graph databases, understanding their use cases, query languages, and scaling characteristics",
+                            "ODM/ORM Libraries - Object-Document/Relational Mapping tools like Mongoose, Prisma, and TypeORM that provide abstraction layers for database operations, schema definitions, and relationship management",
+                            "Database Migrations - Version control for database schemas using migration tools, managing schema changes across environments, rollback strategies, and maintaining data integrity during updates",
+                            "In-browser Databases - Client-side storage solutions like IndexedDB and WebSQL for offline-capable applications, managing large datasets in browsers, and implementing sync strategies with servers",
+                            "Caching Strategies - Implementing caching layers with Redis or Memcached, cache invalidation patterns, CDN integration, browser caching headers, and optimizing database query performance"
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -715,12 +715,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master performance optimization techniques for both browser and server-side JavaScript",
                         KeyConcepts = new List<string>
                         {
-                            "Code Splitting & Lazy Loading",
-                            "Debouncing & Throttling",
-                            "Memory Optimization",
-                            "Web Workers",
-                            "Caching Strategies",
-                            "Performance Monitoring"
+                            "Code Splitting & Lazy Loading - Breaking applications into chunks loaded on demand, reducing initial bundle size, implementing route-based splitting, and using dynamic imports for optimal loading performance",
+                            "Debouncing & Throttling - Rate-limiting techniques for controlling function execution frequency, preventing excessive API calls, optimizing scroll/resize handlers, and improving input field performance",
+                            "Memory Optimization - Techniques for preventing memory leaks, managing object references, using WeakMap/WeakSet, implementing object pooling, and profiling memory usage in JavaScript applications",
+                            "Web Workers - Running JavaScript in background threads for CPU-intensive tasks, parallel processing, offloading heavy computations, and maintaining responsive UI during complex operations",
+                            "Caching Strategies - Implementing browser caching, service worker caches, memory caching, HTTP cache headers, and cache invalidation patterns for improved application performance",
+                            "Performance Monitoring - Using tools like Lighthouse, Performance API, and monitoring services to track metrics, identify bottlenecks, set performance budgets, and continuously optimize applications"
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -752,12 +752,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Master type safety in JavaScript with TypeScript and other typing solutions",
                         KeyConcepts = new List<string>
                         {
-                            "TypeScript Fundamentals",
-                            "Type Annotations & Inference",
-                            "Generics & Advanced Types",
-                            "JSDoc Type Annotations",
-                            "Flow Type Checker",
-                            "Type Safety Best Practices"
+                            "TypeScript Fundamentals - Statically typed superset of JavaScript with interfaces, enums, classes, and modules that compiles to plain JavaScript while catching errors at compile time",
+                            "Type Annotations & Inference - Explicitly declaring variable types and leveraging TypeScript's ability to automatically infer types from context, balancing type safety with code readability",
+                            "Generics & Advanced Types - Creating reusable type-safe components with generic types, conditional types, mapped types, template literal types, and utility types for flexible type transformations",
+                            "JSDoc Type Annotations - Adding type information to JavaScript using JSDoc comments, enabling type checking in JavaScript files without TypeScript syntax for gradual migration or lightweight typing",
+                            "Flow Type Checker - Facebook's static type checker for JavaScript, offering gradual typing, type inference, and null safety as an alternative to TypeScript for type-safe JavaScript development",
+                            "Type Safety Best Practices - Strategies for maximizing type safety including strict compiler options, avoiding any types, proper null handling, discriminated unions, and exhaustive type checking"
                         },
                         Objectives = new List<LearningObjective>
                         {
@@ -789,12 +789,12 @@ namespace DevTutorialWebApp.Services
                         Content = "Explore cutting-edge JavaScript technologies and specialized application areas",
                         KeyConcepts = new List<string>
                         {
-                            "WebAssembly Integration",
-                            "Serverless JavaScript",
-                            "JAMstack Architecture",
-                            "Microfrontends",
-                            "Edge Computing",
-                            "AI/ML in JavaScript"
+                            "WebAssembly Integration - Running high-performance compiled code in browsers alongside JavaScript, enabling C++/Rust integration, computational intensive tasks, and near-native performance for web applications",
+                            "Serverless JavaScript - Building scalable applications with Functions-as-a-Service platforms like AWS Lambda, Vercel, and Netlify Functions, focusing on business logic without server management",
+                            "JAMstack Architecture - Modern web architecture using JavaScript, APIs, and Markup for building fast, secure, and scalable websites with static site generators and headless CMS integration",
+                            "Microfrontends - Architectural pattern for breaking frontend monoliths into smaller, independent applications that can be developed, deployed, and scaled independently by different teams",
+                            "Edge Computing - Running JavaScript at edge locations closer to users with platforms like Cloudflare Workers and Deno Deploy, reducing latency and enabling geo-distributed applications",
+                            "AI/ML in JavaScript - Machine learning in browsers and Node.js using TensorFlow.js, Brain.js, and ML5.js for computer vision, natural language processing, and predictive models without backend infrastructure"
                         },
                         Objectives = new List<LearningObjective>
                         {
